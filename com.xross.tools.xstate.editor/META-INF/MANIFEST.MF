@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: xState Editor
+Bundle-SymbolicName: com.xross.tools.xstate.editor
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.xross.tools.xstate.editor.Activator
+Bundle-Vendor: XROSS
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
