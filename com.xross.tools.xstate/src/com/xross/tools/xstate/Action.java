@@ -1,5 +1,5 @@
 package com.xross.tools.xstate;
 
-public class StateDiagram {
+public interface Action {
 
 }
