@@ -15,17 +15,21 @@ public class StateMachine {
 	}
 
 	
-	public State getCurrentState(){
+	public String getCurrentStateName(){
 		return null;
 	}
 	
-	public List<Event> getAcceptableEvent(){
+	public List<Event> getAcceptableEvents(){
 		return null;
 	}
 	
-	public State notify(Event event){
+	public List<String> getNextStateNames(){
+		return null;
+	}
+	
+	public boolean notify(Event event){
 		
-		return null;
+		return true;
 	}
 	
 	public boolean isEnd(){
