@@ -4,6 +4,7 @@ import java.util.List;
 
 public class StateMachine {
 	private String name;
+	private TransitionGuard gaurd;
 	
 	StateMachine(String name){
 		
@@ -23,6 +24,7 @@ public class StateMachine {
 	}
 	
 	public State notify(Event event){
+		
 		return null;
 	}
 	
