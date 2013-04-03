@@ -8,4 +8,7 @@ public class StateMachine {
 
 	private List<StateNode> nodes;
 	private List<Event> events;
+	
+	
+	
 }
