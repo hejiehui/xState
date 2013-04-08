@@ -4,6 +4,8 @@ import java.util.List;
 
 public class StateNode {
 	private String name;
+	// TODO Do we allow nested state machine?
+	private String reference;
 	private String description;
 	private String entryAction;
 	private String existAction;
