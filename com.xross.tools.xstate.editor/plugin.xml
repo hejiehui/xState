@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.xross.tools.xstate.editor.StateMachineDiagramGraphicalEditor"
+            default="true"
+            contributorClass="com.xross.tools.xstate.editor.StateMachineActionBarContributor"
+            extensions="xstate"
+            icon="icons/chain.ico"
+            id="com.xross.tools.xstate.editor.StateMachineDiagramGraphicalEditor"
+            name="Xross State Machine Diagram Editor">
+         <contentTypeBinding
+               contentTypeId="com.xross.tools.xunit">
+         </contentTypeBinding>
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="com.xross.tools"
+            class="com.xross.tools.xstate.editor.NewStateMachineWizard"
+            icon="icons/chain.ico"
+            id="com.xross.tools.xstate.editor.newWizard"
+            name="New Xross State Machine Wizard">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            alias-for="xs"
+            base-type="org.eclipse.core.runtime.xml"
+            file-extensions="xstate"
+            id="com.xross.tools.xstate"
+            name="Xross State Machine"
+            priority="high">
+      </content-type>
+   </extension>
+</plugin>

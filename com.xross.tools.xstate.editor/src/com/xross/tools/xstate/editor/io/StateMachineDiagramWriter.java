@@ -1,5 +1,5 @@
 package com.xross.tools.xstate.editor.io;
 
-public class StateDiagramFactory {
+public class StateMachineDiagramWriter {
 
 }
