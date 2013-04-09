@@ -68,7 +68,7 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
         super.configureGraphicalViewer();
         getGraphicalViewer().setRootEditPart(root);
         getGraphicalViewer().setEditPartFactory(new StateMachinePartFactory());
-        getGraphicalViewer().setContextMenu(new StateMachineContextMenuProvider(getGraphicalViewer(), this));
+        getGraphicalViewer().setContextMenu(new StateMachineContextMenuProvider(getGraphicalViewer()));
         initActions(root);
         getCommandStack().addCommandStackListener(commandStackListener);
     }

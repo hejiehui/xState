@@ -9,6 +9,8 @@ public class StateMachine {
 	private List<StateNode> nodes;
 	private List<Event> events;
 	
-	
+	public void removeNode(StateNode node){
+		
+	}
 	
 }
