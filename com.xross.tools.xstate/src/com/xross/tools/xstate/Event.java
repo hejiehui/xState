@@ -1,12 +1,11 @@
 package com.xross.tools.xstate;
 
+/**
+ * Inherit this class if you want to pass additional context to actions.
+ * 
+ * @author He, Jiehui
+ *
+ */
 public class Event {
-	private String name;
-	public Event(String name){
-		this.name = name;
-	}
-	
-	public String getName(){
-		return name;
-	}
+	private String id;
 }

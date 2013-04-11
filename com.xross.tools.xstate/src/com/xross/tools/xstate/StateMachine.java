@@ -2,11 +2,18 @@ package com.xross.tools.xstate;
 
 import java.util.List;
 
+//TODO Do we need variable?
 public class StateMachine {
 	private String name;
 	private TransitionGuard gaurd;
+	//? do we need it?
+	private StateMachineContext context;
 	
 	StateMachine(String name){
+		
+	}
+	
+	StateMachine(String name, StateMachineContext context){
 		
 	}
 	
@@ -34,5 +41,16 @@ public class StateMachine {
 	
 	public boolean isEnd(){
 		return false;
+	}
+	
+	/*
+	 * Reset the state machine
+	 */
+	public void reset(){
+		
+	}
+	
+	public void restore(String stateId){
+		
 	}
 }

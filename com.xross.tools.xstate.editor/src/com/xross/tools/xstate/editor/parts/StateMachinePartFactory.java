@@ -3,6 +3,7 @@ package com.xross.tools.xstate.editor.parts;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 
+import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 import com.xross.tools.xstate.editor.model.StateNode;
 

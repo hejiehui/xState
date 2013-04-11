@@ -1,8 +1,8 @@
 package com.xross.tools.xstate;
 
 public class Transition {
-	private String name;
-	private Action transitionAction;
+	private String id;
+	private TransitionAction transitionAction;
 	private State sourceState;
 	private State targetState;
 }

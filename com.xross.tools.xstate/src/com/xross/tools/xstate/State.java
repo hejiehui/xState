@@ -3,9 +3,9 @@ package com.xross.tools.xstate;
 import java.util.List;
 
 public class State {
-	private String name;
+	private String id;
 	private List<Transition> inputs;
 	private List<Transition> outputs;
-	private Action enterAction;
-	private Action existAction;
+	private EntryAction entryAction;
+	private ExistAction existAction;
 }
