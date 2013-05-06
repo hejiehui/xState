@@ -24,7 +24,7 @@ public class StateMachinePartFactory implements EditPartFactory {
 			part = new StateNodePart();
 		else
 		if(model instanceof StateMachineTransition)
-			part = new DecisionTreeNodeConnectionPart();
+			part = new StateTransitionPart();
 		
 		part.setModel(model);
 		

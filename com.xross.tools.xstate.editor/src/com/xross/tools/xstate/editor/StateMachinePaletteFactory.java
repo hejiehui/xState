@@ -3,6 +3,21 @@ package com.xross.tools.xstate.editor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
+import org.eclipse.gef.palette.MarqueeToolEntry;
+import org.eclipse.gef.palette.PaletteContainer;
+import org.eclipse.gef.palette.PaletteEntry;
+import org.eclipse.gef.palette.PaletteGroup;
+import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.PaletteSeparator;
+import org.eclipse.gef.palette.SelectionToolEntry;
+import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gef.requests.SimpleFactory;
+
+import com.xross.tools.xstate.editor.model.StateMachine;
+import com.xross.tools.xstate.editor.model.StateNode;
+import com.xross.tools.xstate.editor.model.StateTransition;
+
 public class StateMachinePaletteFactory {
 	private Class<StateMachinePaletteFactory> imageClass = StateMachinePaletteFactory.class;
     public PaletteRoot createPalette() {
@@ -20,10 +35,10 @@ public class StateMachinePaletteFactory {
     }
     
     private static Object[][] ENTRIES = new Object[][]{
-    	{"State Machine", ProcessorNode.class, Activator.PROCESSOR},
-    	{"State Node", ConverterNode.class, Activator.CONVERTER},
+    	{"State Machine", StateMachine.class, Activator.STATE_MACHINE},
+    	{"State Node", StateNode.class, Activator.STATE_NODE},
     	{},
-    	{"Transition", ValidatorNode.class, Activator.VALIDATOR},
+    	{"Transition", StateTransition.class, Activator.TRANSITION},
     };
 
     private PaletteContainer createControlGroup(PaletteRoot root) {
@@ -43,9 +58,6 @@ public class StateMachinePaletteFactory {
 
     	for(Object[] entry: ENTRIES){
     		if(entry.length == 0){
-//    	    	sep = new PaletteSeparator();
-//    	    	sep.setUserModificationPermission(PaletteEntry.PERMISSION_NO_MODIFICATION);
-//    	    	entries.add(sep);
     	    	entries.add(new PaletteSeparator());
     		}else{
 		    	entries.add(new CombinedTemplateCreationEntry(

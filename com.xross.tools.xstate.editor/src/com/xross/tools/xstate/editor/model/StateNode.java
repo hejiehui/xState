@@ -9,7 +9,6 @@ import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
 public class StateNode implements StateMachineConstants, IPropertySource {
 	private String name;
-	// TODO Do we allow nested state machine?
 	private String reference;
 	private String description;
 	private String entryAction;
@@ -25,26 +24,34 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 				new TextPropertyDescriptor(PROP_NAME, name),
 				new TextPropertyDescriptor(PROP_ENTRY_ACTION, entryAction),
 				new TextPropertyDescriptor(PROP_EXIST_ACTION, existAction),
-				new TextPropertyDescriptor(PROP_REFERENCE, refenece),
+				new TextPropertyDescriptor(PROP_REFERENCE, reference),
 
 			};
 		return descriptors;
 	}
 	
 	public Object getPropertyValue(Object propName) {
-		if (PROP_FACTOR_ID.equals(propName))
-			return factorId;
-		if (PROP_DECISION_ID.equals(propName))
-			return decisionId;
+		if (PROP_NAME.equals(propName))
+			return name;
+		if (PROP_ENTRY_ACTION.equals(propName))
+			return entryAction;
+		if (PROP_EXIST_ACTION.equals(propName))
+			return existAction;
+		if (PROP_REFERENCE.equals(propName))
+			return reference;
 
 		return null;
 	}
 
 	public void setPropertyValue(Object propName, Object value){
-		if (PROP_FACTOR_ID.equals(propName))
-			setFactorId((Integer)value);
-		if (PROP_DECISION_ID.equals(propName))
-			setDecisionId((Integer)value);
+		if (PROP_NAME.equals(propName))
+			setName((String)value);
+		if (PROP_ENTRY_ACTION.equals(propName))
+			setEntryAction((String)value);
+		if (PROP_EXIST_ACTION.equals(propName))
+			setExistAction((String)value);
+		if (PROP_REFERENCE.equals(propName))
+			setReference((String)value);
 	}
 	
 	public Object getEditableValue(){
@@ -93,5 +100,11 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	}
 	public void setInputs(List<StateTransition> inputs) {
 		this.inputs = inputs;
+	}
+	public String getReference() {
+		return reference;
+	}
+	public void setReference(String reference) {
+		this.reference = reference;
 	}
 }
