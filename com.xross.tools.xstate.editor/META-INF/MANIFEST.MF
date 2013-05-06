@@ -14,6 +14,8 @@ Require-Bundle: org.eclipse.gef;bundle-version="3.6.2",
  org.eclipse.core.resources;bundle-version="3.6.1",
  org.eclipse.ui.console;bundle-version="3.5.0",
  org.junit,
- org.eclipse.ui.workbench;bundle-version="3.103.1"
+ org.eclipse.ui.workbench;bundle-version="3.103.1",
+ org.eclipse.jdt.ui;bundle-version="3.8.1",
+ org.eclipse.jdt.core;bundle-version="3.8.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
