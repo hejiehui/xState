@@ -1,8 +1,11 @@
 package com.xross.tools.xstate.editor.model;
 
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
@@ -16,7 +19,34 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	private List<StateTransition> inputs;
 	private List<StateTransition> outputs;
 	
+	private Point location;
+	private Dimension size;
+	
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
+
+	public PropertyChangeSupport getListeners() {
+		return listeners;
+	}
+
+	protected void firePropertyChange(String propertyName){
+		listeners.firePropertyChange(propertyName, null, null);
+	}
+
+	public Point getLocation() {
+		return location;
+	}
+
+	public void setLocation(Point location) {
+		this.location = location;
+	}
+
+	public Dimension getSize() {
+		return size;
+	}
+
+	public void setSize(Dimension size) {
+		this.size = size;
+	}
 
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] descriptors;
@@ -106,5 +136,68 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	}
 	public void setReference(String reference) {
 		this.reference = reference;
+	}
+	
+	public void removeOutput(StateTransition output){
+		if(!outputs.contains(output))
+			return;
+		outputs.remove(output);
+		output.getTarget().removeInput(output);
+		firePropertyChange(PROP_OUTPUTS);
+	}
+	
+	public void removeAllOutputs(){
+		List<StateTransition> tempOutputs = new ArrayList<StateTransition>(outputs);
+		for(StateTransition output:tempOutputs)
+			removeOutput(output);
+		firePropertyChange(PROP_OUTPUTS);
+	}
+	
+	public void removeInput(StateTransition input){
+		if(!inputs.contains(input))
+			return;
+		inputs.remove(input);
+		input.getSource().removeOutput(input);
+		firePropertyChange(PROP_INPUTS);
+	}
+	
+	public void removeAllInputs(){
+		List<StateTransition> tempInputs = new ArrayList<StateTransition>(inputs);
+		for(StateTransition input:tempInputs)
+			removeInput(input);
+		firePropertyChange(PROP_INPUTS);
+	}
+	
+	public void removeAllConnections(){
+		removeAllInputs();
+		removeAllOutputs();
+	}
+	
+	public void addOutput(StateTransition output){
+		outputs.add(output);
+		firePropertyChange(PROP_OUTPUTS);
+	}
+	
+	public void addInput(StateTransition input){
+		inputs.add(input);
+		firePropertyChange(PROP_INPUTS);
+	}
+	
+	/**
+	 * Helper method for remove links from a node
+	 */
+	public static void removeAllConnections(StateNode unit){
+		if(unit != null)
+			unit.removeAllConnections();
+	}
+	
+	public static void removeAllInputs(StateNode unit){
+		if(unit != null)
+			unit.removeAllInputs();
+	}
+	
+	public static void removeAllOutputs(StateNode unit){
+		if(unit != null)
+			unit.removeAllOutputs();
 	}
 }

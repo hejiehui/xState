@@ -6,6 +6,7 @@ import org.eclipse.gef.EditPartFactory;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 import com.xross.tools.xstate.editor.model.StateNode;
+import com.xross.tools.xstate.editor.model.StateTransition;
 
 public class StateMachinePartFactory implements EditPartFactory {
 	public EditPart createEditPart(EditPart context, Object model) {
@@ -23,7 +24,7 @@ public class StateMachinePartFactory implements EditPartFactory {
 		if(model instanceof StateNode)
 			part = new StateNodePart();
 		else
-		if(model instanceof StateMachineTransition)
+		if(model instanceof StateTransition)
 			part = new StateTransitionPart();
 		
 		part.setModel(model);

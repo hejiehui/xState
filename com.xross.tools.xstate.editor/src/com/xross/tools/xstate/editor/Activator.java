@@ -77,5 +77,7 @@ public class Activator extends AbstractUIPlugin {
     	return HOME + iconId + ICO;
     }
 
-
+    public Image getImage(String id){
+    	return getImageRegistry().get(id);
+    }
 }
