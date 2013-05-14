@@ -38,7 +38,7 @@ public class NewStateMachineWizardPage extends WizardPage {
 	public NewStateMachineWizardPage(ISelection selection) {
 		super("wizardPage");
 		setTitle("New xross unit model file");
-		setDescription("This wizard creates a new xross unit model file with *." + XROSS_STATE_MACHINE_EXT + " extension that can be opened by a xross unit editor.");
+		setDescription("This wizard creates a new xross state machine model file with *." + XROSS_STATE_MACHINE_EXT + " extension that can be opened by a xross state machine editor.");
 		this.selection = selection;
 	}
 
@@ -106,7 +106,7 @@ public class NewStateMachineWizardPage extends WizardPage {
 				containerText.setText(container.getFullPath().toString());
 			}
 		}
-		fileText.setText("new_xross_unit.xunit");
+		fileText.setText("new_state_machine.xstate");
 	}
 
 	/**

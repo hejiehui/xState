@@ -16,6 +16,7 @@ import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 
 import com.xross.tools.xstate.editor.model.StateMachine;
+import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 import com.xross.tools.xstate.editor.model.StateTransition;
 
 public class StateTransitionPart extends AbstractConnectionEditPart implements PropertyChangeListener{
@@ -27,7 +28,7 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
         conn.setForegroundColor(ColorConstants.black);
         
         StateTransition nodeConn = (StateTransition)getModel();
-        
+        label = new Label();
 //        StateMachine diagram = (StateMachine)getRoot().getContents().getModel();
         label.setText(nodeConn.getDisplayLabel());
         label.setOpaque(true);
@@ -50,13 +51,13 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
     
     public void activate() {
     	super.activate();
-    	((StateMachine)getRoot().getContents().getModel()).getListeners().addPropertyChangeListener(this);
+//    	((StateMachineDiagram)getRoot().getContents().getModel()).getListeners().addPropertyChangeListener(this);
     	((StateTransition) getModel()).getListeners().addPropertyChangeListener(this);
     }
     
     public void deactivate() {
     	super.deactivate();
-    	((StateMachine)getRoot().getContents().getModel()).getListeners().removePropertyChangeListener(this);
+//    	((StateMachine)getRoot().getContents().getModel()).getListeners().removePropertyChangeListener(this);
     	((StateTransition) getModel()).getListeners().removePropertyChangeListener(this);
     }
     

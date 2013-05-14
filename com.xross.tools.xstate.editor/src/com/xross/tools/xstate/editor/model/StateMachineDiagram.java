@@ -1,6 +1,7 @@
 package com.xross.tools.xstate.editor.model;
 
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
@@ -11,7 +12,7 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 	private String name;
 	private String description;
 
-	private List<StateMachine> machines;
+	private List<StateMachine> machines = new ArrayList<StateMachine>();
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 	
 	protected void firePropertyChange(String propertyName){

@@ -129,7 +129,7 @@ public class NewStateMachineWizard extends Wizard implements INewWizard {
 	
 	private void throwCoreException(String message) throws CoreException {
 		IStatus status =
-			new Status(IStatus.ERROR, "Xross Unit", IStatus.OK, message, null);
+			new Status(IStatus.ERROR, "Xross StateMachine", IStatus.OK, message, null);
 		throw new CoreException(status);
 	}
 

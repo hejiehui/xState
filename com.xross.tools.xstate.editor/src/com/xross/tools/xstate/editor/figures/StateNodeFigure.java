@@ -30,11 +30,11 @@ public class StateNodeFigure extends RoundedRectangle {
         add(entryActionLabel);
     	layout.setConstraint(entryActionLabel, PositionConstants.CENTER);
     	
-//    	existActionLabel = new Label();
-//    	existActionLabel.setLabelAlignment(PositionConstants.CENTER);
-//    	existActionLabel.setForegroundColor(ColorConstants.black);
-//        add(existActionLabel);
-//    	layout.setConstraint(existActionLabel, PositionConstants.CENTER);
+    	existActionLabel = new Label();
+    	existActionLabel.setLabelAlignment(PositionConstants.CENTER);
+    	existActionLabel.setForegroundColor(ColorConstants.black);
+        add(existActionLabel);
+    	layout.setConstraint(existActionLabel, PositionConstants.TOP);
 
     }
 

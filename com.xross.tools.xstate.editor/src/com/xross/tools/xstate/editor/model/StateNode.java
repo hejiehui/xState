@@ -16,8 +16,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	private String description;
 	private String entryAction;
 	private String existAction;
-	private List<StateTransition> inputs;
-	private List<StateTransition> outputs;
+	private List<StateTransition> inputs = new ArrayList<StateTransition>();
+	private List<StateTransition> outputs = new ArrayList<StateTransition>();
 	
 	private Point location;
 	private Dimension size;

@@ -17,6 +17,7 @@ public class Activator extends AbstractUIPlugin {
 	public static final String ICO = ".ico";
 	public static final String JPG = ".jpg";
 
+	public static final String STATE_MACHINE_DIAGRAM = "state_machine_diagram";
 	public static final String STATE_MACHINE = "state_machine";
 	public static final String STATE_NODE = "state_node";
 	public static final String TRANSITION = "transition";
@@ -58,6 +59,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 	
     protected void initializeImageRegistry(ImageRegistry reg) {
+    	put(reg, STATE_MACHINE_DIAGRAM);
     	put(reg, STATE_MACHINE);
     	put(reg, STATE_NODE);
     	put(reg, TRANSITION);
