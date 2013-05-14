@@ -92,7 +92,7 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
     	StateNode node = (StateNode) getModel();
     	StateNodeFigure figure = (StateNodeFigure)getFigure();
 
-		Point loc = node.getLocation(); 
+		Point loc = node.getLocation();
 		Dimension size = node.getSize();
         Rectangle rectangle = new Rectangle(loc, size);
         ((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), rectangle);
