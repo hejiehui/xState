@@ -13,8 +13,7 @@ import com.xross.tools.xstate.editor.model.StateTransition;
 public class StateMachineDiagramFactory implements StateMachineConstants{
 	public StateMachineDiagram getEmptyDiagram(){
 		StateMachineDiagram smd = new StateMachineDiagram();
-		smd.setName("StateMachineDiagram");
-		
+		smd.setName("StateMachineDiagram");	
 		
 		smd.getMachines().add(createStateMachine("state machine 1", 1));
 		smd.getMachines().add(createStateMachine("state machine 2", 2));
@@ -39,17 +38,16 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 			b.setSize(new Dimension(100, 50));
 			b.setLocation(new Point(100 + (i+1)* 200, 200));
 			b.setName("state" + i);
-			sm.getNodes().add(a);
+			sm.getNodes().add(b);
 			
 			new StateTransition(a, b);
 			
 			a = b;
 		}		
 		
-		
-		
 		return sm;
 	}
+	
 	private StateDiagramReader reader = new StateDiagramReader();
 	private StateMachineDiagramWriter writer = new StateMachineDiagramWriter();
 	public StateMachineDiagram getFromDocument(Document doc){
