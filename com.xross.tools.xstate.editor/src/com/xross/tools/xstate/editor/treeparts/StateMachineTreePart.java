@@ -21,7 +21,7 @@ public class StateMachineTreePart extends AbstractTreeEditPart {
     
     protected String getText() {
     	StateMachine stateMachine = (StateMachine)getModel();
-    	return "state macine";
+    	return stateMachine.getName();
     }
     
     protected Image getImage() {

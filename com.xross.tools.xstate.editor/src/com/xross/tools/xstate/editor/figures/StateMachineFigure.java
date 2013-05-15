@@ -1,15 +1,46 @@
 package com.xross.tools.xstate.editor.figures;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.FreeformLayout;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.draw2d.XYLayout;
 
-public class StateMachineFigure extends Figure {
-	public StateMachineFigure(){
-//	    Figure figure = new FreeformLayer();
-	    setLayoutManager(new FreeformLayout());
-	    Label l = new Label("aaaaa");
-	    add(l);
-//	    return figure;
-	}
+import com.xross.tools.xstate.editor.model.StateMachineConstants;
+
+public class StateMachineFigure extends Figure implements StateMachineConstants{
+	private Label label;
+	private IFigure figure;
+    public StateMachineFigure() {
+//      figure = new FreeformLayer();
+//      figure.setLayoutManager(new FreeformLayout());
+
+        figure = new Figure();
+        figure.setLayoutManager(new XYLayout());
+
+        label = new Label();
+
+    	ToolbarLayout layout= new ToolbarLayout();
+    	layout.setSpacing(TOP_LEVEL_SPACE);
+    	setLayoutManager(layout);
+    	
+        label.setLabelAlignment(PositionConstants.LEFT);
+        label.setForegroundColor(ColorConstants.blue);
+
+        
+        add(label);
+        add(figure);
+    }
+
+    public void setName(String name, String toolTip) {
+    	label.setText(name);
+    	label.setToolTip(new Label(toolTip));
+        repaint();
+    }
+    
+    public IFigure getFigure(){
+    	return figure;
+    }
 }

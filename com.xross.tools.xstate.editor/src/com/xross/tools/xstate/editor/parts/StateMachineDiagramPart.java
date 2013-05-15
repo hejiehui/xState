@@ -71,26 +71,6 @@ public class StateMachineDiagramPart extends AbstractGraphicalEditPart implement
 	public IFigure getContentPane(){
 		return panel;
 	}
-
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		IFigure child = ((GraphicalEditPart) childEditPart).getFigure();
-		StateMachine sm = (StateMachine)childEditPart.getModel();
-		getContentPane().add(new StateDiagramFigure(sm.getName(), child), index);
-	}
-
-	protected void removeChildVisual(EditPart childEditPart) {
-		IFigure wrappedChild = ((GraphicalEditPart) childEditPart).getFigure();
-		IFigure wrapper = null;
-		for(Object figure:getContentPane().getChildren()){
-			StateDiagramFigure curWrapper = (StateDiagramFigure)figure;
-			if(curWrapper.getFigure() != wrappedChild)
-				continue;
-			
-			wrapper = curWrapper;
-		}
-		
-		getContentPane().remove(wrapper);
-	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
 //		String prop = evt.getPropertyName();

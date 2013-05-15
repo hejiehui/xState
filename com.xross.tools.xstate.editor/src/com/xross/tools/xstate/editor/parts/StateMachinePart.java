@@ -6,11 +6,15 @@ import java.util.List;
 
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 import com.xross.tools.xstate.editor.figures.StateMachineFigure;
+import com.xross.tools.xstate.editor.figures.StateNodeFigure;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateNode;
 
@@ -32,8 +36,6 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
 
 	protected IFigure createFigure() {
 		IFigure figure  = new StateMachineFigure();
-//        Figure figure = new FreeformLayer();
-//        figure.setLayoutManager(new FreeformLayout());
         return figure;
 	}
 	
@@ -61,21 +63,20 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
     }
     
 	protected void addChildVisual(EditPart childEditPart, int index) {
-//		UnitNodeContainerFigure figure = (UnitNodeContainerFigure)getFigure();
-//		UnitNodeContainer unitsPanel = (UnitNodeContainer)getModel();
-//		if(unitsPanel.getFixedSize() == -1){
-			super.addChildVisual(childEditPart, index);
-//			return;
-//		}
-//
-//		IFigure child = ((GraphicalEditPart) childEditPart).getFigure();
-//		int unitIndex = unitsPanel.indexOf((UnitNode)childEditPart.getModel());
-//		IFigure slot = (IFigure)figure.getChildren().get(unitIndex);
-//		slot.add(child);
+		StateMachineFigure figure = (StateMachineFigure)getFigure();
+		IFigure child = ((GraphicalEditPart) childEditPart).getFigure();
+		figure.getFigure().add(child);
 	}
 	
 	protected void removeChildVisual(EditPart childEditPart) {
 		IFigure child = ((GraphicalEditPart) childEditPart).getFigure();
 		child.getParent().remove(child);
 	}
+	
+    protected void refreshVisuals() {
+    	StateMachine node = (StateMachine) getModel();
+    	StateMachineFigure figure = (StateMachineFigure)getFigure();
+    	
+       	figure.setName(node.getName(), node.getDescription());
+    }
 }

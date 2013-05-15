@@ -4,6 +4,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.w3c.dom.Document;
 
+import com.xross.tools.xstate.editor.model.Event;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateMachineConstants;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
@@ -17,7 +18,7 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 		
 		smd.getMachines().add(createStateMachine("state machine 1", 0));
 		smd.getMachines().add(createStateMachine("state machine 2", 1));
-//		smd.getMachines().add(createStateMachine("state machine 3", 0));
+		smd.getMachines().add(createStateMachine("state machine 3", 2));
 		
 		return smd;
 	}
@@ -28,7 +29,7 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 		
 		StateNode a = new StateNode();
 		a.setSize(new Dimension(100, 50));
-		a.setLocation(new Point(100, 200));
+		a.setLocation(new Point(0, 0));
 		a.setName("start");
 		sm.getNodes().add(a);
 
@@ -36,11 +37,14 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 		{
 			StateNode b = new StateNode();
 			b.setSize(new Dimension(100, 50));
-			b.setLocation(new Point(100 + (i+1)* 200, 200));
+			b.setLocation(new Point((i+1)* 200, 0));
 			b.setName("state" + i);
 			sm.getNodes().add(b);
 			
-			new StateTransition(a, b);
+			StateTransition t = new StateTransition(a, b);
+			Event evt = new Event();
+			evt.setName("event " + i);
+			t.setEvent(evt);
 			
 			a = b;
 		}		
