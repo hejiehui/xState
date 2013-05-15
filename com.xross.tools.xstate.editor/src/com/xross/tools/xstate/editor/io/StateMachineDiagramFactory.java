@@ -15,9 +15,9 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 		StateMachineDiagram smd = new StateMachineDiagram();
 		smd.setName("StateMachineDiagram");	
 		
-		smd.getMachines().add(createStateMachine("state machine 1", 1));
-		smd.getMachines().add(createStateMachine("state machine 2", 2));
-		smd.getMachines().add(createStateMachine("state machine 3", 3));
+		smd.getMachines().add(createStateMachine("state machine 1", 0));
+		smd.getMachines().add(createStateMachine("state machine 2", 1));
+//		smd.getMachines().add(createStateMachine("state machine 3", 0));
 		
 		return smd;
 	}
