@@ -13,6 +13,14 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 	private String description;
 
 	private List<StateMachine> machines = new ArrayList<StateMachine>();
+	
+	private boolean isHorizantal;
+	private int verticalSpace = 50;
+	private int horizantalSpace = 50;
+	private float alignment = 0;
+	private int nodeWidth = 100;
+	private int nodeHeight = 50;	
+	
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 	
 	protected void firePropertyChange(String propertyName){
@@ -81,6 +89,54 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public boolean isHorizantal() {
+		return isHorizantal;
+	}
+
+	public void setHorizantal(boolean isHorizantal) {
+		this.isHorizantal = isHorizantal;
+	}
+
+	public int getVerticalSpace() {
+		return verticalSpace;
+	}
+
+	public void setVerticalSpace(int verticalSpace) {
+		this.verticalSpace = verticalSpace;
+	}
+
+	public int getHorizantalSpace() {
+		return horizantalSpace;
+	}
+
+	public void setHorizantalSpace(int horizantalSpace) {
+		this.horizantalSpace = horizantalSpace;
+	}
+
+	public float getAlignment() {
+		return alignment;
+	}
+
+	public void setAlignment(float alignment) {
+		this.alignment = alignment;
+	}
+
+	public int getNodeWidth() {
+		return nodeWidth;
+	}
+
+	public void setNodeWidth(int nodeWidth) {
+		this.nodeWidth = nodeWidth;
+	}
+
+	public int getNodeHeight() {
+		return nodeHeight;
+	}
+
+	public void setNodeHeight(int nodeHeight) {
+		this.nodeHeight = nodeHeight;
 	}
 	
 }

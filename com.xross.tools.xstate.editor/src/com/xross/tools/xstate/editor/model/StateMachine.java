@@ -63,7 +63,23 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 		
 
 	public void removeNode(StateNode node){
-		
+		nodes.remove(node);
+		firePropertyChange(STATE_NODE);
+	}
+
+	public void addNode(StateNode node){
+		nodes.add(node);
+		firePropertyChange(STATE_NODE);
+	}
+
+	public void removeEvent(Event event){
+		events.remove(event);
+		firePropertyChange(EVENT);
+	}
+
+	public void addEvent(Event event){
+		events.add(event);
+		firePropertyChange(EVENT);
 	}
 
 	public String getName() {
@@ -89,7 +105,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 	public void setNodes(List<StateNode> nodes) {
 		this.nodes = nodes;
 	}
-
+	
 	public List<Event> getEvents() {
 		return events;
 	}

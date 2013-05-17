@@ -2,8 +2,11 @@ package com.xross.tools.xstate.editor.model;
 
 public interface StateMachineConstants {
 	String STATE_MACHINE = "StateMachine";
+	
 	String STATE_NODE = "StateNode";
+	String EVENT = "Event";
 	String TRANSITION = "Transition";
+	
 	String NOT_SPECIFIED = "Not specified";
 	
 	String PROP_NAME = "Name";
