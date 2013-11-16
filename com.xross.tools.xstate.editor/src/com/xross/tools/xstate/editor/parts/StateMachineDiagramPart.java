@@ -85,6 +85,6 @@ public class StateMachineDiagramPart extends AbstractGraphicalEditPart implement
 	}
 
 	protected void createEditPolicies() {
-        installEditPolicy(EditPolicy.LAYOUT_ROLE, new StateMachineDiagramLayoutPolicy());
+//        installEditPolicy(EditPolicy.LAYOUT_ROLE, new StateMachineDiagramLayoutPolicy());
 	}
 }

@@ -9,6 +9,7 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 
+import com.xross.tools.xstate.editor.commands.AddStateNodeCommand;
 import com.xross.tools.xstate.editor.commands.CreateNodeCommand;
 import com.xross.tools.xstate.editor.commands.LayoutStateMachineCommand;
 import com.xross.tools.xstate.editor.commands.MoveNodeCommand;
@@ -18,10 +19,17 @@ import com.xross.tools.xstate.editor.model.StateNode;
 import com.xross.tools.xstate.editor.requests.StateMachineLayoutRequest;
 import com.xross.tools.xstate.editor.requests.StateNodeResizeRequest;
 
-public class StateMachineLayoutPolicy  extends XYLayoutEditPolicy {
+public class StateMachineLayoutPolicy extends XYLayoutEditPolicy {
 
     protected Command createAddCommand(EditPart child, Object constraint) {
-        return null;
+    	if(!(getHost().getModel() instanceof StateMachine))
+    		return null;
+    	
+    	return new AddStateNodeCommand(
+        		(StateMachine)getHost().getModel(),
+        		(StateNode)child.getModel(),
+        		(StateMachine)child.getParent().getModel()
+        		);
     }
 
     protected Command createChangeConstraintCommand(EditPart child, Object constraint) {

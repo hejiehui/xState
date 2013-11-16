@@ -4,9 +4,11 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 
 import com.xross.tools.xstate.editor.model.StateMachineConstants;
 
@@ -19,6 +21,8 @@ public class StateMachineFigure extends Figure implements StateMachineConstants{
 
         figure = new Figure();
         figure.setLayoutManager(new XYLayout());
+        figure.setBorder(new LineBorder(1));
+        figure.setMinimumSize(new Dimension(1000, 800));
 
         label = new Label();
 

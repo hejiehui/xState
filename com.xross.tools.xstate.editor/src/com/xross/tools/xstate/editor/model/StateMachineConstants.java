@@ -19,5 +19,10 @@ public interface StateMachineConstants {
 	String PROP_INPUTS = "Inputs";
 	String PROP_OUTPUTS = "Outputs";
 	
+	String PROP_SIZE = "size";
+	String PROP_LOCATION = "location";
+	String PROP_LAYOUT = "layout";
+
+	
 	int TOP_LEVEL_SPACE = 50;
 }

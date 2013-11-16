@@ -38,6 +38,7 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 
 	public void setLocation(Point location) {
 		this.location = location;
+		listeners.firePropertyChange(PROP_LOCATION, null, location);
 	}
 
 	public Dimension getSize() {
@@ -46,6 +47,7 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 
 	public void setSize(Dimension size) {
 		this.size = size;
+		listeners.firePropertyChange(PROP_SIZE, null, size);
 	}
 
 	public IPropertyDescriptor[] getPropertyDescriptors() {

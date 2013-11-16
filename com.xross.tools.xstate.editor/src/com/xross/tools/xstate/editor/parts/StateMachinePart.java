@@ -36,6 +36,10 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
         return figure;
 	}
 	
+	public IFigure getContentPane(){
+		return ((StateMachineFigure)getFigure()).getFigure();
+	}
+	
 	public void propertyChange(PropertyChangeEvent evt) {
 		String prop = evt.getPropertyName();
 //		if (StateMachine.LAYOUT.equals(prop)){
