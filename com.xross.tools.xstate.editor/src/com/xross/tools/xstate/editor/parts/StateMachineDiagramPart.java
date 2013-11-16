@@ -15,15 +15,12 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jdt.core.IType;
 
-import com.xross.tools.xstate.editor.figures.StateDiagramFigure;
-import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
+import com.xross.tools.xstate.editor.policies.StateMachineDiagramLayoutPolicy;
 
 public class StateMachineDiagramPart extends AbstractGraphicalEditPart implements PropertyChangeListener{
 	// cached for next visit; TODO should be revised if there is only one match for the name
@@ -88,6 +85,6 @@ public class StateMachineDiagramPart extends AbstractGraphicalEditPart implement
 	}
 
 	protected void createEditPolicies() {
-//        installEditPolicy(EditPolicy.LAYOUT_ROLE, new UnitNodeContainerLayoutPolicy());
+        installEditPolicy(EditPolicy.LAYOUT_ROLE, new StateMachineDiagramLayoutPolicy());
 	}
 }

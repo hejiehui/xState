@@ -4,19 +4,16 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 import com.xross.tools.xstate.editor.figures.StateMachineFigure;
-import com.xross.tools.xstate.editor.figures.StateNodeFigure;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateNode;
+import com.xross.tools.xstate.editor.policies.StateMachineLayoutPolicy;
 
 public class StateMachinePart  extends AbstractGraphicalEditPart implements PropertyChangeListener{
 	private boolean isLayoutUpdated;
@@ -59,7 +56,7 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
 	}
 
     protected void createEditPolicies() {
-//        installEditPolicy(EditPolicy.LAYOUT_ROLE, new StateMachineLayoutPolicy());
+        installEditPolicy(EditPolicy.LAYOUT_ROLE, new StateMachineLayoutPolicy());
     }
     
 	protected void addChildVisual(EditPart childEditPart, int index) {
