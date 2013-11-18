@@ -22,6 +22,7 @@ import com.xross.tools.xstate.editor.figures.StateNodeFigure;
 import com.xross.tools.xstate.editor.model.StateMachineConstants;
 import com.xross.tools.xstate.editor.model.StateNode;
 import com.xross.tools.xstate.editor.model.StateTransition;
+import com.xross.tools.xstate.editor.policies.StateMachineGraphicNodeEditPolicy;
 import com.xross.tools.xstate.editor.policies.StateNodeComponentEditPolicy;
 
 public class StateNodePart extends AbstractGraphicalEditPart implements StateMachineConstants, PropertyChangeListener, NodeEditPart {
@@ -58,7 +59,7 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
 	protected void createEditPolicies() {
 //		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new StateNodeDirectEditPolicy(((StateMachine)getParent().getModel()).getFactors()));
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new StateNodeComponentEditPolicy());
-//		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DecisionTreeGraphicNodeEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new StateMachineGraphicNodeEditPolicy());
 	}
 	
     protected List<StateTransition> getModelSourceConnections() {

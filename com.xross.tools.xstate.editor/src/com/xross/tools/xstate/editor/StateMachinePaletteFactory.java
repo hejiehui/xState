@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
+import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
@@ -16,7 +17,6 @@ import org.eclipse.gef.requests.SimpleFactory;
 
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateNode;
-import com.xross.tools.xstate.editor.model.StateTransition;
 
 public class StateMachinePaletteFactory {
 	private Class<StateMachinePaletteFactory> imageClass = StateMachinePaletteFactory.class;
@@ -37,8 +37,6 @@ public class StateMachinePaletteFactory {
     private static Object[][] ENTRIES = new Object[][]{
     	{"State Machine", StateMachine.class, Activator.STATE_MACHINE},
     	{"State Node", StateNode.class, Activator.STATE_NODE},
-    	{},
-    	{"Transition", StateTransition.class, Activator.TRANSITION},
     };
 
     private PaletteContainer createControlGroup(PaletteRoot root) {
@@ -57,19 +55,22 @@ public class StateMachinePaletteFactory {
     	entries.add(sep);
 
     	for(Object[] entry: ENTRIES){
-    		if(entry.length == 0){
-    	    	entries.add(new PaletteSeparator());
-    		}else{
-		    	entries.add(new CombinedTemplateCreationEntry(
-		    			(String)entry[0],
-		    			(String)entry[0],
-		    			entry[1],
-		    			new SimpleFactory((Class)entry[1]),
-		    			Activator.getDefault().getImageRegistry().getDescriptor(((String)entry[2])),    			
-		    			Activator.getDefault().getImageRegistry().getDescriptor(((String)entry[2]))));
-    		}
+	    	entries.add(new CombinedTemplateCreationEntry(
+	    			(String)entry[0],
+	    			(String)entry[0],
+	    			entry[1],
+	    			new SimpleFactory((Class)entry[1]),
+	    			Activator.getDefault().getImageRegistry().getDescriptor(((String)entry[2])),    			
+	    			Activator.getDefault().getImageRegistry().getDescriptor(((String)entry[2]))));
     	}
 
+    	entries.add(new PaletteSeparator());
+    	entries.add(new ConnectionCreationToolEntry(
+    			"Transition",
+    			"Transition",
+    			null,
+    			Activator.getDefault().getImageRegistry().getDescriptor(Activator.TRANSITION),    			
+    			Activator.getDefault().getImageRegistry().getDescriptor(Activator.TRANSITION)));
     	controlGroup.addAll(entries);
         return controlGroup;
     }    
