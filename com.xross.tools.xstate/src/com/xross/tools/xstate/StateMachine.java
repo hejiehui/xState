@@ -8,6 +8,7 @@ public class StateMachine {
 	private TransitionGuard gaurd;
 	//? do we need it?
 	private StateMachineContext context;
+	private State currentState;
 	
 	StateMachine(String name){
 		

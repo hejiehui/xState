@@ -28,14 +28,14 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
-				new TextPropertyDescriptor(PROP_NAME, name),
+				new TextPropertyDescriptor(PROP_ID, name),
 				new TextPropertyDescriptor(PROP_DESRIPTION, description),
 			};
 		return descriptors;
 	}
 	
 	public Object getPropertyValue(Object propName) {
-		if (PROP_NAME.equals(propName))
+		if (PROP_ID.equals(propName))
 			return name;
 		if (PROP_DESRIPTION.equals(propName))
 			return description;
@@ -44,7 +44,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 	}
 
 	public void setPropertyValue(Object propName, Object value){
-		if (PROP_NAME.equals(propName))
+		if (PROP_ID.equals(propName))
 			setName((String)value);
 		if (PROP_DESRIPTION.equals(propName))
 			setDescription((String)value);

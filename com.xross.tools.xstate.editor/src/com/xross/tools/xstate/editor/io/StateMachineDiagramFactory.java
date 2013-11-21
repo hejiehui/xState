@@ -13,8 +13,8 @@ import com.xross.tools.xstate.editor.model.StateTransition;
 
 public class StateMachineDiagramFactory implements StateMachineConstants{
 	public static final String LOCATION = "location";
-	public static final String X_COORDINATE = "x_coordinate";
-	public static final String Y_COORDINATE = "x_coordinate";
+	public static final String X = "x_coordinate";
+	public static final String Y = "y_coordinate";
 	
 	public static final String SIZE = "size";
 	public static final String HEIGHT = "height";
@@ -38,7 +38,7 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 		StateNode a = new StateNode();
 		a.setSize(new Dimension(100, 50));
 		a.setLocation(new Point(0, 0));
-		a.setName("start");
+		a.setId("start");
 		sm.getNodes().add(a);
 
 		for(int i = 0; i < num; i++)
@@ -46,12 +46,12 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 			StateNode b = new StateNode();
 			b.setSize(new Dimension(100, 50));
 			b.setLocation(new Point((i+1)* 200, 0));
-			b.setName("state" + i);
+			b.setId("state" + i);
 			sm.getNodes().add(b);
 			
 			StateTransition t = new StateTransition(a, b);
 			Event evt = new Event();
-			evt.setName("event " + i);
+			evt.setId("event " + i);
 			t.setEvent(evt);
 			
 			a = b;
@@ -60,7 +60,7 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 		return sm;
 	}
 	
-	private StateDiagramReader reader = new StateDiagramReader();
+	private StateMachineDiagramReader reader = new StateMachineDiagramReader();
 	private StateMachineDiagramWriter writer = new StateMachineDiagramWriter();
 	public StateMachineDiagram getFromDocument(Document doc){
 		return reader.getFromDocument(doc);

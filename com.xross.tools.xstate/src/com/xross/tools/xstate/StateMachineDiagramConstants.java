@@ -21,8 +21,9 @@ public interface StateMachineDiagramConstants {
 	
 	String TRANSITIONS = "transitions";
 	String TRANSITION = "transition";
+	String EVENT_ID = "event_id";
 	String TRANSIT_ACTION = "transit_action";
-	String SOURCE_STATE = "source_state";
-	String TARGET_STATE = "target_state";
+	String SOURCE_ID = "source_id";
+	String TARGET_ID = "target_id";
 	
 }

@@ -33,7 +33,7 @@ public class StateMachineCreateEventAction extends WorkbenchPartAction implement
 		StateMachineDiagram diagram = (StateMachineDiagram)editor.getRootEditPart().getContents().getModel();
 		StateMachine stateMachine = null;
 		Event event = new Event();
-		event.setName(name);
+		event.setId(name);
 		execute(new AddEventCommand(stateMachine, event));
 	}
 }

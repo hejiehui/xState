@@ -14,7 +14,7 @@ public class StateNodeTreePart extends AbstractTreeEditPart {
     protected String getText() {
     	StateNode node = (StateNode)getModel();
 
-        return node.getName();
+        return node.getId();
     }
     
     protected Image getImage() {

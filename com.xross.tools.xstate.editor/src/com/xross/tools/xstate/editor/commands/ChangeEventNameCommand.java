@@ -6,17 +6,17 @@ import com.xross.tools.xstate.editor.model.Event;
 
 public class ChangeEventNameCommand extends Command{
     private Event event;
-    private String oldName;
-    private String newName;
+    private String oldId;
+    private String newId;
     
-    public ChangeEventNameCommand(Event event, String newName){
+    public ChangeEventNameCommand(Event event, String newId){
     	this.event = event;
-    	oldName = event.getName();
-    	this.newName = newName;
+    	oldId = event.getId();
+    	this.newId = newId;
     }
     
     public void execute() {
-        event.setName(newName);
+        event.setId(newId);
     }
 
     public String getLabel() {
@@ -28,6 +28,6 @@ public class ChangeEventNameCommand extends Command{
     }
 
     public void undo() {
-    	event.setName(oldName);
+    	event.setId(oldId);
     }
 }

@@ -11,7 +11,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
 public class StateNode implements StateMachineConstants, IPropertySource {
-	private String name;
+	private String id;
 	private String reference;
 	private String description;
 	private String enterAction;
@@ -53,7 +53,7 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
-				new TextPropertyDescriptor(PROP_NAME, name),
+				new TextPropertyDescriptor(PROP_ID, id),
 				new TextPropertyDescriptor(PROP_ENTRY_ACTION, enterAction),
 				new TextPropertyDescriptor(PROP_EXIST_ACTION, exitAction),
 				new TextPropertyDescriptor(PROP_REFERENCE, reference),
@@ -63,8 +63,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	}
 	
 	public Object getPropertyValue(Object propName) {
-		if (PROP_NAME.equals(propName))
-			return name;
+		if (PROP_ID.equals(propName))
+			return id;
 		if (PROP_ENTRY_ACTION.equals(propName))
 			return enterAction;
 		if (PROP_EXIST_ACTION.equals(propName))
@@ -76,8 +76,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	}
 
 	public void setPropertyValue(Object propName, Object value){
-		if (PROP_NAME.equals(propName))
-			setName((String)value);
+		if (PROP_ID.equals(propName))
+			setId((String)value);
 		if (PROP_ENTRY_ACTION.equals(propName))
 			setEnterAction((String)value);
 		if (PROP_EXIST_ACTION.equals(propName))
@@ -103,11 +103,11 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public void setOutputs(List<StateTransition> outputs) {
 		this.outputs = outputs;
 	}
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getDescription() {
 		return description;

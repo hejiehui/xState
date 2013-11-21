@@ -25,7 +25,7 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
-				new TextPropertyDescriptor(PROP_EVENT, event.getName()),
+				new TextPropertyDescriptor(PROP_EVENT, event.getId()),
 				new TextPropertyDescriptor(PROP_TRANSITION_ACTION, transitAction),
 			};
 		return descriptors;
@@ -92,8 +92,8 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	
 	public String getDisplayLabel(){
 		StringBuffer sbf = new StringBuffer();
-		if(event != null && event.getName() != null)
-			sbf.append(event.getName());
+		if(event != null && event.getId() != null)
+			sbf.append(event.getId());
 		
 		if(transitAction != null)
 			sbf.append(transitAction);

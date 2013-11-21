@@ -9,7 +9,7 @@ public interface StateMachineConstants {
 	
 	String NOT_SPECIFIED = "Not specified";
 	
-	String PROP_NAME = "Name";
+	String PROP_ID = "Id";
 	String PROP_ENTRY_ACTION = "Entry action";
 	String PROP_EXIST_ACTION = "Exist action";
 	String PROP_REFERENCE = "Reference state machine";
