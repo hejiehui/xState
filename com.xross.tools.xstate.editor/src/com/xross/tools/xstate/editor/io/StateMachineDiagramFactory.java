@@ -12,6 +12,14 @@ import com.xross.tools.xstate.editor.model.StateNode;
 import com.xross.tools.xstate.editor.model.StateTransition;
 
 public class StateMachineDiagramFactory implements StateMachineConstants{
+	public static final String LOCATION = "location";
+	public static final String X_COORDINATE = "x_coordinate";
+	public static final String Y_COORDINATE = "x_coordinate";
+	
+	public static final String SIZE = "size";
+	public static final String HEIGHT = "height";
+	public static final String WIDTH = "width";
+	
 	public StateMachineDiagram getEmptyDiagram(){
 		StateMachineDiagram smd = new StateMachineDiagram();
 		smd.setName("StateMachineDiagram");	

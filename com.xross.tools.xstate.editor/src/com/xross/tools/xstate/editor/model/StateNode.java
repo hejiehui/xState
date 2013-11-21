@@ -14,8 +14,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	private String name;
 	private String reference;
 	private String description;
-	private String entryAction;
-	private String existAction;
+	private String enterAction;
+	private String exitAction;
 	private List<StateTransition> inputs = new ArrayList<StateTransition>();
 	private List<StateTransition> outputs = new ArrayList<StateTransition>();
 	
@@ -54,8 +54,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
 				new TextPropertyDescriptor(PROP_NAME, name),
-				new TextPropertyDescriptor(PROP_ENTRY_ACTION, entryAction),
-				new TextPropertyDescriptor(PROP_EXIST_ACTION, existAction),
+				new TextPropertyDescriptor(PROP_ENTRY_ACTION, enterAction),
+				new TextPropertyDescriptor(PROP_EXIST_ACTION, exitAction),
 				new TextPropertyDescriptor(PROP_REFERENCE, reference),
 
 			};
@@ -66,9 +66,9 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		if (PROP_NAME.equals(propName))
 			return name;
 		if (PROP_ENTRY_ACTION.equals(propName))
-			return entryAction;
+			return enterAction;
 		if (PROP_EXIST_ACTION.equals(propName))
-			return existAction;
+			return exitAction;
 		if (PROP_REFERENCE.equals(propName))
 			return reference;
 
@@ -79,9 +79,9 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		if (PROP_NAME.equals(propName))
 			setName((String)value);
 		if (PROP_ENTRY_ACTION.equals(propName))
-			setEntryAction((String)value);
+			setEnterAction((String)value);
 		if (PROP_EXIST_ACTION.equals(propName))
-			setExistAction((String)value);
+			setExitAction((String)value);
 		if (PROP_REFERENCE.equals(propName))
 			setReference((String)value);
 	}
@@ -115,17 +115,17 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getEntryAction() {
-		return entryAction;
+	public String getEnterAction() {
+		return enterAction;
 	}
-	public void setEntryAction(String entryAction) {
-		this.entryAction = entryAction;
+	public void setEnterAction(String entryAction) {
+		this.enterAction = entryAction;
 	}
-	public String getExistAction() {
-		return existAction;
+	public String getExitAction() {
+		return exitAction;
 	}
-	public void setExistAction(String existAction) {
-		this.existAction = existAction;
+	public void setExitAction(String existAction) {
+		this.exitAction = existAction;
 	}
 	public List<StateTransition> getInputs() {
 		return inputs;

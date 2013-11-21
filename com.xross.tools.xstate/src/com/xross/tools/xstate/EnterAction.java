@@ -1,5 +1,5 @@
 package com.xross.tools.xstate;
 
-public interface EntryAction {
+public interface EnterAction {
 	void enter(String targetStateId, Event event);
 }

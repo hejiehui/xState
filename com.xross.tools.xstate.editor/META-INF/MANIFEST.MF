@@ -19,3 +19,4 @@ Require-Bundle: org.eclipse.gef;bundle-version="3.6.2",
  org.eclipse.jdt.core;bundle-version="3.8.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
+Import-Package: com.xross.tools.xstate
