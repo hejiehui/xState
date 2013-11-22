@@ -47,6 +47,8 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 		Element statesNode = createNode(doc, machineNode, STATES);
 		Element eventsNode = createNode(doc, machineNode, EVENTS);
 		Element transitionsNode = createNode(doc, machineNode, TRANSITIONS);
+		machineNode.appendChild(statesNode);
+		machineNode.appendChild(eventsNode);
 		machineNode.appendChild(transitionsNode);
 
 		writeStatesAndTransitions(doc, statesNode, machine.getNodes(), transitionsNode);

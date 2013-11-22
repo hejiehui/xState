@@ -30,17 +30,17 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
-				new TextPropertyDescriptor(PROP_ID, name),
-				new TextPropertyDescriptor(PROP_DESRIPTION, description),
+				new TextPropertyDescriptor(PROP_ID, PROP_ID),
+				new TextPropertyDescriptor(PROP_DESRIPTION, PROP_DESRIPTION),
 			};
 		return descriptors;
 	}
 	
 	public Object getPropertyValue(Object propName) {
 		if (PROP_ID.equals(propName))
-			return name;
+			return getValue(name);
 		if (PROP_DESRIPTION.equals(propName))
-			return description;
+			return getValue(description);
 		
 		return null;
 	}
@@ -61,6 +61,10 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 	}
 	
 	public void resetPropertyValue(Object propName){
+	}
+
+	private String getValue(String value) {
+		return value == null? "" : value;
 	}
 
 	public List<StateMachine> getMachines() {

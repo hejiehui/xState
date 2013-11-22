@@ -53,10 +53,10 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
-				new TextPropertyDescriptor(PROP_ID, id),
-				new TextPropertyDescriptor(PROP_ENTRY_ACTION, enterAction),
-				new TextPropertyDescriptor(PROP_EXIST_ACTION, exitAction),
-				new TextPropertyDescriptor(PROP_REFERENCE, reference),
+				new TextPropertyDescriptor(PROP_ID, PROP_ID),
+				new TextPropertyDescriptor(PROP_ENTRY_ACTION, PROP_ENTRY_ACTION),
+				new TextPropertyDescriptor(PROP_EXIST_ACTION, PROP_EXIST_ACTION),
+				new TextPropertyDescriptor(PROP_REFERENCE, PROP_REFERENCE),
 
 			};
 		return descriptors;
@@ -64,13 +64,13 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	
 	public Object getPropertyValue(Object propName) {
 		if (PROP_ID.equals(propName))
-			return id;
+			return getValue(id);
 		if (PROP_ENTRY_ACTION.equals(propName))
-			return enterAction;
+			return getValue(enterAction);
 		if (PROP_EXIST_ACTION.equals(propName))
-			return exitAction;
+			return getValue(exitAction);
 		if (PROP_REFERENCE.equals(propName))
-			return reference;
+			return getValue(reference);
 
 		return null;
 	}
@@ -84,6 +84,7 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 			setExitAction((String)value);
 		if (PROP_REFERENCE.equals(propName))
 			setReference((String)value);
+		firePropertyChange((String)propName);
 	}
 	
 	public Object getEditableValue(){
@@ -95,6 +96,10 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	}
 
 	public void resetPropertyValue(Object propName){
+	}
+	
+	private String getValue(String value) {
+		return value == null? "" : value;
 	}
 		
 	public List<StateTransition> getOutputs() {
