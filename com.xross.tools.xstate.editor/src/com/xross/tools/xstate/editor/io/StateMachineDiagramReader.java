@@ -101,37 +101,27 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 		}
 
 		for(int i = 0; i < transitions.getLength(); i++) {
-			
+			Node node = transitions.item(i);
+			StateNode source = states.get(getAttribute(node, SOURCE_ID));
+			StateNode target = states.get(getAttribute(node, TARGET_ID));
+			Event event = events.get(getAttribute(node, EVENT_ID));
+			StateTransition transition = new StateTransition(source, target);
+			transition.setEvent(event);
+			transition.setTransitAction(getAttribute(node, TRANSIT_ACTION));
 		}
 	}
 
 	private List<Event> readEvents(Node eventsNode) {
-		List<Event> events = new ArrayList<Event>();
-		for(Event event: events) {
-			createTextNode(doc, eventsNode, EVENT, event.getDescription()).
-				setAttribute(ID,  event.getId());
+		NodeList events = eventsNode.getChildNodes();
+		List<Event> eventList = new ArrayList<Event>();
+		for(int i = 0; i < events.getLength(); i++) {
+			Node eventNode = events.item(i);
+			Event event = new Event();
+			event.setId(getAttribute(eventNode, ID));
+			event.setDescription(eventNode.getTextContent());
+			eventList.add(event);
 		}
-		return events;
-	}
-	
-	private void writeTransitions(Document doc, Element transitionsNode, List<StateTransition> outputs) {
-		for(StateTransition transition: outputs) {
-			Element node = createNode(doc, transitionsNode, TRANSITION);
-			node.setAttribute(EVENT_ID, transition.getEvent().getId());
-			node.setAttribute(SOURCE_ID, transition.getSource().getId());
-			node.setAttribute(TARGET_ID, transition.getTarget().getId());
-			node.setAttribute(TRANSIT_ACTION, transition.getTransitAction());
-		}
-	}
-	
-	private void createNameDesc(Document doc, Element node, String name, String desc) {
-		createTextNode(doc, node, NAME, name);
-		createTextNode(doc, node, DESCRIPTION, desc);
-	}
-	
-	private void createIdDesc(Document doc, Element node, String id, String desc) {
-		node.setAttribute(ID, id);
-		createTextNode(doc, node, DESCRIPTION, desc);
+		return eventList;
 	}
 	
 	private String getChildNodeText(Node node, String childName) {
