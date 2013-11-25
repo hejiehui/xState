@@ -54,8 +54,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
 				new TextPropertyDescriptor(PROP_ID, PROP_ID),
-				new TextPropertyDescriptor(PROP_ENTRY_ACTION, PROP_ENTRY_ACTION),
-				new TextPropertyDescriptor(PROP_EXIST_ACTION, PROP_EXIST_ACTION),
+				new TextPropertyDescriptor(PROP_ENTER_ACTION, PROP_ENTER_ACTION),
+				new TextPropertyDescriptor(PROP_EXIT_ACTION, PROP_EXIT_ACTION),
 				new TextPropertyDescriptor(PROP_REFERENCE, PROP_REFERENCE),
 
 			};
@@ -65,9 +65,9 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public Object getPropertyValue(Object propName) {
 		if (PROP_ID.equals(propName))
 			return getValue(id);
-		if (PROP_ENTRY_ACTION.equals(propName))
+		if (PROP_ENTER_ACTION.equals(propName))
 			return getValue(enterAction);
-		if (PROP_EXIST_ACTION.equals(propName))
+		if (PROP_EXIT_ACTION.equals(propName))
 			return getValue(exitAction);
 		if (PROP_REFERENCE.equals(propName))
 			return getValue(reference);
@@ -78,13 +78,12 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public void setPropertyValue(Object propName, Object value){
 		if (PROP_ID.equals(propName))
 			setId((String)value);
-		if (PROP_ENTRY_ACTION.equals(propName))
+		if (PROP_ENTER_ACTION.equals(propName))
 			setEnterAction((String)value);
-		if (PROP_EXIST_ACTION.equals(propName))
+		if (PROP_EXIT_ACTION.equals(propName))
 			setExitAction((String)value);
 		if (PROP_REFERENCE.equals(propName))
 			setReference((String)value);
-		firePropertyChange((String)propName);
 	}
 	
 	public Object getEditableValue(){
@@ -113,36 +112,42 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	}
 	public void setId(String id) {
 		this.id = id;
+		firePropertyChange(PROP_ID);
 	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
+		firePropertyChange(PROP_DESRIPTION);
 	}
 	public String getEnterAction() {
 		return enterAction;
 	}
 	public void setEnterAction(String entryAction) {
 		this.enterAction = entryAction;
+		firePropertyChange(PROP_ENTER_ACTION);
 	}
 	public String getExitAction() {
 		return exitAction;
 	}
 	public void setExitAction(String existAction) {
 		this.exitAction = existAction;
+		firePropertyChange(PROP_EXIT_ACTION);
 	}
 	public List<StateTransition> getInputs() {
 		return inputs;
 	}
 	public void setInputs(List<StateTransition> inputs) {
 		this.inputs = inputs;
+		firePropertyChange(PROP_INPUTS);
 	}
 	public String getReference() {
 		return reference;
 	}
 	public void setReference(String reference) {
 		this.reference = reference;
+		firePropertyChange(PROP_REFERENCE);
 	}
 	
 	public void removeOutput(StateTransition output){

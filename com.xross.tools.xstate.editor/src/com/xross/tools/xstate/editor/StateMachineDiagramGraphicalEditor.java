@@ -42,6 +42,8 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.w3c.dom.Document;
 
+import com.xross.tools.xstate.editor.actions.StateMachineCodeGenAction;
+import com.xross.tools.xstate.editor.actions.StateMachineCreateEventAction;
 import com.xross.tools.xstate.editor.io.StateMachineDiagramFactory;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 import com.xross.tools.xstate.editor.parts.StateMachinePartFactory;
@@ -201,6 +203,13 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
     protected void initializePaletteViewer() {
         super.initializePaletteViewer();
         getPaletteViewer().addDragSourceListener(new TemplateTransferDragSourceListener(getPaletteViewer()));
+    }
+    
+    protected void createActions() {
+    	super.createActions();
+    	
+        getActionRegistry().registerAction(new StateMachineCodeGenAction(this));
+        getActionRegistry().registerAction(new StateMachineCreateEventAction(this));
     }
     
     private class OutlinePage extends ContentOutlinePage {

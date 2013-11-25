@@ -25,23 +25,23 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
-				new TextPropertyDescriptor(PROP_EVENT, event.getId()),
-				new TextPropertyDescriptor(PROP_TRANSITION_ACTION, transitAction),
+				new TextPropertyDescriptor(PROP_EVENT, PROP_EVENT),
+				new TextPropertyDescriptor(PROP_TRANSITION_ACTION, PROP_TRANSITION_ACTION),
 			};
 		return descriptors;
 	}
 	
 	public Object getPropertyValue(Object propName) {
-//		if (PROP_EVENT.equals(propName))
-//			return name;
+		if (PROP_EVENT.equals(propName))
+			return getValue(event.getId());
 		if (PROP_TRANSITION_ACTION.equals(propName))
-			return transitAction;
+			return getValue(transitAction);
 		
 		return null;
 	}
 
 	public void setPropertyValue(Object propName, Object value){
-//		if (PROP_NAME.equals(propName))
+//		if (PROP_EVENT.equals(propName))
 //			setEvent((String)value);
 		if (PROP_TRANSITION_ACTION.equals(propName))
 			setTransitAction((String)value);
@@ -56,6 +56,10 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	}
 	
 	public void resetPropertyValue(Object propName){
+	}
+
+	private String getValue(String value) {
+		return value == null? "" : value;
 	}
 
 	public StateTransition(StateNode source, StateNode target){

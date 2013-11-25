@@ -7,17 +7,18 @@ import org.eclipse.gef.editparts.AbstractTreeEditPart;
 import org.eclipse.swt.graphics.Image;
 
 import com.xross.tools.xstate.editor.Activator;
+import com.xross.tools.xstate.editor.model.Event;
 import com.xross.tools.xstate.editor.model.StateNode;
 
-public class StateNodeTreePart extends AbstractTreeEditPart implements PropertyChangeListener {
-	private StateNode node;
-	public StateNodeTreePart(Object model) {
+public class EventTreePart extends AbstractTreeEditPart implements PropertyChangeListener {
+	private Event event;
+	public EventTreePart(Object model) {
         super(model);
-        this.node = (StateNode)model;
+        this.event = (Event)model;
     }
 	
     protected String getText() {
-        return node.getId();
+        return event.getId();
     }
     
     protected Image getImage() {
@@ -26,12 +27,12 @@ public class StateNodeTreePart extends AbstractTreeEditPart implements PropertyC
     
 	public void activate() {
 		super.activate();
-		node.getListeners().addPropertyChangeListener(this);
+		event.getListeners().addPropertyChangeListener(this);
 	}
 
 	public void deactivate() {
 		super.deactivate();
-		((StateNode)getModel()).getListeners().removePropertyChangeListener(this);
+		event.getListeners().removePropertyChangeListener(this);
 	}
 
 	@Override

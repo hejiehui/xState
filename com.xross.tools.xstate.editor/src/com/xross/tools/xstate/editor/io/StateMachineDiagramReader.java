@@ -81,8 +81,8 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 		
 		Node size = getChildNode(stateNode, StateMachineDiagramFactory.SIZE);
 		node.setSize(new Dimension(
-				getIntAttribute(location, StateMachineDiagramFactory.HEIGHT), 
-				getIntAttribute(location, StateMachineDiagramFactory.WIDTH)));
+				getIntAttribute(size, StateMachineDiagramFactory.WIDTH),
+				getIntAttribute(size, StateMachineDiagramFactory.HEIGHT)));
 		
 		return node;
 	}

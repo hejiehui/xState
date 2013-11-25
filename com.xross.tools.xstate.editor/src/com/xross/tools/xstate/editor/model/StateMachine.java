@@ -13,7 +13,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 	private String description;
 
 	private List<StateNode> nodes = new ArrayList<StateNode>();
-	private List<Event> events;
+	private List<Event> events = new ArrayList<Event>();
 	
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 
@@ -91,6 +91,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 
 	public void setName(String name) {
 		this.name = name;
+		firePropertyChange(PROP_ID);
 	}
 
 	public String getDescription() {
@@ -99,6 +100,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 
 	public void setDescription(String description) {
 		this.description = description;
+		firePropertyChange(PROP_DESRIPTION);
 	}
 
 	public List<StateNode> getNodes() {
@@ -107,6 +109,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 
 	public void setNodes(List<StateNode> nodes) {
 		this.nodes = nodes;
+		firePropertyChange(STATE_NODE);
 	}
 	
 	public List<Event> getEvents() {
@@ -115,6 +118,6 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
+		firePropertyChange(EVENT);
 	}
-	
 }

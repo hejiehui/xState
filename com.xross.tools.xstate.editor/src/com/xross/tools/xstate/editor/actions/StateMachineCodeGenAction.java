@@ -16,19 +16,11 @@ import com.xross.tools.xstate.editor.codegen.StateMachineJunitTestCodeGen;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 
 public class StateMachineCodeGenAction extends WorkbenchPartAction implements StateMachineActionConstants, StateMachineMessages{
-	private boolean useJunitTest;
 	private StateMachineJunitTestCodeGen junitCodeGen = new StateMachineJunitTestCodeGen();
-	public StateMachineCodeGenAction(IWorkbenchPart part, boolean useJunitTest){
+	public StateMachineCodeGenAction(IWorkbenchPart part){
 		super(part);
-		if(useJunitTest){
-			setId(ID_PREFIX + GEN_JUNIT_TEST_CODE);
-			setText(GEN_JUNIT_TEST_CODE_MSG);
-		}else{
-			setId(ID_PREFIX + GEN_TEST_CODE);
-			setText(GEN_TEST_CODE_MSG);
-		}
-			
-		this.useJunitTest = useJunitTest;
+		setId(ID_PREFIX + GEN_JUNIT_TEST_CODE);
+		setText(GEN_JUNIT_TEST_CODE_MSG);
 	}
 	
 	protected boolean calculateEnabled() {
