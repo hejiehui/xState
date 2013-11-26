@@ -71,7 +71,7 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
         super.configureGraphicalViewer();
         getGraphicalViewer().setRootEditPart(root);
         getGraphicalViewer().setEditPartFactory(new StateMachinePartFactory());
-        getGraphicalViewer().setContextMenu(new StateMachineContextMenuProvider(getGraphicalViewer(), getActionRegistry()));
+        getGraphicalViewer().setContextMenu(new StateMachineContextMenuProvider(getGraphicalViewer(), this));
         initActions(root);
         getCommandStack().addCommandStackListener(commandStackListener);
     }
@@ -204,14 +204,6 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
     protected void initializePaletteViewer() {
         super.initializePaletteViewer();
         getPaletteViewer().addDragSourceListener(new TemplateTransferDragSourceListener(getPaletteViewer()));
-    }
-    
-    protected void createActions() {
-    	super.createActions();
-    	
-        getActionRegistry().registerAction(new StateMachineJunitCodeGenAction(this));
-        getActionRegistry().registerAction(new StateMachineUsageCodeGenAction(this));
-        getActionRegistry().registerAction(new StateMachineCreateEventAction(this));
     }
     
     private class OutlinePage extends ContentOutlinePage {

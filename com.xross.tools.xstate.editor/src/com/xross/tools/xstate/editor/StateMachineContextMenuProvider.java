@@ -1,26 +1,40 @@
 package com.xross.tools.xstate.editor;
 
+import java.util.List;
+
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
-import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
+import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 
 import com.xross.tools.xstate.editor.actions.StateMachineActionConstants;
+import com.xross.tools.xstate.editor.actions.StateMachineCreateEventAction;
+import com.xross.tools.xstate.editor.actions.StateMachineJunitCodeGenAction;
+import com.xross.tools.xstate.editor.actions.StateMachineUsageCodeGenAction;
+import com.xross.tools.xstate.editor.model.StateMachine;
+import com.xross.tools.xstate.editor.parts.StateMachinePart;
 
 public class StateMachineContextMenuProvider extends ContextMenuProvider {
-	private ActionRegistry actionRegistry;
-    public StateMachineContextMenuProvider(EditPartViewer viewer, ActionRegistry registry) {
+	private GraphicalEditor editor;
+    public StateMachineContextMenuProvider(EditPartViewer viewer, GraphicalEditor editor) {
         super(viewer);
-        actionRegistry = registry;
+        this.editor = editor;
     }
     public void buildContextMenu(IMenuManager menu) {
         // Add standard action groups to the menu
     	GEFActionConstants.addStandardActionGroups(menu);
-     	menu.add(actionRegistry.getAction(StateMachineActionConstants.ID_PREFIX + StateMachineActionConstants.GEN_JUNIT_TEST_CODE));
-    	menu.add(actionRegistry.getAction(StateMachineActionConstants.ID_PREFIX + StateMachineActionConstants.GEN_USAGE_CODE));
-    	menu.add(new Separator());
-    	menu.add(actionRegistry.getAction(StateMachineActionConstants.ID_PREFIX + StateMachineActionConstants.CREATE_EVENT));
-    }    
+     	menu.add(new StateMachineJunitCodeGenAction(editor));
+     	menu.add(new StateMachineUsageCodeGenAction(editor));
+
+    	EditPartViewer viewer = this.getViewer();
+		List selected = viewer.getSelectedEditParts();
+		if(selected.size() == 1 && selected.get(0) instanceof StateMachinePart){
+	    	menu.add(new Separator());
+	    	StateMachinePart part = (StateMachinePart)selected.get(0);
+	    	StateMachine machine = (StateMachine)part.getModel();
+	    	menu.add(new StateMachineCreateEventAction(editor, machine));
+		}
+    }
 }

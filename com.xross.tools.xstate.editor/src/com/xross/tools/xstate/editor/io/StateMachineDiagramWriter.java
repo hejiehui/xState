@@ -88,7 +88,8 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 	private void writeTransitions(Document doc, Element transitionsNode, List<StateTransition> outputs) {
 		for(StateTransition transition: outputs) {
 			Element node = createNode(doc, transitionsNode, TRANSITION);
-			node.setAttribute(EVENT_ID, transition.getEvent().getId());
+			if(transition.getEvent() != null)
+				node.setAttribute(EVENT_ID, transition.getEvent().getId());
 			node.setAttribute(SOURCE_ID, transition.getSource().getId());
 			node.setAttribute(TARGET_ID, transition.getTarget().getId());
 			node.setAttribute(TRANSIT_ACTION, transition.getTransitAction());
@@ -113,11 +114,11 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 	
 	private Element createTextNode(Document doc, Element node, String name, String value) {
 		Element textNode = (Element)doc.createElement(name);
+		node.appendChild(textNode);
 		if(value == null)
 			return textNode;
 		
 		textNode.appendChild(doc.createTextNode(value));
-		node.appendChild(textNode);
 		return textNode;
 	}
 }

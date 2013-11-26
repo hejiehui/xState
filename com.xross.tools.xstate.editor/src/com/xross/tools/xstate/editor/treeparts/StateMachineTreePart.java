@@ -47,5 +47,6 @@ public class StateMachineTreePart extends AbstractTreeEditPart implements Proper
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
 		refreshVisuals();
+		refreshChildren();
 	}
 }

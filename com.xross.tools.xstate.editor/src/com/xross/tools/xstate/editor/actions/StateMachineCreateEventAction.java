@@ -10,13 +10,14 @@ import com.xross.tools.xstate.editor.StateMachineDiagramGraphicalEditor;
 import com.xross.tools.xstate.editor.commands.AddEventCommand;
 import com.xross.tools.xstate.editor.model.Event;
 import com.xross.tools.xstate.editor.model.StateMachine;
-import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 
 public class StateMachineCreateEventAction extends WorkbenchPartAction implements StateMachineActionConstants, StateMachineMessages{
-	public StateMachineCreateEventAction(IWorkbenchPart part){
+	private StateMachine machine;
+	public StateMachineCreateEventAction(IWorkbenchPart part, StateMachine machine){
 		super(part);
 		setId(ID_PREFIX + CREATE_EVENT);
 		setText(CREATE_EVENT_MSG);
+		this.machine = machine;
 	}
 	
 	protected boolean calculateEnabled() {
@@ -30,10 +31,8 @@ public class StateMachineCreateEventAction extends WorkbenchPartAction implement
 		String name = dlg.getValue();
 		
 		StateMachineDiagramGraphicalEditor editor = (StateMachineDiagramGraphicalEditor)getWorkbenchPart();
-		StateMachineDiagram diagram = (StateMachineDiagram)editor.getRootEditPart().getContents().getModel();
-		StateMachine stateMachine = null;
 		Event event = new Event();
 		event.setId(name);
-		execute(new AddEventCommand(stateMachine, event));
+		execute(new AddEventCommand(machine, event));
 	}
 }
