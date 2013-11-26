@@ -15,9 +15,9 @@ import com.xross.tools.xstate.editor.StateMachineDiagramGraphicalEditor;
 import com.xross.tools.xstate.editor.codegen.StateMachineJunitTestCodeGen;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 
-public class StateMachineCodeGenAction extends WorkbenchPartAction implements StateMachineActionConstants, StateMachineMessages{
+public class StateMachineJunitCodeGenAction extends WorkbenchPartAction implements StateMachineActionConstants, StateMachineMessages{
 	private StateMachineJunitTestCodeGen junitCodeGen = new StateMachineJunitTestCodeGen();
-	public StateMachineCodeGenAction(IWorkbenchPart part){
+	public StateMachineJunitCodeGenAction(IWorkbenchPart part){
 		super(part);
 		setId(ID_PREFIX + GEN_JUNIT_TEST_CODE);
 		setText(GEN_JUNIT_TEST_CODE_MSG);

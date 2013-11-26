@@ -4,11 +4,10 @@ import com.xross.tools.xstate.editor.Activator;
 
 public interface StateMachineActionConstants {
 	String ID_PREFIX = Activator.PLUGIN_ID;
-	String GEN_TEST_CODE = "generate_test_code";
 	String GEN_JUNIT_TEST_CODE = "generate_junit_test_code";
 
 	String GEN_USAGE_CODE = "generate_usage_code";
-	String CREATE_NEW_EVENT = "create_new_event";
+	String CREATE_EVENT = "create_event";
 	
 	String ALIGN_LEFT = "alignment_left";
 	String ALIGN_CENTER = "alignment_center";
@@ -32,10 +31,4 @@ public interface StateMachineActionConstants {
 	
 	String SHOW_LABEL_INSIDE = "show_lable_inside";
 	String SHOW_LABEL_OUTSIDE = "show_lable_outside";
-	
-	String CREATE_EVENT = "create_event";
-	String CREATE_NEW_FACTOR = "create_new_factor";
-	String CREATE_NEW_FACTOR_VALUE = "create_new_factor_value";
-
-
 }

@@ -18,9 +18,9 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider {
     public void buildContextMenu(IMenuManager menu) {
         // Add standard action groups to the menu
     	GEFActionConstants.addStandardActionGroups(menu);
-     	menu.add(actionRegistry.getAction(StateMachineActionConstants.ID_PREFIX + StateMachineActionConstants.GEN_TEST_CODE));
+     	menu.add(actionRegistry.getAction(StateMachineActionConstants.ID_PREFIX + StateMachineActionConstants.GEN_JUNIT_TEST_CODE));
     	menu.add(actionRegistry.getAction(StateMachineActionConstants.ID_PREFIX + StateMachineActionConstants.GEN_USAGE_CODE));
     	menu.add(new Separator());
-    	menu.add(actionRegistry.getAction(StateMachineActionConstants.ID_PREFIX + StateMachineActionConstants.CREATE_NEW_EVENT));
+    	menu.add(actionRegistry.getAction(StateMachineActionConstants.ID_PREFIX + StateMachineActionConstants.CREATE_EVENT));
     }    
 }
