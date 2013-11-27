@@ -2,6 +2,7 @@ package com.xross.tools.xstate.editor.model;
 
 import java.beans.PropertyChangeSupport;
 
+import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
@@ -11,6 +12,7 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	private String transitAction;
 	private StateNode source;
 	private StateNode target;
+	private StateMachineHelper helper;
 	
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 	
@@ -25,7 +27,7 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
-				new TextPropertyDescriptor(PROP_EVENT, PROP_EVENT),
+				new ComboBoxPropertyDescriptor(PROP_EVENT, PROP_EVENT, helper.getEventIds()),
 				new TextPropertyDescriptor(PROP_TRANSITION_ACTION, PROP_TRANSITION_ACTION),
 			};
 		return descriptors;
@@ -33,7 +35,7 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	
 	public Object getPropertyValue(Object propName) {
 		if (PROP_EVENT.equals(propName))
-			return getValue(event.getId());
+			return helper.getEventIdIndex(event);
 		if (PROP_TRANSITION_ACTION.equals(propName))
 			return getValue(transitAction);
 		
@@ -41,8 +43,8 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	}
 
 	public void setPropertyValue(Object propName, Object value){
-//		if (PROP_EVENT.equals(propName))
-//			setEvent((String)value);
+		if (PROP_EVENT.equals(propName))
+			setEvent(helper.getEvent((Integer)value));
 		if (PROP_TRANSITION_ACTION.equals(propName))
 			setTransitAction((String)value);
 	}
@@ -62,9 +64,10 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 		return value == null? "" : value;
 	}
 
-	public StateTransition(StateNode source, StateNode target){
+	public StateTransition(StateNode source, StateNode target, StateMachineHelper helper){
 		this.source =source;
 		this.target = target;
+		this.helper = helper;
 		source.addOutput(this);
 		target.addInput(this);
 	}
@@ -74,24 +77,28 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	}
 	public void setEvent(Event event) {
 		this.event = event;
+		firePropertyChange(PROP_EVENT);
 	}
 	public String getTransitAction() {
 		return transitAction;
 	}
 	public void setTransitAction(String transitAction) {
 		this.transitAction = transitAction;
+		firePropertyChange(PROP_TRANSITION_ACTION);
 	}
 	public StateNode getSource() {
 		return source;
 	}
 	public void setSource(StateNode source) {
 		this.source = source;
+		firePropertyChange(PROP_SOURCE);
 	}
 	public StateNode getTarget() {
 		return target;
 	}
 	public void setTarget(StateNode target) {
 		this.target = target;
+		firePropertyChange(PROP_TARGET);
 	}
 	
 	public String getDisplayLabel(){
@@ -106,5 +113,4 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 			return NOT_SPECIFIED;
 		return sbf.toString();
 	}
-	
 }

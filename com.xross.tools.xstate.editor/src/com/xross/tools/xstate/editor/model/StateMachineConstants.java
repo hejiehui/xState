@@ -18,10 +18,14 @@ public interface StateMachineConstants {
 	String PROP_TRANSITION_ACTION = "Transition action";
 	String PROP_INPUTS = "Inputs";
 	String PROP_OUTPUTS = "Outputs";
+	String PROP_SOURCE = "Source";
+	String PROP_TARGET = "Target";
 	
 	String PROP_SIZE = "size";
 	String PROP_LOCATION = "location";
 	String PROP_LAYOUT = "layout";
+	
+	String EMPTY_VALUE = "";
 
 	
 	int TOP_LEVEL_SPACE = 50;

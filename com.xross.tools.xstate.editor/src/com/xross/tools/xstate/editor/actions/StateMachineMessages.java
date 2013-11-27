@@ -27,7 +27,4 @@ public interface StateMachineMessages {
 	String GEN_TEST_CODE_MSG = "Generate stand alone test code";
 	String GEN_JUNIT_TEST_CODE_MSG = "Generate junit test code";
 	String CREATE_EVENT_MSG = "Create new Event";
-	String CREATE_NEW_FACTOR_MSG = "Create new factor";
-	String CREATE_NEW_FACTOR_VALUE_MSG = "Create new factor value";
-
 }

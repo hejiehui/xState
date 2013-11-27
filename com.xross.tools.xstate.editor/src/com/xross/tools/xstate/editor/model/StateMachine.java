@@ -14,6 +14,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 
 	private List<StateNode> nodes = new ArrayList<StateNode>();
 	private List<Event> events = new ArrayList<Event>();
+	private StateMachineHelper helper = new StateMachineHelper(this);
 	
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 
@@ -114,6 +115,10 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 	
 	public List<Event> getEvents() {
 		return events;
+	}
+	
+	public StateMachineHelper getHelper() {
+		return helper;
 	}
 
 	public void setEvents(List<Event> events) {

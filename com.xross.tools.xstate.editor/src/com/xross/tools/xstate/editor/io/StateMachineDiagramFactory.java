@@ -49,7 +49,7 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 			b.setId("state" + i);
 			sm.getNodes().add(b);
 			
-			StateTransition t = new StateTransition(a, b);
+			StateTransition t = new StateTransition(a, b, sm.getHelper());
 			Event evt = new Event();
 			evt.setId("event " + i);
 			t.setEvent(evt);
