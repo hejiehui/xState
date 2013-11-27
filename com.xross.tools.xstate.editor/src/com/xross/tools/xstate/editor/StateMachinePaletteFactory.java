@@ -15,6 +15,8 @@ import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.requests.SimpleFactory;
 
+import com.xross.tools.xstate.editor.model.EndNode;
+import com.xross.tools.xstate.editor.model.StartNode;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateNode;
 
@@ -37,6 +39,8 @@ public class StateMachinePaletteFactory {
     private static Object[][] ENTRIES = new Object[][]{
     	{"State Machine", StateMachine.class, Activator.STATE_MACHINE},
     	{"State Node", StateNode.class, Activator.STATE_NODE},
+    	{"Start Node", StartNode.class, Activator.START_NODE},
+    	{"End Node", EndNode.class, Activator.END_NODE},
     };
 
     private PaletteContainer createControlGroup(PaletteRoot root) {

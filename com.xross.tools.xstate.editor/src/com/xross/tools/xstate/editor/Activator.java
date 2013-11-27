@@ -20,6 +20,8 @@ public class Activator extends AbstractUIPlugin {
 	public static final String STATE_MACHINE_DIAGRAM = "state_machine_diagram";
 	public static final String STATE_MACHINE = "state_machine";
 	public static final String STATE_NODE = "state_node";
+	public static final String START_NODE = "start_node";
+	public static final String END_NODE = "end_node";
 	public static final String TRANSITION = "transition";
 	
 	// The shared instance
@@ -62,6 +64,8 @@ public class Activator extends AbstractUIPlugin {
     	put(reg, STATE_MACHINE_DIAGRAM);
     	put(reg, STATE_MACHINE);
     	put(reg, STATE_NODE);
+    	put(reg, START_NODE);
+    	put(reg, END_NODE);
     	put(reg, TRANSITION);
     	
 //    	initByClass(reg);
