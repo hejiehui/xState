@@ -31,14 +31,20 @@ public class StateNodeFigure extends RoundedRectangle {
     	entryActionLabel.setIcon(Activator.getDefault().getImageRegistry().get(Activator.ENTRY_ACTION));
     	entryActionLabel.setLabelAlignment(PositionConstants.CENTER);
     	entryActionLabel.setForegroundColor(ColorConstants.black);
-        add(entryActionLabel);
+//        add(entryActionLabel);
+//    	layout.setConstraint(entryActionLabel, PositionConstants.WEST);
+    	ImageFigure f = new ImageFigure(Activator.getDefault().getImageRegistry().get(Activator.ENTRY_ACTION));
+    	add(f);
     	layout.setConstraint(entryActionLabel, PositionConstants.WEST);
     	
     	existActionLabel = new Label();
     	existActionLabel.setIcon(Activator.getDefault().getImageRegistry().get(Activator.EXIT_ACTION));
     	existActionLabel.setLabelAlignment(PositionConstants.CENTER);
     	existActionLabel.setForegroundColor(ColorConstants.black);
-        add(existActionLabel);
+//        add(existActionLabel);
+//    	layout.setConstraint(existActionLabel, PositionConstants.EAST);
+    	ImageFigure exit = new ImageFigure(Activator.getDefault().getImageRegistry().get(Activator.EXIT_ACTION));
+    	add(exit);
     	layout.setConstraint(existActionLabel, PositionConstants.EAST);
     }
 
