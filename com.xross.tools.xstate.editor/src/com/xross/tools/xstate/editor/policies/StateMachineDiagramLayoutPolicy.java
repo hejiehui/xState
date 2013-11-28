@@ -40,10 +40,10 @@ public class StateMachineDiagramLayoutPolicy extends XYLayoutEditPolicy {
     		return new LayoutStateMachineCommand(layoutReq.getDiagram(), layoutReq.isHorizantal(), layoutReq.getAlignment());
     	}
     	
-    	if(request.getType() == RequestConstants.REQ_RESIZE){
-    		StateNodeResizeRequest resizeReq = (StateNodeResizeRequest)request;
-    		return new ResizeNodeCommand(resizeReq.getDiagram(), resizeReq.isNodeSize(), resizeReq.isHorizantal(), resizeReq.isIncrease());
-    	}
+//    	if(request.getType() == RequestConstants.REQ_RESIZE){
+//    		StateNodeResizeRequest resizeReq = (StateNodeResizeRequest)request;
+//    		return new ResizeNodeCommand(resizeReq.getDiagram(), resizeReq.isNodeSize(), resizeReq.isHorizantal(), resizeReq.isIncrease());
+//    	}
     	
     	return super.getCommand(request);
     }

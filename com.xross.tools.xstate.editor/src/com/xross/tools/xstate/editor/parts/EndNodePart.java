@@ -8,14 +8,19 @@ import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ImageFigure;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.tools.DirectEditManager;
 
 import com.xross.tools.xstate.editor.Activator;
+import com.xross.tools.xstate.editor.figures.StateNodeFigure;
 import com.xross.tools.xstate.editor.model.StateMachineConstants;
 import com.xross.tools.xstate.editor.model.StateNode;
 import com.xross.tools.xstate.editor.model.StateTransition;
@@ -85,18 +90,14 @@ public class EndNodePart extends AbstractGraphicalEditPart implements StateMachi
     	super.deactivate();
     	((StateNode) getModel()).getListeners().removePropertyChangeListener(this);
     }
-//
-//    protected void refreshVisuals() {
-//    	StateNode node = (StateNode) getModel();
-//    	StateNodeFigure figure = (StateNodeFigure)getFigure();
-//
-//		Point loc = node.getLocation();
-//		Dimension size = node.getSize();
-//        Rectangle rectangle = new Rectangle(loc, size);
-//        ((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), rectangle);
-//    	
-//       	figure.setName(node.getId());
-//       	figure.setExistAction(node.getExitAction());
-//       	figure.setEntryAction(node.getEnterAction());
-//    }
+
+    protected void refreshVisuals() {
+    	StateNode node = (StateNode) getModel();
+    	ImageFigure figure = (ImageFigure)getFigure();
+
+		Point loc = node.getLocation();
+		Dimension size = figure.getPreferredSize();//node.getSize();
+        Rectangle rectangle = new Rectangle(loc, size);
+        ((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), rectangle);
+    }
 }

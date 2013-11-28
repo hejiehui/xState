@@ -8,12 +8,17 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import com.xross.tools.xstate.editor.commands.CreateTransitionCommand;
 import com.xross.tools.xstate.editor.commands.ReconnectSourceCommand;
 import com.xross.tools.xstate.editor.commands.ReconnectTargetCommand;
+import com.xross.tools.xstate.editor.model.EndNode;
+import com.xross.tools.xstate.editor.model.StartNode;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateNode;
 import com.xross.tools.xstate.editor.model.StateTransition;
 
 public class StateMachineGraphicNodeEditPolicy extends GraphicalNodeEditPolicy {
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
+		if(getHost().getModel() instanceof StartNode)
+			return null;
+		
 		CreateTransitionCommand cmd = (CreateTransitionCommand)request.getStartCommand();
 		cmd.setTarget((StateNode)getHost().getModel());
 		cmd.setStateMachine((StateMachine)getHost().getParent().getModel());
@@ -21,6 +26,9 @@ public class StateMachineGraphicNodeEditPolicy extends GraphicalNodeEditPolicy {
 	}
 
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
+		if(getHost().getModel() instanceof EndNode)
+			return null;
+		
 		CreateTransitionCommand cmd = new CreateTransitionCommand();
 		cmd.setSource((StateNode)getHost().getModel());
 		request.setStartCommand(cmd);

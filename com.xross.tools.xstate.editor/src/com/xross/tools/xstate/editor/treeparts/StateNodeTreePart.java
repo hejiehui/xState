@@ -7,6 +7,8 @@ import org.eclipse.gef.editparts.AbstractTreeEditPart;
 import org.eclipse.swt.graphics.Image;
 
 import com.xross.tools.xstate.editor.Activator;
+import com.xross.tools.xstate.editor.model.EndNode;
+import com.xross.tools.xstate.editor.model.StartNode;
 import com.xross.tools.xstate.editor.model.StateNode;
 
 public class StateNodeTreePart extends AbstractTreeEditPart implements PropertyChangeListener {
@@ -21,6 +23,12 @@ public class StateNodeTreePart extends AbstractTreeEditPart implements PropertyC
     }
     
     protected Image getImage() {
+    	if(node instanceof StartNode)
+    		return Activator.getDefault().getImage(Activator.START_NODE);
+    	
+    	if(node instanceof EndNode)
+    		return Activator.getDefault().getImage(Activator.END_NODE);
+    	
     	return Activator.getDefault().getImage(Activator.STATE_NODE);
     }
     

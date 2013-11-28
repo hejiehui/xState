@@ -90,18 +90,14 @@ public class StartNodePart extends AbstractGraphicalEditPart implements StateMac
     	super.deactivate();
     	((StateNode) getModel()).getListeners().removePropertyChangeListener(this);
     }
-//
-//    protected void refreshVisuals() {
-//    	StateNode node = (StateNode) getModel();
-//    	StateNodeFigure figure = (StateNodeFigure)getFigure();
-//
-//		Point loc = node.getLocation();
-//		Dimension size = node.getSize();
-//        Rectangle rectangle = new Rectangle(loc, size);
-//        ((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), rectangle);
-//    	
-//       	figure.setName(node.getId());
-//       	figure.setExistAction(node.getExitAction());
-//       	figure.setEntryAction(node.getEnterAction());
-//    }
+
+    protected void refreshVisuals() {
+    	StateNode node = (StateNode) getModel();
+    	ImageFigure figure = (ImageFigure)getFigure();
+
+		Point loc = node.getLocation();
+		Dimension size = figure.getPreferredSize();//node.getSize();
+        Rectangle rectangle = new Rectangle(loc, size);
+        ((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), rectangle);
+    }
 }
