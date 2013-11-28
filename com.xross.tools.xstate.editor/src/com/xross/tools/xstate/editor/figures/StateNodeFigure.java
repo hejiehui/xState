@@ -2,15 +2,18 @@ package com.xross.tools.xstate.editor.figures;
 
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.ImageFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.geometry.Dimension;
 
+import com.xross.tools.xstate.editor.Activator;
+
 public class StateNodeFigure extends RoundedRectangle {
     private Label nameLabel;
-    private Label enterActionLabel;
+    private Label entryActionLabel;
     private Label existActionLabel;
 
     public StateNodeFigure() {
@@ -22,20 +25,21 @@ public class StateNodeFigure extends RoundedRectangle {
         nameLabel.setLabelAlignment(PositionConstants.CENTER);
         nameLabel.setForegroundColor(ColorConstants.darkGreen);
         add(nameLabel);
-    	layout.setConstraint(nameLabel, PositionConstants.BOTTOM);
+    	layout.setConstraint(nameLabel, PositionConstants.TOP);
     	
-    	enterActionLabel = new Label();
-    	enterActionLabel.setLabelAlignment(PositionConstants.CENTER);
-    	enterActionLabel.setForegroundColor(ColorConstants.black);
-        add(enterActionLabel);
-    	layout.setConstraint(enterActionLabel, PositionConstants.CENTER);
+    	entryActionLabel = new Label();
+    	entryActionLabel.setIcon(Activator.getDefault().getImageRegistry().get(Activator.ENTRY_ACTION));
+    	entryActionLabel.setLabelAlignment(PositionConstants.CENTER);
+    	entryActionLabel.setForegroundColor(ColorConstants.black);
+        add(entryActionLabel);
+    	layout.setConstraint(entryActionLabel, PositionConstants.WEST);
     	
     	existActionLabel = new Label();
+    	existActionLabel.setIcon(Activator.getDefault().getImageRegistry().get(Activator.EXIT_ACTION));
     	existActionLabel.setLabelAlignment(PositionConstants.CENTER);
     	existActionLabel.setForegroundColor(ColorConstants.black);
         add(existActionLabel);
-    	layout.setConstraint(existActionLabel, PositionConstants.TOP);
-
+    	layout.setConstraint(existActionLabel, PositionConstants.EAST);
     }
 
     public Dimension getGoodSize() {
@@ -48,13 +52,14 @@ public class StateNodeFigure extends RoundedRectangle {
     	repaint();
     }
     
-    public void setEnterAction(String enterAction) {
-    	enterActionLabel.setText(enterAction);
+    public void setEntryAction(String entryAction) {
+//    	entryActionLabel.setText(entryAction);
+    	entryActionLabel.setToolTip(new Label(entryAction));
         repaint();
     }
     
     public void setExistAction(String existAction) {
-    	existActionLabel.setText(existAction);
+//    	existActionLabel.setText(existAction);
     	existActionLabel.setToolTip(new Label(existAction));
         repaint();
     }

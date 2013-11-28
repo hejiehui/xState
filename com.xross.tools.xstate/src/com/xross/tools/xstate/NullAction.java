@@ -1,6 +1,6 @@
 package com.xross.tools.xstate;
 
-public class NullAction implements EnterAction, ExitAction, TransitAction {
+public class NullAction implements EntryAction, ExitAction, TransitAction {
 
 	public void transit(String transitionId, String sourceStateId,String targetStateId, Event event) {}
 

@@ -73,7 +73,7 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 	
 	private void writeState(Document doc, Element stateNode, StateNode node) {
 		createIdDesc(doc, stateNode, node.getId(), node.getDescription());
-		createTextNode(doc, stateNode, ENTER_ACTION, node.getEnterAction());
+		createTextNode(doc, stateNode, ENTRY_ACTION, node.getEntryAction());
 		createTextNode(doc, stateNode, EXIT_ACTION, node.getExitAction());
 
 		Element location = createNode(doc, stateNode, StateMachineDiagramFactory.LOCATION);

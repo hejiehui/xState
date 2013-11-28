@@ -23,6 +23,9 @@ public class Activator extends AbstractUIPlugin {
 	public static final String START_NODE = "start_node";
 	public static final String END_NODE = "end_node";
 	public static final String TRANSITION = "transition";
+	public static final String ENTRY_ACTION = "entry_action";
+	public static final String EXIT_ACTION = "exit_action";
+	public static final String TRANSITION_ACTION = "transition_action";
 	
 	// The shared instance
 	private static Activator plugin;
@@ -67,6 +70,9 @@ public class Activator extends AbstractUIPlugin {
     	put(reg, START_NODE);
     	put(reg, END_NODE);
     	put(reg, TRANSITION);
+    	put(reg, ENTRY_ACTION);
+		put(reg, EXIT_ACTION);
+		put(reg, TRANSITION_ACTION);
     	
 //    	initByClass(reg);
     }

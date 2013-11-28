@@ -6,6 +6,6 @@ public class State {
 	private String id;
 	private List<Transition> inputs;
 	private List<Transition> outputs;
-	private EnterAction entryAction;
+	private EntryAction entryAction;
 	private ExitAction existAction;
 }

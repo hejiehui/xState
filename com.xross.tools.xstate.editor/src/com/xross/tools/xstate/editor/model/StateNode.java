@@ -14,7 +14,7 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	private String id;
 	private String reference;
 	private String description;
-	private String enterAction;
+	private String entryAction;
 	private String exitAction;
 	private List<StateTransition> inputs = new ArrayList<StateTransition>();
 	private List<StateTransition> outputs = new ArrayList<StateTransition>();
@@ -54,7 +54,7 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
 				new TextPropertyDescriptor(PROP_ID, PROP_ID),
-				new TextPropertyDescriptor(PROP_ENTER_ACTION, PROP_ENTER_ACTION),
+				new TextPropertyDescriptor(PROP_ENTRY_ACTION, PROP_ENTRY_ACTION),
 				new TextPropertyDescriptor(PROP_EXIT_ACTION, PROP_EXIT_ACTION),
 				new TextPropertyDescriptor(PROP_REFERENCE, PROP_REFERENCE),
 
@@ -65,8 +65,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public Object getPropertyValue(Object propName) {
 		if (PROP_ID.equals(propName))
 			return getValue(id);
-		if (PROP_ENTER_ACTION.equals(propName))
-			return getValue(enterAction);
+		if (PROP_ENTRY_ACTION.equals(propName))
+			return getValue(entryAction);
 		if (PROP_EXIT_ACTION.equals(propName))
 			return getValue(exitAction);
 		if (PROP_REFERENCE.equals(propName))
@@ -78,8 +78,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public void setPropertyValue(Object propName, Object value){
 		if (PROP_ID.equals(propName))
 			setId((String)value);
-		if (PROP_ENTER_ACTION.equals(propName))
-			setEnterAction((String)value);
+		if (PROP_ENTRY_ACTION.equals(propName))
+			setEntryAction((String)value);
 		if (PROP_EXIT_ACTION.equals(propName))
 			setExitAction((String)value);
 		if (PROP_REFERENCE.equals(propName))
@@ -121,12 +121,12 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		this.description = description;
 		firePropertyChange(PROP_DESRIPTION);
 	}
-	public String getEnterAction() {
-		return enterAction;
+	public String getEntryAction() {
+		return entryAction;
 	}
-	public void setEnterAction(String entryAction) {
-		this.enterAction = entryAction;
-		firePropertyChange(PROP_ENTER_ACTION);
+	public void setEntryAction(String entryAction) {
+		this.entryAction = entryAction;
+		firePropertyChange(PROP_ENTRY_ACTION);
 	}
 	public String getExitAction() {
 		return exitAction;

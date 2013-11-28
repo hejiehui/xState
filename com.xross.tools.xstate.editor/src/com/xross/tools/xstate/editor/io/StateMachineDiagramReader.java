@@ -71,7 +71,7 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 		node.setId(getAttribute(stateNode, ID));
 		node.setDescription(getChildNodeText(stateNode, DESCRIPTION));
 		
-		node.setEnterAction(getChildNodeText(stateNode, ENTER_ACTION));
+		node.setEntryAction(getChildNodeText(stateNode, ENTRY_ACTION));
 		node.setExitAction(getChildNodeText(stateNode, EXIT_ACTION));
 
 		Node location = getChildNode(stateNode, StateMachineDiagramFactory.LOCATION);

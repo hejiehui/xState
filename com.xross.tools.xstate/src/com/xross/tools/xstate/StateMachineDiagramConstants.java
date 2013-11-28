@@ -10,7 +10,7 @@ public interface StateMachineDiagramConstants {
 
 	String STATES = "states";
 	String STATE = "state";
-	String ENTER_ACTION = "enter_action";
+	String ENTRY_ACTION = "entry_action";
 	String EXIT_ACTION = "exit_action";
 	
 	String START_STATE = "start_state";
