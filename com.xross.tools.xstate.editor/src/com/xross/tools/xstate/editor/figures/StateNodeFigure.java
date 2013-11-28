@@ -6,11 +6,11 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RoundedRectangle;
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.geometry.Dimension;
 
 public class StateNodeFigure extends RoundedRectangle {
     private Label nameLabel;
-    private Label entryActionLabel;
+    private Label enterActionLabel;
     private Label existActionLabel;
 
     public StateNodeFigure() {
@@ -24,11 +24,11 @@ public class StateNodeFigure extends RoundedRectangle {
         add(nameLabel);
     	layout.setConstraint(nameLabel, PositionConstants.BOTTOM);
     	
-    	entryActionLabel = new Label();
-    	entryActionLabel.setLabelAlignment(PositionConstants.CENTER);
-    	entryActionLabel.setForegroundColor(ColorConstants.black);
-        add(entryActionLabel);
-    	layout.setConstraint(entryActionLabel, PositionConstants.CENTER);
+    	enterActionLabel = new Label();
+    	enterActionLabel.setLabelAlignment(PositionConstants.CENTER);
+    	enterActionLabel.setForegroundColor(ColorConstants.black);
+        add(enterActionLabel);
+    	layout.setConstraint(enterActionLabel, PositionConstants.CENTER);
     	
     	existActionLabel = new Label();
     	existActionLabel.setLabelAlignment(PositionConstants.CENTER);
@@ -38,8 +38,8 @@ public class StateNodeFigure extends RoundedRectangle {
 
     }
 
-    public Rectangle getTextBounds() {
-        return nameLabel.getTextBounds();
+    public Dimension getGoodSize() {
+        return new Dimension(Math.max(100, nameLabel.getTextBounds().width + 10), 50);
     }
 
     public void setName(String name) {
@@ -48,15 +48,14 @@ public class StateNodeFigure extends RoundedRectangle {
     	repaint();
     }
     
-    public void setEntryAction(String decision) {
-    	entryActionLabel.setText(decision);
-    	entryActionLabel.setToolTip(new Label(decision));
+    public void setEnterAction(String enterAction) {
+    	enterActionLabel.setText(enterAction);
         repaint();
     }
     
-    public void setExistAction(String decision) {
-    	existActionLabel.setText(decision);
-    	existActionLabel.setToolTip(new Label(decision));
+    public void setExistAction(String existAction) {
+    	existActionLabel.setText(existAction);
+    	existActionLabel.setToolTip(new Label(existAction));
         repaint();
     }
 }

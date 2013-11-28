@@ -19,7 +19,7 @@ public class StateNodeTreePart extends AbstractTreeEditPart implements PropertyC
     }
 	
     protected String getText() {
-        return node.getId();
+        return node.getId() == null ? "" : node.getId();
     }
     
     protected Image getImage() {

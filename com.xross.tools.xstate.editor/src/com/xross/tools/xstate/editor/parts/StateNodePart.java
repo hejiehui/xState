@@ -92,14 +92,14 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
     protected void refreshVisuals() {
     	StateNode node = (StateNode) getModel();
     	StateNodeFigure figure = (StateNodeFigure)getFigure();
+       	figure.setName(node.getId());
 
 		Point loc = node.getLocation();
-		Dimension size = node.getSize();
+		Dimension size = figure.getGoodSize();
         Rectangle rectangle = new Rectangle(loc, size);
         ((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), rectangle);
     	
-       	figure.setName(node.getId());
        	figure.setExistAction(node.getExitAction());
-       	figure.setEntryAction(node.getEnterAction());
+       	figure.setEnterAction(node.getEnterAction());
     }
 }
