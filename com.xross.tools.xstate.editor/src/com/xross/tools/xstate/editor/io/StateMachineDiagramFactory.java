@@ -1,6 +1,5 @@
 package com.xross.tools.xstate.editor.io;
 
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.w3c.dom.Document;
 
@@ -13,12 +12,6 @@ import com.xross.tools.xstate.editor.model.StateTransition;
 
 public class StateMachineDiagramFactory implements StateMachineConstants{
 	public static final String LOCATION = "location";
-	public static final String X = "x_coordinate";
-	public static final String Y = "y_coordinate";
-	
-	public static final String SIZE = "size";
-	public static final String HEIGHT = "height";
-	public static final String WIDTH = "width";
 	
 	public StateMachineDiagram getEmptyDiagram(){
 		StateMachineDiagram smd = new StateMachineDiagram();
@@ -36,7 +29,6 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 		sm.setName(name);
 		
 		StateNode a = new StateNode();
-		a.setSize(new Dimension(100, 50));
 		a.setLocation(new Point(0, 0));
 		a.setId("start");
 		sm.getNodes().add(a);
@@ -44,7 +36,6 @@ public class StateMachineDiagramFactory implements StateMachineConstants{
 		for(int i = 0; i < num; i++)
 		{
 			StateNode b = new StateNode();
-			b.setSize(new Dimension(100, 50));
 			b.setLocation(new Point((i+1)* 200, 0));
 			b.setId("state" + i);
 			sm.getNodes().add(b);

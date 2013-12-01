@@ -4,7 +4,6 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
@@ -20,7 +19,6 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	private List<StateTransition> outputs = new ArrayList<StateTransition>();
 	
 	private Point location;
-	private Dimension size;
 	
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 
@@ -39,15 +37,6 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public void setLocation(Point location) {
 		this.location = location;
 		listeners.firePropertyChange(PROP_LOCATION, null, location);
-	}
-
-	public Dimension getSize() {
-		return size;
-	}
-
-	public void setSize(Dimension size) {
-		this.size = size;
-		listeners.firePropertyChange(PROP_SIZE, null, size);
 	}
 
 	public IPropertyDescriptor[] getPropertyDescriptors() {

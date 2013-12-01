@@ -23,9 +23,7 @@ public class MoveNodeCommand extends Command {
     public void execute() {
     	oldConstraint = new Rectangle();
     	oldConstraint.setLocation(node.getLocation());
-    	oldConstraint.setSize(node.getSize());
         node.setLocation(newConstraint.getLocation());
-        node.setSize(newConstraint.getSize());
     }
 
     public String getLabel() {
@@ -34,11 +32,9 @@ public class MoveNodeCommand extends Command {
 
     public void redo() {
         node.setLocation(newConstraint.getLocation());
-        node.setSize(newConstraint.getSize());
     }
 
     public void undo() {
         node.setLocation(oldConstraint.getLocation());
-        node.setSize(oldConstraint.getSize());
     }
 }

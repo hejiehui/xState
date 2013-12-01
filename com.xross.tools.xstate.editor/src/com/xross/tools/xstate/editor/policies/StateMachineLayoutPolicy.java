@@ -57,6 +57,8 @@ public class StateMachineLayoutPolicy extends XYLayoutEditPolicy {
     }
     
     protected Command getCreateCommand(CreateRequest request) {
+    	if(!(request.getNewObject() instanceof StateNode))
+			return null;
         return new CreateNodeCommand(
         		(StateMachine)getHost().getModel(),
         		(StateNode)request.getNewObject(),

@@ -15,9 +15,8 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 
-import com.xross.tools.xstate.editor.model.StateMachine;
-import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 import com.xross.tools.xstate.editor.model.StateTransition;
+import com.xross.tools.xstate.editor.policies.StateTransitionComponentEditPolicy;
 
 public class StateTransitionPart extends AbstractConnectionEditPart implements PropertyChangeListener{
 	private Label label;
@@ -37,7 +36,7 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
     }
 
     protected void createEditPolicies() {
-//        installEditPolicy(EditPolicy.COMPONENT_ROLE, new StateTransitionEditPolicy());
+        installEditPolicy(EditPolicy.COMPONENT_ROLE, new StateTransitionComponentEditPolicy());
         installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new ConnectionEndpointEditPolicy());
     }
 

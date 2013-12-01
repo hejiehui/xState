@@ -20,7 +20,6 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.tools.DirectEditManager;
 
 import com.xross.tools.xstate.editor.Activator;
-import com.xross.tools.xstate.editor.figures.StateNodeFigure;
 import com.xross.tools.xstate.editor.model.StateMachineConstants;
 import com.xross.tools.xstate.editor.model.StateNode;
 import com.xross.tools.xstate.editor.model.StateTransition;

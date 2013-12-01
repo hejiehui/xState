@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,7 +13,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.xross.tools.xstate.StateMachineDiagramConstants;
+import com.xross.tools.xstate.editor.model.EndNode;
 import com.xross.tools.xstate.editor.model.Event;
+import com.xross.tools.xstate.editor.model.StartNode;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 import com.xross.tools.xstate.editor.model.StateNode;
@@ -67,26 +68,30 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 	}
 	
 	private StateNode readState(Node stateNode) {
-		StateNode node = new StateNode();
+		StateNode node = createStateNode(stateNode);
 		node.setId(getAttribute(stateNode, ID));
 		node.setDescription(getChildNodeText(stateNode, DESCRIPTION));
 		
 		node.setEntryAction(getChildNodeText(stateNode, ENTRY_ACTION));
 		node.setExitAction(getChildNodeText(stateNode, EXIT_ACTION));
 
-		Node location = getChildNode(stateNode, StateMachineDiagramFactory.LOCATION);
 		node.setLocation(new Point(
-				getIntAttribute(location, StateMachineDiagramFactory.X), 
-				getIntAttribute(location, StateMachineDiagramFactory.Y)));
-		
-		Node size = getChildNode(stateNode, StateMachineDiagramFactory.SIZE);
-		node.setSize(new Dimension(
-				getIntAttribute(size, StateMachineDiagramFactory.WIDTH),
-				getIntAttribute(size, StateMachineDiagramFactory.HEIGHT)));
+				getIntAttribute(stateNode, X_LOC), 
+				getIntAttribute(stateNode, Y_LOC)));
 		
 		return node;
 	}
 	
+	private StateNode createStateNode(Node stateNode) {
+		if(stateNode.getNodeName().equals(START_STATE))
+			return new StartNode();
+		else
+			if(stateNode.getNodeName().equals(END_STATE))
+			return new EndNode();
+		else
+			return new StateNode();
+
+	}
 	private void linkState(StateMachine machine, Node transitionsNode) {
 		NodeList transitions = transitionsNode.getChildNodes();
 		Map<String, StateNode> states = new HashMap<String, StateNode>();

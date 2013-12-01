@@ -7,14 +7,17 @@ public interface StateMachineDiagramConstants {
 	String ID = "id";
 	String NAME = "name";
 	String DESCRIPTION = "description";
-
+	
 	String STATES = "states";
 	String STATE = "state";
+	String START_STATE = "start";
+	String END_STATE = "end";
+
+	String X_LOC = "x_loc";
+	String Y_LOC = "y_loc";
+	
 	String ENTRY_ACTION = "entry_action";
 	String EXIT_ACTION = "exit_action";
-	
-	String START_STATE = "start_state";
-	String END_STATE = "end_state";
 	
 	String EVENTS = "events";
 	String EVENT = "event";

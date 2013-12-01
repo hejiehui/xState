@@ -8,7 +8,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.xross.tools.xstate.StateMachineDiagramConstants;
+import com.xross.tools.xstate.editor.model.EndNode;
 import com.xross.tools.xstate.editor.model.Event;
+import com.xross.tools.xstate.editor.model.StartNode;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 import com.xross.tools.xstate.editor.model.StateNode;
@@ -57,7 +59,7 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 	
 	private void writeStatesAndTransitions(Document doc, Element statesNode, List<StateNode> nodes, Element transitionsNode) {
 		for(StateNode node: nodes) {
-			Element stateNode = (Element)doc.createElement(STATE);
+			Element stateNode = (Element)doc.createElement(getNodeType(node));
 			statesNode.appendChild(stateNode);
 			writeState(doc, stateNode, node);
 			writeTransitions(doc, transitionsNode, node.getOutputs());
@@ -71,18 +73,24 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 		}
 	}
 	
+	private String getNodeType(StateNode node) {
+		if(node instanceof StartNode)
+			return START_STATE;
+		else
+		if(node instanceof EndNode)
+			return END_STATE;
+		else
+			return STATE;
+	}
+	
 	private void writeState(Document doc, Element stateNode, StateNode node) {
 		createIdDesc(doc, stateNode, node.getId(), node.getDescription());
+		
 		createTextNode(doc, stateNode, ENTRY_ACTION, node.getEntryAction());
 		createTextNode(doc, stateNode, EXIT_ACTION, node.getExitAction());
 
-		Element location = createNode(doc, stateNode, StateMachineDiagramFactory.LOCATION);
-		location.setAttribute(StateMachineDiagramFactory.X, String.valueOf(node.getLocation().x));
-		location.setAttribute(StateMachineDiagramFactory.Y, String.valueOf(node.getLocation().y));
-
-		Element size = createNode(doc, stateNode, StateMachineDiagramFactory.SIZE);
-		size.setAttribute(StateMachineDiagramFactory.HEIGHT, String.valueOf(node.getSize().height));
-		size.setAttribute(StateMachineDiagramFactory.WIDTH, String.valueOf(node.getSize().width));
+		stateNode.setAttribute(X_LOC, String.valueOf(node.getLocation().x));
+		stateNode.setAttribute(Y_LOC, String.valueOf(node.getLocation().y));
 	}
 	
 	private void writeTransitions(Document doc, Element transitionsNode, List<StateTransition> outputs) {

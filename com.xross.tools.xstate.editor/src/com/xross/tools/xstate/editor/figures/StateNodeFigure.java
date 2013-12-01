@@ -1,23 +1,30 @@
 package com.xross.tools.xstate.editor.figures;
 
-import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.ImageFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
+import org.eclipse.draw2d.Panel;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 
 import com.xross.tools.xstate.editor.Activator;
 
 public class StateNodeFigure extends RoundedRectangle {
     private Label nameLabel;
-    private Label entryActionLabel;
-    private Label existActionLabel;
+    private ImageFigure entry;
+    private ImageFigure exit;
 
     public StateNodeFigure() {
-    	BorderLayout layout= new BorderLayout();
+    	ToolbarLayout layout= new ToolbarLayout();
+    	layout.setHorizontal(false);
+    	layout.setSpacing(1);
+    	layout.setStretchMinorAxis(false);
+    	layout.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
     	setLayoutManager(layout);
     	this.setBorder(new MarginBorder(5));
     	
@@ -25,27 +32,34 @@ public class StateNodeFigure extends RoundedRectangle {
         nameLabel.setLabelAlignment(PositionConstants.CENTER);
         nameLabel.setForegroundColor(ColorConstants.darkGreen);
         add(nameLabel);
-    	layout.setConstraint(nameLabel, PositionConstants.TOP);
     	
-    	entryActionLabel = new Label();
-    	entryActionLabel.setIcon(Activator.getDefault().getImageRegistry().get(Activator.ENTRY_ACTION));
-    	entryActionLabel.setLabelAlignment(PositionConstants.CENTER);
-    	entryActionLabel.setForegroundColor(ColorConstants.black);
-//        add(entryActionLabel);
-//    	layout.setConstraint(entryActionLabel, PositionConstants.WEST);
-    	ImageFigure f = new ImageFigure(Activator.getDefault().getImageRegistry().get(Activator.ENTRY_ACTION));
-    	add(f);
-    	layout.setConstraint(entryActionLabel, PositionConstants.WEST);
+        Figure line = new RectangleFigure();
+        line.setBackgroundColor(ColorConstants.lightGray);
+        line.setForegroundColor(ColorConstants.lightGray);
+        line.setPreferredSize(1000, 1);
+        add(line);
+        
+        Figure actionsPanel = new Panel();
+    	add(actionsPanel);
     	
-    	existActionLabel = new Label();
-    	existActionLabel.setIcon(Activator.getDefault().getImageRegistry().get(Activator.EXIT_ACTION));
-    	existActionLabel.setLabelAlignment(PositionConstants.CENTER);
-    	existActionLabel.setForegroundColor(ColorConstants.black);
-//        add(existActionLabel);
-//    	layout.setConstraint(existActionLabel, PositionConstants.EAST);
-    	ImageFigure exit = new ImageFigure(Activator.getDefault().getImageRegistry().get(Activator.EXIT_ACTION));
-    	add(exit);
-    	layout.setConstraint(existActionLabel, PositionConstants.EAST);
+    	ToolbarLayout actionsPanelLayout= new ToolbarLayout();
+    	actionsPanelLayout.setHorizontal(true);
+    	actionsPanelLayout.setSpacing(20);
+    	actionsPanelLayout.setStretchMinorAxis(true);
+    	actionsPanelLayout.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
+    	actionsPanel.setLayoutManager(actionsPanelLayout);
+    	
+    	entry = new ImageFigure(Activator.getDefault().getImageRegistry().get(Activator.ENTRY_ACTION));
+    	actionsPanel.add(entry);
+
+    	Figure actionLine = new RectangleFigure();
+    	actionLine.setBackgroundColor(ColorConstants.lightGray);
+    	actionLine.setForegroundColor(ColorConstants.lightGray);
+    	actionLine.setPreferredSize(1, 20);
+        actionsPanel.add(actionLine);
+    	
+    	exit = new ImageFigure(Activator.getDefault().getImageRegistry().get(Activator.EXIT_ACTION));
+    	actionsPanel.add(exit);
     }
 
     public Dimension getGoodSize() {
@@ -59,14 +73,12 @@ public class StateNodeFigure extends RoundedRectangle {
     }
     
     public void setEntryAction(String entryAction) {
-//    	entryActionLabel.setText(entryAction);
-    	entryActionLabel.setToolTip(new Label(entryAction));
+		entry.setToolTip(new Label(entryAction));
         repaint();
     }
     
     public void setExistAction(String existAction) {
-//    	existActionLabel.setText(existAction);
-    	existActionLabel.setToolTip(new Label(existAction));
+		exit.setToolTip(new Label(existAction));
         repaint();
     }
 }

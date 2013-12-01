@@ -1,6 +1,5 @@
 package com.xross.tools.xstate.editor.commands;
 
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 
@@ -23,8 +22,6 @@ public class CreateNodeCommand extends Command{
     
     public void execute() {
         node.setLocation(location);
-        node.setSize(new Dimension(100, 50));
-//        node.setSize(new Dimension(diagram.getNodeWidth(), diagram.getNodeHeight()));
         stateMachine.addNode(node);
     }
 
