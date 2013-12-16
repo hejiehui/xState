@@ -38,7 +38,7 @@ import com.xross.tools.xstate.editor.policies.StateNodeComponentEditPolicy;
 public class StateNodePart extends AbstractGraphicalEditPart implements StateMachineConstants, PropertyChangeListener, NodeEditPart, MouseListener {
 	protected IFigure createFigure() {
 		StateNodeFigure figure = new StateNodeFigure();
-		figure.addActionMouseListener(this);
+		figure.addMouseListener(this);
         return figure;
     }
 	
