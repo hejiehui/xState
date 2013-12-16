@@ -40,15 +40,12 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	}
 
 	public IPropertyDescriptor[] getPropertyDescriptors() {
-		IPropertyDescriptor[] descriptors;
-		descriptors = new IPropertyDescriptor[] {
+		return new IPropertyDescriptor[] {
 				new TextPropertyDescriptor(PROP_ID, PROP_ID),
 				new TextPropertyDescriptor(PROP_ENTRY_ACTION, PROP_ENTRY_ACTION),
 				new TextPropertyDescriptor(PROP_EXIT_ACTION, PROP_EXIT_ACTION),
 				new TextPropertyDescriptor(PROP_REFERENCE, PROP_REFERENCE),
-
 			};
-		return descriptors;
 	}
 	
 	public Object getPropertyValue(Object propName) {

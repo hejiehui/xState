@@ -21,7 +21,7 @@ public class StateMachineFigure extends Figure implements StateMachineConstants{
 
         figure = new Figure();
         figure.setLayoutManager(new XYLayout());
-        figure.setBorder(new LineBorder(ColorConstants.lightGray, 10));
+        figure.setBorder(new LineBorder(ColorConstants.lightGray, 1));
 //        figure.setMinimumSize(new Dimension(500, 500));
         figure.setPreferredSize(new Dimension(700, 400));
 
