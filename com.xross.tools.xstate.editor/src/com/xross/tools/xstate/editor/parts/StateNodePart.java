@@ -97,7 +97,7 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new StateMachineGraphicNodeEditPolicy());
 	}
 	
-	private StateNode getStateNode() {
+	public StateNode getStateNode() {
 		return (StateNode)getModel();
 	}
     protected List<StateTransition> getModelSourceConnections() {
