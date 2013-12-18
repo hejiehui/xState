@@ -6,7 +6,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ImageFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.Panel;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
@@ -62,11 +61,6 @@ public class StateNodeFigure extends RoundedRectangle {
     	
     	exit = new ImageFigure(Activator.getDefault().getImageRegistry().get(Activator.EXIT_ACTION));
     	actionsPanel.add(exit);
-    }
-    
-    public void addActionMouseListener(MouseListener listener) {
-    	entry.addMouseListener(listener);
-    	exit.addMouseListener(listener);
     }
     
     public boolean isEntryAction(IFigure figure) {

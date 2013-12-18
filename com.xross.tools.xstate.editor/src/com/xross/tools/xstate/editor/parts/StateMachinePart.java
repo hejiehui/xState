@@ -9,25 +9,20 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.ui.IWorkbenchPart;
 
+import com.xross.tools.xstate.editor.ContextMenuBuilder;
+import com.xross.tools.xstate.editor.actions.StateMachineCreateEventAction;
 import com.xross.tools.xstate.editor.figures.StateMachineFigure;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateNode;
 import com.xross.tools.xstate.editor.policies.StateMachineLayoutPolicy;
 
-public class StateMachinePart  extends AbstractGraphicalEditPart implements PropertyChangeListener{
-	private boolean isLayoutUpdated;
+public class StateMachinePart  extends AbstractGraphicalEditPart implements PropertyChangeListener, ContextMenuBuilder {
     protected List<StateNode> getModelChildren() {
     	StateMachine diagram = (StateMachine)getModel();
-    	if(!isLayoutUpdated){
-    		new LayoutAlgorithm().layout(diagram);
-    		isLayoutUpdated = true;
-    	}
-//    	
-//    	DecisionTreeManager manager = new DecisionTreeManager(diagram);
-//    	for(DecisionTreeNode node: diagram.getNodes())
-//    		if(!node.isDecisionTreeManagerSet())
-//    			node.setDecisionTreeManager(manager);
         return diagram.getNodes();
     }
 
@@ -41,11 +36,6 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
-		String prop = evt.getPropertyName();
-//		if (StateMachine.LAYOUT.equals(prop)){
-//			isLayoutUpdated = false;
-//		}
-
 		refreshChildren();
 	}
 	
@@ -80,4 +70,11 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
     	
        	figure.setName(node.getName(), node.getDescription());
     }
+
+	@Override
+	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor) {
+    	menu.add(new Separator());
+    	StateMachine machine = (StateMachine)getModel();
+    	menu.add(new StateMachineCreateEventAction(editor, machine));
+	}
 }

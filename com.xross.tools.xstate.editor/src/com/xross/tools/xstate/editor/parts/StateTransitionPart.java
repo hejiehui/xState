@@ -12,13 +12,22 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.ui.IWorkbenchPart;
 
+import com.xross.tools.xstate.editor.ContextMenuBuilder;
+import com.xross.tools.xstate.editor.actions.StateMachineChangeTransitionAction;
+import com.xross.tools.xstate.editor.actions.StateMachineCreateTransitionAction;
+import com.xross.tools.xstate.editor.actions.StateMachineRemoveTransitionAction;
 import com.xross.tools.xstate.editor.model.StateTransition;
 import com.xross.tools.xstate.editor.policies.StateTransitionComponentEditPolicy;
 
-public class StateTransitionPart extends AbstractConnectionEditPart implements PropertyChangeListener{
+public class StateTransitionPart extends AbstractConnectionEditPart implements PropertyChangeListener, ContextMenuBuilder {
 	private Label label;
     protected IFigure createFigure() {
         PolylineConnection conn = new PolylineConnection();
@@ -64,5 +73,21 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
     	StateTransition nodeConn = (StateTransition)getModel();
     	label.setText(nodeConn.getDisplayLabel());
     }
-    
+
+	@Override
+	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor) {
+    	menu.add(new Separator());
+    	StateTransition transition = (StateTransition)getModel();
+
+    	if(isEmpty(transition.getTransitAction()))
+    		menu.add(new StateMachineCreateTransitionAction(editor, transition));
+    	else{
+    		menu.add(new StateMachineChangeTransitionAction(editor, transition));
+    		menu.add(new StateMachineRemoveTransitionAction(editor, transition));
+    	}
+	}
+	
+	private boolean isEmpty(String value) {
+		return value == null || value.trim().length() == 0;
+	}
 }

@@ -27,4 +27,20 @@ public interface StateMachineMessages {
 	String GEN_TEST_CODE_MSG = "Generate stand alone test code";
 	String GEN_JUNIT_TEST_CODE_MSG = "Generate junit test code";
 	String CREATE_EVENT_MSG = "Create new Event";
+	
+	String CREATE_ENTRY_ACTION_MSG = "Create entry action";
+	String CHANGE_ENTRY_ACTION_MSG = "Change entry action";
+	String REMOVE_ENTRY_ACTION_MSG = "Remove entry action";
+	String CREATE_EXIT_ACTION_MSG = "Create entry action";
+	String CHANGE_EXIT_ACTION_MSG = "Change entry action";
+	String REMOVE_EXIT_ACTION_MSG = "Remove entry action";
+	String CREATE_TRANSIT_ACTION_MSG = "Create transit action";
+	String CHANGE_TRANSIT_ACTION_MSG = "Change transit action";
+	String REMOVE_TRANSIT_ACTION_MSG = "Remove transit action";
+
+	String OPEN_TRANSIT_ACTION_MSG = "Open transit action";
+	String OPEN_ENTRY_ACTION_MSG = "Open entry action";
+	String OPEN_EXIT_ACTION_MSG = "Open exit action";
+
+
 }

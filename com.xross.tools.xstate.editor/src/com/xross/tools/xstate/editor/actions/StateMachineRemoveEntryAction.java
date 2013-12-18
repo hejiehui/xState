@@ -14,8 +14,8 @@ public class StateMachineRemoveEntryAction extends WorkbenchPartAction implement
 	private StateNode node;
 	public StateMachineRemoveEntryAction(IWorkbenchPart part, StateNode node){
 		super(part);
-		setId(ID_PREFIX + CREATE_EVENT);
-		setText(CREATE_EVENT_MSG);
+		setId(ID_PREFIX + REMOVE_ENTRY_ACTION);
+		setText(REMOVE_ENTRY_ACTION_MSG);
 		this.node = node;
 	}
 	

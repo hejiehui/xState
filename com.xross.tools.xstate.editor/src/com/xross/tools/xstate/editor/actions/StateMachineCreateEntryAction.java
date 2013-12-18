@@ -7,7 +7,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPart;
 
 import com.xross.tools.xstate.editor.StateMachineDiagramGraphicalEditor;
-import com.xross.tools.xstate.editor.commands.AddEventCommand;
 import com.xross.tools.xstate.editor.model.Event;
 import com.xross.tools.xstate.editor.model.StateNode;
 
@@ -15,8 +14,8 @@ public class StateMachineCreateEntryAction extends WorkbenchPartAction implement
 	private StateNode node;
 	public StateMachineCreateEntryAction(IWorkbenchPart part, StateNode node){
 		super(part);
-		setId(ID_PREFIX + CREATE_EVENT);
-		setText(CREATE_EVENT_MSG);
+		setId(ID_PREFIX + CREATE_ENTRY_ACTION);
+		setText(CREATE_ENTRY_ACTION_MSG);
 		this.node = node;
 	}
 	

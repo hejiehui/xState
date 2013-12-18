@@ -2,9 +2,7 @@ package com.xross.tools.xstate.editor.parts;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FreeformLayer;
@@ -15,29 +13,11 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.jdt.core.IType;
 
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
-import com.xross.tools.xstate.editor.policies.StateMachineDiagramLayoutPolicy;
 
 public class StateMachineDiagramPart extends AbstractGraphicalEditPart implements PropertyChangeListener{
-	// cached for next visit; TODO should be revised if there is only one match for the name
-	private Map<String, IType> s_sourceTypes = new HashMap<String, IType>();
-	
-	public IType getSourceType(String className){
-		if(className == null || className.trim().length() == 0)
-			return null;
-		return s_sourceTypes.get(className.trim());
-	}
-	
-	public void setSourceType(IType type){
-		if(type ==  null)
-			return;
-		s_sourceTypes.put(type.getFullyQualifiedName(), type);
-	}
-	
 	private Figure panel;
 	protected List getModelChildren() {
 		return ((StateMachineDiagram)getModel()).getMachines();
@@ -49,7 +29,7 @@ public class StateMachineDiagramPart extends AbstractGraphicalEditPart implement
         
         panel = new Figure();
     	ToolbarLayout layout= new ToolbarLayout();
-    	layout.setVertical(true);
+    	layout.setHorizontal(false);
     	layout.setSpacing(100);
     	layout.setStretchMinorAxis(false);
     	layout.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);

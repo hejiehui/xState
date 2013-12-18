@@ -14,8 +14,8 @@ public class StateMachineChangeExitAction extends WorkbenchPartAction implements
 	private StateNode node;
 	public StateMachineChangeExitAction(IWorkbenchPart part, StateNode node){
 		super(part);
-		setId(ID_PREFIX + CREATE_EVENT);
-		setText(CREATE_EVENT_MSG);
+		setId(ID_PREFIX + CHANGE_EXIT_ACTION);
+		setText(CHANGE_EXIT_ACTION_MSG);
 		this.node = node;
 	}
 	

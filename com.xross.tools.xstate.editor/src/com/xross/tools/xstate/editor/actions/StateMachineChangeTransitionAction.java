@@ -14,8 +14,8 @@ public class StateMachineChangeTransitionAction extends WorkbenchPartAction impl
 	private StateTransition transition;
 	public StateMachineChangeTransitionAction(IWorkbenchPart part, StateTransition transition){
 		super(part);
-		setId(ID_PREFIX + CREATE_EVENT);
-		setText(CREATE_EVENT_MSG);
+		setId(ID_PREFIX + CHANGE_TRANSIT_ACTION);
+		setText(CHANGE_TRANSIT_ACTION_MSG);
 		this.transition = transition;
 	}
 	
