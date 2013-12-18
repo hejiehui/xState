@@ -72,7 +72,7 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
     }
 
 	@Override
-	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor) {
+	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor, ImplementationFinder finder) {
     	menu.add(new Separator());
     	StateMachine machine = (StateMachine)getModel();
     	menu.add(new StateMachineCreateEventAction(editor, machine));

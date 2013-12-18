@@ -1,22 +1,21 @@
 package com.xross.tools.xstate.editor.actions;
 
 import org.eclipse.gef.ui.actions.WorkbenchPartAction;
-import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPart;
 
-import com.xross.tools.xstate.editor.StateMachineDiagramGraphicalEditor;
-import com.xross.tools.xstate.editor.model.Event;
+import com.xross.tools.xstate.editor.commands.ChangeExitActionCommand;
 import com.xross.tools.xstate.editor.model.StateNode;
+import com.xross.tools.xstate.editor.parts.ImplementationFinder;
 
 public class StateMachineChangeExitAction extends WorkbenchPartAction implements StateMachineActionConstants, StateMachineMessages{
 	private StateNode node;
-	public StateMachineChangeExitAction(IWorkbenchPart part, StateNode node){
+	private ImplementationFinder finder;
+	public StateMachineChangeExitAction(IWorkbenchPart part, StateNode node, ImplementationFinder finder){
 		super(part);
 		setId(ID_PREFIX + CHANGE_EXIT_ACTION);
 		setText(CHANGE_EXIT_ACTION_MSG);
 		this.node = node;
+		this.finder = finder;
 	}
 	
 	protected boolean calculateEnabled() {
@@ -24,14 +23,7 @@ public class StateMachineChangeExitAction extends WorkbenchPartAction implements
 	}
 	
 	public void run() {
-		InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Create new Event: ", "Event", "event", null);
-		if (dlg.open() != Window.OK)
-			return;
-		String name = dlg.getValue();
-		
-		StateMachineDiagramGraphicalEditor editor = (StateMachineDiagramGraphicalEditor)getWorkbenchPart();
-		Event event = new Event();
-		event.setId(name);
-//		execute(new AddEventCommand(machine, event));
+		String impl = finder.assignImpl(node.getEntryAction());
+		execute(new ChangeExitActionCommand(node, impl));
 	}
 }

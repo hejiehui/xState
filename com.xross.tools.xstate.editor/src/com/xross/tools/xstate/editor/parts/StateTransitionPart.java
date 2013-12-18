@@ -12,8 +12,6 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.jface.action.IMenuManager;
@@ -23,6 +21,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import com.xross.tools.xstate.editor.ContextMenuBuilder;
 import com.xross.tools.xstate.editor.actions.StateMachineChangeTransitionAction;
 import com.xross.tools.xstate.editor.actions.StateMachineCreateTransitionAction;
+import com.xross.tools.xstate.editor.actions.StateMachineOpenTransitionAction;
 import com.xross.tools.xstate.editor.actions.StateMachineRemoveTransitionAction;
 import com.xross.tools.xstate.editor.model.StateTransition;
 import com.xross.tools.xstate.editor.policies.StateTransitionComponentEditPolicy;
@@ -75,15 +74,16 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
     }
 
 	@Override
-	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor) {
+	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor, ImplementationFinder finder) {
     	menu.add(new Separator());
     	StateTransition transition = (StateTransition)getModel();
 
     	if(isEmpty(transition.getTransitAction()))
-    		menu.add(new StateMachineCreateTransitionAction(editor, transition));
+    		menu.add(new StateMachineCreateTransitionAction(editor, transition, finder));
     	else{
-    		menu.add(new StateMachineChangeTransitionAction(editor, transition));
+    		menu.add(new StateMachineChangeTransitionAction(editor, transition, finder));
     		menu.add(new StateMachineRemoveTransitionAction(editor, transition));
+    		menu.add(new StateMachineOpenTransitionAction(editor, transition, finder));
     	}
 	}
 	

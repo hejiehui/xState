@@ -7,16 +7,20 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPart;
 
 import com.xross.tools.xstate.editor.StateMachineDiagramGraphicalEditor;
+import com.xross.tools.xstate.editor.commands.ChangeTransitionActionCommand;
 import com.xross.tools.xstate.editor.model.Event;
 import com.xross.tools.xstate.editor.model.StateTransition;
+import com.xross.tools.xstate.editor.parts.ImplementationFinder;
 
 public class StateMachineChangeTransitionAction extends WorkbenchPartAction implements StateMachineActionConstants, StateMachineMessages{
 	private StateTransition transition;
-	public StateMachineChangeTransitionAction(IWorkbenchPart part, StateTransition transition){
+	private ImplementationFinder finder;
+	public StateMachineChangeTransitionAction(IWorkbenchPart part, StateTransition transition, ImplementationFinder finder){
 		super(part);
 		setId(ID_PREFIX + CHANGE_TRANSIT_ACTION);
 		setText(CHANGE_TRANSIT_ACTION_MSG);
 		this.transition = transition;
+		this.finder = finder;
 	}
 	
 	protected boolean calculateEnabled() {
@@ -24,14 +28,7 @@ public class StateMachineChangeTransitionAction extends WorkbenchPartAction impl
 	}
 	
 	public void run() {
-		InputDialog dlg = new InputDialog(Display.getCurrent().getActiveShell(), "Create new Event: ", "Event", "event", null);
-		if (dlg.open() != Window.OK)
-			return;
-		String name = dlg.getValue();
-		
-		StateMachineDiagramGraphicalEditor editor = (StateMachineDiagramGraphicalEditor)getWorkbenchPart();
-		Event event = new Event();
-		event.setId(name);
-//		execute(new AddEventCommand(machine, event));
+		String impl = finder.assignImpl(transition.getTransitAction());
+		execute(new ChangeTransitionActionCommand(transition, impl));
 	}
 }

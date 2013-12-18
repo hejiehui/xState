@@ -25,6 +25,7 @@ import com.xross.tools.xstate.editor.actions.StateMachineChangeEntryAction;
 import com.xross.tools.xstate.editor.actions.StateMachineChangeExitAction;
 import com.xross.tools.xstate.editor.actions.StateMachineCreateEntryAction;
 import com.xross.tools.xstate.editor.actions.StateMachineCreateExitAction;
+import com.xross.tools.xstate.editor.actions.StateMachineOpenExitAction;
 import com.xross.tools.xstate.editor.actions.StateMachineRemoveEntryAction;
 import com.xross.tools.xstate.editor.actions.StateMachineRemoveExitAction;
 import com.xross.tools.xstate.editor.figures.StateNodeFigure;
@@ -105,21 +106,23 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
     }
     
 	@Override
-	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor) {
+	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor, ImplementationFinder finder) {
     	menu.add(new Separator());
     	StateNode node = getStateNode();
     	if(isEmpty(node.getEntryAction()))
-    		menu.add(new StateMachineCreateEntryAction(editor, node));
+    		menu.add(new StateMachineCreateEntryAction(editor, node, finder));
     	else{
-    		menu.add(new StateMachineChangeEntryAction(editor, node));
+    		menu.add(new StateMachineChangeEntryAction(editor, node, finder));
     		menu.add(new StateMachineRemoveEntryAction(editor, node));
+    		menu.add(new StateMachineOpenExitAction(editor, node, finder));
     	}
 
     	if(isEmpty(node.getExitAction()))
-    		menu.add(new StateMachineCreateExitAction(editor, node));
+    		menu.add(new StateMachineCreateExitAction(editor, node, finder));
     	else{
-    		menu.add(new StateMachineChangeExitAction(editor, node));
+    		menu.add(new StateMachineChangeExitAction(editor, node, finder));
     		menu.add(new StateMachineRemoveExitAction(editor, node));
+    		menu.add(new StateMachineOpenExitAction(editor, node, finder));
     	}
 	}
 	

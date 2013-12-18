@@ -10,9 +10,11 @@ import org.eclipse.jface.action.IMenuManager;
 
 import com.xross.tools.xstate.editor.actions.StateMachineJunitCodeGenAction;
 import com.xross.tools.xstate.editor.actions.StateMachineUsageCodeGenAction;
+import com.xross.tools.xstate.editor.parts.ImplementationFinder;
 
 public class StateMachineContextMenuProvider extends ContextMenuProvider {
 	private GraphicalEditor editor;
+	private ImplementationFinder finder = new ImplementationFinder();
     public StateMachineContextMenuProvider(EditPartViewer viewer, GraphicalEditor editor) {
         super(viewer);
         this.editor = editor;
@@ -29,6 +31,6 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider {
 			return;
 		
 		ContextMenuBuilder builder = (ContextMenuBuilder)selected.get(0);
-		builder.buildContextMenu(menu, editor);
+		builder.buildContextMenu(menu, editor, finder);
     }
 }
