@@ -117,6 +117,7 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
     		menu.add(new StateMachineOpenExitAction(editor, node, finder));
     	}
 
+    	menu.add(new Separator());
     	if(isEmpty(node.getExitAction()))
     		menu.add(new StateMachineCreateExitAction(editor, node, finder));
     	else{
