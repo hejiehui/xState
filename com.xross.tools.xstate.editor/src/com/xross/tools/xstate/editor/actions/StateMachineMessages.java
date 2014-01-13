@@ -31,9 +31,11 @@ public interface StateMachineMessages {
 	String CREATE_ENTRY_ACTION_MSG = "Create entry action";
 	String CHANGE_ENTRY_ACTION_MSG = "Change entry action";
 	String REMOVE_ENTRY_ACTION_MSG = "Remove entry action";
-	String CREATE_EXIT_ACTION_MSG = "Create entry action";
-	String CHANGE_EXIT_ACTION_MSG = "Change entry action";
-	String REMOVE_EXIT_ACTION_MSG = "Remove entry action";
+	
+	String CREATE_EXIT_ACTION_MSG = "Create exit action";
+	String CHANGE_EXIT_ACTION_MSG = "Change exit action";
+	String REMOVE_EXIT_ACTION_MSG = "Remove exit action";
+	
 	String CREATE_TRANSIT_ACTION_MSG = "Create transit action";
 	String CHANGE_TRANSIT_ACTION_MSG = "Change transit action";
 	String REMOVE_TRANSIT_ACTION_MSG = "Remove transit action";

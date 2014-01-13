@@ -8,12 +8,15 @@ public interface StateMachineActionConstants {
 
 	String GEN_USAGE_CODE = "generate_usage_code";
 	String CREATE_EVENT = "create_event";
+	
 	String CREATE_ENTRY_ACTION = "create_entry_action";
 	String CHANGE_ENTRY_ACTION = "change_entry_action";
 	String REMOVE_ENTRY_ACTION = "remove_entry_action";
-	String CREATE_EXIT_ACTION = "create_entry_action";
-	String CHANGE_EXIT_ACTION = "change_entry_action";
-	String REMOVE_EXIT_ACTION = "remove_entry_action";
+	
+	String CREATE_EXIT_ACTION = "create_exit_action";
+	String CHANGE_EXIT_ACTION = "change_exit_action";
+	String REMOVE_EXIT_ACTION = "remove_exit_action";
+	
 	String CREATE_TRANSIT_ACTION = "create_transit_action";
 	String CHANGE_TRANSIT_ACTION = "change_transit_action";
 	String REMOVE_TRANSIT_ACTION = "remove_transit_action";

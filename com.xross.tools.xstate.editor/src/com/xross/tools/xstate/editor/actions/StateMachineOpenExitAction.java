@@ -13,7 +13,7 @@ public class StateMachineOpenExitAction extends WorkbenchPartAction implements S
 	private ImplementationFinder finder;
 	public StateMachineOpenExitAction(IWorkbenchPart part, StateNode node, ImplementationFinder finder){
 		super(part);
-		setId(ID_PREFIX + OPEN_EXIT_ACTION);
+		setId(ID_PREFIX + OPEN_ENTRY_ACTION);
 		setText(OPEN_EXIT_ACTION_MSG);
 		this.node = node;
 		this.finder = finder;
