@@ -2,6 +2,11 @@ package com.xross.tools.xstate.def;
 
 import java.util.Map;
 
+/**
+ * @deprecated
+ * @author jhhe
+ *
+ */
 public class StateMachineDiagramDef {
 	private String name;
 	private String description;
