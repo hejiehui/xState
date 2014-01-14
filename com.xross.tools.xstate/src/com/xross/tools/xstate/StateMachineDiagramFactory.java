@@ -1,26 +1,70 @@
 package com.xross.tools.xstate;
 
-import java.awt.Point;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import com.xross.tools.xstate.def.ActionDef;
+import com.xross.tools.xstate.def.EventDef;
 import com.xross.tools.xstate.def.StateDef;
 import com.xross.tools.xstate.def.StateMachineDef;
 import com.xross.tools.xstate.def.StateMachineDiagramDef;
 import com.xross.tools.xstate.def.StateType;
+import com.xross.tools.xstate.def.TransitionDef;
 
 public class StateMachineDiagramFactory implements StateMachineDiagramConstants {
-	public StateMachineDiagramDef getFromDocument(Document doc){
-		StateMachineDiagramDef model = new StateMachineDiagramDef();
+	private static StateMachineDiagramFactory factory = new StateMachineDiagramFactory();
+	
+	public static StateMachineDiagram load(URL url) throws SAXException, IOException, ParserConfigurationException {
+		return load(url.openStream());
+	}
+	
+	public static StateMachineDiagram load(String path) throws FileNotFoundException, SAXException, IOException, ParserConfigurationException {
+		return load(new File(path));
+	}
+	
+	public static StateMachineDiagram load(File model) throws FileNotFoundException, SAXException, IOException, ParserConfigurationException {
+		return load(new FileInputStream(model));
+	}
+	
+	public static StateMachineDiagram load(InputStream in) throws SAXException, IOException, ParserConfigurationException {
+		try{
+			Document doc= DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(in);
+			StateMachineDiagram def = factory.getFromDocument(doc);
+			in.close();
+			return def;
+		}catch(Throwable e){
+			if(in != null)
+				try{
+					in.close();
+				}catch(Throwable e1){
+					
+				}
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	public StateMachineDiagram getFromDocument(Document doc){
+		StateMachineDiagram model = new StateMachineDiagram();
 		Element root = doc.getDocumentElement();
 
 		model.setName(getChildNodeText(root, NAME));
@@ -89,36 +133,36 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		def.setType(type);
 		return def;
 	}
-	private void linkState(StateMachine machine, Node transitionsNode) {
+	private void linkState(StateMachineDef machineDef, Node transitionsNode) {
 		NodeList transitions = transitionsNode.getChildNodes();
-		Map<String, StateNode> states = new HashMap<String, StateNode>();
-		Map<String, Event> events = new HashMap<String, Event>();
+		Map<String, StateDef> states = new HashMap<String, StateDef>();
+		Map<String, EventDef> events = new HashMap<String, EventDef>();
 		
-		for(StateNode node: machine.getNodes()) {
+		for(StateDef node: machineDef.getStates()) {
 			states.put(node.getId(), node);
 		}
 		
-		for(Event event: machine.getEvents()) {
+		for(EventDef event: machineDef.getEvents()) {
 			events.put(event.getId(), event);
 		}
 
 		for(int i = 0; i < transitions.getLength(); i++) {
 			Node node = transitions.item(i);
-			StateNode source = states.get(getAttribute(node, SOURCE_ID));
-			StateNode target = states.get(getAttribute(node, TARGET_ID));
-			Event event = events.get(getAttribute(node, EVENT_ID));
-			StateTransition transition = new StateTransition(source, target, machine.getHelper());
-			transition.setEvent(event);
-			transition.setTransitAction(getAttribute(node, TRANSIT_ACTION));
+			StateDef source = states.get(getAttribute(node, SOURCE_ID));
+			StateDef target = states.get(getAttribute(node, TARGET_ID));
+			EventDef event = events.get(getAttribute(node, EVENT_ID));
+			TransitionDef transition = new TransitionDef(source, target);
+			transition.setEventDef(event);
+			transition.setTransitActionDef(new ActionDef(getAttribute(node, TRANSIT_ACTION)));
 		}
 	}
 
-	private List<Event> readEvents(Node eventsNode) {
+	private List<EventDef> readEvents(Node eventsNode) {
 		NodeList events = eventsNode.getChildNodes();
-		List<Event> eventList = new ArrayList<Event>();
+		List<EventDef> eventList = new ArrayList<EventDef>();
 		for(int i = 0; i < events.getLength(); i++) {
 			Node eventNode = events.item(i);
-			Event event = new Event();
+			EventDef event = new EventDef();
 			event.setId(getAttribute(eventNode, ID));
 			event.setDescription(eventNode.getTextContent());
 			eventList.add(event);
@@ -153,9 +197,5 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 				return map.item(i).getNodeValue();
 
 		return null;
-	}
-	
-	private int getIntAttribute(Node node, String attributeName) {
-		return Integer.parseInt(getAttribute(node, attributeName));
 	}
 }
