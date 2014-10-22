@@ -13,9 +13,11 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
+import com.xross.tools.xstate.editor.policies.StateMachineDiagramLayoutPolicy;
 
 public class StateMachineDiagramPart extends AbstractGraphicalEditPart implements PropertyChangeListener{
 	private Figure panel;
@@ -65,6 +67,6 @@ public class StateMachineDiagramPart extends AbstractGraphicalEditPart implement
 	}
 
 	protected void createEditPolicies() {
-//        installEditPolicy(EditPolicy.LAYOUT_ROLE, new StateMachineDiagramLayoutPolicy());
+        installEditPolicy(EditPolicy.LAYOUT_ROLE, new StateMachineDiagramLayoutPolicy());
 	}
 }

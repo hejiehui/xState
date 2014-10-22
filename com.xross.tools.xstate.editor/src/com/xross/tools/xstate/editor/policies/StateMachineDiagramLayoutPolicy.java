@@ -1,57 +1,62 @@
 package com.xross.tools.xstate.editor.policies;
 
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.gef.editpolicies.FlowLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 
-import com.xross.tools.xstate.editor.commands.CreateNodeCommand;
-import com.xross.tools.xstate.editor.commands.LayoutStateMachineCommand;
-import com.xross.tools.xstate.editor.commands.MoveNodeCommand;
-import com.xross.tools.xstate.editor.commands.ResizeNodeCommand;
+import com.xross.tools.xstate.editor.commands.CreateStateMachineCommand;
 import com.xross.tools.xstate.editor.model.StateMachine;
-import com.xross.tools.xstate.editor.model.StateNode;
-import com.xross.tools.xstate.editor.requests.StateMachineLayoutRequest;
-import com.xross.tools.xstate.editor.requests.StateNodeResizeRequest;
+import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 
-public class StateMachineDiagramLayoutPolicy extends XYLayoutEditPolicy {
+public class StateMachineDiagramLayoutPolicy extends FlowLayoutEditPolicy {
+	/**
+	 * @return <code>true</code> if the host's LayoutManager is in a horizontal
+	 *         orientation
+	 */
+	protected boolean isHorizontal() {
+		return false;
+	}
 
-    protected Command createAddCommand(EditPart child, Object constraint) {
-        return null;
-    }
-
-    protected Command createChangeConstraintCommand(EditPart child, Object constraint) {
-        if (!(child instanceof AbstractGraphicalEditPart))
-            return null;
+	protected Command getCreateCommand(CreateRequest request) {
+		if(!(request.getNewObject() instanceof StateMachine))
+			return null;
         
-        MoveNodeCommand cmd = new MoveNodeCommand();
-        cmd.setNode((StateNode) child.getModel());
-        cmd.setConstraint((Rectangle)constraint);
-        return cmd;
+		return new CreateStateMachineCommand(
+        		(StateMachineDiagram)getHost().getModel(),
+        		(StateMachine)request.getNewObject(), getIndex(request));
     }
 
-    public Command getCommand(Request request) {
-    	if(request.getType() == RequestConstants.REQ_ALIGN){
-    		StateMachineLayoutRequest layoutReq = (StateMachineLayoutRequest)request;
-    		return new LayoutStateMachineCommand(layoutReq.getDiagram(), layoutReq.isHorizantal(), layoutReq.getAlignment());
-    	}
-    	
-//    	if(request.getType() == RequestConstants.REQ_RESIZE){
-//    		StateNodeResizeRequest resizeReq = (StateNodeResizeRequest)request;
-//    		return new ResizeNodeCommand(resizeReq.getDiagram(), resizeReq.isNodeSize(), resizeReq.isHorizantal(), resizeReq.isIncrease());
-//    	}
-    	
-    	return super.getCommand(request);
-    }
-    
-    protected Command getCreateCommand(CreateRequest request) {
-        return new CreateNodeCommand(
-        		(StateMachine)getHost().getModel(),
-        		(StateNode)request.getNewObject(),
-        		((Rectangle) getConstraintFor(request)).getLocation());
-    }
+	@Override
+	protected Command createAddCommand(EditPart child, EditPart after) {
+		return null;
+//		return new AddStateNodeCommand(
+//				(StateMachine)child.getParent().getModel(),
+//        		(UnitNodeContainer)getHost().getModel(),
+//        		(UnitNode)child.getModel(), getIndex(after));
+	}
+
+	@Override
+	protected Command createMoveChildCommand(EditPart child, EditPart after) {
+		return null;
+//		return new UnitNodeContainerMoveChildCommand(
+//        		(UnitNodeContainer)getHost().getModel(),
+//        		(UnitNode)child.getModel(), getIndex(after));
+	}
+
+	private int getIndex(Request request) {
+		return getIndex(getInsertionReference(request));
+	}
+	
+	private int getIndex(EditPart after) {
+		StateMachineDiagram container = (StateMachineDiagram)getHost().getModel();
+		int index = -1;
+		if(after == null)
+			index = container.getMachines().size();
+		else
+			index = container.getMachines().indexOf((StateMachine)after.getModel());
+		
+		return index;
+	}
 }
