@@ -1,5 +1,6 @@
 package com.xross.tools.xstate.editor.commands;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 
 import com.xross.tools.xstate.editor.model.StateMachine;
@@ -9,16 +10,21 @@ public class AddStateNodeCommand extends Command {
 	private StateMachine parent;
 	private StateNode node;
 	private StateMachine oldParent;
+	private Point oldPosition;
+	private Point newPosition;
 	
-	public AddStateNodeCommand(StateMachine parent, StateNode node, StateMachine oldParent){
+	public AddStateNodeCommand(StateMachine parent, StateNode node, StateMachine oldParent, Point newPosition){
 		this.parent = parent;
 		this.node = node;
 		this.oldParent = oldParent;
+		oldPosition = new Point(node.getLocation());
+		this.newPosition = newPosition;
 	}
 	
 	public void execute() {
 		oldParent.removeNode(node);
 		parent.addNode(node);
+		node.setLocation(newPosition);
 	}
 	
     public String getLabel() {
@@ -32,5 +38,6 @@ public class AddStateNodeCommand extends Command {
     public void undo() {
     	parent.removeNode(node);
     	oldParent.addNode(node);
+		node.setLocation(oldPosition);
 	}
 }
