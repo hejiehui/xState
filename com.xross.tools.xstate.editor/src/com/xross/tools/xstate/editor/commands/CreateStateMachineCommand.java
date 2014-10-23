@@ -17,7 +17,7 @@ public class CreateStateMachineCommand extends Command {
 	}
 	
 	public void execute() {
-		diagram.getMachines().add(index, machine);
+		diagram.addMachine(index, machine);
 	}
 	
     public String getLabel() {
@@ -29,6 +29,6 @@ public class CreateStateMachineCommand extends Command {
     }
 
     public void undo() {
-    	diagram.getMachines().remove(index);
+    	diagram.removeMachine(machine);
 	}
 }

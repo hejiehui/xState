@@ -6,6 +6,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.FlowLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 
+import com.xross.tools.xstate.editor.commands.AddStateMachineCommand;
 import com.xross.tools.xstate.editor.commands.CreateStateMachineCommand;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
@@ -31,18 +32,18 @@ public class StateMachineDiagramLayoutPolicy extends FlowLayoutEditPolicy {
 	@Override
 	protected Command createAddCommand(EditPart child, EditPart after) {
 		return null;
-//		return new AddStateNodeCommand(
-//				(StateMachine)child.getParent().getModel(),
-//        		(UnitNodeContainer)getHost().getModel(),
-//        		(UnitNode)child.getModel(), getIndex(after));
 	}
 
 	@Override
 	protected Command createMoveChildCommand(EditPart child, EditPart after) {
-		return null;
-//		return new UnitNodeContainerMoveChildCommand(
-//        		(UnitNodeContainer)getHost().getModel(),
-//        		(UnitNode)child.getModel(), getIndex(after));
+    	if(!(child.getModel() instanceof StateMachine))
+    		return null;
+
+    	return new AddStateMachineCommand(
+        		(StateMachineDiagram)getHost().getModel(),
+        		(StateMachine)child.getModel(),
+        		getIndex(after)
+        		);
 	}
 
 	private int getIndex(Request request) {

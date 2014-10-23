@@ -25,6 +25,9 @@ public class StateMachineLayoutPolicy extends XYLayoutEditPolicy {
     	if(!(getHost().getModel() instanceof StateMachine))
     		return null;
     	
+    	if(!(child.getModel() instanceof StateNode))
+    		return null;
+
     	return new AddStateNodeCommand(
         		(StateMachine)getHost().getModel(),
         		(StateNode)child.getModel(),

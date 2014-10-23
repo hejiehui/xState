@@ -36,7 +36,7 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
-		refreshChildren();
+		refresh();
 	}
 	
 	public void activate() {

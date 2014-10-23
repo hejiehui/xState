@@ -75,6 +75,30 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 		this.machines = machines;
 	}
 
+	public void addMachine(int index, StateMachine machine) {
+		machines.add(index, machine);
+		firePropertyChange(PROP_LAYOUT);
+	}
+
+	public void removeMachine(StateMachine machine) {
+		machines.remove(machine);
+		firePropertyChange(PROP_LAYOUT);
+	}
+	
+	public int indexOf(StateMachine machine) {
+		return machines.indexOf(machine);
+	}
+	
+	public void move(int newIndex, StateMachine machine) {
+		int index = machines.indexOf(machine);
+		if(index < newIndex)
+			newIndex-=1;
+		
+		removeMachine(machine);
+		addMachine(newIndex, machine);
+		listeners.firePropertyChange(PROP_LAYOUT, null, null);
+	}
+
 	public PropertyChangeSupport getListeners() {
 		return listeners;
 	}
@@ -85,6 +109,7 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 
 	public void setName(String name) {
 		this.name = name;
+		firePropertyChange(PROP_ID);
 	}
 
 	public String getDescription() {
@@ -93,6 +118,7 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 
 	public void setDescription(String description) {
 		this.description = description;
+		firePropertyChange(PROP_DESRIPTION);
 	}
 
 	public boolean isHorizantal() {
