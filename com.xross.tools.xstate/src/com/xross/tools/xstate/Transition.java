@@ -12,7 +12,7 @@ public class Transition {
 			State sourceState,
 			State targetState) {
 		this.eventId = eventId;
-		this.transitionAction = transitionAction;
+		this.transitionAction = transitionAction == null? NullAction.nullAction : transitionAction;
 		this.sourceState = sourceState;
 		this.targetState = targetState;
 	}

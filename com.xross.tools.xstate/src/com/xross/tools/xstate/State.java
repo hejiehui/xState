@@ -12,9 +12,12 @@ public class State {
 	private EntryAction entryAction;
 	private ExitAction existAction;
 	
-	public State(String id, StateType type, List<Transition> transitions) {
+	public State(String id, StateType type, EntryAction entryAction, ExitAction existAction, List<Transition> transitions) {
 		this.id = id;
 		this.type = type;
+		this.entryAction = entryAction == null ? NullAction.nullAction : entryAction;
+		this.existAction = existAction == null ? NullAction.nullAction : existAction;
+		
 		for(Transition trans: transitions) {
 			if(outputs.containsKey(trans.getEventId()))
 				throw new RuntimeException(String.format("Duplicate event: %s found for state: %s",  trans.getEventId(), id));
