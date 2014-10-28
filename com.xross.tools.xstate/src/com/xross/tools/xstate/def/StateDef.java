@@ -1,5 +1,7 @@
 package com.xross.tools.xstate.def;
 
+import com.xross.tools.xstate.StateType;
+
 public class StateDef {
 	private String id;
 	private String description;

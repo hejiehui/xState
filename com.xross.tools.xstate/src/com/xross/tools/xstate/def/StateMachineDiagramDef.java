@@ -4,7 +4,7 @@ import java.util.Map;
 
 /**
  * @deprecated
- * @author jhhe
+ * @author Jerry He
  *
  */
 public class StateMachineDiagramDef {

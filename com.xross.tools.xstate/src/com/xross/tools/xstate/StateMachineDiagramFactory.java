@@ -25,7 +25,6 @@ import com.xross.tools.xstate.def.ActionDef;
 import com.xross.tools.xstate.def.EventDef;
 import com.xross.tools.xstate.def.StateDef;
 import com.xross.tools.xstate.def.StateMachineDef;
-import com.xross.tools.xstate.def.StateType;
 import com.xross.tools.xstate.def.TransitionDef;
 
 /**
