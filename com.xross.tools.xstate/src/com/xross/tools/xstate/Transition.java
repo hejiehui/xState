@@ -3,32 +3,32 @@ package com.xross.tools.xstate;
 public class Transition {
 	private String eventId;
 	private TransitAction transitionAction;
-	private State sourceState;
-	private State targetState;
+	private String sourceStateId;
+	private String targetStateId;
 	
 	public Transition(
 			String eventId,
 			TransitAction transitionAction,
-			State sourceState,
-			State targetState) {
+			String sourceStateId,
+			String targetStateId) {
 		this.eventId = eventId;
 		this.transitionAction = transitionAction == null? NullAction.nullAction : transitionAction;
-		this.sourceState = sourceState;
-		this.targetState = targetState;
+		this.sourceStateId = sourceStateId;
+		this.targetStateId = targetStateId;
 	}
 	
 	public String getEventId() {
 		return eventId;
 	}
 	public void transit(Event event) {
-		transitionAction.transit(sourceState.getId(), targetState.getId(), event);
+		transitionAction.transit(sourceStateId, targetStateId, event);
 	}
 	
-	public State getSourceState() {
-		return sourceState;
+	public String getSourceStateId() {
+		return sourceStateId;
 	}
 	
-	public State getTargetState() {
-		return targetState;
+	public String getTargetStateId() {
+		return targetStateId;
 	}
 }

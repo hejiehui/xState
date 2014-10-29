@@ -29,7 +29,7 @@ import com.xross.tools.xstate.def.TransitionDef;
 
 /**
  * TODO revise factory
- * @author jhhe
+ * @author Jerry He
  *
  */
 public class StateMachineDiagramFactory implements StateMachineDiagramConstants {
@@ -67,14 +67,12 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 	}
 	
 	public StateMachineDiagram getFromDocument(Document doc){
-		StateMachineDiagram model = new StateMachineDiagram();
 		Element root = doc.getDocumentElement();
 
-		model.setName(getChildNodeText(root, NAME));
-		model.setDescription(getChildNodeText(root, DESCRIPTION));
-		model.setStateMachines(readMachines(getChildNode(root, STATE_MACHINES)));
+		String name = getChildNodeText(root, NAME);
+		String description = getChildNodeText(root, DESCRIPTION);
 		
-		return model;
+		return new StateMachineDiagram(name, description, readMachines(getChildNode(root, STATE_MACHINES)));
 	}
 	
 	private Map<String, StateMachineDef> readMachines(Node machinesNode) {
@@ -96,8 +94,8 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		Node eventsNode = getChildNode(machineNode, EVENTS);
 		Node transitionsNode = getChildNode(machineNode, TRANSITIONS);
 
-		machine.setEvents(readEvents(eventsNode));
-		machine.setStates(readStates(statesNode));
+		machine.setEventDefs(readEvents(eventsNode));
+		machine.setStateDefs(readStates(statesNode));
 		linkState(machine, transitionsNode);
 		
 		return machine;
@@ -138,23 +136,18 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 	}
 	private void linkState(StateMachineDef machineDef, Node transitionsNode) {
 		NodeList transitions = transitionsNode.getChildNodes();
-		Map<String, StateDef> states = new HashMap<String, StateDef>();
 		Map<String, EventDef> events = new HashMap<String, EventDef>();
 		
-		for(StateDef node: machineDef.getStates()) {
-			states.put(node.getId(), node);
-		}
-		
-		for(EventDef event: machineDef.getEvents()) {
+		for(EventDef event: machineDef.getEventDefs()) {
 			events.put(event.getId(), event);
 		}
 
 		for(int i = 0; i < transitions.getLength(); i++) {
 			Node node = transitions.item(i);
-			StateDef source = states.get(getAttribute(node, SOURCE_ID));
-			StateDef target = states.get(getAttribute(node, TARGET_ID));
+			String sourceId = getAttribute(node, SOURCE_ID);
+			String targetId = getAttribute(node, TARGET_ID);
 			EventDef event = events.get(getAttribute(node, EVENT_ID));
-			TransitionDef transition = new TransitionDef(source, target);
+			TransitionDef transition = new TransitionDef(sourceId, targetId);
 			transition.setEventDef(event);
 			transition.setTransitActionDef(new ActionDef(getAttribute(node, TRANSIT_ACTION)));
 		}

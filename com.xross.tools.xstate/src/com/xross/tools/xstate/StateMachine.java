@@ -7,13 +7,15 @@ import java.util.NoSuchElementException;
 
 public class StateMachine {
 	private String name;
+	private String description;
 	private TransitionGuard gaurd;
 	private State currentState;
 	private State startState;
 	private List<State> states;
 	
-	public StateMachine(String name, List<State> states, TransitionGuard gaurd) {
+	public StateMachine(String name, String description, List<State> states, TransitionGuard gaurd) {
 		this.name = name;
+		this.description = description;
 		this.gaurd = gaurd;
 		this.states = states;
 		verify();
@@ -31,6 +33,10 @@ public class StateMachine {
 	
 	public String getName(){
 		return name;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	public State getCurrentState(){
@@ -67,7 +73,7 @@ public class StateMachine {
 			return false;
 		
 		Transition trans = currentState.getTransition(event);
-		State target = trans.getTargetState();
+		State target = findState(trans.getTargetStateId());
 		
 		if(!gaurd.isTransitAllowed(source.getId(), target.getId(), event))
 			return false;
@@ -97,7 +103,14 @@ public class StateMachine {
 		currentState = startState;
 	}
 	
+	/**
+	 * Restore to given state
+	 * @param id
+	 */
 	public void restore(String id){
+		if(isEnded())
+			throw new IllegalStateException(String.format("State machine: %s is already ended. Can not be restored.", name));
+
 		currentState = findState(id);
 	}
 }

@@ -15,4 +15,7 @@ public class ActionDef {
 		this.implName = implName;
 	}
 	
+	public Object create() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		return Class.forName(implName).newInstance();
+	}
 }

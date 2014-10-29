@@ -3,12 +3,12 @@ package com.xross.tools.xstate.def;
 public class TransitionDef {
 	private EventDef eventDef;
 	private ActionDef transitActionDef;
-	private StateDef source;
-	private StateDef target;
+	private String sourceId;
+	private String targetId;
 	
-	public TransitionDef(StateDef source, StateDef target) {
-		this.source = source;
-		this.target = target;
+	public TransitionDef(String sourceId, String targetId) {
+		this.sourceId = sourceId;
+		this.targetId = targetId;
 	}
 	
 	public ActionDef getTransitActionDef() {
@@ -23,17 +23,16 @@ public class TransitionDef {
 	public void setEventDef(EventDef eventDef) {
 		this.eventDef = eventDef;
 	}
-	public StateDef getSource() {
-		return source;
+	public String getSourceId() {
+		return sourceId;
 	}
-	public void setSource(StateDef source) {
-		this.source = source;
+	public void setSourceId(String sourceId) {
+		this.sourceId = sourceId;
 	}
-	public StateDef getTarget() {
-		return target;
+	public String getTargetId() {
+		return targetId;
 	}
-	public void setTarget(StateDef target) {
-		this.target = target;
+	public void setTargetId(String targetId) {
+		this.targetId = targetId;
 	}
-	
 }

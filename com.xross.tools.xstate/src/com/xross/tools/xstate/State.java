@@ -8,13 +8,21 @@ import java.util.Set;
 public class State {
 	private String id;
 	private StateType type;
+	private String description;
 	private Map<String, Transition> outputs = new LinkedHashMap<String, Transition>();
 	private EntryAction entryAction;
 	private ExitAction existAction;
 	
-	public State(String id, StateType type, EntryAction entryAction, ExitAction existAction, List<Transition> transitions) {
+	public State(
+			String id, 
+			StateType type, 
+			String description, 
+			EntryAction entryAction, 
+			ExitAction existAction, 
+			List<Transition> transitions) {
 		this.id = id;
 		this.type = type;
+		this.description = description;
 		this.entryAction = entryAction == null ? NullAction.nullAction : entryAction;
 		this.existAction = existAction == null ? NullAction.nullAction : existAction;
 		
@@ -33,6 +41,10 @@ public class State {
 		return type;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+	
 	public Set<String> getAcceptableEvents() {
 		return outputs.keySet();
 	}
