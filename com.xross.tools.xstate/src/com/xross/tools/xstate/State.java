@@ -23,8 +23,8 @@ public class State {
 		this.id = id;
 		this.type = type;
 		this.description = description;
-		this.entryAction = entryAction == null ? NullAction.nullAction : entryAction;
-		this.existAction = existAction == null ? NullAction.nullAction : existAction;
+		this.entryAction = NullAction.guardWith(entryAction);
+		this.existAction = NullAction.guardWith(existAction);
 		
 		for(Transition trans: transitions) {
 			if(outputs.containsKey(trans.getEventId()))

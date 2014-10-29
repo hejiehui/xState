@@ -12,7 +12,7 @@ public class Transition {
 			String sourceStateId,
 			String targetStateId) {
 		this.eventId = eventId;
-		this.transitionAction = transitionAction == null? NullAction.nullAction : transitionAction;
+		this.transitionAction = NullAction.guardWith(transitionAction);
 		this.sourceStateId = sourceStateId;
 		this.targetStateId = targetStateId;
 	}
