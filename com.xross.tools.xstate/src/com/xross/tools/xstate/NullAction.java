@@ -1,11 +1,11 @@
 package com.xross.tools.xstate;
 
 public class NullAction implements EntryAction, ExitAction, TransitAction, TransitionGuard {
-	public static final NullAction nullAction = new NullAction();
+	public static final NullAction instance = new NullAction();
 	
 	public static <T> T guardWith(T action) {
 		if(action == null)
-			return (T)nullAction;
+			return (T)instance;
 		return action;
 	}
 	

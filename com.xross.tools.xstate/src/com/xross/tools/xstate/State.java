@@ -26,6 +26,9 @@ public class State {
 		this.entryAction = NullAction.guardWith(entryAction);
 		this.existAction = NullAction.guardWith(existAction);
 		
+		if(transitions == null)
+			return;
+		
 		for(Transition trans: transitions) {
 			if(outputs.containsKey(trans.getEventId()))
 				throw new RuntimeException(String.format("Duplicate event: %s found for state: %s",  trans.getEventId(), id));

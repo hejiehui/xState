@@ -2,6 +2,7 @@ package com.xross.tools.xstate;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 
 
@@ -29,6 +30,8 @@ public class StateMachine {
 				else
 					throw new IllegalStateException("Found multiple start states. There should only one start state for a state machine.");
 		}
+
+		currentState = startState;
 	}
 	
 	public String getName(){
@@ -39,17 +42,22 @@ public class StateMachine {
 		return description;
 	}
 
+	// TODO
+	public Set<String> getEventIds() {
+		return null;
+	}
+	
 	public State getCurrentState(){
 		return currentState;
 	}
 	
-	public void start() {
-		if(currentState != null)
-			throw new IllegalStateException(String.format("State machine: %s is already started. Currnet state id is %s", name, currentState.getId()));
-		
-		currentState = startState;
-	}
-	
+//	public void start() {
+//		if(currentState != null)
+//			throw new IllegalStateException(String.format("State machine: %s is already started. Currnet state id is %s", name, currentState.getId()));
+//		
+//		currentState = startState;
+//	}
+//	
 	private State findState(String id) {
 		for(State state: states) {
 			if(state.getId().equalsIgnoreCase(id))

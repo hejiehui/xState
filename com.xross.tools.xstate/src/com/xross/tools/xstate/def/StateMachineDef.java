@@ -89,7 +89,7 @@ public class StateMachineDef {
 					transitions.get(stateDef.getId())));
 		}
 	
-		return new StateMachine(name, description, states, NullAction.nullAction);
+		return new StateMachine(name, description, states, NullAction.instance);
 		
 	}
 }

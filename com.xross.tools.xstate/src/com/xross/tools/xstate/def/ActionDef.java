@@ -1,5 +1,7 @@
 package com.xross.tools.xstate.def;
 
+import com.xross.tools.xstate.NullAction;
+
 public class ActionDef {
 	private String implName;
 
@@ -16,6 +18,8 @@ public class ActionDef {
 	}
 	
 	public Object create() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		if(implName == null || implName.length() == 0)
+			return NullAction.instance;
 		return Class.forName(implName).newInstance();
 	}
 }

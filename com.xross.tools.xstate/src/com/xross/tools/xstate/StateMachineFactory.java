@@ -133,7 +133,7 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 
 		machine.setEventDefs(readEvents(eventsNode));
 		machine.setStateDefs(readStates(statesNode));
-		linkState(machine, transitionsNode);
+		machine.setTansitionDefs(linkState(machine, transitionsNode));
 		
 		return machine;
 	}
@@ -171,7 +171,7 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 		def.setType(type);
 		return def;
 	}
-	private static void linkState(StateMachineDef machineDef, Node transitionsNode) {
+	private static List<TransitionDef> linkState(StateMachineDef machineDef, Node transitionsNode) {
 		NodeList transitions = transitionsNode.getChildNodes();
 		Map<String, EventDef> events = new HashMap<String, EventDef>();
 		
@@ -179,6 +179,7 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 			events.put(event.getId(), event);
 		}
 
+		List<TransitionDef> transitionDefs = new ArrayList<TransitionDef>();
 		for(int i = 0; i < transitions.getLength(); i++) {
 			Node node = transitions.item(i);
 			String sourceId = getAttribute(node, SOURCE_ID);
@@ -187,7 +188,10 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 			TransitionDef transition = new TransitionDef(sourceId, targetId);
 			transition.setEventDef(event);
 			transition.setTransitActionDef(new ActionDef(getAttribute(node, TRANSIT_ACTION)));
+			transitionDefs.add(transition);
 		}
+		
+		return transitionDefs;
 	}
 
 	private static List<EventDef> readEvents(Node eventsNode) {
