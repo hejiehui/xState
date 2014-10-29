@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,25 +34,60 @@ import com.xross.tools.xstate.def.TransitionDef;
  * @author Jerry He
  *
  */
-public class StateMachineDiagramFactory implements StateMachineDiagramConstants {
-	private static StateMachineDiagramFactory factory = new StateMachineDiagramFactory();
+public class StateMachineFactory implements StateMachineDiagramConstants {
+	private String name;
+	private String description;
+	private Map<String, StateMachineDef> stateMachines;
 	
-	public static StateMachineDiagram load(URL url) throws SAXException, IOException, ParserConfigurationException {
+	private StateMachineFactory(
+			String name,
+			String description,
+			Map<String, StateMachineDef> stateMachines) {
+		this.name = name;
+		this.description = description;
+		this.stateMachines = stateMachines;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public Set<String> getStateMachineNames() {
+		return stateMachines.keySet();
+	}
+
+	public String getStateMachineDescription(String name) {
+		return stateMachines.get(name).getDescription();
+	}
+	
+	public StateMachine create(String stateMachineName) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+		StateMachineDef def = stateMachines.get(stateMachineName);
+		if(def == null)
+			throw new NoSuchElementException(String.format("Can not found state machine definition for name: %s", stateMachineName));
+		
+		return def.create();
+	}
+	
+	public static StateMachineFactory load(URL url) throws SAXException, IOException, ParserConfigurationException {
 		return load(url.openStream());
 	}
 	
-	public static StateMachineDiagram load(String path) throws FileNotFoundException, SAXException, IOException, ParserConfigurationException {
+	public static StateMachineFactory load(String path) throws FileNotFoundException, SAXException, IOException, ParserConfigurationException {
 		return load(new File(path));
 	}
 	
-	public static StateMachineDiagram load(File model) throws FileNotFoundException, SAXException, IOException, ParserConfigurationException {
+	public static StateMachineFactory load(File model) throws FileNotFoundException, SAXException, IOException, ParserConfigurationException {
 		return load(new FileInputStream(model));
 	}
 	
-	public static StateMachineDiagram load(InputStream in) throws SAXException, IOException, ParserConfigurationException {
+	public static StateMachineFactory load(InputStream in) throws SAXException, IOException, ParserConfigurationException {
 		try{
 			Document doc= DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(in);
-			StateMachineDiagram def = factory.getFromDocument(doc);
+			StateMachineFactory def = getFromDocument(doc);
 			in.close();
 			return def;
 		}catch(Throwable e){
@@ -66,16 +103,16 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		return null;
 	}
 	
-	public StateMachineDiagram getFromDocument(Document doc){
+	private static StateMachineFactory getFromDocument(Document doc){
 		Element root = doc.getDocumentElement();
 
 		String name = getChildNodeText(root, NAME);
 		String description = getChildNodeText(root, DESCRIPTION);
 		
-		return new StateMachineDiagram(name, description, readMachines(getChildNode(root, STATE_MACHINES)));
+		return new StateMachineFactory(name, description, readMachines(getChildNode(root, STATE_MACHINES)));
 	}
 	
-	private Map<String, StateMachineDef> readMachines(Node machinesNode) {
+	private static Map<String, StateMachineDef> readMachines(Node machinesNode) {
 		NodeList machines = machinesNode.getChildNodes();
 		Map<String, StateMachineDef> machineMap = new HashMap<String, StateMachineDef>();
 		for(int i = 0;i < machines.getLength(); i++) {
@@ -85,7 +122,7 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		return machineMap;
 	}
 	
-	private StateMachineDef readMachine(Node machineNode) {
+	private static StateMachineDef readMachine(Node machineNode) {
 		StateMachineDef machine = new StateMachineDef();
 		machine.setName(getChildNodeText(machineNode, NAME));
 		machine.setDescription(getChildNodeText(machineNode, DESCRIPTION));
@@ -101,7 +138,7 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		return machine;
 	}
 	
-	private List<StateDef> readStates(Node statesNode) {
+	private static List<StateDef> readStates(Node statesNode) {
 		NodeList states = statesNode.getChildNodes();
 		List<StateDef> nodes = new ArrayList<StateDef>();
 		for(int i = 0; i < states.getLength(); i++) {
@@ -110,7 +147,7 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		return nodes;
 	}
 	
-	private StateDef readState(Node stateNode) {
+	private static StateDef readState(Node stateNode) {
 		StateDef node = createStateNode(stateNode);
 		node.setId(getAttribute(stateNode, ID));
 		node.setDescription(getChildNodeText(stateNode, DESCRIPTION));
@@ -121,7 +158,7 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		return node;
 	}
 	
-	private StateDef createStateNode(Node stateNode) {
+	private static StateDef createStateNode(Node stateNode) {
 		StateDef def = new StateDef();
 		StateType type;
 		if(stateNode.getNodeName().equals(START_STATE))
@@ -134,7 +171,7 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		def.setType(type);
 		return def;
 	}
-	private void linkState(StateMachineDef machineDef, Node transitionsNode) {
+	private static void linkState(StateMachineDef machineDef, Node transitionsNode) {
 		NodeList transitions = transitionsNode.getChildNodes();
 		Map<String, EventDef> events = new HashMap<String, EventDef>();
 		
@@ -153,7 +190,7 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		}
 	}
 
-	private List<EventDef> readEvents(Node eventsNode) {
+	private static List<EventDef> readEvents(Node eventsNode) {
 		NodeList events = eventsNode.getChildNodes();
 		List<EventDef> eventList = new ArrayList<EventDef>();
 		for(int i = 0; i < events.getLength(); i++) {
@@ -166,7 +203,7 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		return eventList;
 	}
 	
-	private String getChildNodeText(Node node, String childName) {
+	private static String getChildNodeText(Node node, String childName) {
 		Node child = getChildNode(node, childName);
 		if(child == null)
 			return null;
@@ -174,7 +211,7 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		return child.getTextContent();
 	}
 	
-	private Node getChildNode(Node node, String name) {
+	private static Node getChildNode(Node node, String name) {
 		NodeList children = node.getChildNodes();
 		Node found = null;
 		for(int i = 0; i < children.getLength(); i++){
@@ -186,7 +223,7 @@ public class StateMachineDiagramFactory implements StateMachineDiagramConstants 
 		return found;
 	}
 	
-	private String getAttribute(Node node, String attributeName){
+	private static String getAttribute(Node node, String attributeName){
 		NamedNodeMap map = node.getAttributes();
 		for(int i = 0; i < map.getLength(); i++)
 			if(attributeName.equals(map.item(i).getNodeName()))
