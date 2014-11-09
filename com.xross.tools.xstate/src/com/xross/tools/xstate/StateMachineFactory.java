@@ -152,6 +152,7 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 		node.setId(getAttribute(stateNode, ID));
 		node.setDescription(getChildNodeText(stateNode, DESCRIPTION));
 		
+		node.setReference(getChildNodeText(stateNode, REFERENCE));
 		node.setEntryActionDef(new ActionDef(getChildNodeText(stateNode, ENTRY_ACTION)));
 		node.setExitActionDef(new ActionDef(getChildNodeText(stateNode, EXIT_ACTION)));
 

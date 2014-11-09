@@ -7,6 +7,7 @@ public interface StateMachineDiagramConstants {
 	String ID = "id";
 	String NAME = "name";
 	String DESCRIPTION = "description";
+	String REFERENCE = "reference";
 	
 	String STATES = "states";
 	String STATE = "state";

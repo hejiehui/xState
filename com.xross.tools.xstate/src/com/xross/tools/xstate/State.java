@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class State {
 	private String id;
+	private String reference;
 	private StateType type;
 	private String description;
 	private Map<String, Transition> outputs = new LinkedHashMap<String, Transition>();
@@ -36,6 +37,18 @@ public class State {
 		}
 	}
 
+	public State(
+			String id, 
+			String reference,
+			StateType type, 
+			String description, 
+			EntryAction entryAction, 
+			ExitAction existAction, 
+			List<Transition> transitions) {
+		this(id, type, description, entryAction, existAction, transitions);
+		this.reference = reference;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -48,6 +61,14 @@ public class State {
 		return description;
 	}
 	
+	public String getReference() {
+		return reference;
+	}
+	
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
+
 	public Set<String> getAcceptableEvents() {
 		return outputs.keySet();
 	}
