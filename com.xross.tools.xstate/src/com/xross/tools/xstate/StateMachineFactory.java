@@ -76,8 +76,26 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 		return load(url.openStream());
 	}
 	
+	/**
+	 * It will first check model file from file path, if it does not exist, it will try classpath then. 
+	 * @param path
+	 * @return
+	 * @throws Exception
+	 */
 	public static StateMachineFactory load(String path) throws FileNotFoundException, SAXException, IOException, ParserConfigurationException {
-		return load(new File(path));
+		InputStream in;
+		File f = new File(path);
+		if(f.exists())
+			in = new FileInputStream(f);
+		else {
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			if (classLoader == null) {
+				classLoader = StateMachineFactory.class.getClassLoader();
+			}
+			in = classLoader.getResource(path).openStream();
+		}
+
+		return load(in);
 	}
 	
 	public static StateMachineFactory load(File model) throws FileNotFoundException, SAXException, IOException, ParserConfigurationException {
