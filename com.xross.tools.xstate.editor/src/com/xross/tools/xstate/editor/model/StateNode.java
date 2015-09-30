@@ -140,7 +140,6 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		if(!outputs.contains(output))
 			return;
 		outputs.remove(output);
-		output.getTarget().removeInput(output);
 		firePropertyChange(PROP_OUTPUTS);
 	}
 	
@@ -155,7 +154,6 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		if(!inputs.contains(input))
 			return;
 		inputs.remove(input);
-		input.getSource().removeOutput(input);
 		firePropertyChange(PROP_INPUTS);
 	}
 	
