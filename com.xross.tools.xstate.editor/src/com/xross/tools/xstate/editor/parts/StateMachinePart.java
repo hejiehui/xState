@@ -18,6 +18,7 @@ import com.xross.tools.xstate.editor.actions.StateMachineCreateEventAction;
 import com.xross.tools.xstate.editor.figures.StateMachineFigure;
 import com.xross.tools.xstate.editor.model.StateMachine;
 import com.xross.tools.xstate.editor.model.StateNode;
+import com.xross.tools.xstate.editor.policies.StateMachineComponentEditPolicy;
 import com.xross.tools.xstate.editor.policies.StateMachineLayoutPolicy;
 
 public class StateMachinePart  extends AbstractGraphicalEditPart implements PropertyChangeListener, ContextMenuBuilder {
@@ -50,6 +51,7 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
 	}
 
     protected void createEditPolicies() {
+    	installEditPolicy(EditPolicy.COMPONENT_ROLE, new StateMachineComponentEditPolicy());
         installEditPolicy(EditPolicy.LAYOUT_ROLE, new StateMachineLayoutPolicy());
     }
     
