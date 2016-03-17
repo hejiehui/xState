@@ -1,16 +1,10 @@
 package com.xross.tools.xstate.editor;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.EventObject;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspace;
@@ -40,11 +34,8 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-import org.w3c.dom.Document;
 
-import com.xross.tools.xstate.editor.actions.StateMachineCreateEventAction;
-import com.xross.tools.xstate.editor.actions.StateMachineJunitCodeGenAction;
-import com.xross.tools.xstate.editor.actions.StateMachineUsageCodeGenAction;
+import com.xross.tools.common.XmlHelper;
 import com.xross.tools.xstate.editor.io.StateMachineDiagramFactory;
 import com.xross.tools.xstate.editor.model.StateMachineDiagram;
 import com.xross.tools.xstate.editor.parts.StateMachinePartFactory;
@@ -99,12 +90,9 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
 
     public void doSave(IProgressMonitor monitor) {
 		try {
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			writeAsXML(out);
 			IFile file = ((IFileEditorInput)getEditorInput()).getFile();
-			file.setContents(new ByteArrayInputStream(out.toByteArray()), 
-							true, false, monitor);
-			out.close();
+			file.setContents(new ByteArrayInputStream(writeAsXML().getBytes()), 
+					true, false, monitor);
 			getCommandStack().markSaveLocation();
 		}
 		catch (Exception e) {
@@ -112,12 +100,8 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
 		}
     }
     
-    private void writeAsXML(OutputStream out) throws Exception{
-    	TransformerFactory tFactory =TransformerFactory.newInstance();
-    	Transformer transformer = tFactory.newTransformer();
-    	DOMSource source = new DOMSource(diagramFactory.writeToDocument(diagram));
-    	StreamResult result = new StreamResult(out);
-    	transformer.transform(source, result);
+    private String writeAsXML() throws Exception{
+    	return XmlHelper.format(diagramFactory.writeToDocument(diagram));
     }
 
     public void doSaveAs() {
@@ -135,10 +119,7 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
     	WorkspaceModifyOperation op= new WorkspaceModifyOperation() {
     		public void execute(final IProgressMonitor monitor) throws CoreException {
     			try {
-    				ByteArrayOutputStream out = new ByteArrayOutputStream();
-    				writeAsXML(out);
-    				file.create(new ByteArrayInputStream(out.toByteArray()), true, monitor);
-    				out.close();
+    				file.create(new ByteArrayInputStream(writeAsXML().getBytes("utf-8")), true, monitor);
     			} 
     			catch (Exception e) {
     				e.printStackTrace();
@@ -182,8 +163,7 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
     }
     
     private StateMachineDiagram getFromXML(InputStream is) throws Exception {
-    	Document doc= DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is); 
-    	return diagramFactory.getFromDocument(doc);
+    	return diagramFactory.getFromDocument(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is));
     }
 
     public Object getAdapter(Class type) {
