@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.xross.tools</groupId>
 	<artifactId>xstate</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.9.0-SNAPSHOT</version>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
