@@ -91,6 +91,8 @@
 					</includes>
 					<repositoryName>xtools-repo</repositoryName>
 					<repositoryOwner>hejiehui</repositoryOwner>
+                    <server>github</server>
+                    <merge>true</merge>
 				</configuration>
 				<executions>
 					<execution>
