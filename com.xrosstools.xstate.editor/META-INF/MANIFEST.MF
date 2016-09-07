@@ -4,7 +4,7 @@ Bundle-Name: xState Editor
 Bundle-SymbolicName: com.xrosstools.xstate.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.xrosstools.xstate.editor.Activator
-Bundle-Vendor: XROSS
+Bundle-Vendor: he, jiehui
 Require-Bundle: org.eclipse.gef;bundle-version="3.6.2",
  org.eclipse.ui.views;bundle-version="3.5.1",
  org.eclipse.ui.editors;bundle-version="3.6.1",

@@ -10,20 +10,20 @@
             contributorClass="com.xrosstools.xstate.editor.StateMachineActionBarContributor"
             extensions="xstate"
             icon="icons/state_machine_diagram.ico"
-            id="com.xross.tools.xstate.editor.StateMachineDiagramGraphicalEditor"
+            id="com.xrosstools.xstate.editor.StateMachineDiagramGraphicalEditor"
             name="Xross State Machine Diagram Editor">
          <contentTypeBinding
-               contentTypeId="com.xross.tools.xunit">
+               contentTypeId="com.xrosstools.xstate">
          </contentTypeBinding>
       </editor>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
       <wizard
-            category="com.xross.tools"
+            category="com.xrosstools"
             class="com.xrosstools.xstate.editor.NewStateMachineWizard"
             icon="icons/state_machine_diagram.ico"
-            id="com.xross.tools.xstate.editor.newWizard"
+            id="com.xrosstools.xstate.editor.newWizard"
             name="New Xross State Machine Wizard">
       </wizard>
    </extension>
@@ -33,7 +33,7 @@
             alias-for="xs"
             base-type="org.eclipse.core.runtime.xml"
             file-extensions="xstate"
-            id="com.xross.tools.xstate"
+            id="com.xrosstools.xstate"
             name="Xross State Machine"
             priority="high">
       </content-type>
