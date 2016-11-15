@@ -8,7 +8,7 @@ public class DbHealthyTest {
 	public static void main(String[] args) {
 		try {
 			StateMachineFactory f = StateMachineFactory.load("sample.xstate");
-			StateMachine sm = f.create("DB Healthy");
+			StateMachine sm = f.create("DB Health Lifecycle");
 			
 			System.out.println("Start state: " + sm.getCurrentState().getId());
 			notify(sm, "initialize");

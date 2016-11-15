@@ -1,5 +1,7 @@
 package com.xrosstools.xstate.editor.io;
 
+import static com.xrosstools.common.XmlHelper.getValidChildNodes;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +12,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.xross.tools.xstate.StateMachineDiagramConstants;
 import com.xrosstools.xstate.editor.model.EndNode;
@@ -34,10 +35,10 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 	}
 	
 	private List<StateMachine> readMachines(Node machinesNode) {
-		NodeList machines = machinesNode.getChildNodes();
+		List<Node> machines = getValidChildNodes(machinesNode);
 		List<StateMachine> machineList = new ArrayList<StateMachine>();
-		for(int i = 0;i < machines.getLength(); i++) {
-			machineList.add(readMachine(machines.item(i)));
+		for(int i = 0;i < machines.size(); i++) {
+			machineList.add(readMachine(machines.get(i)));
 		}
 		return machineList;
 	}
@@ -59,10 +60,10 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 	}
 	
 	private List<StateNode> readStates(Node statesNode) {
-		NodeList states = statesNode.getChildNodes();
+		List<Node> states = getValidChildNodes(statesNode);
 		List<StateNode> nodes = new ArrayList<StateNode>();
-		for(int i = 0; i < states.getLength(); i++) {
-			nodes.add(readState(states.item(i)));
+		for(int i = 0; i < states.size(); i++) {
+			nodes.add(readState(states.get(i)));
 		}
 		return nodes;
 	}
@@ -94,7 +95,7 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 
 	}
 	private void linkState(StateMachine machine, Node transitionsNode) {
-		NodeList transitions = transitionsNode.getChildNodes();
+		List<Node> transitions = getValidChildNodes(transitionsNode);
 		Map<String, StateNode> states = new HashMap<String, StateNode>();
 		Map<String, Event> events = new HashMap<String, Event>();
 		
@@ -106,8 +107,8 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 			events.put(event.getId(), event);
 		}
 
-		for(int i = 0; i < transitions.getLength(); i++) {
-			Node node = transitions.item(i);
+		for(int i = 0; i < transitions.size(); i++) {
+			Node node = transitions.get(i);
 			StateNode source = states.get(getAttribute(node, SOURCE_ID));
 			StateNode target = states.get(getAttribute(node, TARGET_ID));
 			Event event = events.get(getAttribute(node, EVENT_ID));
@@ -118,10 +119,10 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 	}
 
 	private List<Event> readEvents(Node eventsNode) {
-		NodeList events = eventsNode.getChildNodes();
+		List<Node> events = getValidChildNodes(eventsNode);
 		List<Event> eventList = new ArrayList<Event>();
-		for(int i = 0; i < events.getLength(); i++) {
-			Node eventNode = events.item(i);
+		for(int i = 0; i < events.size(); i++) {
+			Node eventNode = events.get(i);
 			Event event = new Event();
 			event.setId(getAttribute(eventNode, ID));
 			event.setDescription(eventNode.getTextContent());
@@ -139,12 +140,12 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 	}
 	
 	private Node getChildNode(Node node, String name) {
-		NodeList children = node.getChildNodes();
+		List<Node> children = getValidChildNodes(node);
 		Node found = null;
-		for(int i = 0; i < children.getLength(); i++){
-			if(!children.item(i).getNodeName().equalsIgnoreCase(name))
+		for(int i = 0; i < children.size(); i++){
+			if(!children.get(i).getNodeName().equalsIgnoreCase(name))
 				continue;
-			found = children.item(i);
+			found = children.get(i);
 			break;
 		}
 		return found;

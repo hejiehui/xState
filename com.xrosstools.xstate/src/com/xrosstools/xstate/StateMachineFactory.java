@@ -131,10 +131,10 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 	}
 	
 	private static Map<String, StateMachineDef> readMachines(Node machinesNode) {
-		NodeList machines = machinesNode.getChildNodes();
+		List<Node> machines = getValidChildNodes(machinesNode);
 		Map<String, StateMachineDef> machineMap = new HashMap<String, StateMachineDef>();
-		for(int i = 0;i < machines.getLength(); i++) {
-			StateMachineDef def = readMachine(machines.item(i));
+		for(int i = 0;i < machines.size(); i++) {
+			StateMachineDef def = readMachine(machines.get(i));
 			machineMap.put(def.getName(), def);
 		}
 		return machineMap;
@@ -157,10 +157,10 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 	}
 	
 	private static List<StateDef> readStates(Node statesNode) {
-		NodeList states = statesNode.getChildNodes();
+		List<Node> states = getValidChildNodes(statesNode);
 		List<StateDef> nodes = new ArrayList<StateDef>();
-		for(int i = 0; i < states.getLength(); i++) {
-			nodes.add(readState(states.item(i)));
+		for(int i = 0; i < states.size(); i++) {
+			nodes.add(readState(states.get(i)));
 		}
 		return nodes;
 	}
@@ -191,7 +191,7 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 		return def;
 	}
 	private static List<TransitionDef> linkState(StateMachineDef machineDef, Node transitionsNode) {
-		NodeList transitions = transitionsNode.getChildNodes();
+		List<Node> transitions = getValidChildNodes(transitionsNode);
 		Map<String, EventDef> events = new HashMap<String, EventDef>();
 		
 		for(EventDef event: machineDef.getEventDefs()) {
@@ -199,8 +199,8 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 		}
 
 		List<TransitionDef> transitionDefs = new ArrayList<TransitionDef>();
-		for(int i = 0; i < transitions.getLength(); i++) {
-			Node node = transitions.item(i);
+		for(int i = 0; i < transitions.size(); i++) {
+			Node node = transitions.get(i);
 			String sourceId = getAttribute(node, SOURCE_ID);
 			String targetId = getAttribute(node, TARGET_ID);
 			EventDef event = events.get(getAttribute(node, EVENT_ID));
@@ -214,10 +214,10 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 	}
 
 	private static List<EventDef> readEvents(Node eventsNode) {
-		NodeList events = eventsNode.getChildNodes();
+		List<Node> events = getValidChildNodes(eventsNode);
 		List<EventDef> eventList = new ArrayList<EventDef>();
-		for(int i = 0; i < events.getLength(); i++) {
-			Node eventNode = events.item(i);
+		for(int i = 0; i < events.size(); i++) {
+			Node eventNode = events.get(i);
 			EventDef event = new EventDef();
 			event.setId(getAttribute(eventNode, ID));
 			event.setDescription(eventNode.getTextContent());
@@ -235,12 +235,12 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 	}
 	
 	private static Node getChildNode(Node node, String name) {
-		NodeList children = node.getChildNodes();
+		List<Node> children = getValidChildNodes(node);
 		Node found = null;
-		for(int i = 0; i < children.getLength(); i++){
-			if(!children.item(i).getNodeName().equalsIgnoreCase(name))
+		for(int i = 0; i < children.size(); i++){
+			if(!children.get(i).getNodeName().equalsIgnoreCase(name))
 				continue;
-			found = children.item(i);
+			found = children.get(i);
 			break;
 		}
 		return found;
@@ -254,4 +254,18 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 
 		return null;
 	}
+	
+	private static boolean isValidNode(Node node) {
+		return !node.getNodeName().equals("#text");
+	}
+	
+	private static List<Node> getValidChildNodes(Node node) {
+		List<Node> nl = new ArrayList<>();
+		NodeList nodeList = node.getChildNodes();
+		for(int i = 0; i < nodeList.getLength(); i++){
+			if(isValidNode(nodeList.item(i)))
+				nl.add(nodeList.item(i));
+		}
+		return nl;
+	}	
 }
