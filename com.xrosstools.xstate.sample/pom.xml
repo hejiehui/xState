@@ -4,14 +4,35 @@
 	<groupId>com.xrosstools</groupId>
 	<artifactId>xstate-sample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <properties>
+        <file_encoding>UTF-8</file_encoding>
+    </properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.xrosstools</groupId>
 			<artifactId>xstate</artifactId>
 			<version>0.9.0-SNAPSHOT</version>
 		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+        </dependency>
 	</dependencies>
-	<repositories>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>${file_encoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <repositories>
 		<repository>
 			<id>xtools-repo</id>
 			<url>https://raw.github.com/hejiehui/xtools-repo/mvn-repo/</url>
