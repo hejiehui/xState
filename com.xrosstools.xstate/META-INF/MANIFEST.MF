@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xstate
+Bundle-Name: xState
 Bundle-SymbolicName: com.xrosstools.xstate
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: he, jiehui
