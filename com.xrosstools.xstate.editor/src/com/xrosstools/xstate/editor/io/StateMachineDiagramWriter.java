@@ -7,7 +7,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.xross.tools.xstate.StateMachineDiagramConstants;
+import com.xrosstools.xstate.StateMachineDiagramConstants;
 import com.xrosstools.xstate.editor.model.EndNode;
 import com.xrosstools.xstate.editor.model.Event;
 import com.xrosstools.xstate.editor.model.StartNode;
