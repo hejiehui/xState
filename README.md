@@ -31,14 +31,14 @@ xState编辑器是一个允许开发人员创建状态机的编辑器，通过�
 ![sample](https://github.com/hejiehui/xState/blob/master/doc/sample.png)
 
 # 集成说明
-[参考样例POM](https://github.com/hejiehui/xUnit/blob/master/com.xrosstools.xunit.sample/pom.xml)
+[参考样例POM](https://github.com/hejiehui/xState/blob/master/com.xrosstools.xstate.sample/pom.xml)
 
 Depenency
 
 	<dependency>
 		<groupId>com.xrosstools</groupId>
-		<artifactId>xunit</artifactId>
-		<version>0.9.1</version>
+		<artifactId>xstate</artifactId>
+		<version>0.9.0</version>
 	</dependency>
 
 repository
@@ -55,7 +55,7 @@ repository
 	</repositories>
 
 # Demo project
-[Demo](https://github.com/hejiehui/xUnit/tree/master/com.xrosstools.xunit.sample)
+[Demo](https://github.com/hejiehui/xState/tree/master/com.xrosstools.xstate.sample)
 
 # 实际案例
 ## 简单状态机
