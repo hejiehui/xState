@@ -30,6 +30,33 @@ xState编辑器是一个允许开发人员创建状态机的编辑器，通过�
 模型可以被工具用于在运行时触发状态转移
 ![sample](https://github.com/hejiehui/xState/blob/master/doc/sample.png)
 
+# 集成说明
+[参考样例POM](https://github.com/hejiehui/xUnit/blob/master/com.xrosstools.xunit.sample/pom.xml)
+
+Depenency
+
+	<dependency>
+		<groupId>com.xrosstools</groupId>
+		<artifactId>xunit</artifactId>
+		<version>0.9.1</version>
+	</dependency>
+
+repository
+
+	<repositories>
+		<repository>
+			<id>xtools-repo</id>
+			<url>https://raw.github.com/hejiehui/xtools-repo/mvn-repo/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+# Demo project
+[Demo](https://github.com/hejiehui/xUnit/tree/master/com.xrosstools.xunit.sample)
+
 # 实际案例
 ## 简单状态机
 ![uc1](https://github.com/hejiehui/xState/blob/master/doc/uc1.png)
