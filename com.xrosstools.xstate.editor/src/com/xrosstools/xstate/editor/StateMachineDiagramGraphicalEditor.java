@@ -12,7 +12,11 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.LightweightSystem;
+import org.eclipse.draw2d.Viewport;
+import org.eclipse.draw2d.parts.ScrollableThumbnail;
 import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
@@ -26,6 +30,9 @@ import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorInput;
@@ -187,20 +194,33 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
     }
     
     private class OutlinePage extends ContentOutlinePage {
-        private Control outline;
+        private SashForm sash;
         public OutlinePage() {
             super(new TreeViewer());
         }
         public void createControl(Composite parent) {
-            outline = getViewer().createControl(parent);
-            getSelectionSynchronizer().addViewer(getViewer());
+            sash = new SashForm(parent, SWT.VERTICAL);
+            
+            getViewer().createControl(sash);
             getViewer().setEditDomain(getEditDomain());
             getViewer().setEditPartFactory(new StateMachineTreePartFactory());
             getViewer().setContents(diagram);
+            getSelectionSynchronizer().addViewer(getViewer());
+
+            Canvas canvas = new Canvas(sash, SWT.BORDER);
+            sash.setWeights(new int[]{3, 1});
+            LightweightSystem lws = new LightweightSystem(canvas);
+            
+            ScalableFreeformRootEditPart rootEditPart = (ScalableFreeformRootEditPart) getGraphicalViewer()
+                    .getRootEditPart();
+            ScrollableThumbnail thumbnail = new ScrollableThumbnail(  
+                    (Viewport) rootEditPart.getFigure());  
+            thumbnail.setSource(rootEditPart.getLayer(LayerConstants.PRINTABLE_LAYERS));
+            lws.setContents(thumbnail);
         }
 
         public Control getControl() {
-            return outline;
+            return sash;
         }
 
         public void dispose() {
