@@ -14,7 +14,7 @@
      <entry_action>com.xrosstools.xstate.sample.TestAction</entry_action>
      <exit_action>com.xrosstools.xstate.sample.TestAction</exit_action>
     </state>
-    <state id="OutOfService" x_loc="316" y_loc="257">
+    <state id="OutOfService" x_loc="318" y_loc="249">
      <description/>
      <reference/>
      <entry_action>com.xrosstools.xstate.sample.TestAction</entry_action>
