@@ -47,5 +47,57 @@
     <transition event_id="initialize" source_id="start" target_id="Normal" transit_action=""/>
    </transitions>
   </state_machine>
+  <state_machine>
+   <name>vip flow</name>
+   <description/>
+   <states>
+    <start id="start" x_loc="53" y_loc="85">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </start>
+    <state id="validate" x_loc="138" y_loc="182">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="gether user info" x_loc="279" y_loc="55">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="data maintain" x_loc="429" y_loc="199">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="transfer" x_loc="525" y_loc="61">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <end id="end" x_loc="649" y_loc="223">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </end>
+   </states>
+   <events>
+    <event id="pass"/>
+   </events>
+   <transitions>
+    <transition event_id="pass" source_id="start" target_id="validate" transit_action=""/>
+    <transition event_id="pass" source_id="validate" target_id="gether user info" transit_action=""/>
+    <transition event_id="pass" source_id="gether user info" target_id="data maintain" transit_action=""/>
+    <transition event_id="pass" source_id="data maintain" target_id="transfer" transit_action=""/>
+    <transition event_id="pass" source_id="transfer" target_id="end" transit_action=""/>
+   </transitions>
+  </state_machine>
  </state_machines>
 </state_machine_diagram>
