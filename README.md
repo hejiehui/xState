@@ -30,6 +30,9 @@ xState编辑器是一个允许开发人员创建状态机的编辑器，通过�
 模型可以被工具用于在运行时触发状态转移
 ![sample](https://github.com/hejiehui/xState/blob/master/doc/sample.png)
 
+# 如何传递业务属性
+Event 是个普通类，这个类会传递给各个action，所以你只要定义自己的event子类，子类里面定义业务属性，action里面cast Event 为你自定义的类即可获得额外的属性
+
 # 集成说明
 [参考样例POM](https://github.com/hejiehui/xState/blob/master/com.xrosstools.xstate.sample/pom.xml)
 
