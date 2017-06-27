@@ -31,7 +31,13 @@ xState编辑器是一个允许开发人员创建状态机的编辑器，通过�
 ![sample](https://github.com/hejiehui/xState/blob/master/doc/sample.png)
 
 # 如何传递业务属性
-Event 是个普通类，这个类会传递给各个action，所以你只要定义自己的event子类，子类里面定义业务属性，action里面cast Event 为你自定义的类即可获得额外的属性
+有些时候需要传递业务信息给状态机的各个触发器做判断，虽然缺省的Event类里面没有这些属性，但由于Event 是个普通类，用户可以自定义自己的Event子类，在子类里面定义需要的业务属性。允许时可以在各个Action里面cast 标准的Event 为你自定义的Event类即可获得额外的属性。
+
+# 如何恢复状态机之前的状态
+有时需要保存状态机的当前状态，并在之后恢复。可以通过调用StateMachine的restore（String id），传入需要恢复的状态id实现。
+
+# 如何重置状态机
+在状态机没有处于End状态的情况下，可以通过调用reset()方法重置状态机的状态。
 
 # 集成说明
 [参考样例POM](https://github.com/hejiehui/xState/blob/master/com.xrosstools.xstate.sample/pom.xml)
