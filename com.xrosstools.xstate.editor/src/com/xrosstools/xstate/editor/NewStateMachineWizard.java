@@ -74,7 +74,7 @@ public class NewStateMachineWizard extends Wizard implements INewWizard {
 			return false;
 		} catch (InvocationTargetException e) {
 			Throwable realException = e.getTargetException();
-			MessageDialog.openError(getShell(), "Error", realException.getMessage());
+			MessageDialog.openError(getShell(), "Error", e.getMessage() + " \nReal Cuase:" + realException.getMessage());
 			return false;
 		}
 		return true;

@@ -23,7 +23,7 @@ public class StateMachineFigure extends Figure implements StateMachineConstants{
         figure.setLayoutManager(new XYLayout());
         figure.setBorder(new LineBorder(ColorConstants.lightGray, 1));
 //        figure.setMinimumSize(new Dimension(500, 500));
-        figure.setPreferredSize(new Dimension(700, 400));
+        figure.setPreferredSize(new Dimension(1200, 600));
 
         label = new Label();
 
