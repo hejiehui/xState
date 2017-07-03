@@ -98,7 +98,7 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
     public void doSave(IProgressMonitor monitor) {
 		try {
 			IFile file = ((IFileEditorInput)getEditorInput()).getFile();
-			file.setContents(new ByteArrayInputStream(writeAsXML().getBytes()), 
+			file.setContents(new ByteArrayInputStream(writeAsXML().getBytes(file.getCharset())), 
 					true, false, monitor);
 			getCommandStack().markSaveLocation();
 		}
@@ -126,7 +126,7 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
     	WorkspaceModifyOperation op= new WorkspaceModifyOperation() {
     		public void execute(final IProgressMonitor monitor) throws CoreException {
     			try {
-    				file.create(new ByteArrayInputStream(writeAsXML().getBytes("utf-8")), true, monitor);
+    				file.create(new ByteArrayInputStream(writeAsXML().getBytes(file.getCharset())), true, monitor);
     			} 
     			catch (Exception e) {
     				e.printStackTrace();
