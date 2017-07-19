@@ -20,6 +20,8 @@ public class DbHealthyTest {
 			notify(sm, "shutdown");
 			
 			System.out.println("End state: " + sm.getCurrentState().getId());
+			
+			showSourceAndTargetEvent(sm);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -28,5 +30,14 @@ public class DbHealthyTest {
 	static void notify(StateMachine sm, String eventId) {
 		sm.notify(new Event(eventId));
 		System.out.println(sm.getCurrentState().getId());
+	}
+	
+	static void showSourceAndTargetEvent(StateMachine sm){
+	    System.out.println("\n\nShow source and target event ids for each state\n");
+	    for(String id: sm.getStateIds()) {
+	        System.out.println("State: " + id);
+	        System.out.println("Source events: " + sm.findState(id).getSourceEvents());
+	        System.out.println("Target events: " + sm.findState(id).getAcceptableEvents());
+	    }
 	}
 }

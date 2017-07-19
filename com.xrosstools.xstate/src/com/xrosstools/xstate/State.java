@@ -1,6 +1,8 @@
 package com.xrosstools.xstate;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +13,7 @@ public class State {
 	private StateType type;
 	private String description;
 	private Map<String, Transition> outputs = new LinkedHashMap<String, Transition>();
+	private Set<String> sourceEvents = new HashSet<String>();
 	private EntryAction entryAction;
 	private ExitAction existAction;
 	
@@ -70,10 +73,18 @@ public class State {
 	}
 
 	public Set<String> getAcceptableEvents() {
-		return outputs.keySet();
+		return new LinkedHashSet<>(outputs.keySet());
 	}
 	
-	public boolean isAcceptable(Event event) {
+    public Set<String> getSourceEvents() {
+        return new LinkedHashSet<>(sourceEvents);
+    }
+    
+	void setSourceEvents(Set<String> sourceEvents) {
+        this.sourceEvents = sourceEvents;
+    }
+
+    public boolean isAcceptable(Event event) {
 		return outputs.containsKey(event.getId());
 	}
 	
