@@ -34,61 +34,34 @@ public class CommonStyleAnchor extends ChopboxAnchor {
         int x;
         int y;
         
+        Point point = r.getCenter();
         if(isSource){
             if(style == RouteStyle.heightFirst) {
                 if(loc.x < r.x)
-                    x = r.x;
+                    point = r.getLeft();
                 else if(loc.x > r.x + r.width)
-                    x = r.x + r.width;
-                else
-                    x = loc.x;
-                
-                if(loc.y > r.y && loc.y < r.y + r.height/2)
-                    y = loc.y;
-                else
-                    y = r.y + r.height/2;
+                	point = r.getRight();
             }else{
-                if(loc.y < r.y)
-                    y = r.y;
-                else if(loc.y > r.y + r.height)
-                    y = r.y + r.height;
-                else
-                    y = loc.y;
-                
-                if(loc.x > r.x && loc.x < r.x + r.width/2)
-                    x = loc.x;
-                else
-                    x = r.x + r.width/2;
+            	if(loc.y < r.y)
+            		point = r.getTop();
+            	else if(loc.y > r.y + r.height)
+            		point = r.getBottom();
             }
         }else{
             if(style == RouteStyle.heightFirst) {
-                if(loc.x < r.x)
-                    x = r.x;
-                else if(loc.x > r.x + r.width)
-                    x = r.x + r.width;
-                else
-                    x = loc.x;
-                
-                if(loc.y > r.y && loc.y < r.y + r.height/2)
-                    y = loc.y;
-                else
-                    y = r.y + r.height/2;
+            	if(loc.y > r.y)
+            		point = r.getTop();
+            	else if(loc.y > r.y + r.height)
+            		point = r.getBottom();
             }else{
-                if(loc.y < r.y)
-                    y = r.y;
-                else if(loc.y > r.y + r.height)
-                    y = r.y + r.height;
-                else
-                    y = loc.y;
-                
-                if(loc.x > r.x && loc.x < r.x + r.width/2)
-                    x = loc.x;
-                else
-                    x = r.x + r.width/2;
+                if(loc.x < r.x)
+                	point = r.getRight();
+                else if(loc.x > r.x + r.width)
+                	point = r.getLeft();
             }
         }
             
-        Point p = new PrecisionPoint(x,y);
+        Point p = new PrecisionPoint(point);
         getOwner().translateToAbsolute(p);
         return p;
     }
