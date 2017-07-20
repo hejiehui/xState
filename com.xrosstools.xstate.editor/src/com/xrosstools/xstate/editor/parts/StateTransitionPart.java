@@ -3,7 +3,6 @@ package com.xrosstools.xstate.editor.parts;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import org.eclipse.draw2d.BendpointConnectionRouter;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -23,20 +22,24 @@ import com.xrosstools.xstate.editor.actions.StateMachineChangeTransitionAction;
 import com.xrosstools.xstate.editor.actions.StateMachineCreateTransitionAction;
 import com.xrosstools.xstate.editor.actions.StateMachineOpenTransitionAction;
 import com.xrosstools.xstate.editor.actions.StateMachineRemoveTransitionAction;
+import com.xrosstools.xstate.editor.model.RouteStyle;
 import com.xrosstools.xstate.editor.model.StateTransition;
 import com.xrosstools.xstate.editor.policies.StateTransitionComponentEditPolicy;
 
 public class StateTransitionPart extends AbstractConnectionEditPart implements PropertyChangeListener, ContextMenuBuilder {
 	private Label label;
+	private PolylineConnection conn;
+	private CommonStyleRouter router;
+	RouteStyle style;
     protected IFigure createFigure() {
-        PolylineConnection conn = new PolylineConnection();
+        StateTransition nodeConn = (StateTransition)getModel();
+        
+        conn = new PolylineConnection();
         conn.setTargetDecoration(new PolygonDecoration());
-        conn.setConnectionRouter(new BendpointConnectionRouter());
+        conn.setConnectionRouter(router = new CommonStyleRouter(nodeConn.getStyle()));
         conn.setForegroundColor(ColorConstants.black);
         
-        StateTransition nodeConn = (StateTransition)getModel();
         label = new Label();
-//        StateMachine diagram = (StateMachine)getRoot().getContents().getModel();
         label.setText(nodeConn.getDisplayLabel());
         label.setOpaque(true);
         conn.add(label, new MidpointLocator(conn, 0));
@@ -58,21 +61,22 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
     
     public void activate() {
     	super.activate();
-//    	((StateMachineDiagram)getRoot().getContents().getModel()).getListeners().addPropertyChangeListener(this);
     	((StateTransition) getModel()).getListeners().addPropertyChangeListener(this);
     }
     
     public void deactivate() {
     	super.deactivate();
-//    	((StateMachine)getRoot().getContents().getModel()).getListeners().removePropertyChangeListener(this);
     	((StateTransition) getModel()).getListeners().removePropertyChangeListener(this);
     }
     
     public void propertyChange(PropertyChangeEvent event){
     	StateTransition nodeConn = (StateTransition)getModel();
     	label.setText(nodeConn.getDisplayLabel());
+    	this.style = nodeConn.getStyle();
+    	router.style = nodeConn.getStyle();
+    	refresh();
     }
-
+    
 	@Override
 	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor, ImplementationFinder finder) {
     	menu.add(new Separator());

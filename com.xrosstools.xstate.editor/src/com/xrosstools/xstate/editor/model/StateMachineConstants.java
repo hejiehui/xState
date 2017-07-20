@@ -20,6 +20,7 @@ public interface StateMachineConstants {
 	String PROP_OUTPUTS = "Outputs";
 	String PROP_SOURCE = "Source";
 	String PROP_TARGET = "Target";
+	String PROP_STYLE = "style";
 	
 	String PROP_SIZE = "size";
 	String PROP_LOCATION = "location";

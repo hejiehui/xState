@@ -13,6 +13,7 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	private StateNode source;
 	private StateNode target;
 	private StateMachineHelper helper;
+	private RouteStyle style;
 	
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 	
@@ -29,6 +30,7 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 		descriptors = new IPropertyDescriptor[] {
 				new ComboBoxPropertyDescriptor(PROP_EVENT, PROP_EVENT, helper.getEventIds()),
 				new TextPropertyDescriptor(PROP_TRANSITION_ACTION, PROP_TRANSITION_ACTION),
+				new ComboBoxPropertyDescriptor(PROP_STYLE, PROP_STYLE, RouteStyle.getNames()),
 			};
 		return descriptors;
 	}
@@ -38,6 +40,8 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 			return helper.getEventIdIndex(event);
 		if (PROP_TRANSITION_ACTION.equals(propName))
 			return getValue(transitAction);
+        if(PROP_STYLE.equals(propName))
+            return RouteStyle.getIndex(style);
 		
 		return null;
 	}
@@ -47,6 +51,8 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 			setEvent(helper.getEvent((Integer)value));
 		if (PROP_TRANSITION_ACTION.equals(propName))
 			setTransitAction((String)value);
+        if(PROP_STYLE.equals(propName))
+            setStyle(RouteStyle.values()[(Integer)value]);
 	}
 	
 	public Object getEditableValue(){
@@ -70,6 +76,7 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 		this.helper = helper;
 		source.addOutput(this);
 		target.addInput(this);
+		style = RouteStyle.direct;
 	}
 
 	public Event getEvent() {
@@ -100,10 +107,16 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 		this.target = target;
 		firePropertyChange(PROP_TARGET);
 	}
-	
 	public String getDisplayLabel(){
 		if(event == null || event.getId() == null)
 		    return NOT_SPECIFIED;
 		return event.getId();
 	}
+    public RouteStyle getStyle() {
+        return style;
+    }
+    public void setStyle(RouteStyle style) {
+        this.style = style;
+        firePropertyChange(PROP_STYLE);
+    }
 }

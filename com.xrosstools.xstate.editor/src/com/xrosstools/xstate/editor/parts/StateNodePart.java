@@ -4,7 +4,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -41,19 +40,19 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
     }
 	
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
-        return new ChopboxAnchor(getFigure());
+	    return new CommonStyleAnchor(getFigure(), connection, true);
 	}
 
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
-        return new ChopboxAnchor(getFigure());
+	    return new CommonStyleAnchor(getFigure(), connection, false);
 	}
 
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-        return new ChopboxAnchor(getFigure());
+	    return new CommonStyleAnchor(getFigure(), request, true);	
 	}
 
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-        return new ChopboxAnchor(getFigure());
+	    return new CommonStyleAnchor(getFigure(), request, false);
 	}
 	
 	protected void createEditPolicies() {
