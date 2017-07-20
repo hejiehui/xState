@@ -102,15 +102,8 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	}
 	
 	public String getDisplayLabel(){
-		StringBuffer sbf = new StringBuffer();
-		if(event != null && event.getId() != null)
-			sbf.append(event.getId());
-		
-		if(transitAction != null)
-			sbf.append(transitAction);
-		
-		if(sbf.length() == 0)
-			return NOT_SPECIFIED;
-		return sbf.toString();
+		if(event == null || event.getId() == null)
+		    return NOT_SPECIFIED;
+		return event.getId();
 	}
 }
