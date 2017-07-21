@@ -29,7 +29,6 @@ public class CreateTransitionCommand extends Command {
 
 	public void setSource(StateNode source) {
 		this.source = source;
-		this.style = style;
 	}
 
 	public void setTarget(StateNode target) {

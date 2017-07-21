@@ -17,12 +17,6 @@ public class CommonStyleAnchor extends AbstractConnectionAnchor {
         this.style = style;
         this.isSource = isSource;
     }
-    
-    public CommonStyleAnchor(IFigure owner, Request request, boolean isSource) {
-        super(owner);
-        this.style = RouteStyle.direct;
-        this.isSource = isSource;
-    }
 
     public Point getLocation(Point loc)
     {
@@ -43,12 +37,12 @@ public class CommonStyleAnchor extends AbstractConnectionAnchor {
                 else
                     pos = r.getBottom();
             }else{
-            	if(loc.y < r.y)
-            	    pos = r.getTop();
-            	else if(loc.y > r.y + r.height)
-            	    pos = r.getBottom();
-            	else if(loc.x < certer.x)
-            	    pos = r.getLeft();
+                if(loc.y < r.y)
+                    pos = r.getTop();
+                else if(loc.y > r.y + r.height)
+                    pos = r.getBottom();
+                else if(loc.x < certer.x)
+                    pos = r.getLeft();
                 else
                     pos = r.getRight();
             }
@@ -65,7 +59,7 @@ public class CommonStyleAnchor extends AbstractConnectionAnchor {
             }else{
                 if(loc.x < r.x)
                     pos = r.getLeft();
-                else if(loc.x > r.x + r.width)
+                else  if(loc.x > r.x + r.width)
                     pos = r.getRight();
                 else if(loc.y > certer.y)
                     pos = r.getTop();
