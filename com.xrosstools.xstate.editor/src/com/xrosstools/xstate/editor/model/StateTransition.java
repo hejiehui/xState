@@ -70,13 +70,13 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 		return value == null? "" : value;
 	}
 
-	public StateTransition(StateNode source, StateNode target, StateMachineHelper helper){
+	public StateTransition(StateNode source, StateNode target, RouteStyle style, StateMachineHelper helper){
 		this.source =source;
 		this.target = target;
 		this.helper = helper;
 		source.addOutput(this);
 		target.addInput(this);
-		style = RouteStyle.direct;
+		this.style = style;
 	}
 
 	public Event getEvent() {

@@ -102,6 +102,7 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 			node.setAttribute(SOURCE_ID, transition.getSource().getId());
 			node.setAttribute(TARGET_ID, transition.getTarget().getId());
 			node.setAttribute(TRANSIT_ACTION, transition.getTransitAction());
+			node.setAttribute(STYLE, transition.getStyle().name());
 		}
 	}
 	

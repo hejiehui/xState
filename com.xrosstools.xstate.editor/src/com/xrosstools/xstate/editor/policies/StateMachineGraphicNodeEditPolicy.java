@@ -9,6 +9,7 @@ import com.xrosstools.xstate.editor.commands.CreateTransitionCommand;
 import com.xrosstools.xstate.editor.commands.ReconnectSourceCommand;
 import com.xrosstools.xstate.editor.commands.ReconnectTargetCommand;
 import com.xrosstools.xstate.editor.model.EndNode;
+import com.xrosstools.xstate.editor.model.RouteStyle;
 import com.xrosstools.xstate.editor.model.StartNode;
 import com.xrosstools.xstate.editor.model.StateMachine;
 import com.xrosstools.xstate.editor.model.StateNode;
@@ -29,7 +30,7 @@ public class StateMachineGraphicNodeEditPolicy extends GraphicalNodeEditPolicy {
 		if(getHost().getModel() instanceof EndNode)
 			return null;
 		
-		CreateTransitionCommand cmd = new CreateTransitionCommand();
+		CreateTransitionCommand cmd = new CreateTransitionCommand((RouteStyle)request.getNewObjectType());
 		cmd.setSource((StateNode)getHost().getModel());
 		request.setStartCommand(cmd);
 		return cmd;

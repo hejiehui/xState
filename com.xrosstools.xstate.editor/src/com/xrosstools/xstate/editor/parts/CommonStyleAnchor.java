@@ -1,67 +1,80 @@
 package com.xrosstools.xstate.editor.parts;
 
-import org.eclipse.draw2d.ChopboxAnchor;
+import org.eclipse.draw2d.AbstractConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.Request;
 
 import com.xrosstools.xstate.editor.model.RouteStyle;
 
-public class CommonStyleAnchor extends ChopboxAnchor {
-    private StateTransitionPart connPart;
+public class CommonStyleAnchor extends AbstractConnectionAnchor {
+    private RouteStyle style;
     private boolean isSource;
-    public CommonStyleAnchor(IFigure owner, ConnectionEditPart connection, boolean isSource) {
+    public CommonStyleAnchor(IFigure owner, RouteStyle style, boolean isSource) {
         super(owner);
-        connPart = (StateTransitionPart)connection;
+        this.style = style;
         this.isSource = isSource;
     }
     
     public CommonStyleAnchor(IFigure owner, Request request, boolean isSource) {
         super(owner);
+        this.style = RouteStyle.direct;
         this.isSource = isSource;
     }
 
     public Point getLocation(Point loc)
     {
-        RouteStyle style = connPart.style;
-        if(style == RouteStyle.direct)
-            return super.getLocation(loc);
-        
         Rectangle r = getOwner().getBounds();
-        int x;
-        int y;
         
-        Point point = r.getCenter();
+        Point certer = r.getCenter();
+        Point pos = null;
+        getOwner().translateToRelative(certer);
+        
         if(isSource){
             if(style == RouteStyle.heightFirst) {
                 if(loc.x < r.x)
-                    point = r.getLeft();
+                    pos = r.getLeft();
                 else if(loc.x > r.x + r.width)
-                	point = r.getRight();
+                    pos = r.getRight();
+                else if(loc.y > certer.y)
+                    pos = r.getTop();
+                else
+                    pos = r.getBottom();
             }else{
             	if(loc.y < r.y)
-            		point = r.getTop();
+            	    pos = r.getTop();
             	else if(loc.y > r.y + r.height)
-            		point = r.getBottom();
+            	    pos = r.getBottom();
+            	else if(loc.x < certer.x)
+            	    pos = r.getLeft();
+                else
+                    pos = r.getRight();
             }
         }else{
             if(style == RouteStyle.heightFirst) {
-            	if(loc.y > r.y)
-            		point = r.getTop();
+            	if(loc.y < r.y)
+            	    pos = r.getTop();
             	else if(loc.y > r.y + r.height)
-            		point = r.getBottom();
+            	    pos = r.getBottom();
+            	else if(loc.x < certer.x)
+            	    pos = r.getLeft();
+                else
+                    pos = r.getRight();
             }else{
                 if(loc.x < r.x)
-                	point = r.getRight();
+                    pos = r.getLeft();
                 else if(loc.x > r.x + r.width)
-                	point = r.getLeft();
+                    pos = r.getRight();
+                else if(loc.y > certer.y)
+                    pos = r.getTop();
+                else
+                    pos = r.getBottom();
             }
         }
             
-        Point p = new PrecisionPoint(point);
+        Point p = new PrecisionPoint(pos);
         getOwner().translateToAbsolute(p);
         return p;
     }

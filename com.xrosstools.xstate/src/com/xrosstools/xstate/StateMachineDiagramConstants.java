@@ -29,5 +29,6 @@ public interface StateMachineDiagramConstants {
 	String TRANSIT_ACTION = "transit_action";
 	String SOURCE_ID = "source_id";
 	String TARGET_ID = "target_id";
+	String STYLE = "style";
 	
 }

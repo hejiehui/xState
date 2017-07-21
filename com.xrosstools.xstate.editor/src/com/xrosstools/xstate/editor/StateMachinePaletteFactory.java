@@ -13,9 +13,11 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gef.requests.CreationFactory;
 import org.eclipse.gef.requests.SimpleFactory;
 
 import com.xrosstools.xstate.editor.model.EndNode;
+import com.xrosstools.xstate.editor.model.RouteStyle;
 import com.xrosstools.xstate.editor.model.StartNode;
 import com.xrosstools.xstate.editor.model.StateMachine;
 import com.xrosstools.xstate.editor.model.StateNode;
@@ -43,6 +45,12 @@ public class StateMachinePaletteFactory {
     	{"End Node", EndNode.class, Activator.END_NODE},
     };
 
+    private static Object[][] CONN_ENTRIES = new Object[][]{
+        {"Direct Route", RouteStyle.direct, Activator.ROUTE_DIRECT},
+        {"Height First Route", RouteStyle.heightFirst, Activator.ROUTE_HEIGHT_FIRST},
+        {"Width First Route", RouteStyle.widthFirst, Activator.ROUTE_WIDTH_FIRST},
+    };
+    
     private PaletteContainer createControlGroup(PaletteRoot root) {
         PaletteGroup controlGroup = new PaletteGroup("Control Group");
         List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
@@ -69,12 +77,17 @@ public class StateMachinePaletteFactory {
     	}
 
     	entries.add(new PaletteSeparator());
-    	entries.add(new ConnectionCreationToolEntry(
-    			"Transition",
-    			"Transition",
-    			null,
-    			Activator.getDefault().getImageRegistry().getDescriptor(Activator.TRANSITION),    			
-    			Activator.getDefault().getImageRegistry().getDescriptor(Activator.TRANSITION)));
+        for(final Object[] entry: CONN_ENTRIES) {
+            entries.add(new ConnectionCreationToolEntry(
+                    (String)entry[0],
+                    (String)entry[0],
+                    new CreationFactory() {
+                        public Object getNewObject() { return entry[1];}
+                        public Object getObjectType() { return entry[1];}
+                    },
+                    Activator.getDefault().getImageRegistry().getDescriptor(((String)entry[2])),                
+                    Activator.getDefault().getImageRegistry().getDescriptor(((String)entry[2]))));
+        }
     	controlGroup.addAll(entries);
         return controlGroup;
     }    

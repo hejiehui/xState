@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -15,6 +16,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.ui.IWorkbenchPart;
@@ -27,7 +29,9 @@ import com.xrosstools.xstate.editor.actions.StateMachineCreateExitAction;
 import com.xrosstools.xstate.editor.actions.StateMachineOpenExitAction;
 import com.xrosstools.xstate.editor.actions.StateMachineRemoveEntryAction;
 import com.xrosstools.xstate.editor.actions.StateMachineRemoveExitAction;
+import com.xrosstools.xstate.editor.commands.CreateTransitionCommand;
 import com.xrosstools.xstate.editor.figures.StateNodeFigure;
+import com.xrosstools.xstate.editor.model.RouteStyle;
 import com.xrosstools.xstate.editor.model.StateMachineConstants;
 import com.xrosstools.xstate.editor.model.StateNode;
 import com.xrosstools.xstate.editor.model.StateTransition;
@@ -40,19 +44,35 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
     }
 	
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
-	    return new CommonStyleAnchor(getFigure(), connection, true);
+        StateTransitionPart connPart = (StateTransitionPart)connection;
+        return connPart.style == RouteStyle.direct ? 
+                new ChopboxAnchor(getFigure()) : 
+                    new CommonStyleAnchor(getFigure(), connPart.style, true);
 	}
 
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
-	    return new CommonStyleAnchor(getFigure(), connection, false);
+        StateTransitionPart connPart = (StateTransitionPart)connection;
+        return connPart.style == RouteStyle.direct ? 
+                new ChopboxAnchor(getFigure()) : 
+                    new CommonStyleAnchor(getFigure(), connPart.style, false);
 	}
 
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-	    return new CommonStyleAnchor(getFigure(), request, true);	
+        CreateConnectionRequest req = (CreateConnectionRequest)request;
+        CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
+        
+        return cmd.getStyle() == RouteStyle.direct ? 
+                new ChopboxAnchor(getFigure()) : 
+                    new CommonStyleAnchor(getFigure(), cmd.getStyle(), true);
 	}
 
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-	    return new CommonStyleAnchor(getFigure(), request, false);
+        CreateConnectionRequest req = (CreateConnectionRequest)request;
+        CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
+        
+        return cmd.getStyle() == RouteStyle.direct ? 
+                new ChopboxAnchor(getFigure()) : 
+                    new CommonStyleAnchor(getFigure(), cmd.getStyle(), false);
 	}
 	
 	protected void createEditPolicies() {

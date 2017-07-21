@@ -22,7 +22,9 @@ public class Activator extends AbstractUIPlugin {
 	public static final String STATE_NODE = "state_node";
 	public static final String START_NODE = "start_node";
 	public static final String END_NODE = "end_node";
-	public static final String TRANSITION = "transition";
+    public static final String ROUTE_DIRECT = "arrows_direct";
+    public static final String ROUTE_HEIGHT_FIRST = "arrows_height";
+    public static final String ROUTE_WIDTH_FIRST = "arrows_width";
 	public static final String ENTRY_ACTION = "end_point";
 	public static final String EXIT_ACTION = "start_point";
 	public static final String TRANSITION_ACTION = "transition_action";
@@ -69,7 +71,9 @@ public class Activator extends AbstractUIPlugin {
     	put(reg, STATE_NODE);
     	put(reg, START_NODE);
     	put(reg, END_NODE);
-    	put(reg, TRANSITION);
+    	put(reg, ROUTE_DIRECT);
+    	put(reg, ROUTE_HEIGHT_FIRST);
+    	put(reg, ROUTE_WIDTH_FIRST);
     	put(reg, ENTRY_ACTION);
 		put(reg, EXIT_ACTION);
 		put(reg, TRANSITION_ACTION);

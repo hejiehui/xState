@@ -16,6 +16,7 @@ import org.w3c.dom.Node;
 import com.xrosstools.xstate.StateMachineDiagramConstants;
 import com.xrosstools.xstate.editor.model.EndNode;
 import com.xrosstools.xstate.editor.model.Event;
+import com.xrosstools.xstate.editor.model.RouteStyle;
 import com.xrosstools.xstate.editor.model.StartNode;
 import com.xrosstools.xstate.editor.model.StateMachine;
 import com.xrosstools.xstate.editor.model.StateMachineDiagram;
@@ -112,7 +113,12 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 			StateNode source = states.get(getAttribute(node, SOURCE_ID));
 			StateNode target = states.get(getAttribute(node, TARGET_ID));
 			Event event = events.get(getAttribute(node, EVENT_ID));
-			StateTransition transition = new StateTransition(source, target, machine.getHelper());
+			
+			RouteStyle style = getAttribute(node, STYLE) == null ? 
+			        RouteStyle.direct :
+			            RouteStyle.valueOf(getAttribute(node, STYLE));
+			
+			StateTransition transition = new StateTransition(source, target, style, machine.getHelper());
 			transition.setEvent(event);
 			transition.setTransitAction(getAttribute(node, TRANSIT_ACTION));
 		}
