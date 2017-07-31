@@ -23,6 +23,7 @@ public class CommonStyleAnchor extends AbstractConnectionAnchor {
 
     private Point getTargetLocation(Point ref)
     {
+//    	System.out.println("Tartget :" + ref);
         Rectangle r = getOwner().getBounds();
         
         Point certer = r.getCenter();
@@ -56,29 +57,29 @@ public class CommonStyleAnchor extends AbstractConnectionAnchor {
     
     private Point getSourceLocation(Point ref)
     {
+    	System.out.println("Source Ref :" + ref);
         Rectangle r = getOwner().getBounds();
         
-        Point certer = r.getCenter();
         Point pos;
-        getOwner().translateToRelative(certer);
+        getOwner().translateToRelative(r);
         
         if(style == RouteStyle.heightFirst) {
-            if(ref.y < r.y)
+            if(ref.y < r.getTop().y())
                 pos = r.getTop();
-            else if(ref.y > r.y + r.height)
+            else if(ref.y > r.getBottom().y())
                 pos = r.getBottom();
-            else if(ref.x < certer.x)
+            else if(ref.x < r.getLeft().x())
                 pos = r.getLeft();
             else
                 pos = r.getRight();
         }else{
-            if(ref.x < r.x)
-                pos = r.getLeft();
-            else  if(ref.x > r.x + r.width)
-                pos = r.getRight();
-            else if(ref.y > certer.y)
-                pos = r.getTop();
-            else
+//            if(ref.x < r.x)
+//                pos = r.getLeft();
+//            else  if(ref.x > r.x + r.width)
+//                pos = r.getRight();
+//            else if(ref.y > certer.y)
+//                pos = r.getTop();
+//            else
                 pos = r.getBottom();
         }
             

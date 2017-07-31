@@ -23,7 +23,7 @@ public class CommonStyleRouter extends AbstractRouter {
         Point end = getEndPoint(conn);
         conn.translateToRelative(end);
 
-        if (style == RouteStyle.direct || start.x == end.x || start.y == end.y) {
+        if (style == RouteStyle.direct) {
             pl.addPoint(start);
             pl.addPoint(end);
             return;

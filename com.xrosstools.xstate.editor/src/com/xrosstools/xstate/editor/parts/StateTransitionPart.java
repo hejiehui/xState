@@ -33,7 +33,7 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
 	RouteStyle style;
     protected IFigure createFigure() {
         StateTransition nodeConn = (StateTransition)getModel();
-        
+        this.style = nodeConn.getStyle();
         conn = new PolylineConnection();
         conn.setTargetDecoration(new PolygonDecoration());
         conn.setConnectionRouter(router = new CommonStyleRouter(nodeConn.getStyle()));
