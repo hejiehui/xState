@@ -17,15 +17,19 @@ public class CommonStyleAnchor extends ChopboxAnchor {
         this.isSource = isSource;
     }
     public Point getLocation(Point loc) {
-        return style == RouteStyle.direct ? super.getLocation(loc) : isSource ? getSourceLocation(loc) : getTargetLocation(loc);
+    	return style == RouteStyle.direct ? 
+    			super.getLocation(loc) :
+    				isSource ? 
+    						getSourceLocation(loc) : 
+    							getTargetLocation(loc);
     }
 
     private Point getSourceLocation(Point ref)
     {
-        Rectangle r = getOwner().getBounds();
+        Rectangle r = new Rectangle(getBox());
         
         Point pos;
-        getOwner().translateToRelative(r);
+        getOwner().translateToAbsolute(r);
         
         if(style == RouteStyle.heightFirst) {
             if(ref.y < r.y())
@@ -47,17 +51,16 @@ public class CommonStyleAnchor extends ChopboxAnchor {
                 pos = r.getBottom();
         }
             
-        Point p = new PrecisionPoint(pos);
-        getOwner().translateToAbsolute(p);
+        Point p = new Point(pos);
         return p;
     }
 
     private Point getTargetLocation(Point ref)
     {
-        Rectangle r = getOwner().getBounds();
+    	Rectangle r = new Rectangle(getBox());
         
         Point pos;
-        getOwner().translateToRelative(r);
+        getOwner().translateToAbsolute(r);
         
         if(style == RouteStyle.heightFirst) {
             if(ref.x < r.x)
@@ -79,8 +82,7 @@ public class CommonStyleAnchor extends ChopboxAnchor {
                 pos = r.getRight();
         }
             
-        Point p = new PrecisionPoint(pos);
-        getOwner().translateToAbsolute(p);
+        Point p = new Point(pos);
         return p;
     }
 }

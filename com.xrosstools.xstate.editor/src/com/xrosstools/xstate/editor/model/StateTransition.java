@@ -74,9 +74,9 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 		this.source =source;
 		this.target = target;
 		this.helper = helper;
+		this.style = style;
 		source.addOutput(this);
 		target.addInput(this);
-		this.style = style;
 	}
 
 	public Event getEvent() {

@@ -38,13 +38,14 @@ public class CommonStyleRouter extends AbstractRouter {
         if (style == RouteStyle.heightFirst) {
             middle = new Point(start.x, end.y);
             pl.addPoint(middle);
+            if(middle.x == end.x)
+            	return;
         } else {
             middle = new Point(end.x, start.y);
             pl.addPoint(middle);
+            if(middle.y == end.y)
+            	return;
         }
-        
-//        if(middle.x == end.x || middle.y == end.y)
-//            return;
         
         pl.addPoint(end);
     }
