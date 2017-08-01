@@ -52,8 +52,7 @@ public class StateMachineDiagramPart extends AbstractGraphicalEditPart implement
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
-//		String prop = evt.getPropertyName();
-		refreshChildren();
+		refresh();
 	}
 	
 	public void activate() {

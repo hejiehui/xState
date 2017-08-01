@@ -4,7 +4,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -31,7 +30,6 @@ import com.xrosstools.xstate.editor.actions.StateMachineRemoveEntryAction;
 import com.xrosstools.xstate.editor.actions.StateMachineRemoveExitAction;
 import com.xrosstools.xstate.editor.commands.CreateTransitionCommand;
 import com.xrosstools.xstate.editor.figures.StateNodeFigure;
-import com.xrosstools.xstate.editor.model.RouteStyle;
 import com.xrosstools.xstate.editor.model.StateMachineConstants;
 import com.xrosstools.xstate.editor.model.StateNode;
 import com.xrosstools.xstate.editor.model.StateTransition;
@@ -44,35 +42,25 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
     }
 	
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
-        StateTransitionPart connPart = (StateTransitionPart)connection;
-        return connPart.style == RouteStyle.direct ? 
-                new ChopboxAnchor(getFigure()) : 
-                    new CommonStyleAnchor(getFigure(), connPart.style, true);
+        return new CommonStyleAnchor(getFigure(), ((StateTransitionPart)connection).getStyle(), true);
 	}
 
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
-        StateTransitionPart connPart = (StateTransitionPart)connection;
-        return connPart.style == RouteStyle.direct ? 
-                new ChopboxAnchor(getFigure()) : 
-                    new CommonStyleAnchor(getFigure(), connPart.style, false);
+	    return new CommonStyleAnchor(getFigure(), ((StateTransitionPart)connection).getStyle(), false);
 	}
 
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
         CreateConnectionRequest req = (CreateConnectionRequest)request;
         CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
         
-        return cmd.getStyle() == RouteStyle.direct ? 
-                new ChopboxAnchor(getFigure()) : 
-                    new CommonStyleAnchor(getFigure(), cmd.getStyle(), true);
+        return new CommonStyleAnchor(getFigure(), cmd.getStyle(), true);
 	}
 
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
         CreateConnectionRequest req = (CreateConnectionRequest)request;
         CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
         
-        return cmd.getStyle() == RouteStyle.direct ? 
-                new ChopboxAnchor(getFigure()) : 
-                    new CommonStyleAnchor(getFigure(), cmd.getStyle(), false);
+        return new CommonStyleAnchor(getFigure(), cmd.getStyle(), false);
 	}
 	
 	protected void createEditPolicies() {

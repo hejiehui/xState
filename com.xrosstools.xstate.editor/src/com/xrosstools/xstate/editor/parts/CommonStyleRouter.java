@@ -8,9 +8,13 @@ import org.eclipse.draw2d.geometry.PointList;
 import com.xrosstools.xstate.editor.model.RouteStyle;
 
 public class CommonStyleRouter extends AbstractRouter {
-    RouteStyle style;
+    private RouteStyle style;
 
     public CommonStyleRouter(RouteStyle style) {
+        this.style = style;
+    }
+    
+    public void setStyle(RouteStyle style) {
         this.style = style;
     }
 
@@ -38,6 +42,10 @@ public class CommonStyleRouter extends AbstractRouter {
             middle = new Point(end.x, start.y);
             pl.addPoint(middle);
         }
+        
+//        if(middle.x == end.x || middle.y == end.y)
+//            return;
+        
         pl.addPoint(end);
     }
 }

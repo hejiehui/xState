@@ -4,7 +4,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ImageFigure;
@@ -22,7 +21,6 @@ import org.eclipse.gef.tools.DirectEditManager;
 
 import com.xrosstools.xstate.editor.Activator;
 import com.xrosstools.xstate.editor.commands.CreateTransitionCommand;
-import com.xrosstools.xstate.editor.model.RouteStyle;
 import com.xrosstools.xstate.editor.model.StateMachineConstants;
 import com.xrosstools.xstate.editor.model.StateNode;
 import com.xrosstools.xstate.editor.model.StateTransition;
@@ -34,37 +32,28 @@ public class StartNodePart extends AbstractGraphicalEditPart implements StateMac
 	protected IFigure createFigure() {
 		return new ImageFigure(Activator.getDefault().getImageRegistry().get(Activator.START_NODE));
     }
-	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
-	    StateTransitionPart connPart = (StateTransitionPart)connection;
-	    return connPart.style == RouteStyle.direct ? 
-	            new ChopboxAnchor(getFigure()) : 
-	                new CommonStyleAnchor(getFigure(), connPart.style, true);
-	}
+	
+    public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
+        return new CommonStyleAnchor(getFigure(), ((StateTransitionPart)connection).getStyle(), true);
+    }
 
-	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
-        StateTransitionPart connPart = (StateTransitionPart)connection;
-        return connPart.style == RouteStyle.direct ? 
-                new ChopboxAnchor(getFigure()) : 
-                    new CommonStyleAnchor(getFigure(), connPart.style, false);
-	}
+    public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
+        return new CommonStyleAnchor(getFigure(), ((StateTransitionPart)connection).getStyle(), false);
+    }
 
-	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-	    CreateConnectionRequest req = (CreateConnectionRequest)request;
-	    CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
-	    
-        return cmd.getStyle() == RouteStyle.direct ? 
-                new ChopboxAnchor(getFigure()) : 
-                    new CommonStyleAnchor(getFigure(), cmd.getStyle(), true);
-	}
-
-	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+    public ConnectionAnchor getSourceConnectionAnchor(Request request) {
         CreateConnectionRequest req = (CreateConnectionRequest)request;
         CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
         
-        return cmd.getStyle() == RouteStyle.direct ? 
-                new ChopboxAnchor(getFigure()) : 
-                    new CommonStyleAnchor(getFigure(), cmd.getStyle(), false);
-	}
+        return new CommonStyleAnchor(getFigure(), cmd.getStyle(), true);
+    }
+
+    public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+        CreateConnectionRequest req = (CreateConnectionRequest)request;
+        CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
+        
+        return new CommonStyleAnchor(getFigure(), cmd.getStyle(), false);
+    }
 
 	public void performRequest(Request req) {
 //		if (req.getType() == RequestConstants.REQ_DIRECT_EDIT){

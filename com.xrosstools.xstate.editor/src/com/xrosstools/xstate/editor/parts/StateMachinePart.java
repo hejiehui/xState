@@ -23,13 +23,11 @@ import com.xrosstools.xstate.editor.policies.StateMachineLayoutPolicy;
 
 public class StateMachinePart  extends AbstractGraphicalEditPart implements PropertyChangeListener, ContextMenuBuilder {
     protected List<StateNode> getModelChildren() {
-    	StateMachine diagram = (StateMachine)getModel();
-        return diagram.getNodes();
+        return ((StateMachine)getModel()).getNodes();
     }
 
 	protected IFigure createFigure() {
-		IFigure figure  = new StateMachineFigure();
-        return figure;
+        return new StateMachineFigure();
 	}
 	
 	public IFigure getContentPane(){
@@ -66,12 +64,12 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
 		child.getParent().remove(child);
 	}
 	
-    protected void refreshVisuals() {
-    	StateMachine node = (StateMachine) getModel();
-    	StateMachineFigure figure = (StateMachineFigure)getFigure();
-    	
-       	figure.setName(node.getName(), node.getDescription());
-    }
+//    protected void refreshVisuals() {
+//    	StateMachine node = (StateMachine) getModel();
+//    	StateMachineFigure figure = (StateMachineFigure)getFigure();
+//    	
+//       	figure.setName(node.getName(), node.getDescription());
+//    }
 
 	@Override
 	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor, ImplementationFinder finder) {

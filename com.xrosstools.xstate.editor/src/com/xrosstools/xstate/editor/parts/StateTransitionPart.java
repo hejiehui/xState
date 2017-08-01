@@ -27,16 +27,15 @@ import com.xrosstools.xstate.editor.model.StateTransition;
 import com.xrosstools.xstate.editor.policies.StateTransitionComponentEditPolicy;
 
 public class StateTransitionPart extends AbstractConnectionEditPart implements PropertyChangeListener, ContextMenuBuilder {
+    private StateTransition nodeConn;
 	private Label label;
-	private PolylineConnection conn;
 	private CommonStyleRouter router;
-	RouteStyle style;
     protected IFigure createFigure() {
-        StateTransition nodeConn = (StateTransition)getModel();
-        this.style = nodeConn.getStyle();
-        conn = new PolylineConnection();
+        nodeConn = (StateTransition)getModel();
+        PolylineConnection conn = new PolylineConnection();
         conn.setTargetDecoration(new PolygonDecoration());
-        conn.setConnectionRouter(router = new CommonStyleRouter(nodeConn.getStyle()));
+        router = new CommonStyleRouter(nodeConn.getStyle());
+        conn.setConnectionRouter(router);
         conn.setForegroundColor(ColorConstants.black);
         
         label = new Label();
@@ -70,11 +69,13 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
     }
     
     public void propertyChange(PropertyChangeEvent event){
-    	StateTransition nodeConn = (StateTransition)getModel();
     	label.setText(nodeConn.getDisplayLabel());
-    	this.style = nodeConn.getStyle();
-    	router.style = nodeConn.getStyle();
+    	router.setStyle(nodeConn.getStyle());
     	refresh();
+    }
+    
+    public RouteStyle getStyle() {
+        return nodeConn.getStyle();
     }
     
 	@Override
