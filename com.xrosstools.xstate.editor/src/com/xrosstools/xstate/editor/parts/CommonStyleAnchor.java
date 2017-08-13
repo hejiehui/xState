@@ -36,10 +36,17 @@ public class CommonStyleAnchor extends ChopboxAnchor {
                 pos = r.getTop();
             else if(ref.y > r.y + r.height)
                 pos = r.getBottom();
-            else if(ref.x < r.x + r.width)
-                pos = r.getLeft();
-            else
-                pos = r.getRight();
+            else if(ref.x < r.x + r.width) {
+            	if(ref.y >= r.y && ref.y <= r.y + r.height)
+            		pos = new Point(r.x, ref.y);
+            	else
+            		pos = r.getLeft();
+            }else {
+            	if(ref.y >= r.y && ref.y <= r.y + r.height)
+            		pos = new Point(r.x + r.width, ref.y);
+            	else
+            		pos = r.getRight();
+            }
         }else{
             if(ref.x < r.x)
                 pos = r.getLeft();
