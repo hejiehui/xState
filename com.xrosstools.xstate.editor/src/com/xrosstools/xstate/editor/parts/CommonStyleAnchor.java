@@ -3,7 +3,6 @@ package com.xrosstools.xstate.editor.parts;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 import com.xrosstools.xstate.editor.model.RouteStyle;
