@@ -4,17 +4,17 @@
  <name>StateMachineDiagram</name>
  <description/>
  <state_machines>
-  <state_machine>
+  <state_machine height="600" width="1200">
    <name>DB Health Lifecycle</name>
    <description/>
    <states>
-    <state id="Normal" x_loc="317" y_loc="69">
+    <state id="Normal" x_loc="229" y_loc="158">
      <description/>
      <reference/>
      <entry_action>com.xrosstools.xstate.sample.TestAction</entry_action>
      <exit_action>com.xrosstools.xstate.sample.TestAction</exit_action>
     </state>
-    <state id="OutOfService" x_loc="318" y_loc="249">
+    <state id="OutOfService" x_loc="418" y_loc="382">
      <description/>
      <reference/>
      <entry_action>com.xrosstools.xstate.sample.TestAction</entry_action>
@@ -40,14 +40,14 @@
     <event id="markup"/>
    </events>
    <transitions>
-    <transition event_id="markdown" source_id="Normal" style="direct" target_id="OutOfService" transit_action=""/>
+    <transition event_id="markdown" source_id="Normal" style="heightFirst" target_id="OutOfService" transit_action=""/>
     <transition event_id="shutdown" source_id="Normal" style="direct" target_id="end" transit_action=""/>
-    <transition event_id="shutdown" source_id="OutOfService" style="direct" target_id="end" transit_action=""/>
-    <transition event_id="markup" source_id="OutOfService" style="direct" target_id="Normal" transit_action=""/>
-    <transition event_id="initialize" source_id="start" style="direct" target_id="Normal" transit_action=""/>
+    <transition event_id="shutdown" source_id="OutOfService" style="widthFirst" target_id="end" transit_action=""/>
+    <transition event_id="markup" source_id="OutOfService" style="heightFirst" target_id="Normal" transit_action=""/>
+    <transition event_id="initialize" source_id="start" style="heightFirst" target_id="Normal" transit_action=""/>
    </transitions>
   </state_machine>
-  <state_machine>
+  <state_machine height="300" width="1200">
    <name>vip flow</name>
    <description/>
    <states>
