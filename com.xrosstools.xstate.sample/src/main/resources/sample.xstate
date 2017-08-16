@@ -40,11 +40,11 @@
     <event id="markup"/>
    </events>
    <transitions>
-    <transition event_id="markdown" source_id="Normal" target_id="OutOfService" transit_action=""/>
-    <transition event_id="shutdown" source_id="Normal" target_id="end" transit_action=""/>
-    <transition event_id="shutdown" source_id="OutOfService" target_id="end" transit_action=""/>
-    <transition event_id="markup" source_id="OutOfService" target_id="Normal" transit_action=""/>
-    <transition event_id="initialize" source_id="start" target_id="Normal" transit_action=""/>
+    <transition event_id="markdown" source_id="Normal" style="direct" target_id="OutOfService" transit_action=""/>
+    <transition event_id="shutdown" source_id="Normal" style="direct" target_id="end" transit_action=""/>
+    <transition event_id="shutdown" source_id="OutOfService" style="direct" target_id="end" transit_action=""/>
+    <transition event_id="markup" source_id="OutOfService" style="direct" target_id="Normal" transit_action=""/>
+    <transition event_id="initialize" source_id="start" style="direct" target_id="Normal" transit_action=""/>
    </transitions>
   </state_machine>
   <state_machine>
@@ -92,11 +92,11 @@
     <event id="pass"/>
    </events>
    <transitions>
-    <transition event_id="pass" source_id="start" target_id="validate" transit_action=""/>
-    <transition event_id="pass" source_id="validate" target_id="gether user info" transit_action=""/>
-    <transition event_id="pass" source_id="gether user info" target_id="data maintain" transit_action=""/>
-    <transition event_id="pass" source_id="data maintain" target_id="transfer" transit_action=""/>
-    <transition event_id="pass" source_id="transfer" target_id="end" transit_action=""/>
+    <transition event_id="pass" source_id="start" style="direct" target_id="validate" transit_action=""/>
+    <transition event_id="pass" source_id="validate" style="direct" target_id="gether user info" transit_action=""/>
+    <transition event_id="pass" source_id="gether user info" style="direct" target_id="data maintain" transit_action=""/>
+    <transition event_id="pass" source_id="data maintain" style="direct" target_id="transfer" transit_action=""/>
+    <transition event_id="pass" source_id="transfer" style="direct" target_id="end" transit_action=""/>
    </transitions>
   </state_machine>
  </state_machines>

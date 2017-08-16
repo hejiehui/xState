@@ -9,11 +9,17 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
 public class StateMachine implements StateMachineConstants, IPropertySource {
+    public static final int DEFAULT_WIDTH = 1200;
+    public static final int DEFAULT_HEIGHT = 600;
+    
 	private String name;
 	private String description;
 
 	private List<StateNode> nodes = new ArrayList<StateNode>();
 	private List<Event> events = new ArrayList<Event>();
+	private int height = DEFAULT_HEIGHT;
+	private int width = DEFAULT_WIDTH;
+	
 	private StateMachineHelper helper = new StateMachineHelper(this);
 	
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
@@ -31,6 +37,8 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 		descriptors = new IPropertyDescriptor[] {
 				new TextPropertyDescriptor(PROP_ID, PROP_ID),
 				new TextPropertyDescriptor(PROP_DESRIPTION, PROP_DESRIPTION),
+				new TextPropertyDescriptor(PROP_HEIGHT, PROP_HEIGHT),
+				new TextPropertyDescriptor(PROP_WIDTH, PROP_WIDTH),
 			};
 		return descriptors;
 	}
@@ -40,7 +48,10 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 			return getValue(name);
 		if (PROP_DESRIPTION.equals(propName))
 			return getValue(description);
-		
+		if(PROP_HEIGHT.equals(propName))
+		    return String.valueOf(height);
+        if(PROP_WIDTH.equals(propName))
+            return String.valueOf(width);
 		return null;
 	}
 
@@ -49,6 +60,10 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 			setName((String)value);
 		if (PROP_DESRIPTION.equals(propName))
 			setDescription((String)value);
+        if(PROP_HEIGHT.equals(propName))
+            setHeight(Integer.parseInt((String)value));
+        if(PROP_WIDTH.equals(propName))
+            setWidth(Integer.parseInt((String)value));
 	}
 	
 	public Object getEditableValue(){
@@ -125,4 +140,22 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 		this.events = events;
 		firePropertyChange(EVENT);
 	}
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+        firePropertyChange(PROP_HEIGHT);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+        firePropertyChange(PROP_WIDTH);
+    }	
 }

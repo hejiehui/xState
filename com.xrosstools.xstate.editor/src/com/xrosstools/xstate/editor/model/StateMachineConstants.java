@@ -23,6 +23,8 @@ public interface StateMachineConstants {
 	String PROP_STYLE = "style";
 	
 	String PROP_SIZE = "size";
+	String PROP_HEIGHT = "height";
+	String PROP_WIDTH = "width";
 	String PROP_LOCATION = "location";
 	String PROP_LAYOUT = "layout";
 	

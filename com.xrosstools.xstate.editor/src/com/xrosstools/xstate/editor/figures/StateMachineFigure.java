@@ -15,15 +15,12 @@ import com.xrosstools.xstate.editor.model.StateMachineConstants;
 public class StateMachineFigure extends Figure implements StateMachineConstants{
 	private Label label;
 	private IFigure figure;
-    public StateMachineFigure() {
-//      figure = new FreeformLayer();
-//      figure.setLayoutManager(new FreeformLayout());
-
+    public StateMachineFigure(int width, int height) {
         figure = new Figure();
         figure.setLayoutManager(new XYLayout());
         figure.setBorder(new LineBorder(ColorConstants.lightGray, 1));
-//        figure.setMinimumSize(new Dimension(500, 500));
-        figure.setPreferredSize(new Dimension(1200, 600));
+
+        figure.setPreferredSize(new Dimension(width, height));
 
         label = new Label();
 

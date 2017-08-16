@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -27,7 +28,9 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
     }
 
 	protected IFigure createFigure() {
-        return new StateMachineFigure();
+	    StateMachine node = (StateMachine) getModel();
+
+        return new StateMachineFigure(node.getWidth(), node.getHeight());
 	}
 	
 	public IFigure getContentPane(){
@@ -35,6 +38,9 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
+	    StateMachine node = (StateMachine) getModel();
+	    StateMachineFigure figure = (StateMachineFigure)getFigure();
+	    figure.getFigure().setPreferredSize(new Dimension(node.getWidth(), node.getHeight()));
 		refresh();
 	}
 	
