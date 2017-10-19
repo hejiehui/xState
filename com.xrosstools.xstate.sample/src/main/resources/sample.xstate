@@ -14,19 +14,19 @@
      <entry_action>com.xrosstools.xstate.sample.TestAction</entry_action>
      <exit_action>com.xrosstools.xstate.sample.TestAction</exit_action>
     </state>
-    <state id="OutOfService" x_loc="418" y_loc="382">
+    <state id="OutOfService" x_loc="411" y_loc="381">
      <description/>
      <reference/>
      <entry_action>com.xrosstools.xstate.sample.TestAction</entry_action>
      <exit_action>com.xrosstools.xstate.sample.TestAction</exit_action>
     </state>
-    <start id="start" x_loc="57" y_loc="180">
+    <start id="start" x_loc="57" y_loc="173">
      <description/>
      <reference/>
      <entry_action/>
      <exit_action/>
     </start>
-    <end id="end" x_loc="640" y_loc="174">
+    <end id="end" x_loc="630" y_loc="174">
      <description/>
      <reference/>
      <entry_action/>
@@ -43,8 +43,8 @@
     <transition event_id="markdown" source_id="Normal" style="heightFirst" target_id="OutOfService" transit_action=""/>
     <transition event_id="shutdown" source_id="Normal" style="direct" target_id="end" transit_action=""/>
     <transition event_id="shutdown" source_id="OutOfService" style="widthFirst" target_id="end" transit_action=""/>
-    <transition event_id="markup" source_id="OutOfService" style="heightFirst" target_id="Normal" transit_action=""/>
-    <transition event_id="initialize" source_id="start" style="heightFirst" target_id="Normal" transit_action=""/>
+    <transition event_id="markup" source_id="OutOfService" style="direct" target_id="Normal" transit_action=""/>
+    <transition event_id="initialize" source_id="start" style="direct" target_id="Normal" transit_action=""/>
    </transitions>
   </state_machine>
   <state_machine height="300" width="1200">
