@@ -25,6 +25,7 @@ import com.xrosstools.xstate.editor.actions.StateMachineChangeEntryAction;
 import com.xrosstools.xstate.editor.actions.StateMachineChangeExitAction;
 import com.xrosstools.xstate.editor.actions.StateMachineCreateEntryAction;
 import com.xrosstools.xstate.editor.actions.StateMachineCreateExitAction;
+import com.xrosstools.xstate.editor.actions.StateMachineOpenEntryAction;
 import com.xrosstools.xstate.editor.actions.StateMachineOpenExitAction;
 import com.xrosstools.xstate.editor.actions.StateMachineRemoveEntryAction;
 import com.xrosstools.xstate.editor.actions.StateMachineRemoveExitAction;
@@ -121,7 +122,7 @@ public class StateNodePart extends AbstractGraphicalEditPart implements StateMac
     	else{
     		menu.add(new StateMachineChangeEntryAction(editor, node, finder));
     		menu.add(new StateMachineRemoveEntryAction(editor, node));
-    		menu.add(new StateMachineOpenExitAction(editor, node, finder));
+    		menu.add(new StateMachineOpenEntryAction(editor, node, finder));
     	}
 
     	menu.add(new Separator());
