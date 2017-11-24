@@ -11,13 +11,13 @@
     <state id="Normal" x_loc="229" y_loc="158">
      <description/>
      <reference/>
-     <entry_action>com.xrosstools.xstate.sample.TestAction</entry_action>
+     <entry_action>com.xrosstools.xstate.sample.TestEnterAction</entry_action>
      <exit_action>com.xrosstools.xstate.sample.TestAction</exit_action>
     </state>
     <state id="OutOfService" x_loc="411" y_loc="381">
      <description/>
      <reference/>
-     <entry_action>com.xrosstools.xstate.sample.TestAction</entry_action>
+     <entry_action>com.xrosstools.xstate.sample.TestEnterAction</entry_action>
      <exit_action>com.xrosstools.xstate.sample.TestAction</exit_action>
     </state>
     <start id="start" x_loc="57" y_loc="173">

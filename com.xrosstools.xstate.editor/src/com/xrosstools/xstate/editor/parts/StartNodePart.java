@@ -17,7 +17,6 @@ import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.requests.CreateConnectionRequest;
-import org.eclipse.gef.tools.DirectEditManager;
 
 import com.xrosstools.xstate.editor.Activator;
 import com.xrosstools.xstate.editor.commands.CreateTransitionCommand;
@@ -28,7 +27,6 @@ import com.xrosstools.xstate.editor.policies.StateMachineGraphicNodeEditPolicy;
 import com.xrosstools.xstate.editor.policies.StateNodeComponentEditPolicy;
 
 public class StartNodePart extends AbstractGraphicalEditPart implements StateMachineConstants, PropertyChangeListener, NodeEditPart {
-    private DirectEditManager manager;
 	protected IFigure createFigure() {
 		return new ImageFigure(Activator.getDefault().getImageRegistry().get(Activator.START_NODE));
     }
@@ -54,19 +52,8 @@ public class StartNodePart extends AbstractGraphicalEditPart implements StateMac
         
         return new CommonStyleAnchor(getFigure(), cmd.getStyle(), false);
     }
-
-	public void performRequest(Request req) {
-//		if (req.getType() == RequestConstants.REQ_DIRECT_EDIT){
-//            if (manager == null) {
-//                StateNodeFigure figure = (StateNodeFigure) getFigure();
-//                manager = new StateNodeDirectEditManager(this, ((StateMachine)getParent().getModel()).getFactors(), TextCellEditor.class, new StateNodeCellEditorLocator(figure));
-//            }
-//            manager.show();
-//		}
-	}
 	
 	protected void createEditPolicies() {
-//		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new StateNodeDirectEditPolicy(((StateMachine)getParent().getModel()).getFactors()));
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new StateNodeComponentEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new StateMachineGraphicNodeEditPolicy());
 	}

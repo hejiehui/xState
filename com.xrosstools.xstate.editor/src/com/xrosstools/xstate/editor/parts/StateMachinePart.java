@@ -70,12 +70,12 @@ public class StateMachinePart  extends AbstractGraphicalEditPart implements Prop
 		child.getParent().remove(child);
 	}
 	
-//    protected void refreshVisuals() {
-//    	StateMachine node = (StateMachine) getModel();
-//    	StateMachineFigure figure = (StateMachineFigure)getFigure();
-//    	
-//       	figure.setName(node.getName(), node.getDescription());
-//    }
+    protected void refreshVisuals() {
+    	StateMachine node = (StateMachine) getModel();
+    	StateMachineFigure figure = (StateMachineFigure)getFigure();
+    	
+       	figure.setName(node.getName(), node.getDescription());
+    }
 
 	@Override
 	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor, ImplementationFinder finder) {

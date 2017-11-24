@@ -25,13 +25,13 @@ public class StateMachineResizeAction extends WorkbenchPartAction implements Sta
 		return true;
 	}
 	
-	private Command createAlignmentCommand() {
+	private Command createResizeCommand() {
 		StateMachineDiagramGraphicalEditor editor = (StateMachineDiagramGraphicalEditor)getWorkbenchPart();
 		StateNodeResizeRequest request = new StateNodeResizeRequest((StateMachineDiagram)editor.getRootEditPart().getContents().getModel(), nodeSize, horizantal, increase);
 		return editor.getRootEditPart().getContents().getCommand(request);
 	}
 
 	public void run() {
-		execute(createAlignmentCommand());
+		execute(createResizeCommand());
 	}
 }
