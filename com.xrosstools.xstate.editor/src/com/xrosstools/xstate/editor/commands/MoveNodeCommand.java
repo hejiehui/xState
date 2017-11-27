@@ -1,6 +1,6 @@
 package com.xrosstools.xstate.editor.commands;
 
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 
 import com.xrosstools.xstate.editor.model.StateNode;
@@ -8,12 +8,16 @@ import com.xrosstools.xstate.editor.model.StateNode;
 public class MoveNodeCommand extends Command {
     private StateNode node;
 
-    private Rectangle oldConstraint;
+    private Point newLocation;
+    private Point oldLocation;
 
-    private Rectangle newConstraint;
+    public void setMoveDelta(Point delta) {
+        oldLocation = node.getLocation();
 
-    public void setConstraint(Rectangle c) {
-    	newConstraint = c;
+        int x = node.getLocation().x + delta.x;
+        int y = node.getLocation().y + delta.y;
+        
+        newLocation = new Point(x, y);
     }
 
     public void setNode(StateNode node) {
@@ -21,9 +25,7 @@ public class MoveNodeCommand extends Command {
     }
 
     public void execute() {
-    	oldConstraint = new Rectangle();
-    	oldConstraint.setLocation(node.getLocation());
-        node.setLocation(newConstraint.getLocation());
+        node.setLocation(newLocation);
     }
 
     public String getLabel() {
@@ -31,10 +33,10 @@ public class MoveNodeCommand extends Command {
     }
 
     public void redo() {
-        node.setLocation(newConstraint.getLocation());
+        node.setLocation(newLocation);
     }
 
     public void undo() {
-        node.setLocation(oldConstraint.getLocation());
+        node.setLocation(oldLocation);
     }
 }
