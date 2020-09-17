@@ -5,7 +5,7 @@ A state machine editot and runtime. Can be used to model simple workflow
 
 # 简介
 xState编辑器是一个允许开发人员创建状态机的编辑器，通过通用直观的解决方案。
-![overview](https://github.com/hejiehui/xState/blob/master/doc/overview.png)
+![overview](https://oscimg.oschina.net/oscnet/up-77a64e69d1d009af7b0731da86f5957c5c5.png)
 
 # 适用场景
 状态机用处极其广泛，适用于订单，用户，任务等等具有确定状态的领域模型
@@ -24,11 +24,11 @@ xState编辑器是一个允许开发人员创建状态机的编辑器，通过�
 
 ## 状态转移校验
 1. TransitionGuard
-![event](https://github.com/hejiehui/xState/blob/master/doc/events.png)
+![event](https://oscimg.oschina.net/oscnet/up-0a97e778c0ff0e6ccab32610baf42ae17ca.png)
 
 # 使用范例
 模型可以被工具用于在运行时触发状态转移
-![sample](https://github.com/hejiehui/xState/blob/master/doc/sample.png)
+![sample](https://oscimg.oschina.net/oscnet/up-9d8a27d0b887bbe2ee3bcbd018ea2a9cea5.png)
 
 # 如何传递业务属性
 有些时候需要传递业务信息给状态机的各个触发器做判断，虽然缺省的Event类里面没有这些属性，但由于Event 是个普通类，用户可以自定义自己的Event子类，在子类里面定义需要的业务属性。允许时可以在各个Action里面cast 标准的Event 为你自定义的Event类即可获得额外的属性。
@@ -47,28 +47,19 @@ Depenency
 	<dependency>
 		<groupId>com.xrosstools</groupId>
 		<artifactId>xstate</artifactId>
-		<version>0.9.0</version>
+		<version>${latest}</version>
 	</dependency>
 
-repository
-
-	<repositories>
-		<repository>
-			<id>xtools-repo</id>
-			<url>https://raw.github.com/hejiehui/xtools-repo/mvn-repo/</url>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
-	</repositories>
 
 # Demo project
 [Demo](https://github.com/hejiehui/xState/tree/master/com.xrosstools.xstate.sample)
 
 # 实际案例
 ## 简单状态机
-![uc1](https://github.com/hejiehui/xState/blob/master/doc/uc1.png)
+![uc1](https://oscimg.oschina.net/oscnet/up-4350f7ca0b4c7e41f9eff16246453d58e52.png)
 
 ## 复杂状态机
-![uc2](https://github.com/hejiehui/xState/blob/master/doc/uc2.png)
+![uc2](https://oscimg.oschina.net/oscnet/up-106c0d586ba63d2a3dadf7b8310dfc4bc19.png)
+
+## 携程金服案例
+[基于xstate实现携程金服业务流程动态化](https://my.oschina.net/hejiehui/blog/1574335)
