@@ -13,20 +13,12 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.Separator;
-import org.eclipse.ui.IWorkbenchPart;
 
-import com.xrosstools.xstate.editor.ContextMenuBuilder;
-import com.xrosstools.xstate.editor.actions.StateMachineChangeTransitionAction;
-import com.xrosstools.xstate.editor.actions.StateMachineCreateTransitionAction;
-import com.xrosstools.xstate.editor.actions.StateMachineOpenTransitionAction;
-import com.xrosstools.xstate.editor.actions.StateMachineRemoveTransitionAction;
 import com.xrosstools.xstate.editor.model.RouteStyle;
 import com.xrosstools.xstate.editor.model.StateTransition;
 import com.xrosstools.xstate.editor.policies.StateTransitionComponentEditPolicy;
 
-public class StateTransitionPart extends AbstractConnectionEditPart implements PropertyChangeListener, ContextMenuBuilder {
+public class StateTransitionPart extends AbstractConnectionEditPart implements PropertyChangeListener {
     private StateTransition nodeConn;
 	private Label label;
 	private CommonStyleRouter router;
@@ -77,22 +69,4 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
     public RouteStyle getStyle() {
         return nodeConn.getStyle();
     }
-    
-	@Override
-	public void buildContextMenu(IMenuManager menu, IWorkbenchPart editor, ImplementationFinder finder) {
-    	menu.add(new Separator());
-    	StateTransition transition = (StateTransition)getModel();
-
-    	if(isEmpty(transition.getTransitAction()))
-    		menu.add(new StateMachineCreateTransitionAction(editor, transition, finder));
-    	else{
-    		menu.add(new StateMachineChangeTransitionAction(editor, transition, finder));
-    		menu.add(new StateMachineRemoveTransitionAction(editor, transition));
-    		menu.add(new StateMachineOpenTransitionAction(editor, transition, finder));
-    	}
-	}
-	
-	private boolean isEmpty(String value) {
-		return value == null || value.trim().length() == 0;
-	}
 }

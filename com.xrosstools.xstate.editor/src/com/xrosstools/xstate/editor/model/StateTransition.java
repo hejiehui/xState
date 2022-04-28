@@ -79,7 +79,11 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 		target.addInput(this);
 	}
 
-	public Event getEvent() {
+	public StateMachineHelper getHelper() {
+        return helper;
+    }
+
+    public Event getEvent() {
 		return event;
 	}
 	public void setEvent(Event event) {

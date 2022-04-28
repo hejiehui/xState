@@ -10,6 +10,10 @@ public class StateMachineHelper implements StateMachineConstants {
 		this.machine = machine;
 	}
 	
+	public List<Event> getEvents() {
+	    return machine.getEvents();
+	}
+
 	public String[] getEventIds() {
 		List<String> ids = new ArrayList<String>();
 		ids.add(EMPTY_VALUE);

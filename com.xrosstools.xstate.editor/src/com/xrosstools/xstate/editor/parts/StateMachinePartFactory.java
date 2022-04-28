@@ -3,6 +3,7 @@ package com.xrosstools.xstate.editor.parts;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 
+import com.xrosstools.xstate.editor.Activator;
 import com.xrosstools.xstate.editor.model.EndNode;
 import com.xrosstools.xstate.editor.model.StartNode;
 import com.xrosstools.xstate.editor.model.StateMachine;
@@ -24,10 +25,10 @@ public class StateMachinePartFactory implements EditPartFactory {
 			part = new StateMachinePart();
 		else
 		if(model instanceof StartNode)
-			part = new StartNodePart();
+			part = new ImageNodePart(Activator.START_NODE);
 		else
 		if(model instanceof EndNode)
-			part = new EndNodePart();
+			part = new ImageNodePart(Activator.END_NODE );
 		else
 		if(model instanceof StateNode)
 			part = new StateNodePart();

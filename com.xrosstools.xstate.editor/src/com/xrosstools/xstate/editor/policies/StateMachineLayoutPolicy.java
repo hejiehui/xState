@@ -13,7 +13,6 @@ import com.xrosstools.xstate.editor.commands.CreateNodeCommand;
 import com.xrosstools.xstate.editor.commands.MoveNodeCommand;
 import com.xrosstools.xstate.editor.model.StateMachine;
 import com.xrosstools.xstate.editor.model.StateNode;
-import com.xrosstools.xstate.editor.parts.StateNodePart;
 
 public class StateMachineLayoutPolicy extends XYLayoutEditPolicy {
 
@@ -35,11 +34,16 @@ public class StateMachineLayoutPolicy extends XYLayoutEditPolicy {
 
     protected Command getMoveChildrenCommand(Request request) {
         ChangeBoundsRequest req = (ChangeBoundsRequest)request;
-        if(!(req.getEditParts().get(0) instanceof StateNodePart))
+        
+        if(req.getEditParts().size() != 1)
+            return null;
+        
+        Object model = ((EditPart)req.getEditParts().get(0)).getModel();
+        if(!(model instanceof StateNode))
             return null;
             
         MoveNodeCommand cmd = new MoveNodeCommand();
-        cmd.setNode((StateNode)((StateNodePart)req.getEditParts().get(0)).getModel());
+        cmd.setNode((StateNode)model);
         cmd.setMoveDelta(req.getMoveDelta());
         return cmd;
     }
