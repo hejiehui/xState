@@ -23,6 +23,10 @@ public class CommonStyleAnchor extends ChopboxAnchor {
     							getTargetLocation(loc);
     }
     private Point getSourceLocationV2(Point ref) {
+//        Point ref = getOwner().getBounds().getCenter();
+//        getOwner().translateToAbsolute(ref);
+        
+        
         Rectangle r = new Rectangle(getOwner().getBounds());
         
         Point pos;

@@ -8,6 +8,7 @@ import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.requests.CreateConnectionRequest;
@@ -19,7 +20,7 @@ import com.xrosstools.xstate.editor.model.StateTransition;
 import com.xrosstools.xstate.editor.policies.StateMachineGraphicNodeEditPolicy;
 import com.xrosstools.xstate.editor.policies.StateNodeComponentEditPolicy;
 
-public abstract class AbstractNodePart extends AbstractGraphicalEditPart implements StateMachineConstants, PropertyChangeListener {
+public abstract class AbstractNodePart extends AbstractGraphicalEditPart implements StateMachineConstants, PropertyChangeListener, NodeEditPart {
     protected abstract IFigure createFigure();
     protected abstract void refreshVisuals();
 

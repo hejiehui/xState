@@ -10,22 +10,16 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.ui.IWorkbenchPart;
 
+import com.xrosstools.xstate.editor.actions.AssignImplementationAction;
+import com.xrosstools.xstate.editor.actions.ChangeImplementationAction;
 import com.xrosstools.xstate.editor.actions.CommandAction;
-import com.xrosstools.xstate.editor.actions.StateMachineChangeEntryAction;
-import com.xrosstools.xstate.editor.actions.StateMachineChangeExitAction;
-import com.xrosstools.xstate.editor.actions.StateMachineChangeTransitionAction;
-import com.xrosstools.xstate.editor.actions.StateMachineCreateEntryAction;
+import com.xrosstools.xstate.editor.actions.OpenImplementationAction;
+import com.xrosstools.xstate.editor.actions.RemoveImplementationAction;
 import com.xrosstools.xstate.editor.actions.StateMachineCreateEventAction;
-import com.xrosstools.xstate.editor.actions.StateMachineCreateExitAction;
-import com.xrosstools.xstate.editor.actions.StateMachineCreateTransitionAction;
 import com.xrosstools.xstate.editor.actions.StateMachineJunitCodeGenAction;
-import com.xrosstools.xstate.editor.actions.StateMachineOpenEntryAction;
-import com.xrosstools.xstate.editor.actions.StateMachineOpenExitAction;
-import com.xrosstools.xstate.editor.actions.StateMachineOpenTransitionAction;
-import com.xrosstools.xstate.editor.actions.StateMachineRemoveEntryAction;
-import com.xrosstools.xstate.editor.actions.StateMachineRemoveExitAction;
-import com.xrosstools.xstate.editor.actions.StateMachineRemoveTransitionAction;
+import com.xrosstools.xstate.editor.actions.StateMachineMessages;
 import com.xrosstools.xstate.editor.actions.StateMachineUsageCodeGenAction;
+import com.xrosstools.xstate.editor.commands.Accessor;
 import com.xrosstools.xstate.editor.commands.SelectEventCommand;
 import com.xrosstools.xstate.editor.model.Event;
 import com.xrosstools.xstate.editor.model.StateMachine;
@@ -37,7 +31,7 @@ import com.xrosstools.xstate.editor.parts.StateMachinePart;
 import com.xrosstools.xstate.editor.parts.StateNodePart;
 import com.xrosstools.xstate.editor.parts.StateTransitionPart;
 
-public class StateMachineContextMenuProvider extends ContextMenuProvider {
+public class StateMachineContextMenuProvider extends ContextMenuProvider implements StateMachineMessages {
 	private GraphicalEditor editor;
 	private ImplementationFinder finder = new ImplementationFinder();
     public StateMachineContextMenuProvider(EditPartViewer viewer, GraphicalEditor editor) {
@@ -68,24 +62,13 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider {
     }
     
     private void buildStateNodeContextMenu(IMenuManager menu, IWorkbenchPart editor, StateNodePart part) {
-        menu.add(new Separator());
         StateNode node = part.getStateNode();
-        if(isEmpty(node.getEntryAction()))
-            menu.add(new StateMachineCreateEntryAction(editor, node, finder));
-        else{
-            menu.add(new StateMachineChangeEntryAction(editor, node, finder));
-            menu.add(new StateMachineRemoveEntryAction(editor, node));
-            menu.add(new StateMachineOpenEntryAction(editor, node, finder));
-        }
+        
+        menu.add(new Separator());
+        buildModifyImplementationMenu(menu, new EntryActionAccessor(node));
 
         menu.add(new Separator());
-        if(isEmpty(node.getExitAction()))
-            menu.add(new StateMachineCreateExitAction(editor, node, finder));
-        else{
-            menu.add(new StateMachineChangeExitAction(editor, node, finder));
-            menu.add(new StateMachineRemoveExitAction(editor, node));
-            menu.add(new StateMachineOpenExitAction(editor, node, finder));
-        }
+        buildModifyImplementationMenu(menu, new ExitActionAccessor(node));
     }
 
     private boolean isEmpty(String value) {
@@ -106,13 +89,40 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider {
             menu.add(new CommandAction(editor, e.getId(), transition.getEvent() == e, new SelectEventCommand(transition, e)));
         }
         menu.add(new Separator());
-        
-        if(isEmpty(transition.getTransitAction()))
-            menu.add(new StateMachineCreateTransitionAction(editor, transition, finder));
+        buildModifyImplementationMenu(menu, new TransitionActionAccessor(transition));
+    }
+    
+    private class EntryActionAccessor implements Accessor<String> {
+        StateNode node;
+        EntryActionAccessor(StateNode node) {this.node = node;}
+        public String get() {return node.getEntryAction();}
+        public void set(String value) {node.setEntryAction(value);}
+        public String name() {return ENTRY_MSG;}
+    }
+
+    private class ExitActionAccessor implements Accessor<String> {
+        StateNode node;
+        ExitActionAccessor(StateNode node) {this.node = node;}
+        public String get() {return node.getExitAction();}
+        public void set(String value) {node.setExitAction(value);}
+        public String name() {return EXIT_MSG;}
+    }
+
+    private class TransitionActionAccessor implements Accessor<String> {
+        StateTransition transition;
+        TransitionActionAccessor(StateTransition transition) {this.transition = transition;}
+        public String get() {return transition.getTransitAction();}
+        public void set(String value) {transition.setTransitAction(value);}
+        public String name() {return TRANSITION_MSG;}
+    }
+
+    private void buildModifyImplementationMenu(IMenuManager menu, Accessor<String> accessor) {
+        if(isEmpty(accessor.get()))
+            menu.add(new AssignImplementationAction(editor, finder, accessor));
         else{
-            menu.add(new StateMachineChangeTransitionAction(editor, transition, finder));
-            menu.add(new StateMachineRemoveTransitionAction(editor, transition));
-            menu.add(new StateMachineOpenTransitionAction(editor, transition, finder));
+            menu.add(new ChangeImplementationAction(editor, finder, accessor));
+            menu.add(new RemoveImplementationAction(editor, accessor));
+            menu.add(new OpenImplementationAction(editor, finder, accessor));
         }
     }
 }
