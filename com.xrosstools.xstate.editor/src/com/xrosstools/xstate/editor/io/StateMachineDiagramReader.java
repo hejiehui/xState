@@ -48,8 +48,6 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 		StateMachine machine = new StateMachine();
 		machine.setName(getChildNodeText(machineNode, NAME));
 		machine.setDescription(getChildNodeText(machineNode, DESCRIPTION));
-		machine.setWidth(getIntAttribute(machineNode, WIDTH, StateMachine.DEFAULT_WIDTH));
-		machine.setHeight(getIntAttribute(machineNode, HEIGHT, StateMachine.DEFAULT_HEIGHT));
 
 		Node statesNode = getChildNode(machineNode, STATES);
 		Node eventsNode = getChildNode(machineNode, EVENTS);

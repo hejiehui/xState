@@ -30,6 +30,9 @@ public interface StateMachineConstants {
 	
 	String EMPTY_VALUE = "";
 
-	
-	int TOP_LEVEL_SPACE = 50;
+    int DEFAULT_HEIGHT = 600;
+    int DEFAULT_WIDTH = 900;
+    int INCREMENTAL = 100;
+
+	int TITLE_SPACE = 10;
 }

@@ -44,8 +44,6 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 	}
 	
 	private void writeMachine(Document doc, Element machineNode, StateMachine machine) {
-	    machineNode.setAttribute(WIDTH, String.valueOf(machine.getWidth()));
-	    machineNode.setAttribute(HEIGHT, String.valueOf(machine.getHeight()));
 		createNameDesc(doc, machineNode, machine.getName(), machine.getDescription());
 		
 		Element statesNode = createNode(doc, machineNode, STATES);

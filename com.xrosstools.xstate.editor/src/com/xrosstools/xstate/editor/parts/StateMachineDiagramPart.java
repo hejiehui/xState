@@ -4,11 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -29,7 +25,7 @@ public class StateMachineDiagramPart extends AbstractGraphicalEditPart implement
 	    StateDiagramFigure figure = new StateDiagramFigure();
 	    panel = figure.getContentPane();
 	    
-		Point loc = new Point(100, 100);
+		Point loc = new Point(0, 0);
 		Dimension size = new Dimension(-1, -1);
         Rectangle rectangle = new Rectangle(loc, size);
         this.setLayoutConstraint(this, panel, rectangle);
