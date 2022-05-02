@@ -61,6 +61,8 @@ public class StateMachinePart extends AbstractGraphicalEditPart implements Prope
 		IFigure child = ((GraphicalEditPart) childEditPart).getFigure();
 		figure.getFigure().add(child);
 		figure.setPanelSize(checkConstraint());
+		
+		((StateNode)childEditPart.getModel()).getListeners().addPropertyChangeListener(this);
 	}
 	
 	protected void removeChildVisual(EditPart childEditPart) {
