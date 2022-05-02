@@ -34,8 +34,6 @@ public class StateMachinePart extends AbstractGraphicalEditPart implements Prope
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
-        StateMachineFigure figure = (StateMachineFigure)getFigure();
-        figure.setPanelSize(checkConstraint());
 		refresh();
 	}
 	
@@ -62,6 +60,7 @@ public class StateMachinePart extends AbstractGraphicalEditPart implements Prope
 		StateMachineFigure figure = (StateMachineFigure)getFigure();
 		IFigure child = ((GraphicalEditPart) childEditPart).getFigure();
 		figure.getFigure().add(child);
+		figure.setPanelSize(checkConstraint());
 	}
 	
 	protected void removeChildVisual(EditPart childEditPart) {
@@ -74,6 +73,7 @@ public class StateMachinePart extends AbstractGraphicalEditPart implements Prope
     	StateMachineFigure figure = (StateMachineFigure)getFigure();
     	
        	figure.setName(node.getName(), node.getDescription());
+        figure.setPanelSize(checkConstraint());
     }
 
     private Dimension checkConstraint() {

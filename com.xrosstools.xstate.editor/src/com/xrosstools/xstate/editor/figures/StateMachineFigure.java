@@ -57,6 +57,10 @@ public class StateMachineFigure extends Figure implements StateMachineConstants{
     	return figure;
     }
     
+    public Dimension getPanelSize() {
+        return figure.getPreferredSize();
+    }
+
     public void setPanelSize(Dimension size) {
         figure.setPreferredSize(size);
         topLine.setSize(new Dimension(size.width, 1));
