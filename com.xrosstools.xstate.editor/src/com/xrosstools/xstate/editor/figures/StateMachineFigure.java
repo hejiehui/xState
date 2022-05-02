@@ -14,12 +14,13 @@ import com.xrosstools.xstate.editor.model.StateMachineConstants;
 
 public class StateMachineFigure extends Figure implements StateMachineConstants{
 	private Label label;
+	private RectangleFigure topLine; 
 	private IFigure figure;
+	private RectangleFigure bottomLine;
+	
     public StateMachineFigure(int width, int height) {
         figure = new Figure();
         figure.setLayoutManager(new XYLayout());
-
-        figure.setPreferredSize(new Dimension(width, height));
 
         label = new Label();
 
@@ -30,16 +31,15 @@ public class StateMachineFigure extends Figure implements StateMachineConstants{
         label.setLabelAlignment(PositionConstants.LEFT);
         label.setForegroundColor(ColorConstants.blue);
       
-        RectangleFigure topLine = new RectangleFigure();
+        topLine = new RectangleFigure();
         topLine.setBackgroundColor(ColorConstants.lightGray);
         topLine.setForegroundColor(ColorConstants.lightGray);
-        topLine.setSize(new Dimension(-1, 1));
         
-        RectangleFigure bottomLine = new RectangleFigure();
+        bottomLine = new RectangleFigure();
         bottomLine.setBackgroundColor(ColorConstants.lightGray);
         bottomLine.setForegroundColor(ColorConstants.lightGray);
-        bottomLine.setSize(new Dimension(-1, 2));
 
+        setPanelSize(new Dimension(width, height));
         
         add(label);
         add(topLine);
@@ -55,5 +55,11 @@ public class StateMachineFigure extends Figure implements StateMachineConstants{
     
     public IFigure getFigure(){
     	return figure;
+    }
+    
+    public void setPanelSize(Dimension size) {
+        figure.setPreferredSize(size);
+        topLine.setSize(new Dimension(size.width, 1));
+        bottomLine.setSize(new Dimension(size.width, 2));        
     }
 }

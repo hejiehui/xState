@@ -7,6 +7,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -25,8 +26,6 @@ public class StateMachinePart extends AbstractGraphicalEditPart implements Prope
     }
 
 	protected IFigure createFigure() {
-	    StateMachine node = (StateMachine) getModel();
-
         return new StateMachineFigure(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
 	
@@ -35,17 +34,23 @@ public class StateMachinePart extends AbstractGraphicalEditPart implements Prope
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
+        StateMachineFigure figure = (StateMachineFigure)getFigure();
+        figure.setPanelSize(checkConstraint());
 		refresh();
 	}
 	
 	public void activate() {
 		super.activate();
 		((StateMachine)getModel()).getListeners().addPropertyChangeListener(this);
+		for(StateNode node: ((StateMachine)getModel()).getNodes())
+		    node.getListeners().addPropertyChangeListener(this);
 	}
 
 	public void deactivate() {
 		super.deactivate();
 		((StateMachine)getModel()).getListeners().removePropertyChangeListener(this);
+        for(StateNode node: ((StateMachine)getModel()).getNodes())
+            node.getListeners().removePropertyChangeListener(this);
 	}
 
     protected void createEditPolicies() {
@@ -69,9 +74,6 @@ public class StateMachinePart extends AbstractGraphicalEditPart implements Prope
     	StateMachineFigure figure = (StateMachineFigure)getFigure();
     	
        	figure.setName(node.getName(), node.getDescription());
-       	
-       	Dimension size = checkConstraint();
-        figure.getFigure().setPreferredSize(size);
     }
 
     private Dimension checkConstraint() {

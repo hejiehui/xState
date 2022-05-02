@@ -99,6 +99,5 @@ public abstract class AbstractNodePart extends AbstractGraphicalEditPart impleme
         Rectangle constraint = new Rectangle(loc, size);
         StateMachinePart parent = (StateMachinePart)getParent();
         parent.setLayoutConstraint(this, getFigure(), constraint);
-        parent.refreshVisuals();
     }    
 }
