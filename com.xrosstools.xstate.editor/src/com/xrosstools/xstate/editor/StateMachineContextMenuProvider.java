@@ -16,9 +16,7 @@ import com.xrosstools.xstate.editor.actions.CommandAction;
 import com.xrosstools.xstate.editor.actions.OpenImplementationAction;
 import com.xrosstools.xstate.editor.actions.RemoveImplementationAction;
 import com.xrosstools.xstate.editor.actions.StateMachineCreateEventAction;
-import com.xrosstools.xstate.editor.actions.StateMachineJunitCodeGenAction;
 import com.xrosstools.xstate.editor.actions.StateMachineMessages;
-import com.xrosstools.xstate.editor.actions.StateMachineUsageCodeGenAction;
 import com.xrosstools.xstate.editor.commands.Accessor;
 import com.xrosstools.xstate.editor.commands.SelectEventCommand;
 import com.xrosstools.xstate.editor.model.Event;
@@ -55,10 +53,6 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
             buildStateMachineContextMenu(menu, editor, (StateMachinePart)part);
 		else if(part instanceof StateTransitionPart)
 		    buildStateTransitionContextMenu(menu, editor, (StateTransitionPart)part);
-        
-        menu.add(new Separator());
-        menu.add(new StateMachineJunitCodeGenAction(editor));
-        menu.add(new StateMachineUsageCodeGenAction(editor));
     }
     
     private void buildStateNodeContextMenu(IMenuManager menu, IWorkbenchPart editor, StateNodePart part) {

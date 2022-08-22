@@ -1,0 +1,38 @@
+<idea-plugin>
+  <id>com.xrosstools.xstate.editor</id>
+  <name>Xross State Machine Edtitor</name>
+  <version>1.0.0</version>
+  <vendor email="he_jiehui@163.com" url="https://github.com/hejiehui/xross-tools-installer">Xross Tools</vendor>
+
+  <description><![CDATA[
+      Xross Tools.<br>
+      <em>Xross State Machine Edtitor</em>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      IDEA version that supports editing state machines<br>
+      <em>Xross State Machine Edtitor</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products-->
+  <depends>com.xrosstools.idea.gef</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileEditorProvider implementation="com.xrosstools.xstate.idea.editor.StateMachineEditorProvider"/>
+    <fileTypeFactory implementation="com.xrosstools.xstate.idea.editor.StateMachineFileTypeFactory"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="XrossTools.NewDecisionTreeAction" class="com.xrosstools.xdecision.idea.editor.NewDecisionTreeAction" text="Xross Decision Model" description="Create new Xross Decision Model file" icon="/icons/tree.png">
+      <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
+    </action>
+  </actions>
+
+</idea-plugin>

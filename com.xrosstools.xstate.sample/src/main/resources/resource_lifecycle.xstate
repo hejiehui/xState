@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state_machine_diagram>
+ <name>StateMachineDiagram</name>
+ <description/>
+ <state_machines>
+  <state_machine height="600" width="1200">
+   <name>life cycle</name>
+   <description/>
+   <states>
+    <state id="off the shelf" x_loc="475" y_loc="252">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="to be scrapped" x_loc="473" y_loc="400">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="ready to use" x_loc="477" y_loc="134">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="in use" x_loc="477" y_loc="27">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="reday to remove" x_loc="715" y_loc="133">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <end id="end" x_loc="749" y_loc="409">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </end>
+    <start id="start" x_loc="222" y_loc="149">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </start>
+   </states>
+   <events>
+    <event id="loaded"/>
+    <event id="installed"/>
+    <event id="delivered"/>
+    <event id="offline reqested"/>
+    <event id="offlined"/>
+    <event id="write off"/>
+    <event id="scrapped"/>
+   </events>
+   <transitions>
+    <transition event_id="loaded" source_id="off the shelf" style="direct" target_id="ready to use" transit_action=""/>
+    <transition event_id="write off" source_id="off the shelf" style="direct" target_id="to be scrapped" transit_action=""/>
+    <transition event_id="scrapped" source_id="to be scrapped" style="direct" target_id="end" transit_action=""/>
+    <transition event_id="delivered" source_id="ready to use" style="direct" target_id="in use" transit_action=""/>
+    <transition event_id="offline reqested" source_id="in use" style="widthFirst" target_id="reday to remove" transit_action=""/>
+    <transition event_id="offlined" source_id="reday to remove" style="heightFirst" target_id="off the shelf" transit_action=""/>
+    <transition event_id="installed" source_id="start" style="direct" target_id="ready to use" transit_action=""/>
+   </transitions>
+  </state_machine>
+ </state_machines>
+</state_machine_diagram>
