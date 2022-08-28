@@ -1,23 +1,41 @@
 package com.xrosstools.xstate.idea.editor.treeparts;
 
+import com.xrosstools.idea.gef.parts.AbstractTreeEditPart;
+import com.xrosstools.idea.gef.parts.EditContext;
 import com.xrosstools.idea.gef.parts.EditPart;
 import com.xrosstools.idea.gef.parts.EditPartFactory;
 import com.xrosstools.xstate.idea.editor.model.*;
 
 public class StateMachineTreePartFactory  implements EditPartFactory {
-	public EditPart createEditPart(EditPart context, Object model) {
-		if(model instanceof StateMachineDiagram)
-			return new StateMachineDiagramTreePart(model);
+    private EditContext editContext;
 
-		if(model instanceof StateMachine)
-			return new StateMachineTreePart(model);
+    public StateMachineTreePartFactory(EditContext editContext) {
+        this.editContext = editContext;
+    }
 
-		if(model instanceof StateNode)
-			return new StateNodeTreePart(model);
-		
-		if(model instanceof Event)
-			return new EventTreePart(model);
-		
-		return null;
+    public EditPart createEditPart(EditPart parent, Object model) {
+        AbstractTreeEditPart part = null;
+        if(model == null)
+            return part;
+
+        if(model instanceof StateMachineDiagram)
+            part = new StateMachineDiagramTreePart(model);
+        else if(model instanceof StateMachine)
+            part = new StateMachineTreePart(model);
+        else if(model instanceof StateNode)
+            part = new StateNodeTreePart(model);
+		else if(model instanceof Event)
+            part = new EventTreePart(model);
+
+		if (part == null )
+		    return null;
+
+        part.setEditPartFactory(this);
+        part.setModel(model);
+        part.setParent(parent);
+        part.setContext(editContext);
+        editContext.add(part, model);
+
+		return part;
 	}
 }

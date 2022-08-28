@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.xrosstools.xstate.editor</id>
   <name>Xross State Machine Edtitor</name>
-  <version>1.0.0</version>
+  <version>1.0.0-SNAPSHOT</version>
   <vendor email="he_jiehui@163.com" url="https://github.com/hejiehui/xross-tools-installer">Xross Tools</vendor>
 
   <description><![CDATA[
@@ -30,7 +30,7 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="XrossTools.NewDecisionTreeAction" class="com.xrosstools.xdecision.idea.editor.NewDecisionTreeAction" text="Xross Decision Model" description="Create new Xross Decision Model file" icon="/icons/tree.png">
+    <action id="XrossTools.NewStateMachineAction" class="com.xrosstools.xstate.idea.editor.NewStateMachineAction" text="Xross State Machine" description="Create new Xross State Machine Model file" icon="/icons/state_machine_diagram.ico">
       <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
     </action>
   </actions>

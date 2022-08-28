@@ -3,6 +3,7 @@ package com.xrosstools.xstate.idea.editor.parts;
 import com.xrosstools.idea.gef.figures.ChopboxAnchor;
 import com.xrosstools.idea.gef.figures.Figure;
 import com.xrosstools.xstate.idea.editor.model.RouteStyle;
+import gherkin.lexer.Fi;
 
 import java.awt.*;
 
@@ -22,10 +23,6 @@ public class CommonStyleAnchor extends ChopboxAnchor {
     							getTargetLocation(loc);
     }
     private Point getSourceLocationV2(Point ref) {
-//        Point ref = getOwner().getBounds().getCenter();
-//        getOwner().translateToAbsolute(ref);
-        
-        
         Rectangle r = new Rectangle(getOwner().getBound());
         
         Point pos;
@@ -37,44 +34,43 @@ public class CommonStyleAnchor extends ChopboxAnchor {
         return new Point(x, y);
     }
     
-    private Point getSourceLocation(Point ref)
-    {
+    private Point getSourceLocation(Point ref) {
         Rectangle r = new Rectangle(getOwner().getBound());
+        Figure f = getOwner();
         
         Point pos;
-//        getOwner().translateToAbsolute(r);
-        
+
         if(style == RouteStyle.heightFirst) {
-            if(ref.y < r.y())
-                pos = r.getTop();
+            if(ref.y < r.y)
+                pos = f.getTop();
             else if(ref.y > r.y + r.height)
-                pos = r.getBottom();
+                pos = f.getBottom();
             else if(ref.x < r.x) {
             	if(ref.y >= r.y && ref.y <= r.y + r.height)
             		pos = new Point(r.x, ref.y);
             	else
-            		pos = r.getLeft();
+            		pos = f.getLeft();
             }else {
             	if(ref.y >= r.y && ref.y <= r.y + r.height)
             		pos = new Point(r.x + r.width, ref.y);
             	else
-            		pos = r.getRight();
+            		pos = f.getRight();
             }
         }else{
             if(ref.x < r.x)
-                pos = r.getLeft();
+                pos = f.getLeft();
             else  if(ref.x > r.x + r.width)
-                pos = r.getRight();
+                pos = f.getRight();
             else if(ref.y < r.y) {
             	if(ref.x >= r.x && ref.x <= r.x + r.width)
             		pos = new Point(ref.x, r.y);
             	else
-            		pos = r.getTop();
+            		pos = f.getTop();
         	}else {
             	if(ref.x >= r.x && ref.x <= r.x + r.width)
             		pos = new Point(ref.x, r.y + r.height);
             	else
-            		pos = r.getBottom();
+            		pos = f.getBottom();
         	}
         }
             
@@ -84,25 +80,25 @@ public class CommonStyleAnchor extends ChopboxAnchor {
 
     private Point getTargetLocation(Point ref)
     {
-    	Rectangle r = new Rectangle(getBox());
+        Rectangle r = new Rectangle(getOwner().getBound());
+        Figure f = getOwner();
         
         Point pos;
-        getOwner().translateToAbsolute(r);
-        
+
         if(style == RouteStyle.heightFirst) {
             if(ref.x < r.x)
-                pos = r.getLeft();
+                pos = f.getLeft();
             else if(ref.x > r.x + r.width)
-                pos = r.getRight();
+                pos = f.getRight();
             else if(ref.y < r.y)
                 pos = new Point(ref.x, r.y);
             else
                 pos = new Point(ref.x, r.y + r.height);
         }else{
             if(ref.y < r.y)
-                pos = r.getTop();
+                pos = f.getTop();
             else if(ref.y > r.y + r.height)
-                pos = r.getBottom();
+                pos = f.getBottom();
             else if(ref.x < r.x)
             	pos = new Point(r.x, ref.y);
             else

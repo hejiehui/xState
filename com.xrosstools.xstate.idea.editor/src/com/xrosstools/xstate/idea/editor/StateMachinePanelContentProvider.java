@@ -49,7 +49,7 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
 
     @Override
     public ContextMenuProvider getOutlineContextMenuProvider() {
-        return null;
+        return new StateMachineOutlineContextMenuProvider(project, this);
     }
 
     private static Object[][] ENTRIES = new Object[][]{
@@ -105,11 +105,11 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
 
     @Override
     public EditPartFactory createEditPartFactory(EditContext context) {
-        return new StateMachinePartFactory();
+        return new StateMachinePartFactory(context);
     }
 
     @Override
     public EditPartFactory createTreePartFactory(EditContext context) {
-        return new StateMachineTreePartFactory();
+        return new StateMachineTreePartFactory(context);
     }
 }

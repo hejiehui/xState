@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.xrosstools.idea.gef">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/com.xrosstools.idea.gef.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/dom4j-1.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

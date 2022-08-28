@@ -21,7 +21,7 @@ public class CommonStyleRouter implements ConnectionRouter {
     @Override
     public void route(Connection conn) {
         PointList pl = conn.getPoints();
-        pl.removeAllPoints();
+        //pl.removeAllPoints();
         Point start = pl.getFirst();
         Point end = pl.getLast();
 

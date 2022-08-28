@@ -6,7 +6,7 @@ import com.xrosstools.idea.gef.parts.AbstractConnectionEditPart;
 import com.xrosstools.idea.gef.parts.AbstractGraphicalEditPart;
 import com.xrosstools.idea.gef.parts.EditPolicy;
 import com.xrosstools.xstate.idea.editor.model.StateNode;
-import com.xrosstools.xstate.idea.editor.policies.StateNodeEditPolicy;
+import com.xrosstools.xstate.idea.editor.policies.StateNodeComponentEditPolicy;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -28,7 +28,7 @@ public abstract class AbstractNodePart extends AbstractGraphicalEditPart impleme
     }
 
     protected EditPolicy createEditPolicy() {
-        return new StateNodeEditPolicy();
+        return new StateNodeComponentEditPolicy();
 //        installEditPolicy(EditPolicy.COMPONENT_ROLE, new StateNodeComponentEditPolicy());
 //        installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new StateMachineGraphicNodeEditPolicy());
     }
@@ -58,6 +58,7 @@ public abstract class AbstractNodePart extends AbstractGraphicalEditPart impleme
         StateNode node = getStateNode();
         
         Point loc = node.getLocation();
+        getFigure().setLocation(loc);
         updateFigure(node);
     }
 }

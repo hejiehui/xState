@@ -5,7 +5,9 @@ import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.xrosstools.idea.gef.AbstractDiagramEditorProvider;
+import com.xrosstools.idea.gef.Activator;
 import com.xrosstools.idea.gef.PanelContentProvider;
+import com.xrosstools.xstate.idea.editor.model.*;
 import org.jetbrains.annotations.NotNull;
 
 public class StateMachineEditorProvider extends AbstractDiagramEditorProvider {
@@ -20,6 +22,15 @@ public class StateMachineEditorProvider extends AbstractDiagramEditorProvider {
     public static final String ENTRY_ACTION = "end_point";
     public static final String EXIT_ACTION = "start_point";
     public static final String TRANSITION_ACTION = "transition_action";
+
+    static {
+        Activator.register(StateMachineDiagram.class, STATE_MACHINE_DIAGRAM);
+        Activator.register(Event.class, STATE_NODE);
+        Activator.register(StateMachine.class, STATE_MACHINE);
+        Activator.register(StartNode.class, START_NODE);
+        Activator.register(EndNode.class, END_NODE);
+        Activator.register(StateNode.class, STATE_NODE);
+    }
 
     @Override
     public FileType getFileType() {

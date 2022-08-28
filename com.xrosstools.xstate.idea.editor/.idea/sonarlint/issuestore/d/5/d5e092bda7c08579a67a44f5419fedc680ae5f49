@@ -1,15 +1,11 @@
 
-‚
-java:S1128"gRemove this unused import 'com.xrosstools.xdecision.idea.editor.menus.DecisionTreeContextMenuProvider'.(ß”é£8ĞºÕ†«0
-}
-java:S1128"bRemove this unused import 'com.xrosstools.xdecision.idea.editor.model.DecisionTreeDiagramFactory'.(¡‰ÚŸ8İâ‚«0
-‚
-java:S1128"gRemove this unused import 'com.xrosstools.xdecision.idea.editor.treeparts.DecisionTreeTreePartFactory'.(ÆêÁ¸8õñ°†«0
+œ
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ìê©“8êèíˆ¬0
+w
+java:S3008"WRename this field "CONN_ENTRIES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡Ñ‰­úÿÿÿÿ8åŠÌˆ¬0
+m
+java:S3008"RRename this field "ENTRIES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æù«8åŠÌˆ¬0
+C
+java:S1148"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ8åîŞˆ¬0
 N
-java:S2755"3Disable access to external entities in XML parsing.(±Œ¯ä8®§à‚«0
-{
-java:S1128"[Remove this unused import 'com.xrosstools.xdecision.idea.editor.model.DecisionTreeDiagram'.(¸‹¬ßùÿÿÿÿ8ÎÊâ‚«0
-s
-java:S1128"XRemove this unused import 'com.xrosstools.xdecision.idea.editor.layout.LayoutAlgorithm'.(«öõ¶8€éà‚«0
-
-java:S1128"_Remove this unused import 'com.xrosstools.xdecision.idea.editor.parts.DecisionTreePartFactory'.(Ê”¤ìûÿÿÿÿ8½Ò·†«0
+java:S2755"3Disable access to external entities in XML parsing.(±Œ¯ä8¯º•Ş«0
