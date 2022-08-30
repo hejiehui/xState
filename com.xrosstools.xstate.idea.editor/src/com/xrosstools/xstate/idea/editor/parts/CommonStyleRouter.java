@@ -21,9 +21,10 @@ public class CommonStyleRouter implements ConnectionRouter {
     @Override
     public void route(Connection conn) {
         PointList pl = conn.getPoints();
-        //pl.removeAllPoints();
         Point start = pl.getFirst();
         Point end = pl.getLast();
+        //For Idea Gef, you need to remove all points after get start and end
+        pl.removeAllPoints();
 
         if (style == RouteStyle.direct) {
             pl.addPoint(start);

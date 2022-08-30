@@ -70,8 +70,13 @@ public class StateMachinePart extends AbstractGraphicalEditPart implements State
     }
 
     private Dimension checkConstraint() {
-        int x = 0;
-        int y = 0;
+        /**
+         * This is special to idea GEF, because IDEA GEF use absolute coordination. So the
+         * x and y are started from absolute location instead of 0.
+         */
+         Point smLoc = getContentPane().getLocation();
+        int x = smLoc.x;
+        int y = smLoc.y;
         for(Object child: getChildren()) {
             AbstractNodePart part = (AbstractNodePart)child;
             Point loc = part.getStateNode().getLocation();
@@ -81,7 +86,7 @@ public class StateMachinePart extends AbstractGraphicalEditPart implements State
         }
         
         return new Dimension(
-                Math.max(DEFAULT_WIDTH, x + INCREMENTAL), 
-                Math.max(DEFAULT_HEIGHT, y + INCREMENTAL));
+                Math.max(DEFAULT_WIDTH, x + INCREMENTAL - smLoc.x),
+                Math.max(DEFAULT_HEIGHT, y + INCREMENTAL - smLoc.y));
     }
 }

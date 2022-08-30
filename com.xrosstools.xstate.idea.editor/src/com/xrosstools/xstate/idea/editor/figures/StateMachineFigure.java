@@ -14,7 +14,8 @@ public class StateMachineFigure extends Figure implements StateMachineConstants 
 	
     public StateMachineFigure(int width, int height) {
         figure = new Figure();
-        figure.setLayoutManager(new FreeformLayout());
+        figure.setLayoutManager(new FreeformLayout(INCREMENTAL));
+        figure.setMinSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
         label = new Label();
 
