@@ -60,7 +60,7 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
     private void buildStateTransitionContextMenu(JPopupMenu menu, StateTransitionPart part) {
         StateTransition transition = (StateTransition)part.getModel();
 
-        //Create and add event
+        //Create and assign event
         StateMachine machine = (StateMachine)part.getParent().getParent().getModel();
         menu.add(createItem(new StateMachineCreateEventAction(project, machine, transition)));
         addSeparator(menu);

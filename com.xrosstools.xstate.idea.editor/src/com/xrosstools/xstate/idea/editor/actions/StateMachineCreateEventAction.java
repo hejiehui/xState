@@ -18,7 +18,7 @@ public class StateMachineCreateEventAction extends BaseDialogAction implements S
 		this.machine = machine;
 	}
 
-	public StateMachineCreateEventAction(Project project, StateMachine machine, StateTransition transition){
+    public StateMachineCreateEventAction(Project project, StateMachine machine, StateTransition transition){
 		this(project, machine);
 		this.transition = transition;
 	}

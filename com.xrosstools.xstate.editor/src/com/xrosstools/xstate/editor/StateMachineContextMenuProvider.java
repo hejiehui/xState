@@ -78,6 +78,11 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
     private void buildStateTransitionContextMenu(IMenuManager menu, IWorkbenchPart editor, StateTransitionPart part) {
         menu.add(new Separator());
         StateTransition transition = (StateTransition)part.getModel();
+        
+        //Create and assign event
+        StateMachine machine = (StateMachine)part.getTarget().getParent().getModel();
+        menu.add(new StateMachineCreateEventAction(editor, machine, transition));
+        menu.add(new Separator());
 
         for(Event e: transition.getHelper().getEvents()) {
             menu.add(new CommandAction(editor, e.getId(), transition.getEvent() == e, new SelectEventCommand(transition, e)));
