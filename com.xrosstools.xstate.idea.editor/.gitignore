@@ -1,0 +1,16 @@
+/out
+
+/.idea
+
+/.idea/workspace.xml
+
+/.idea/sonarlint
+
+/.idea/inspectionProfiles
+
+/.idea/smartfox_info.xml
+
+/.idea/uiDesigner.xml
+
+!/libs/dom4j-1.6.1.jar
+!/libs/com.xrosstools.idea.gef.jar

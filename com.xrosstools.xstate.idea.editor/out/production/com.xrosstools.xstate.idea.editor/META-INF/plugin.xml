@@ -20,8 +20,8 @@
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
-  <!-- uncomment to enable plugin in all products-->
-  <depends>com.xrosstools.idea.gef</depends>
+  <!-- uncomment to enable plugin in all products
+  <depends>com.xrosstools.idea.gef</depends>-->
 
   <extensions defaultExtensionNs="com.intellij">
     <fileEditorProvider implementation="com.xrosstools.xstate.idea.editor.StateMachineEditorProvider"/>
