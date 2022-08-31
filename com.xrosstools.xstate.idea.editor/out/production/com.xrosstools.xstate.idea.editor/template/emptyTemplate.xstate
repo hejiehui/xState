@@ -3,5 +3,13 @@
 <state_machine_diagram>
  <name>StateMachineDiagram</name>
  <description/>
- <state_machines/>
+ <state_machines>
+  <state_machine>
+   <name/>
+   <description/>
+   <states/>
+   <events/>
+   <transitions/>
+  </state_machine>
+ </state_machines>
 </state_machine_diagram>

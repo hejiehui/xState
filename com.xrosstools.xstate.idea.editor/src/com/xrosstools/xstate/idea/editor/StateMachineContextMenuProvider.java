@@ -42,7 +42,6 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
     private void buildStateNodeContextMenu(JPopupMenu menu, StateNodePart part) {
         StateNode node = part.getStateNode();
 
-        addSeparator(menu);
         buildModifyImplementationMenu(menu, new EntryActionAccessor(node));
 
         addSeparator(menu);
@@ -54,14 +53,17 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
     }
 
     private void buildStateMachineContextMenu(JPopupMenu menu, StateMachinePart part) {
-        addSeparator(menu);
         StateMachine machine = (StateMachine)part.getModel();
         menu.add(createItem(new StateMachineCreateEventAction(project, machine)));
     }
 
     private void buildStateTransitionContextMenu(JPopupMenu menu, StateTransitionPart part) {
-        addSeparator(menu);
         StateTransition transition = (StateTransition)part.getModel();
+
+        //Create and add event
+        StateMachine machine = (StateMachine)part.getParent().getParent().getModel();
+        menu.add(createItem(new StateMachineCreateEventAction(project, machine, transition)));
+        addSeparator(menu);
 
         for(Event e: transition.getHelper().getEvents()) {
             menu.add(createItem(e.getId(), transition.getEvent() == e, new SelectEventCommand(transition, e)));
