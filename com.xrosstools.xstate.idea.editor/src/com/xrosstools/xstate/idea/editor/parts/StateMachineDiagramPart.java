@@ -17,14 +17,7 @@ public class StateMachineDiagramPart extends AbstractGraphicalEditPart implement
 	}
 	
 	protected Figure createFigure() {
-	    StateDiagramFigure figure = new StateDiagramFigure();
-
-		Point loc = new Point(0, 0);
-		Dimension size = new Dimension(-1, -1);
-//        Rectangle rectangle = new Rectangle(loc, size);
-		figure.setPreferredSize(size);
-        
-        return figure;
+	    return new StateDiagramFigure();
 	}
 
 	protected EditPolicy createEditPolicy() {

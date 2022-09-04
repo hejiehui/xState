@@ -26,6 +26,7 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
     private StateMachineDiagramFactory factory = new StateMachineDiagramFactory();
 
     public StateMachinePanelContentProvider(Project project, VirtualFile virtualFile) {
+        super(virtualFile);
         this.project = project;
         this.virtualFile = virtualFile;
     }

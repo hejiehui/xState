@@ -24,7 +24,7 @@ public class StateMachineFigure extends Figure implements StateMachineConstants 
         setLayoutManager(layout);
         
         label.setLabelAlignment(PositionConstants.LEFT);
-        label.setForegroundColor(ColorConstants.blue);
+        label.setForegroundColor(ColorConstants.white);
       
         topLine = new RectangleFigure();
         topLine.setBackgroundColor(ColorConstants.lightGray);
