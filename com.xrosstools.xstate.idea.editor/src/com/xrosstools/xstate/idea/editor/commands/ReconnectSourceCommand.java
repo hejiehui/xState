@@ -17,7 +17,7 @@ public class ReconnectSourceCommand extends Command {
 	}
 	
 	public boolean canExecute() {
-		return transition.getSource().equals(newSource);
+		return !transition.getSource().equals(newSource);
 	}
 
 	public void execute() {
