@@ -28,7 +28,7 @@ public class StateNodeFigure extends RoundedRectangle {
         Figure line = new RectangleFigure();
         line.setBackgroundColor(ColorConstants.lightGray);
         line.setForegroundColor(ColorConstants.lightGray);
-        line.setPreferredSize(new Dimension(1000, 1));
+        line.setPreferredSize(new Dimension(-1, 1));
         add(line);
         
         Figure actionsPanel = new Figure();

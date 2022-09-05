@@ -30,7 +30,7 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="XrossTools.NewStateMachineAction" class="com.xrosstools.xstate.idea.editor.NewStateMachineAction" text="Xross State Machine" description="Create new Xross State Machine Model file" icon="/icons/state_machine_diagram.ico">
+    <action id="XrossTools.NewStateMachineAction" class="com.xrosstools.xstate.idea.editor.NewStateMachineAction" text="Xross State Machine" description="Create new Xross State Machine Model file" icon="/icons/state_machine_diagram.png">
       <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
     </action>
   </actions>

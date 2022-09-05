@@ -8,8 +8,7 @@ import com.xrosstools.idea.gef.parts.EditPolicy;
 import com.xrosstools.xstate.idea.editor.model.StateNode;
 import com.xrosstools.xstate.idea.editor.policies.StateNodeComponentEditPolicy;
 
-import java.awt.Dimension;
-import java.awt.Point;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
@@ -56,9 +55,16 @@ public abstract class AbstractNodePart extends AbstractGraphicalEditPart impleme
 
     protected void refreshVisuals() {
         StateNode node = getStateNode();
-        
+
         Point loc = node.getLocation();
         getFigure().setLocation(loc);
         updateFigure(node);
+
+        Dimension size = getSize();
+
+        Rectangle constraint = new Rectangle(loc, size);
+        StateMachinePart parent = (StateMachinePart)getParent();
+        parent.setLayoutConstraint(this, getFigure(), constraint);
+
     }
 }
