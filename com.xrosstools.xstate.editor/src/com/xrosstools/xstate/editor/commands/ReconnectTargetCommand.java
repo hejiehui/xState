@@ -18,7 +18,7 @@ public class ReconnectTargetCommand extends Command {
 	}
 	
 	public boolean canExecute() {
-		return transition.getTarget().equals(newTarget);
+		return !transition.getTarget().equals(newTarget);
 	}
 
 	public void execute() {
