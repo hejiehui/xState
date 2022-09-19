@@ -59,7 +59,7 @@ public class StateNodeFigure extends RoundedRectangle {
     }
 
     public Dimension getGoodSize() {
-        return new Dimension(Math.max(100, nameLabel.getSize().width + 10), 50);
+        return new Dimension(Math.max(100, nameLabel.getPreferredSize().width + 10), 50);
     }
 
     public void setName(String name) {
