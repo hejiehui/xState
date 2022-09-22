@@ -41,6 +41,6 @@ public class StateMachineDiagramLayoutPolicy extends EditPolicy {
 	}
 
 	private int getIndex(Point location) {
-	    return getHost().getFigure().getInsertionIndex();
+	    return getHost().getFigure().getInsertionIndex(location);
 	}
 }
