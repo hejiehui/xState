@@ -3,12 +3,14 @@ package com.xrosstools.xstate.idea.editor.policies;
 import com.xrosstools.idea.gef.commands.Command;
 import com.xrosstools.idea.gef.parts.AbstractGraphicalEditPart;
 import com.xrosstools.idea.gef.parts.EditPolicy;
+import com.xrosstools.xstate.idea.editor.commands.AddStateNodeCommand;
 import com.xrosstools.xstate.idea.editor.commands.CreateNodeCommand;
 import com.xrosstools.xstate.idea.editor.commands.DeleteStateMachineCommand;
 import com.xrosstools.xstate.idea.editor.commands.MoveNodeCommand;
 import com.xrosstools.xstate.idea.editor.model.StateMachine;
 import com.xrosstools.xstate.idea.editor.model.StateMachineDiagram;
 import com.xrosstools.xstate.idea.editor.model.StateNode;
+import com.xrosstools.xstate.idea.editor.parts.StateMachinePart;
 
 import java.awt.*;
 
@@ -46,6 +48,13 @@ public class StateMachineLayoutPolicy extends EditPolicy {
         cmd.setNode((StateNode)model);
         cmd.setMoveDelta(constraint.getLocation());
         return cmd;
+    }
+
+    public Command getAddCommand(AbstractGraphicalEditPart target, AbstractGraphicalEditPart child, Rectangle constraint) {
+//        return target instanceof StateMachinePart ?
+//                new AddStateNodeCommand((StateMachine)target.getModel(), (StateNode)child.getModel(), (StateMachine)child.getParent().getModel(), constraint.getLocation()) :
+//                null;
+        return null;
     }
 
     public Command getCreateCommand(Object newModel, Point location) {

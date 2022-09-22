@@ -54,6 +54,8 @@ public abstract class AbstractNodePart extends AbstractGraphicalEditPart impleme
     }
 
     protected void refreshVisuals() {
+        if(getParent() == null)
+            return;
         StateNode node = getStateNode();
 
         Point loc = node.getLocation();
