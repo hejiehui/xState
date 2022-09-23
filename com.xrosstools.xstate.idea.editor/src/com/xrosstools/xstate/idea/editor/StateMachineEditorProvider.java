@@ -16,6 +16,7 @@ public class StateMachineEditorProvider extends AbstractDiagramEditorProvider {
     public static final String STATE_NODE = "state_node";
     public static final String START_NODE = "start_node";
     public static final String END_NODE = "end_node";
+    public static final String EVENT = "event";
     public static final String ROUTE_DIRECT = "arrows_direct";
     public static final String ROUTE_HEIGHT_FIRST = "arrows_height";
     public static final String ROUTE_WIDTH_FIRST = "arrows_width";
@@ -25,7 +26,7 @@ public class StateMachineEditorProvider extends AbstractDiagramEditorProvider {
 
     static {
         Activator.register(StateMachineDiagram.class, STATE_MACHINE_DIAGRAM);
-        Activator.register(Event.class, STATE_NODE);
+        Activator.register(Event.class, EVENT);
         Activator.register(StateMachine.class, STATE_MACHINE);
         Activator.register(StartNode.class, START_NODE);
         Activator.register(EndNode.class, END_NODE);
