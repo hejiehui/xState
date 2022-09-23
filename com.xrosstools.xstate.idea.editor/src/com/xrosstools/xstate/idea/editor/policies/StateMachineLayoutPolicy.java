@@ -15,29 +15,25 @@ import com.xrosstools.xstate.idea.editor.parts.StateMachinePart;
 import java.awt.*;
 
 public class StateMachineLayoutPolicy extends EditPolicy {
-//
-//    protected Command createAddCommand(EditPart child, Object constraint) {
-//    	if(!(getHost().getModel() instanceof StateMachine))
-//    		return null;
-//
-//    	if(!(child.getModel() instanceof StateNode))
-//    		return null;
-//
-//    	Rectangle constr = (Rectangle)constraint;
-//    	return new AddStateNodeCommand(
-//        		(StateMachine)getHost().getModel(),
-//        		(StateNode)child.getModel(),
-//        		(StateMachine)child.getParent().getModel(),
-//        		constr.getTopLeft()
-//        		);
-//    }
 
+    @Override
+    public Command getAddCommand(AbstractGraphicalEditPart child, Rectangle constraint) {
+        AbstractGraphicalEditPart target = getHost();
+        StateNode node = (StateNode)child.getModel();
+        if(node.getInputs().isEmpty() && node.getOutputs().isEmpty() && target instanceof StateMachinePart)
+            return new AddStateNodeCommand((StateMachine)target.getModel(), (StateNode)child.getModel(), (StateMachine)child.getParent().getModel(), constraint.getLocation());
+        else
+            return null;
+    }
+
+    @Override
     public Command getDeleteCommand() {
         return new DeleteStateMachineCommand(
                 (StateMachineDiagram)(getHost().getParent().getModel()),
                 (StateMachine)(getHost().getModel()));
     }
 
+    @Override
     public Command getMoveCommand(AbstractGraphicalEditPart child, Rectangle constraint) {
         //check if move can also support add
         Object model = child.getModel();
@@ -50,14 +46,7 @@ public class StateMachineLayoutPolicy extends EditPolicy {
         return cmd;
     }
 
-    public Command getAddCommand(AbstractGraphicalEditPart target, AbstractGraphicalEditPart child, Rectangle constraint) {
-        StateNode node = (StateNode)child.getModel();
-        if(node.getInputs().isEmpty() && node.getOutputs().isEmpty() && target instanceof StateMachinePart)
-            return new AddStateNodeCommand((StateMachine)target.getModel(), (StateNode)child.getModel(), (StateMachine)child.getParent().getModel(), constraint.getLocation());
-        else
-            return null;
-    }
-
+    @Override
     public Command getCreateCommand(Object newModel, Point location) {
     	if(!(newModel instanceof StateNode))
 			return null;

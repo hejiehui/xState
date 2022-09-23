@@ -22,7 +22,7 @@ public class EventTreePart extends AbstractTreeEditPart implements PropertyChang
     }
     
     protected Image getImage() {
-    	return Activator.getDefault().getImage(Activator.STATE_NODE);
+    	return Activator.getDefault().getImage(Activator.EVENT);
     }
     
 	public void activate() {

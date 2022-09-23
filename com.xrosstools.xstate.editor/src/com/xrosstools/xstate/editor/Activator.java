@@ -22,6 +22,7 @@ public class Activator extends AbstractUIPlugin {
 	public static final String STATE_NODE = "state_node";
 	public static final String START_NODE = "start_node";
 	public static final String END_NODE = "end_node";
+	public static final String EVENT = "event";
     public static final String ROUTE_DIRECT = "arrows_direct";
     public static final String ROUTE_HEIGHT_FIRST = "arrows_height";
     public static final String ROUTE_WIDTH_FIRST = "arrows_width";
@@ -71,6 +72,7 @@ public class Activator extends AbstractUIPlugin {
     	put(reg, STATE_NODE);
     	put(reg, START_NODE);
     	put(reg, END_NODE);
+    	put(reg, EVENT);
     	put(reg, ROUTE_DIRECT);
     	put(reg, ROUTE_HEIGHT_FIRST);
     	put(reg, ROUTE_WIDTH_FIRST);

@@ -23,6 +23,10 @@ public class StateMachineLayoutPolicy extends XYLayoutEditPolicy {
     	if(!(child.getModel() instanceof StateNode))
     		return null;
 
+        StateNode node = (StateNode)child.getModel();
+        if(!(node.getInputs().isEmpty() && node.getOutputs().isEmpty()))
+            return null;
+
     	Rectangle constr = (Rectangle)constraint;
     	return new AddStateNodeCommand(
         		(StateMachine)getHost().getModel(),
