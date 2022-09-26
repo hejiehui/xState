@@ -91,6 +91,10 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 	
 	public void move(int newIndex, StateMachine machine) {
 		int index = machines.indexOf(machine);
+
+		if(index == newIndex || index+1 == newIndex)
+		    return;
+
 		if(index < newIndex)
 			newIndex-=1;
 		
