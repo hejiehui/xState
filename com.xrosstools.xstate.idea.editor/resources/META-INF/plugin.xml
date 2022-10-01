@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.xrosstools.xstate.editor</id>
   <name>Xross State Machine Edtitor</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <vendor email="he_jiehui@163.com" url="https://github.com/hejiehui/xross-tools-installer">Xross Tools</vendor>
 
   <description><![CDATA[
@@ -10,8 +10,11 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      Update to latest GEF<br>
+      <em>1.0.1</em>
+      <p>
       IDEA version that supports editing state machines<br>
-      <em>Xross State Machine Edtitor</em>
+      <em>1.0.0</em>
     ]]>
   </change-notes>
 

@@ -6,7 +6,6 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.xrosstools.idea.gef.AbstractPanelContentProvider;
 import com.xrosstools.idea.gef.Activator;
 import com.xrosstools.idea.gef.ContextMenuProvider;
-import com.xrosstools.idea.gef.parts.EditContext;
 import com.xrosstools.idea.gef.parts.EditPartFactory;
 import com.xrosstools.idea.gef.util.XmlHelper;
 import com.xrosstools.xstate.idea.editor.io.StateMachineDiagramFactory;
@@ -105,12 +104,12 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
     }
 
     @Override
-    public EditPartFactory createEditPartFactory(EditContext context) {
-        return new StateMachinePartFactory(context);
+    public EditPartFactory createEditPartFactory() {
+        return new StateMachinePartFactory();
     }
 
     @Override
-    public EditPartFactory createTreePartFactory(EditContext context) {
-        return new StateMachineTreePartFactory(context);
+    public EditPartFactory createTreePartFactory() {
+        return new StateMachineTreePartFactory();
     }
 }

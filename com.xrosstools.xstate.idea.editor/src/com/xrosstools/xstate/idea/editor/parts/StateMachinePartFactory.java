@@ -5,12 +5,7 @@ import com.xrosstools.xstate.idea.editor.StateMachineEditorProvider;
 import com.xrosstools.xstate.idea.editor.model.*;
 
 public class StateMachinePartFactory implements EditPartFactory {
-	private EditContext editContext;
-
-	public StateMachinePartFactory(EditContext editContext) {
-		this.editContext = editContext;
-	}
-
+	@Override
 	public EditPart createEditPart(EditPart parent, Object model) {
 		AbstractGraphicalEditPart part = null;
 
@@ -38,12 +33,7 @@ public class StateMachinePartFactory implements EditPartFactory {
 		if (part == null )
 			return null;
 
-		part.setEditPartFactory(this);
 		part.setModel(model);
-		part.setParent(parent);
-		part.setContext(editContext);
-		editContext.add(part, model);
-		
 		return part;
 	}
 }

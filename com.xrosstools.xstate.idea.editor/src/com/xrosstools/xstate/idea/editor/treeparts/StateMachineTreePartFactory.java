@@ -7,12 +7,7 @@ import com.xrosstools.idea.gef.parts.EditPartFactory;
 import com.xrosstools.xstate.idea.editor.model.*;
 
 public class StateMachineTreePartFactory  implements EditPartFactory {
-    private EditContext editContext;
-
-    public StateMachineTreePartFactory(EditContext editContext) {
-        this.editContext = editContext;
-    }
-
+    @Override
     public EditPart createEditPart(EditPart parent, Object model) {
         AbstractTreeEditPart part = null;
         if(model == null)
@@ -30,12 +25,7 @@ public class StateMachineTreePartFactory  implements EditPartFactory {
 		if (part == null )
 		    return null;
 
-        part.setEditPartFactory(this);
         part.setModel(model);
-        part.setParent(parent);
-        part.setContext(editContext);
-        editContext.add(part, model);
-
 		return part;
 	}
 }
