@@ -10,6 +10,9 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      Update to latest GEF, fix NPE when selecting non visual element<br>
+      <em>1.0.2</em>
+      <p>
       Update to latest GEF<br>
       <em>1.0.1</em>
       <p>
