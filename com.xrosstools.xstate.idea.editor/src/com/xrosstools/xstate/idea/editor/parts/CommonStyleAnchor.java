@@ -15,6 +15,8 @@ public class CommonStyleAnchor extends ChopboxAnchor {
         this.style = style;
         this.isSource = isSource;
     }
+
+    @Override
     public Point getLocation(Point loc) {
     	return style == RouteStyle.direct ? 
     			super.getLocation(loc) :

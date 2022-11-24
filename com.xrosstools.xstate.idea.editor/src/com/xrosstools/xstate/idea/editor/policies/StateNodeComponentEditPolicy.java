@@ -22,9 +22,6 @@ public class StateNodeComponentEditPolicy extends EditPolicy {
 	}
 
 	public Command getCreateConnectionCommand(Object newConnectionModel, AbstractGraphicalEditPart sourcePart) {
-		if(sourcePart == getHost())
-			return null;
-
 		CreateTransitionCommand cmd = new CreateTransitionCommand((RouteStyle)newConnectionModel);
 		cmd.setSource((StateNode)sourcePart.getModel());
 		cmd.setTarget((StateNode)getHost().getModel());

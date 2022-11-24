@@ -19,6 +19,8 @@ public class StateMachineTreePartFactory  implements EditPartFactory {
             part = new StateMachineTreePart(model);
         else if(model instanceof StateNode)
             part = new StateNodeTreePart(model);
+        else if(model instanceof StateTransition)
+            part = new StateTransitionTreePart(model);
 		else if(model instanceof Event)
             part = new EventTreePart(model);
 
