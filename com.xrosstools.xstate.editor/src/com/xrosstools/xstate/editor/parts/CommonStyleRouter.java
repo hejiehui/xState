@@ -2,8 +2,10 @@ package com.xrosstools.xstate.editor.parts;
 
 import org.eclipse.draw2d.AbstractRouter;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
 
 import com.xrosstools.xstate.editor.model.RouteStyle;
 
@@ -20,6 +22,18 @@ public class CommonStyleRouter extends AbstractRouter {
 
     @Override
     public void route(Connection conn) {
+        if (isConnectToSameNode(conn)) {
+            routeForSameNode(conn);
+        }else {
+            routeDifferentNode(conn);
+        }
+    }
+    
+    private boolean isConnectToSameNode(Connection conn) {
+        return conn.getTargetAnchor().getOwner() == conn.getSourceAnchor().getOwner();
+    }
+
+    public void routeDifferentNode(Connection conn) {
         PointList pl = conn.getPoints();
         pl.removeAllPoints();
         Point start = getStartPoint(conn);
@@ -48,5 +62,42 @@ public class CommonStyleRouter extends AbstractRouter {
         }
         
         pl.addPoint(end);
+    }
+    
+    private void routeForSameNode(Connection conn) {
+        Rectangle figure = conn.getTargetAnchor().getOwner().getBounds();
+        PointList pl = conn.getPoints();
+        Point start;
+        Point end;
+        pl.removeAllPoints();
+
+        if (style == RouteStyle.direct) {
+            start = figure.getLeft();
+            end = figure.getBottom();
+            pl.addPoint(start);
+            pl.addPoint(new Point(start.x - 50, start.y));
+            pl.addPoint(new Point(start.x - 50, start.y + 50));
+            pl.addPoint(new Point(end.x, end.y + 25));
+            pl.addPoint(end);
+            return;
+        }
+
+        if (style == RouteStyle.heightFirst) {
+            start = figure.getTop();
+            end = figure.getRight();
+            pl.addPoint(start);
+            pl.addPoint(new Point(start.x, start.y - 50));
+            pl.addPoint(new Point(end.x + 50, start.y - 50));
+            pl.addPoint(new Point(end.x + 50, end.y));
+            pl.addPoint(end);
+        } else {
+            start = figure.getRight();
+            end = figure.getBottom();
+            pl.addPoint(start);
+            pl.addPoint(new Point(start.x + 50, start.y));
+            pl.addPoint(new Point(start.x + 50, start.y + 50));
+            pl.addPoint(new Point(end.x, end.y + 25));
+            pl.addPoint(end);
+        }
     }
 }

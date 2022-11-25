@@ -7,6 +7,7 @@ import com.xrosstools.xstate.editor.model.Event;
 import com.xrosstools.xstate.editor.model.StateMachine;
 import com.xrosstools.xstate.editor.model.StateMachineDiagram;
 import com.xrosstools.xstate.editor.model.StateNode;
+import com.xrosstools.xstate.editor.model.StateTransition;
 
 public class StateMachineTreePartFactory  implements EditPartFactory {
 	public EditPart createEditPart(EditPart context, Object model) {
@@ -21,6 +22,9 @@ public class StateMachineTreePartFactory  implements EditPartFactory {
 		
 		if(model instanceof Event)
 			return new EventTreePart(model);
+		
+        if(model instanceof StateTransition)
+            return new StateTransitionTreePart(model);
 		
 		return null;
 	}

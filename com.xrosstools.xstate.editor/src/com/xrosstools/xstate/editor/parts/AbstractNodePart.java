@@ -11,16 +11,14 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.requests.CreateConnectionRequest;
-import org.eclipse.ui.part.EditorPart;
+import org.eclipse.gef.requests.ReconnectRequest;
 
 import com.xrosstools.xstate.editor.commands.CreateTransitionCommand;
-import com.xrosstools.xstate.editor.model.StateMachine;
-import com.xrosstools.xstate.editor.model.StateMachineConstants;
+import com.xrosstools.xstate.editor.model.RouteStyle;
 import com.xrosstools.xstate.editor.model.StateNode;
 import com.xrosstools.xstate.editor.model.StateTransition;
 import com.xrosstools.xstate.editor.policies.StateMachineGraphicNodeEditPolicy;
@@ -40,17 +38,28 @@ public abstract class AbstractNodePart extends AbstractGraphicalEditPart impleme
     }
 
     public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-        CreateConnectionRequest req = (CreateConnectionRequest)request;
-        CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
+        RouteStyle style = getStyle(request);
         
-        return new CommonStyleAnchor(getFigure(), cmd.getStyle(), true);
+        return new CommonStyleAnchor(getFigure(), style, true);
     }
 
     public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-        CreateConnectionRequest req = (CreateConnectionRequest)request;
-        CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
+        RouteStyle style = getStyle(request);
         
-        return new CommonStyleAnchor(getFigure(), cmd.getStyle(), false);
+        return new CommonStyleAnchor(getFigure(), style, false);
+    }
+    private RouteStyle getStyle(Request request) {
+        RouteStyle style = null;
+        if(request instanceof ReconnectRequest) {
+            ReconnectRequest req = (ReconnectRequest)request;
+            StateTransitionPart part = (StateTransitionPart)req.getConnectionEditPart();
+            style = part.getStyle();
+        } else {
+            CreateConnectionRequest req = (CreateConnectionRequest)request;
+            CreateTransitionCommand cmd = (CreateTransitionCommand)req.getStartCommand();
+            style = cmd.getStyle();
+        }
+        return style;
     }
     
     protected void createEditPolicies() {
