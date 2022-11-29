@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: xState Editor
 Bundle-SymbolicName: com.xrosstools.xstate.editor;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.1.qualifier
 Bundle-Activator: com.xrosstools.xstate.editor.Activator
 Bundle-Vendor: he, jiehui
 Require-Bundle: org.eclipse.gef;bundle-version="3.6.2",

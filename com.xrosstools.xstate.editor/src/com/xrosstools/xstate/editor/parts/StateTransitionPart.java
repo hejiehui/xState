@@ -26,7 +26,7 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
         nodeConn = (StateTransition)getModel();
         PolylineConnection conn = new PolylineConnection();
         conn.setTargetDecoration(new PolygonDecoration());
-        router = new CommonStyleRouter(nodeConn.getStyle());
+        router = new CommonStyleRouter(nodeConn);
         conn.setConnectionRouter(router);
         conn.setForegroundColor(ColorConstants.black);
         
@@ -62,7 +62,6 @@ public class StateTransitionPart extends AbstractConnectionEditPart implements P
     
     public void propertyChange(PropertyChangeEvent event){
     	label.setText(nodeConn.getDisplayLabel());
-    	router.setStyle(nodeConn.getStyle());
     	refresh();
     }
     

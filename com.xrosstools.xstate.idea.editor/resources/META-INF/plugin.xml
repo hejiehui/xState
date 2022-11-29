@@ -10,6 +10,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      Optimze node link to itself for multiple links case.<br>
+      <em>1.0.4</em>
       Allow node link to itself.<br>
       <em>1.0.3</em>
       Update to latest GEF, fix NPE when selecting non visual element<br>
