@@ -10,18 +10,11 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      Optimze node link to itself for multiple links case.<br>
-      <em>1.0.4</em>
-      Allow node link to itself.<br>
-      <em>1.0.3</em>
-      Update to latest GEF, fix NPE when selecting non visual element<br>
-      <em>1.0.2</em>
-      <p>
-      Update to latest GEF<br>
-      <em>1.0.1</em>
-      <p>
-      IDEA version that supports editing state machines<br>
-      <em>1.0.0</em>
+      <em>1.0.4</em> Optimze node link to itself for multiple links case.<br>
+      <em>1.0.3</em> Allow node link to itself.<br>
+      <em>1.0.2</em> Update to latest GEF, fix NPE when selecting non visual element<br>
+      <em>1.0.1</em> Update to latest GEF<br>
+      <em>1.0.0</em> IDEA version that supports editing state machines<br>
     ]]>
   </change-notes>
 
@@ -30,8 +23,10 @@
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.xrosstools.idea.gef</depends>-->
+  <depends>com.xrosstools.idea.gef</depends> -->
+  <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.java</depends>
+  <depends>com.xrosstools.idea.gef</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <fileEditorProvider implementation="com.xrosstools.xstate.idea.editor.StateMachineEditorProvider"/>
