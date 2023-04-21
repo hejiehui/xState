@@ -12,7 +12,6 @@ public class StateMachineFileType implements FileType {
     public static final String NAME = "Xross State Machine File";
     public static final String DESCRIPTION = "Xross State Machine Model File";
     public static final String EXTENSION = "xstate";
-    public static final String ICON = "state_machine_diagram";
 
     public static final StateMachineFileType INSTANCE = new StateMachineFileType();
 
@@ -37,7 +36,7 @@ public class StateMachineFileType implements FileType {
     @Nullable
     @Override
     public Icon getIcon() {
-        return IconLoader.findIcon(com.xrosstools.idea.gef.Activator.getIconPath(ICON));
+        return StateMachineIcons.STATE_MACHINE_DIAGRAM;
     }
 
     @Override

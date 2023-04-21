@@ -1,6 +1,6 @@
 package com.xrosstools.xstate.idea.editor.io;
 
-import static com.xrosstools.idea.gef.util.XmlHelper.*;
+import static com.xrosstools.xstate.idea.editor.io.XmlHelper.*;
 
 import java.awt.*;
 import java.util.ArrayList;

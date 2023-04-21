@@ -3,6 +3,7 @@ package com.xrosstools.xstate.idea.editor.figures;
 import com.xrosstools.idea.gef.figures.*;
 import com.xrosstools.idea.gef.figures.Label;
 import com.xrosstools.xstate.idea.editor.StateMachineEditorProvider;
+import com.xrosstools.xstate.idea.editor.StateMachineIcons;
 
 import java.awt.*;
 
@@ -41,7 +42,7 @@ public class StateNodeFigure extends RoundedRectangle {
     	actionsPanelLayout.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
     	actionsPanel.setLayoutManager(actionsPanelLayout);
     	
-    	entry = new IconFigure(StateMachineEditorProvider.ENTRY_ACTION);
+    	entry = new IconFigure(StateMachineIcons.ENTRY_ACTION);
     	actionsPanel.add(entry);
 
     	Figure actionLine = new RectangleFigure();
@@ -50,7 +51,7 @@ public class StateNodeFigure extends RoundedRectangle {
     	actionLine.setPreferredSize(new Dimension(1, 20));
         actionsPanel.add(actionLine);
     	
-    	exit = new IconFigure(StateMachineEditorProvider.EXIT_ACTION);
+    	exit = new IconFigure(StateMachineIcons.EXIT_ACTION);
     	actionsPanel.add(exit);
     }
     

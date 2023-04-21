@@ -1,12 +1,19 @@
 <idea-plugin>
   <id>com.xrosstools.xstate.editor</id>
   <name>Xross State Machine Edtitor</name>
-  <version>1.0.1</version>
+  <version>1.0.5</version>
   <vendor email="he_jiehui@163.com" url="https://github.com/hejiehui/xross-tools-installer">Xross Tools</vendor>
 
   <description><![CDATA[
-      Xross Tools.<br>
-      <em>Xross State Machine Edtitor</em>
+      Xross State Machine Edtitor is a no-code tool for building state machine.<br>
+      To create a state machine, follow these steps:<br>
+      1. create state machine mnodel file from file -> new -> Xross State Machine<br>
+      2. Create a state machine and give it a name in properties.<br>
+      3. Create start node, state node and end node in the state machine you created.<br>
+      4. Link nodes with transition<br>
+      5. Create event and bundle to the transition.<br>
+      6. Use runtime to load the model and handle event in your application.
+      You can download and play with the <a href="https://github.com/hejiehui/xState/tree/master/com.xrosstools.xstate.sample">example</a> to quick start with it. It demostrates how to use runtime and how to work with event.
     ]]></description>
 
   <change-notes><![CDATA[
@@ -24,7 +31,6 @@
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
-  <depends>com.xrosstools.idea.gef</depends> -->
   <depends>com.intellij.modules.lang</depends>
   <depends>com.intellij.modules.java</depends>
   <depends>com.xrosstools.idea.gef</depends>

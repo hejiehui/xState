@@ -4,11 +4,10 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.xrosstools.idea.gef.AbstractPanelContentProvider;
-import com.xrosstools.idea.gef.Activator;
 import com.xrosstools.idea.gef.ContextMenuProvider;
 import com.xrosstools.idea.gef.parts.EditPartFactory;
-import com.xrosstools.idea.gef.util.XmlHelper;
 import com.xrosstools.xstate.idea.editor.io.StateMachineDiagramFactory;
+import com.xrosstools.xstate.idea.editor.io.XmlHelper;
 import com.xrosstools.xstate.idea.editor.model.*;
 import com.xrosstools.xstate.idea.editor.parts.StateMachinePartFactory;
 import com.xrosstools.xstate.idea.editor.treeparts.StateMachineTreePartFactory;
@@ -53,16 +52,16 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
     }
 
     private static Object[][] ENTRIES = new Object[][]{
-            {"State Machine", StateMachine.class, StateMachineEditorProvider.STATE_MACHINE},
-            {"State Node", StateNode.class, StateMachineEditorProvider.STATE_NODE},
-            {"Start Node", StartNode.class, StateMachineEditorProvider.START_NODE},
-            {"End Node", EndNode.class, StateMachineEditorProvider.END_NODE},
+            {"State Machine", StateMachine.class, StateMachineIcons.STATE_MACHINE},
+            {"State Node", StateNode.class, StateMachineIcons.STATE_NODE},
+            {"Start Node", StartNode.class, StateMachineIcons.START_NODE},
+            {"End Node", EndNode.class, StateMachineIcons.END_NODE},
     };
 
     private static Object[][] CONN_ENTRIES = new Object[][]{
-            {"Direct Route", RouteStyle.direct, StateMachineEditorProvider.ROUTE_DIRECT},
-            {"Height First Route", RouteStyle.heightFirst, StateMachineEditorProvider.ROUTE_HEIGHT_FIRST},
-            {"Width First Route", RouteStyle.widthFirst, StateMachineEditorProvider.ROUTE_WIDTH_FIRST},
+            {"Direct Route", RouteStyle.direct, StateMachineIcons.ROUTE_DIRECT},
+            {"Height First Route", RouteStyle.heightFirst, StateMachineIcons.ROUTE_HEIGHT_FIRST},
+            {"Width First Route", RouteStyle.widthFirst, StateMachineIcons.ROUTE_WIDTH_FIRST},
     };
 
 
@@ -78,7 +77,7 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
     }
 
     private JButton createConnectionButton(Object[] entry) {
-        JButton btn = new JButton((String)entry[0], IconLoader.findIcon(Activator.getIconPath((String)entry[2])));
+        JButton btn = new JButton((String)entry[0], (Icon)entry[2]);
         btn.setPreferredSize(new Dimension(100, 50));
         btn.setContentAreaFilled(false);
         btn.addActionListener(e -> createConnection(entry[1]));
@@ -86,7 +85,7 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
     }
 
     private JButton createNodeButton(Object[] entry) {
-        JButton btn = new JButton((String)entry[0], IconLoader.findIcon(Activator.getIconPath((String)entry[2])));
+        JButton btn = new JButton((String)entry[0], (Icon)entry[2]);
         btn.setPreferredSize(new Dimension(100, 50));
         btn.setContentAreaFilled(false);
         btn.addActionListener(e -> {

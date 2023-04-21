@@ -4,6 +4,6 @@ import com.xrosstools.idea.gef.DefaultNewModelFileAction;
 
 public class NewStateMachineAction extends DefaultNewModelFileAction {
     public NewStateMachineAction() {
-        super("Xross State Machine", StateMachineFileType.EXTENSION, StateMachineFileType.ICON, "new_xstate_file", "/template/emptyTemplate.xstate");
+        super("Xross State Machine", StateMachineFileType.EXTENSION, StateMachineIcons.STATE_MACHINE_DIAGRAM, "new_xstate_file", "/template/emptyTemplate.xstate");
     }
 }
