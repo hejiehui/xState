@@ -78,9 +78,8 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 	
 	/**
 	 * It will first check model file from file path, if it does not exist, it will try classpath then. 
-	 * @param path
-	 * @return
-	 * @throws Exception
+	 * @param path file path or resource path of the model file
+	 * @return state machine factory for the given model file
 	 */
 	public static StateMachineFactory load(String path) throws FileNotFoundException, SAXException, IOException, ParserConfigurationException {
 		InputStream in;

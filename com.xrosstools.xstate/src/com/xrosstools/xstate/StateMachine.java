@@ -155,7 +155,7 @@ public class StateMachine {
 	
 	/**
 	 * Restore to given state
-	 * @param id
+	 * @param id the ID of the given state of the state machine  
 	 */
 	public void restore(String id){
 		if(isEnded())

@@ -25,7 +25,7 @@ public class Event {
 	
 	/**
 	 * In case you want to reuse same event object, be careful about racing condition.
-	 * @param id
+	 * @param id the unique identifier of the event
 	 */
     public void setId(String id) {
         this.id = id;
