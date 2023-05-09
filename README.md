@@ -52,6 +52,8 @@ Depenency
 		<version>${latest}</version>
 	</dependency>
 
+从1.0.0起，所有新增版本将发布到[Maven中央仓库](https://s01.oss.sonatype.org/#nexus-search;quick~xstate)
+
 
 # Demo project
 [Demo](https://github.com/hejiehui/xState/tree/master/com.xrosstools.xstate.sample)
