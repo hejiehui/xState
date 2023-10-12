@@ -77,25 +77,17 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
     }
 
     private JButton createConnectionButton(Object[] entry) {
-        JButton btn = new JButton((String)entry[0], (Icon)entry[2]);
-        btn.setPreferredSize(new Dimension(100, 50));
-        btn.setContentAreaFilled(false);
-        btn.addActionListener(e -> createConnection(entry[1]));
-        return btn;
+        return createPaletteButton(e -> createConnection(entry[1]), (Icon)entry[2], (String)entry[0]);
     }
 
     private JButton createNodeButton(Object[] entry) {
-        JButton btn = new JButton((String)entry[0], (Icon)entry[2]);
-        btn.setPreferredSize(new Dimension(100, 50));
-        btn.setContentAreaFilled(false);
-        btn.addActionListener(e -> {
+        return createPaletteButton(e -> {
             try {
                 createModel(((Class)entry[1]).newInstance());
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-        });
-        return btn;
+        }, (Icon)entry[2], (String)entry[0]);
     }
 
     @Override
