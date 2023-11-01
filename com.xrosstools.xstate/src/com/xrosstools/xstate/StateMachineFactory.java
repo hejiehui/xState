@@ -69,7 +69,7 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 		if(def == null)
 			throw new NoSuchElementException(String.format("Can not found state machine definition for name: %s", stateMachineName));
 		
-		return def.create();
+		return def.create(this);
 	}
 	
 	public static StateMachineFactory load(URL url) throws SAXException, IOException, ParserConfigurationException {
@@ -206,6 +206,7 @@ public class StateMachineFactory implements StateMachineDiagramConstants {
 			TransitionDef transition = new TransitionDef(sourceId, targetId);
 			transition.setEventDef(event);
 			transition.setTransitActionDef(new ActionDef(getAttribute(node, TRANSIT_ACTION)));
+			transition.setTransitGuardDef(new ActionDef(getAttribute(node, TRANSIT_GUARD)));
 			transitionDefs.add(transition);
 		}
 		

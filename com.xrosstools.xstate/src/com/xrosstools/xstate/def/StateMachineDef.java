@@ -7,11 +7,12 @@ import java.util.Map;
 
 import com.xrosstools.xstate.EntryAction;
 import com.xrosstools.xstate.ExitAction;
-import com.xrosstools.xstate.NullAction;
 import com.xrosstools.xstate.State;
 import com.xrosstools.xstate.StateMachine;
+import com.xrosstools.xstate.StateMachineFactory;
 import com.xrosstools.xstate.TransitAction;
 import com.xrosstools.xstate.Transition;
+import com.xrosstools.xstate.TransitionGuard;
 
 public class StateMachineDef {
 	private String name;
@@ -60,7 +61,7 @@ public class StateMachineDef {
 		this.tansitionDefs = tansitionDefs;
 	}
     
-	public StateMachine create() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public StateMachine create(StateMachineFactory factory) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		Map<String, List<Transition>> transitions = new HashMap<String, List<Transition>>();
 		
 		for(TransitionDef tansitionDef: tansitionDefs) {
@@ -71,6 +72,7 @@ public class StateMachineDef {
 			
 			Transition transition = new Transition(
 					tansitionDef.getEventDef().getId(), 
+					(TransitionGuard)tansitionDef.getTransitGuardDef().create(),
 					(TransitAction)tansitionDef.getTransitActionDef().create(), 
 					tansitionDef.getSourceId(), 
 					tansitionDef.getTargetId());
@@ -81,7 +83,9 @@ public class StateMachineDef {
 		List<State> states = new LinkedList<State>();
 		for(StateDef stateDef: stateDefs) {
 			states.add(new State(
-					stateDef.getId(), 
+					stateDef.getId(),
+					stateDef.getReference(),
+					factory,
 					stateDef.getType(), 
 					stateDef.getDescription(),
 					(EntryAction)stateDef.getEntryActionDef().create(),
@@ -89,7 +93,7 @@ public class StateMachineDef {
 					transitions.get(stateDef.getId())));
 		}
 	
-		return new StateMachine(name, description, states, NullAction.instance);
 		
+		return new StateMachine(name, description, states);
 	}
 }

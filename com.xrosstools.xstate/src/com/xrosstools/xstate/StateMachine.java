@@ -2,7 +2,6 @@ package com.xrosstools.xstate;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -13,19 +12,18 @@ import java.util.Set;
 
 
 public class StateMachine {
+    public static final String STATE_ID_SEPARATOR = ".";
+    private static final String SEPARATOR_REGEX = "\\.";
 	private String name;
 	private String description;
-	private TransitionGuard gaurd;
 	private State currentState;
 	private State startState;
 	private Map<String, State> stateMap;
 	private Set<String> eventIds;
 	
-	public StateMachine(String name, String description, List<State> states, TransitionGuard gaurd) {
+	public StateMachine(String name, String description, List<State> states) {
 		this.name = name;
 		this.description = description;
-		this.gaurd = gaurd;
-		
 		init(states);
 	}
 	
@@ -91,6 +89,15 @@ public class StateMachine {
 		return currentState;
 	}
 	
+    public String getCurrentStateId(){
+        StateMachine child = currentState.getReference();
+        
+        if(child == null || child.isEnded())
+            return currentState.getId();
+        
+        return currentState.getId() + STATE_ID_SEPARATOR + child.getCurrentStateId();
+    }
+    
 	public Set<String> getStateIds(){
         return new LinkedHashSet<>(stateMap.keySet());
     }
@@ -116,24 +123,32 @@ public class StateMachine {
 		return currentState.getType() != StateType.end;
 	}
 	
-	public boolean notify(Event event){
-		State source = currentState;
-		
-		if(!currentState.isAcceptable(event))
-			return false;
-		
-		Transition trans = currentState.getTransition(event);
-		State target = findState(trans.getTargetStateId());
-		
-		if(!gaurd.isTransitAllowed(source.getId(), target.getId(), event))
-			return false;
-		
-		currentState.exist(event);
-		trans.transit(event);
-		target.enter(event);
-		currentState = target;
-		
-		return true;
+	public boolean notify(Event event) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+        StateMachine child = currentState.getReference();
+		if(child == null || child.isEnded())
+		    return notifyState(event);
+
+		return child.notify(event);
+	}
+	
+	private boolean notifyState(Event event) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	    State source = currentState;
+
+	    if(!currentState.isAcceptable(event))
+	        return false;
+
+	    Transition trans = currentState.getTransition(event);
+	    State target = findState(trans.getTargetStateId());
+
+	    if(!trans.isTransitAllowed(source.getId(), target.getId(), event))
+	        return false;
+        
+	    currentState.exist(event);
+	    trans.transit(event);
+	    target.enter(event);
+	    currentState = target;
+
+	    return true;
 	}
 	
 	public boolean isEnded(){
@@ -144,7 +159,7 @@ public class StateMachine {
 	}
 	
 	/*
-	 * Reset the state machine
+	 * Reset the state machine when it is not ended
 	 */
 	public void reset(){
 		if(isEnded())
@@ -153,14 +168,37 @@ public class StateMachine {
 		currentState = startState;
 	}
 	
+    /*
+     * Restart the state machine when it is ended
+     */
+    public void restart(){
+        if(!isEnded())
+            throw new IllegalStateException(String.format("State machine: %s is not ended. Can not be restarted.", name));
+        
+        currentState = startState;
+    }
+    
 	/**
 	 * Restore to given state
-	 * @param id the ID of the given state of the state machine  
+	 * @param id the ID of the given state of the state machine. 
+	 * If the given state refers to a state machine and need to restore 
+	 * the state in that machine, the ID needes to be concat with state Ids from both parent and child state machine.
+	 * E.g. state S1 refers to state machine call SM1 which has a state called S2, if we want to retore S1 in S2 state,
+	 * the ID should be S1.S2  
 	 */
-	public void restore(String id){
+	public void restore(String id) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		if(isEnded())
 			throw new IllegalStateException(String.format("State machine: %s is already ended. Can not be restored.", name));
 
+		if(id.contains(STATE_ID_SEPARATOR)) {
+		    String[] ids = id.split(SEPARATOR_REGEX, 2);
+		    currentState = findState(ids[0]);
+		    currentState.restore(ids[1]);
+		    
+		    return;
+		}
+		
 		currentState = findState(id);
+		
 	}
 }

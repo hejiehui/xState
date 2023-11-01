@@ -7,9 +7,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.xrosstools.xstate.def.StateMachineDef;
+
 public class State {
 	private String id;
-	private String reference;
+
+	private String referenceId;
+	private StateMachine reference;
+	private StateMachineFactory factory;
+
 	private StateType type;
 	private String description;
 	private Map<String, Transition> outputs = new LinkedHashMap<String, Transition>();
@@ -19,16 +25,20 @@ public class State {
 	
 	public State(
 			String id, 
+            String referenceId,
+            StateMachineFactory factory,
 			StateType type, 
 			String description, 
 			EntryAction entryAction, 
 			ExitAction existAction, 
 			List<Transition> transitions) {
 		this.id = id;
+        this.referenceId = referenceId;
+        this.factory = factory;
 		this.type = type;
 		this.description = description;
-		this.entryAction = NullAction.guardWith(entryAction);
-		this.existAction = NullAction.guardWith(existAction);
+		this.entryAction = entryAction;
+		this.existAction = existAction;
 		
 		if(transitions == null)
 			return;
@@ -38,18 +48,6 @@ public class State {
 				throw new RuntimeException(String.format("Duplicate event: %s found for state: %s",  trans.getEventId(), id));
 			outputs.put(trans.getEventId(), trans);
 		}
-	}
-
-	public State(
-			String id, 
-			String reference,
-			StateType type, 
-			String description, 
-			EntryAction entryAction, 
-			ExitAction existAction, 
-			List<Transition> transitions) {
-		this(id, type, description, entryAction, existAction, transitions);
-		this.reference = reference;
 	}
 	
 	public String getId() {
@@ -64,12 +62,8 @@ public class State {
 		return description;
 	}
 	
-	public String getReference() {
+	public StateMachine getReference() {
 		return reference;
-	}
-	
-	public void setReference(String reference) {
-		this.reference = reference;
 	}
 
 	public Set<String> getAcceptableEvents() {
@@ -92,8 +86,26 @@ public class State {
 		return outputs.get(event.getId());
 	}
 
-	public void enter(Event event) {
+	public void enter(Event event) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		entryAction.enter(id, event);
+		
+		if(referenceId == null || referenceId.isEmpty())
+		    return;
+
+		resetReference();
+	}
+	
+	public void restore(String id) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	    resetReference();
+	    reference.restore(id);
+	}
+	
+	private void resetReference() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+        if(reference == null)
+            reference = factory.create(referenceId);
+
+        if(reference.isEnded())
+            reference.restart();
 	}
 
 	public void exist(Event event) {
