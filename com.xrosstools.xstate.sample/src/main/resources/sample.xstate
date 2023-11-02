@@ -4,7 +4,7 @@
  <name>StateMachineDiagram</name>
  <description/>
  <state_machines>
-  <state_machine height="600" width="1200">
+  <state_machine>
    <name>DB Health Lifecycle</name>
    <description/>
    <states>
@@ -47,7 +47,7 @@
     <transition event_id="initialize" source_id="start" style="direct" target_id="Normal" transit_action=""/>
    </transitions>
   </state_machine>
-  <state_machine height="300" width="1200">
+  <state_machine>
    <name>vip flow</name>
    <description/>
    <states>
@@ -97,6 +97,110 @@
     <transition event_id="pass" source_id="gether user info" style="direct" target_id="data maintain" transit_action=""/>
     <transition event_id="pass" source_id="data maintain" style="direct" target_id="transfer" transit_action=""/>
     <transition event_id="pass" source_id="transfer" style="direct" target_id="end" transit_action=""/>
+   </transitions>
+  </state_machine>
+  <state_machine>
+   <name>SA</name>
+   <description/>
+   <states>
+    <start id="start" x_loc="140" y_loc="153">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </start>
+    <end id="end" x_loc="545" y_loc="154">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </end>
+    <state id="A1" x_loc="302" y_loc="136">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="A-SB" x_loc="301" y_loc="316">
+     <description/>
+     <reference>SB</reference>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="A-SA" x_loc="302" y_loc="487">
+     <description/>
+     <reference>SA</reference>
+     <entry_action/>
+     <exit_action/>
+    </state>
+   </states>
+   <events>
+    <event id="E A1"/>
+    <event id="E A end"/>
+    <event id="E A-SB"/>
+    <event id="E A-SA"/>
+   </events>
+   <transitions>
+    <transition event_id="E A1" source_id="start" style="direct" target_id="A1" transit_action=""/>
+    <transition event_id="E A-SB" source_id="start" style="direct" target_id="A-SB" transit_action=""/>
+    <transition event_id="E A-SA" source_id="start" style="direct" target_id="A-SA" transit_action=""/>
+    <transition event_id="E A end" source_id="A1" style="direct" target_id="end" transit_action=""/>
+    <transition event_id="E A-SB" source_id="A1" style="direct" target_id="A-SB" transit_action=""/>
+    <transition event_id="E A end" source_id="A-SB" style="direct" target_id="end" transit_action=""/>
+    <transition event_id="E A-SA" source_id="A-SB" style="direct" target_id="A-SA" transit_action=""/>
+    <transition event_id="E A end" source_id="A-SA" style="direct" target_id="end" transit_action=""/>
+   </transitions>
+  </state_machine>
+  <state_machine>
+   <name>SB</name>
+   <description/>
+   <states>
+    <start id="start" x_loc="210" y_loc="162">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </start>
+    <end id="end" x_loc="609" y_loc="163">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </end>
+    <state id="B1" x_loc="367" y_loc="147">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="B-SA" x_loc="368" y_loc="285">
+     <description/>
+     <reference>SA</reference>
+     <entry_action/>
+     <exit_action/>
+    </state>
+    <state id="B-SB" x_loc="370" y_loc="428">
+     <description/>
+     <reference>SB</reference>
+     <entry_action/>
+     <exit_action/>
+    </state>
+   </states>
+   <events>
+    <event id="E B1"/>
+    <event id="E B end"/>
+    <event id="E B-SA"/>
+    <event id="E B-SB"/>
+   </events>
+   <transitions>
+    <transition event_id="E B1" source_id="start" style="direct" target_id="B1" transit_action=""/>
+    <transition event_id="E B-SA" source_id="start" style="direct" target_id="B-SA" transit_action=""/>
+    <transition event_id="E B-SB" source_id="start" style="direct" target_id="B-SB" transit_action=""/>
+    <transition event_id="E B end" source_id="B1" style="direct" target_id="end" transit_action=""/>
+    <transition event_id="E B-SA" source_id="B1" style="direct" target_id="B-SA" transit_action=""/>
+    <transition event_id="E B-SB" source_id="B-SA" style="direct" target_id="B-SB" transit_action=""/>
+    <transition event_id="E B end" source_id="B-SA" style="direct" target_id="end" transit_action=""/>
+    <transition event_id="E B end" source_id="B-SB" style="direct" target_id="end" transit_action=""/>
    </transitions>
   </state_machine>
  </state_machines>

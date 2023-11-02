@@ -27,7 +27,7 @@ public class DbHealthyTest {
 		}
 	}
 	
-	static void notify(StateMachine sm, String eventId) {
+	static void notify(StateMachine sm, String eventId) throws Exception {
 		sm.notify(new Event(eventId));
 		System.out.println(sm.getCurrentState().getId());
 	}
