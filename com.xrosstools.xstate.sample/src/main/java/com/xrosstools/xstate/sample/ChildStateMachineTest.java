@@ -25,8 +25,15 @@ public class ChildStateMachineTest {
         assertEquals(sm.isEnded(), ended);
     }
         
+    private void testRestore(String id, String stateId) throws Exception {
+        StateMachine sm = f.create(id);
+
+        sm.restore(stateId);
+        assertEquals(sm.getCurrentStateId(), stateId);
+    }
+        
     @Test
-    public void testA() throws Exception {
+    public void testNotifyA() throws Exception {
         testNotify("SA", new String[][] {
             new String[] {"E A1", "A1"},
             new String[] {"E A end", "end"},
@@ -34,7 +41,7 @@ public class ChildStateMachineTest {
     }
     
     @Test
-    public void testB() throws Exception {
+    public void testNotifyB() throws Exception {
         testNotify("SB", new String[][] {
             new String[] {"E B1", "B1"},
             new String[] {"E B end", "end"},
@@ -42,7 +49,39 @@ public class ChildStateMachineTest {
     }
     
     @Test
-    public void testA_B() throws Exception {
+    public void testNotifyA_A() throws Exception {
+        testNotify("SA", new String[][] {
+            new String[] {"E A-SA", "A-SA.start"},
+            new String[] {"E A1", "A-SA.A1"},
+            new String[] {"E A end", "A-SA.end"},
+            }, false);
+
+        testNotify("SA", new String[][] {
+            new String[] {"E A-SA", "A-SA.start"},
+            new String[] {"E A1", "A-SA.A1"},
+            new String[] {"E A end", "A-SA.end"},
+            new String[] {"E A end", "end"},
+            }, true);
+    }
+    
+    @Test
+    public void testNotifyB_B() throws Exception {
+        testNotify("SB", new String[][] {
+            new String[] {"E B-SB", "B-SB.start"},
+            new String[] {"E B1", "B-SB.B1"},
+            new String[] {"E B end", "B-SB.end"},
+            }, false);
+
+        testNotify("SB", new String[][] {
+            new String[] {"E B-SB", "B-SB.start"},
+            new String[] {"E B1", "B-SB.B1"},
+            new String[] {"E B end", "B-SB.end"},
+            new String[] {"E B end", "end"},
+            }, true);
+    }
+    
+    @Test
+    public void testNotifyA_B() throws Exception {
         //3 cases: reach start, reach middle, reach end
         testNotify("SA", new String[][] {
             new String[] {"E A1", "A1"},
@@ -52,20 +91,20 @@ public class ChildStateMachineTest {
         testNotify("SA", new String[][] {
             new String[] {"E A-SB", "A-SB.start"},
             new String[] {"E B1", "A-SB.B1"},
-            new String[] {"E B end", "A-SB"},
+            new String[] {"E B end", "A-SB.end"},
             }, false);
 
         testNotify("SA", new String[][] {
             new String[] {"E A-SB", "A-SB.start"},
             new String[] {"E B1", "A-SB.B1"},
-            new String[] {"E B end", "A-SB"},
+            new String[] {"E B end", "A-SB.end"},
             new String[] {"E A end", "end"},
             }, true);
 
     }
     
     @Test
-    public void testB_A() throws Exception {
+    public void testNotifyB_A() throws Exception {
         //3 cases: reach start, reach middle, reach end
         testNotify("SB", new String[][] {
             new String[] {"E B1", "B1"},
@@ -75,20 +114,20 @@ public class ChildStateMachineTest {
         testNotify("SB", new String[][] {
             new String[] {"E B-SA", "B-SA.start"},
             new String[] {"E A1", "B-SA.A1"},
-            new String[] {"E A end", "B-SA"},
+            new String[] {"E A end", "B-SA.end"},
             }, false);
 
         testNotify("SB", new String[][] {
             new String[] {"E B-SA", "B-SA.start"},
             new String[] {"E A1", "B-SA.A1"},
-            new String[] {"E A end", "B-SA"},
+            new String[] {"E A end", "B-SA.end"},
             new String[] {"E B end", "end"},
             }, true);
 
     }
     
     @Test
-    public void testA_B_A() throws Exception {
+    public void testNotifyA_B_A() throws Exception {
         //3 cases: reach start, reach middle, reach end
         testNotify("SA", new String[][] {
             new String[] {"E A-SB", "A-SB.start"},
@@ -105,29 +144,29 @@ public class ChildStateMachineTest {
             new String[] {"E A-SB", "A-SB.start"},
             new String[] {"E B-SA", "A-SB.B-SA.start"},
             new String[] {"E A1", "A-SB.B-SA.A1"},
-            new String[] {"E A end", "A-SB.B-SA"},
+            new String[] {"E A end", "A-SB.B-SA.end"},
             }, false);
 
         testNotify("SA", new String[][] {
             new String[] {"E A-SB", "A-SB.start"},
             new String[] {"E B-SA", "A-SB.B-SA.start"},
             new String[] {"E A1", "A-SB.B-SA.A1"},
-            new String[] {"E A end", "A-SB.B-SA"},
-            new String[] {"E B end", "A-SB"},
+            new String[] {"E A end", "A-SB.B-SA.end"},
+            new String[] {"E B end", "A-SB.end"},
             }, false);
 
         testNotify("SA", new String[][] {
             new String[] {"E A-SB", "A-SB.start"},
             new String[] {"E B-SA", "A-SB.B-SA.start"},
             new String[] {"E A1", "A-SB.B-SA.A1"},
-            new String[] {"E A end", "A-SB.B-SA"},
-            new String[] {"E B end", "A-SB"},
+            new String[] {"E A end", "A-SB.B-SA.end"},
+            new String[] {"E B end", "A-SB.end"},
             new String[] {"E A end", "end"},
             }, true);
     }
     
     @Test
-    public void testB_A_B() throws Exception {
+    public void testNotifyB_A_B() throws Exception {
         //3 cases: reach start, reach middle, reach end
         //3 cases: reach start, reach middle, reach end
         testNotify("SB", new String[][] {
@@ -145,46 +184,67 @@ public class ChildStateMachineTest {
             new String[] {"E B-SA", "B-SA.start"},
             new String[] {"E A-SB", "B-SA.A-SB.start"},
             new String[] {"E B1", "B-SA.A-SB.B1"},
-            new String[] {"E B end", "B-SA.A-SB"},
+            new String[] {"E B end", "B-SA.A-SB.end"},
             }, false);
 
         testNotify("SB", new String[][] {
             new String[] {"E B-SA", "B-SA.start"},
             new String[] {"E A-SB", "B-SA.A-SB.start"},
             new String[] {"E B1", "B-SA.A-SB.B1"},
-            new String[] {"E B end", "B-SA.A-SB"},
-            new String[] {"E A end", "B-SA"},
+            new String[] {"E B end", "B-SA.A-SB.end"},
+            new String[] {"E A end", "B-SA.end"},
             }, false);
 
         testNotify("SB", new String[][] {
             new String[] {"E B-SA", "B-SA.start"},
             new String[] {"E A-SB", "B-SA.A-SB.start"},
             new String[] {"E B1", "B-SA.A-SB.B1"},
-            new String[] {"E B end", "B-SA.A-SB"},
-            new String[] {"E A end", "B-SA"},
+            new String[] {"E B end", "B-SA.A-SB.end"},
+            new String[] {"E A end", "B-SA.end"},
             new String[] {"E B end", "end"},
             }, true);
     }
     
     @Test
-    public void testAToARestore() throws Exception {
+    public void testRestoreA() throws Exception {
+        testRestore("SA", "start");
+        testRestore("SA", "A1");   
+        testRestore("SA", "end");   
+    }
+    
+    @Test
+    public void testRestoreB() throws Exception {
+        testRestore("SB", "start");
+        testRestore("SB", "B1");   
+        testRestore("SB", "end");   
+    }
+    
+    @Test
+    public void testRestoreA_A() throws Exception {
+        testRestore("SA", "A-SA.start");
+        testRestore("SA", "A-SA.A1");   
+        testRestore("SA", "A-SA.end");   
     }
 
     @Test
-    public void testAToBRestore() throws Exception {
+    public void testRestoreB_B() throws Exception {
+        testRestore("SB", "B-SB.start");
+        testRestore("SB", "B-SB.B1");   
+        testRestore("SB", "B-SB.end");   
     }
     
     
     @Test
-    public void testBToBRestore() throws Exception {
+    public void testRestoreABA() throws Exception {
+        testRestore("SA", "A-SB.B-SA.start");
+        testRestore("SA", "A-SB.B-SA.A1");   
+        testRestore("SA", "A-SB.B-SA.end");   
     }
 
     @Test
-    public void testBToARestore() throws Exception {
-    }
-
-    @Test
-    public void testNotify() throws Exception {
-        StateMachine sm = f.create("DB Health Lifecycle");
+    public void testRestoreBAB() throws Exception {
+        testRestore("SB", "B-SA.A-SA.start");
+        testRestore("SB", "B-SA.A-SA.A1");   
+        testRestore("SB", "B-SA.A-SA.end");   
     }
 }

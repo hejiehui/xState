@@ -62,8 +62,14 @@ public class State {
 		return description;
 	}
 	
-	public StateMachine getReference() {
-		return reference;
+	public StateMachine getReference() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	    if(referenceId == null || referenceId.isEmpty())
+	        return null;
+
+	    if(reference == null)
+            reference = factory.create(referenceId);
+
+	    return reference;
 	}
 
 	public Set<String> getAcceptableEvents() {
@@ -89,23 +95,18 @@ public class State {
 	public void enter(Event event) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		entryAction.enter(id, event);
 		
-		if(referenceId == null || referenceId.isEmpty())
+		if(getReference() == null)
 		    return;
 
-		resetReference();
-	}
-	
-	public void restore(String id) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-	    resetReference();
-	    reference.restore(id);
-	}
-	
-	private void resetReference() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-        if(reference == null)
-            reference = factory.create(referenceId);
-
-        if(reference.isEnded())
+		if(reference.isEnded())
             reference.restart();
+	}
+	
+	public void restore(String childStateId) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	    if(getReference() == null)
+	        throw new IllegalStateException("Can not restore: " + childStateId + " beacuase of State: " + id + " does not refer to any state machine");
+
+	    reference.restore(childStateId);
 	}
 
 	public void exist(Event event) {

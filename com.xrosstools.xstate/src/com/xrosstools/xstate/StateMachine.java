@@ -89,10 +89,10 @@ public class StateMachine {
 		return currentState;
 	}
 	
-    public String getCurrentStateId(){
+    public String getCurrentStateId() throws InstantiationException, IllegalAccessException, ClassNotFoundException{
         StateMachine child = currentState.getReference();
         
-        if(child == null || child.isEnded())
+        if(child == null)
             return currentState.getId();
         
         return currentState.getId() + STATE_ID_SEPARATOR + child.getCurrentStateId();
@@ -102,13 +102,6 @@ public class StateMachine {
         return new LinkedHashSet<>(stateMap.keySet());
     }
 	
-//	public void start() {
-//		if(currentState != null)
-//			throw new IllegalStateException(String.format("State machine: %s is already started. Currnet state id is %s", name, currentState.getId()));
-//		
-//		currentState = startState;
-//	}
-//	
 	public State findState(String id) {
 	    if(stateMap.containsKey(id))
 	        return stateMap.get(id);
@@ -168,13 +161,7 @@ public class StateMachine {
 		currentState = startState;
 	}
 	
-    /*
-     * Restart the state machine when it is ended
-     */
     public void restart(){
-        if(!isEnded())
-            throw new IllegalStateException(String.format("State machine: %s is not ended. Can not be restarted.", name));
-        
         currentState = startState;
     }
     
@@ -187,9 +174,6 @@ public class StateMachine {
 	 * the ID should be S1.S2  
 	 */
 	public void restore(String id) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
-		if(isEnded())
-			throw new IllegalStateException(String.format("State machine: %s is already ended. Can not be restored.", name));
-
 		if(id.contains(STATE_ID_SEPARATOR)) {
 		    String[] ids = id.split(SEPARATOR_REGEX, 2);
 		    currentState = findState(ids[0]);
@@ -198,7 +182,6 @@ public class StateMachine {
 		    return;
 		}
 		
-		currentState = findState(id);
-		
+		currentState = findState(id);		
 	}
 }
