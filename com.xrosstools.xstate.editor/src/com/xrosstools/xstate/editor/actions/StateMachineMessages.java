@@ -8,12 +8,14 @@ public interface StateMachineMessages {
 	String GEN_JUNIT_TEST_CODE_MSG = "Generate junit test code";
 	String CREATE_EVENT_MSG = "Create new Event";
 	
-	String ENTRY_MSG = "entry";
-	String EXIT_MSG = "exit";
-	String TRANSITION_MSG = "transition";
+	String ENTRY_MSG = "entry action";
+	String EXIT_MSG = "exit action";
+	String TRANSITION_MSG = "transition action";
+	String TRANSITION_GUARD_MSG = "transition guard";
+	String EVENT_MSG = "event";
 	
-	String ASSIGN_ACTION_MSG = "Assign %s action";
-	String CHANGE_ACTION_MSG = "Change %s action";
-	String REMOVE_ACTION_MSG = "Remove %s action";
-	String OPEN_ACTION_MSG = "Open %s action";
+	String ASSIGN_ACTION_MSG = "Assign %s";
+	String CHANGE_ACTION_MSG = "Change %s";
+	String REMOVE_ACTION_MSG = "Remove %s";
+	String OPEN_ACTION_MSG = "Open %s";
 }

@@ -89,6 +89,7 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         }
         menu.add(new Separator());
         buildModifyImplementationMenu(menu, new TransitionActionAccessor(transition));
+        buildModifyImplementationMenu(menu, new TransitionGuardAccessor(transition));
     }
     
     private class EntryActionAccessor implements Accessor<String> {
@@ -113,6 +114,14 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         public String get() {return transition.getTransitAction();}
         public void set(String value) {transition.setTransitAction(value);}
         public String name() {return TRANSITION_MSG;}
+    }
+
+    private class TransitionGuardAccessor implements Accessor<String> {
+        StateTransition transition;
+        TransitionGuardAccessor(StateTransition transition) {this.transition = transition;}
+        public String get() {return transition.getTransitGuard();}
+        public void set(String value) {transition.setTransitGuard(value);}
+        public String name() {return TRANSITION_GUARD_MSG;}
     }
 
     private void buildModifyImplementationMenu(IMenuManager menu, Accessor<String> accessor) {

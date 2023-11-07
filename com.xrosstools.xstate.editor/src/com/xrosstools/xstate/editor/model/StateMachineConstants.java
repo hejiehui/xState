@@ -16,6 +16,7 @@ public interface StateMachineConstants {
 	String PROP_DESRIPTION = "Description";
 	String PROP_EVENT = "Event";
 	String PROP_TRANSITION_ACTION = "Transition action";
+	String PROP_TRANSITION_GUARD = "Transition guard";
 	String PROP_INPUTS = "Inputs";
 	String PROP_OUTPUTS = "Outputs";
 	String PROP_SOURCE = "Source";

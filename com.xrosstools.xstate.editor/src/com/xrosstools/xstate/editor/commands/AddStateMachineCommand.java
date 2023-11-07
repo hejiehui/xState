@@ -7,19 +7,19 @@ import com.xrosstools.xstate.editor.model.StateMachineDiagram;
 
 public class AddStateMachineCommand extends Command {
 	private StateMachineDiagram parent;
-	private StateMachine amchine;
+	private StateMachine mchine;
 	private int oldIndex;
 	private int index;
 	
-	public AddStateMachineCommand(StateMachineDiagram parent, StateMachine unit, int index){
+	public AddStateMachineCommand(StateMachineDiagram parent, StateMachine mchine, int index){
 		this.parent = parent;
-		this.amchine = unit;
-		oldIndex = parent.indexOf(unit);
+		this.mchine = mchine;
+		oldIndex = parent.indexOf(mchine);
 		this.index = index;
 	}
 	
 	public void execute() {
-		parent.move(index, amchine);
+		parent.move(index, mchine);
 	}
 
     public String getLabel() {
@@ -31,6 +31,6 @@ public class AddStateMachineCommand extends Command {
     }
 
     public void undo() {
-    	parent.move(oldIndex, amchine);
+    	parent.move(oldIndex, mchine);
     }
 }

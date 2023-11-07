@@ -206,7 +206,8 @@ public class StateMachineDiagramGraphicalEditor extends GraphicalEditorWithPalet
             getViewer().setEditPartFactory(new StateMachineTreePartFactory());
             getViewer().setContents(diagram);
             getSelectionSynchronizer().addViewer(getViewer());
-
+            getViewer().setContextMenu(new StateMachineOutlineContextMenuProvider(getViewer(), StateMachineDiagramGraphicalEditor.this));
+            
             Canvas canvas = new Canvas(sash, SWT.BORDER);
             sash.setWeights(new int[]{3, 1});
             LightweightSystem lws = new LightweightSystem(canvas);

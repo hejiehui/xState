@@ -121,6 +121,7 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 			StateTransition transition = new StateTransition(source, target, style, machine.getHelper());
 			transition.setEvent(event);
 			transition.setTransitAction(getAttribute(node, TRANSIT_ACTION));
+			transition.setTransitGuard(getAttribute(node, TRANSIT_GUARD));
 		}
 	}
 
