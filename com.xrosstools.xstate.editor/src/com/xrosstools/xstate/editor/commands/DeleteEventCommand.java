@@ -13,6 +13,7 @@ import com.xrosstools.xstate.editor.model.StateTransition;
 public class DeleteEventCommand extends Command{
     private StateMachine stateMachine;
     private Event event;
+    private int index;
     private List<StateTransition> transitions;
     
     public DeleteEventCommand(
@@ -20,6 +21,7 @@ public class DeleteEventCommand extends Command{
             Event event){
         this.stateMachine = stateMachine;
         this.event = event;
+        index = stateMachine.getEvents().indexOf(event);
     }
     
     public void execute() {
@@ -45,7 +47,7 @@ public class DeleteEventCommand extends Command{
     }
 
     public void undo() {
-        stateMachine.addEvent(event);
+        stateMachine.addEvent(index, event);
         for(StateTransition tran: transitions){
             tran.setEvent(event);
         }

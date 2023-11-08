@@ -9,12 +9,14 @@ import com.xrosstools.xstate.editor.model.StateTransition;
 public class DeleteNodeCommand extends Command{
     private StateMachine stateMachine;
     private StateNode node;
+    private int index;
     
     public DeleteNodeCommand(
     		StateMachine stateMachine, 
     		StateNode node){
     	this.stateMachine = stateMachine;
     	this.node = node;
+    	index = stateMachine.getNodes().indexOf(node);
     }
     
     public void execute() {
@@ -38,7 +40,7 @@ public class DeleteNodeCommand extends Command{
     }
 
     public void undo() {
-    	stateMachine.addNode(node);
+    	stateMachine.addNode(index, node);
         for(StateTransition transition: node.getOutputs()){
         	transition.getTarget().addInput(transition);
         }

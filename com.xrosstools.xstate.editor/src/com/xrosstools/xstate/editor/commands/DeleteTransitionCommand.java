@@ -6,8 +6,12 @@ import com.xrosstools.xstate.editor.model.StateTransition;
 
 public class DeleteTransitionCommand extends Command {
 	private StateTransition transition;
+	private int outputIndex;
+	private int inputIndex;
 	public DeleteTransitionCommand(StateTransition transition){
 		this.transition = transition;
+		inputIndex = transition.getTarget().getInputs().indexOf(transition);
+		outputIndex = transition.getSource().getOutputs().indexOf(transition);
 	}
 	
     public void execute() {
@@ -24,7 +28,7 @@ public class DeleteTransitionCommand extends Command {
     }
 
     public void undo() {
-    	transition.getSource().addOutput(transition);
-    	transition.getTarget().addInput(transition);
+    	transition.getSource().addOutput(outputIndex, transition);
+    	transition.getTarget().addInput(inputIndex, transition);
     }
 }

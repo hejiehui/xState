@@ -76,6 +76,11 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 		firePropertyChange(STATE_NODE);
 	}
 
+    public void addNode(int index, StateNode node){
+        nodes.add(index, node);
+        firePropertyChange(STATE_NODE);
+    }
+
 	public void removeEvent(Event event){
 		events.remove(event);
 		firePropertyChange(EVENT);
@@ -85,6 +90,11 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 		events.add(event);
 		firePropertyChange(EVENT);
 	}
+
+    public void addEvent(int index, Event event){
+        events.add(index, event);
+        firePropertyChange(EVENT);
+    }
 
 	public String getName() {
 		return name;

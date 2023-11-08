@@ -18,4 +18,7 @@ public interface StateMachineMessages {
 	String CHANGE_ACTION_MSG = "Change %s";
 	String REMOVE_ACTION_MSG = "Remove %s";
 	String OPEN_ACTION_MSG = "Open %s";
+
+    String MOVE_UP_MSG = "Move up %s";
+    String MOVE_DOWN_MSG = "Move down %s";
 }
