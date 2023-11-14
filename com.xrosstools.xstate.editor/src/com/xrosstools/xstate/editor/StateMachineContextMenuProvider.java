@@ -89,6 +89,7 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         }
         menu.add(new Separator());
         buildModifyImplementationMenu(menu, new TransitionActionAccessor(transition));
+        menu.add(new Separator());
         buildModifyImplementationMenu(menu, new TransitionGuardAccessor(transition));
     }
     

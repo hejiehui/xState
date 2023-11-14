@@ -13,7 +13,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import com.xrosstools.xstate.StateMachineDiagramConstants;
 import com.xrosstools.xstate.editor.model.EndNode;
 import com.xrosstools.xstate.editor.model.Event;
 import com.xrosstools.xstate.editor.model.RouteStyle;
