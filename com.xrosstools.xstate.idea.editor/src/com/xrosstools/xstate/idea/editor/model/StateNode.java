@@ -173,12 +173,22 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		outputs.add(output);
 		firePropertyChange(PROP_OUTPUTS);
 	}
-	
+
+	public void addOutput(int outputIndex, StateTransition output){
+		outputs.add(outputIndex, output);
+		firePropertyChange(PROP_OUTPUTS);
+	}
+
 	public void addInput(StateTransition input){
 		inputs.add(input);
 		firePropertyChange(PROP_INPUTS);
 	}
-	
+
+	public void addInput(int inputIndex, StateTransition input){
+		inputs.add(inputIndex, input);
+		firePropertyChange(PROP_INPUTS);
+	}
+
 	/**
 	 * Helper method for remove links from a node
 	 */

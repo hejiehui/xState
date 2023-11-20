@@ -14,8 +14,6 @@ public class ImplementationFinder {
 		String className = source.getImplementation();
         GlobalSearchScope scope = GlobalSearchScope.allScope (project);
 
-        //VirtualFileManager.getInstance().findFileByUrl("jar://path/to/file.jar!/path/to/file.class");
-
         PsiClass psiClass = JavaPsiFacade.getInstance(project).findClass(className, scope);
         if (null == psiClass) {
             Messages.showErrorDialog("Can not open " + className, "Error");
@@ -24,7 +22,7 @@ public class ImplementationFinder {
 	}
 
 	public String assignImpl(Project project, String currentImpl) {
-		TreeClassChooser chooser = TreeClassChooserFactory.getInstance(project).createProjectScopeChooser("");
+		TreeClassChooser chooser = TreeClassChooserFactory.getInstance(project).createAllProjectScopeChooser("");
 		chooser.showDialog();
 		PsiClass selected = chooser.getSelected();
 		if(selected == null)

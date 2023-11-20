@@ -30,6 +30,7 @@ public interface StateMachineDiagramConstants {
 	String TRANSITION = "transition";
 	String EVENT_ID = "event_id";
 	String TRANSIT_ACTION = "transit_action";
+    String TRANSIT_GUARD = "transit_guard";
 	String SOURCE_ID = "source_id";
 	String TARGET_ID = "target_id";
 	String STYLE = "style";

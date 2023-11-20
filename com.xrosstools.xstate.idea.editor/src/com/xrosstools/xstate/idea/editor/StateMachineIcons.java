@@ -7,7 +7,7 @@ import javax.swing.*;
 public interface StateMachineIcons {
     Icon STATE_MACHINE_DIAGRAM = IconLoader.getIcon("/icons/state_machine_diagram.png", StateMachineIcons.class);
     Icon STATE_MACHINE = IconLoader.getIcon("/icons/state_machine.png", StateMachineIcons.class);
-    Icon STATE_NODE = IconLoader.getIcon("/icons/start_node.png", StateMachineIcons.class);
+    Icon STATE_NODE = IconLoader.getIcon("/icons/state_node.png", StateMachineIcons.class);
     Icon START_NODE = IconLoader.getIcon("/icons/start_node.png", StateMachineIcons.class);
     Icon END_NODE = IconLoader.getIcon("/icons/end_node.png", StateMachineIcons.class);
     Icon EVENT = IconLoader.getIcon("/icons/event.png", StateMachineIcons.class);

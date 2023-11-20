@@ -9,6 +9,7 @@ import com.xrosstools.idea.gef.util.TextPropertyDescriptor;
 
 public class StateTransition implements StateMachineConstants, IPropertySource {
 	private Event event;
+    private String transitGuard;
 	private String transitAction;
 	private StateNode source;
 	private StateNode target;
@@ -29,6 +30,7 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
 				new ComboBoxPropertyDescriptor(PROP_EVENT, PROP_EVENT, helper.getEventIds()),
+				new TextPropertyDescriptor(PROP_TRANSITION_GUARD, PROP_TRANSITION_GUARD),
 				new TextPropertyDescriptor(PROP_TRANSITION_ACTION, PROP_TRANSITION_ACTION),
 				new ComboBoxPropertyDescriptor(PROP_STYLE, PROP_STYLE, RouteStyle.getNames()),
 			};
@@ -40,7 +42,9 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 			return helper.getEventIdIndex(event);
 		if (PROP_TRANSITION_ACTION.equals(propName))
 			return getValue(transitAction);
-        if(PROP_STYLE.equals(propName))
+		if (PROP_TRANSITION_GUARD.equals(propName))
+			return getValue(transitGuard);
+		if(PROP_STYLE.equals(propName))
             return RouteStyle.getIndex(style);
 		
 		return null;
@@ -51,7 +55,9 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 			setEvent(helper.getEvent((Integer)value));
 		if (PROP_TRANSITION_ACTION.equals(propName))
 			setTransitAction((String)value);
-        if(PROP_STYLE.equals(propName))
+		if (PROP_TRANSITION_GUARD.equals(propName))
+			setTransitGuard((String)value);
+		if(PROP_STYLE.equals(propName))
             setStyle(RouteStyle.values()[(Integer)value]);
 	}
 	
@@ -97,7 +103,14 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 		this.transitAction = transitAction;
 		firePropertyChange(PROP_TRANSITION_ACTION);
 	}
-	public StateNode getSource() {
+    public String getTransitGuard() {
+        return transitGuard;
+    }
+    public void setTransitGuard(String transitGuard) {
+        this.transitGuard = transitGuard;
+        firePropertyChange(PROP_TRANSITION_GUARD);
+    }
+    public StateNode getSource() {
 		return source;
 	}
 	public void setSource(StateNode source) {
