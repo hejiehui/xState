@@ -12,8 +12,10 @@ public interface StateMachineMessages {
 	String EXIT_MSG = "exit action";
 	String TRANSITION_MSG = "transition action";
 	String TRANSITION_GUARD_MSG = "transition guard";
-	String EVENT_MSG = "event";
-	
+
+    String ON_EVENT_MSG = "On event ";
+    String REFERENCE_MSG = "Refer to ";
+
 	String ASSIGN_ACTION_MSG = "Assign %s";
 	String CHANGE_ACTION_MSG = "Change %s";
 	String REMOVE_ACTION_MSG = "Remove %s";

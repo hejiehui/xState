@@ -16,6 +16,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 @SuppressWarnings("restriction")
+// We should never cache class resources to avoid logistics
+// TODO remove cache of IType
 public class ImplementationFinder {
 	// cached for next visit; TODO should be revised if there is only one match
 	// for the name

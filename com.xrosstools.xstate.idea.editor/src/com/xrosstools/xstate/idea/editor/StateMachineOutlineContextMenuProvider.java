@@ -55,20 +55,24 @@ public class StateMachineOutlineContextMenuProvider extends ContextMenuProvider 
     private void buildStateNodeContextMenu(AbstractTreeEditPart part, JPopupMenu menu) {
         StateNode node = (StateNode)part.getModel();
         StateMachine machine = (StateMachine)part.getParent().getModel();
+        StateMachineDiagram diagram = (StateMachineDiagram)part.getParent().getParent().getModel();
+
         menu.add(createItem(new CommandAction(String.format(REMOVE_ACTION_MSG, node.getId()), false, new DeleteNodeCommand(machine, node))));
 
         addSeparator(menu);
 
-        StateMachineContextMenuProvider.buildStateNodeContextMenu(project, menu, part);
+        StateMachineContextMenuProvider.buildStateNodeContextMenu(project, menu, node, diagram);
     }
 
     private void buildStateTransitionContextMenu(AbstractTreeEditPart part, JPopupMenu menu) {
         StateTransition transition = (StateTransition)part.getModel();
+        StateMachine machine = (StateMachine)part.getParent().getParent().getModel();
+
         menu.add(createItem(new CommandAction(String.format(REMOVE_ACTION_MSG, "transition"), false, new DeleteTransitionCommand(transition))));
 
         addSeparator(menu);
 
-        StateMachineContextMenuProvider.buildStateTransitionContextMenu(project, menu, part);
+        StateMachineContextMenuProvider.buildStateTransitionContextMenu(project, menu, transition, machine);
     }
 
     private void buildStateMachineContextMenu(AbstractTreeEditPart part, JPopupMenu menu) {
@@ -78,7 +82,7 @@ public class StateMachineOutlineContextMenuProvider extends ContextMenuProvider 
 
         addSeparator(menu);
 
-        StateMachineContextMenuProvider.buildStateMachineContextMenu(project, menu, part);
+        StateMachineContextMenuProvider.buildStateMachineContextMenu(project, menu, stateMachine);
 
         addSeparator(menu);
 

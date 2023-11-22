@@ -12,6 +12,7 @@ import com.xrosstools.xstate.idea.editor.parts.*;
 
 import javax.swing.*;
 import java.beans.PropertyChangeListener;
+import java.util.Objects;
 
 public class StateMachineContextMenuProvider extends ContextMenuProvider implements StateMachineMessages {
 	private Project project;
@@ -27,18 +28,23 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         EditPart part = (EditPart)selected;
 
         if(part instanceof StateNodePart) {
-            buildStateNodeContextMenu(project, menu, part);
+            StateNode node = (StateNode)part.getModel();
+            StateMachineDiagram diagram = (StateMachineDiagram)part.getParent().getParent().getModel();
+
+            buildStateNodeContextMenu(project, menu, node, diagram);
         } else if(part instanceof StateMachinePart) {
-            buildStateMachineContextMenu(project, menu, part);
+            StateMachine machine = (StateMachine)part.getModel();
+            buildStateMachineContextMenu(project, menu, machine);
         } else if(part instanceof StateTransitionPart) {
-            buildStateTransitionContextMenu(project, menu, part);
+            StateTransitionPart transPart = (StateTransitionPart)part;
+            StateMachine machine = (StateMachine)transPart.getTarget().getParent().getModel();
+            buildStateTransitionContextMenu(project, menu, (StateTransition)part.getModel(), machine);
         }
 
         return menu;
     }
 
-    public static void buildStateNodeContextMenu(Project project, JPopupMenu menu, EditPart part) {
-        StateNode node = (StateNode)part.getModel();
+    public static void buildStateNodeContextMenu(Project project, JPopupMenu menu, StateNode node, StateMachineDiagram diagram) {
         if(node instanceof StartNode || node instanceof EndNode)
             return;
 
@@ -51,12 +57,12 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         addSeparator(menu);
 
         //Add reference to child State Machine
-        StateMachineDiagram diagram = (StateMachineDiagram)part.getParent().getParent().getModel();
         String refName = node.getReference();
-        JMenu referenceMenu = new JMenu(REFERENCE_MSG + refName == null ? "" : refName);
+        JMenu referenceMenu = new JMenu(REFERENCE_MSG + (refName == null ? "" : refName));
         for(StateMachine machine: diagram.getMachines()) {
             String name = machine.getName();
-            referenceMenu.add(createItem(name, (refName != null && refName.equals(name)), new SelectReferenceCommand(node, name)));
+            if(!Objects.equals(name, refName))
+                referenceMenu.add(createItem(name, (refName != null && refName.equals(name)), new SelectReferenceCommand(node, name)));
         }
         menu.add(referenceMenu);
     }
@@ -65,23 +71,20 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         return value == null || value.trim().length() == 0;
     }
 
-    public static void buildStateMachineContextMenu(Project project, JPopupMenu menu, EditPart part) {
-        StateMachine machine = (StateMachine)part.getModel();
+    public static void buildStateMachineContextMenu(Project project, JPopupMenu menu, StateMachine machine) {
         menu.add(createItem(new StateMachineCreateEventAction(project, machine)));
     }
 
-    public static void buildStateTransitionContextMenu(Project project, JPopupMenu menu, EditPart part) {
-        StateTransition transition = (StateTransition)part.getModel();
-
+    public static void buildStateTransitionContextMenu(Project project, JPopupMenu menu, StateTransition transition, StateMachine machine) {
         //Create and assign event
-        StateMachine machine = (StateMachine)part.getParent().getParent().getModel();
         menu.add(createItem(new StateMachineCreateEventAction(project, machine, transition)));
         addSeparator(menu);
 
         String evtId = transition.getEvent() == null ? "" : transition.getEvent().getId();
         JMenu eventMenu = new JMenu(ON_EVENT_MSG + evtId);
         for(Event e: transition.getHelper().getEvents()) {
-            eventMenu .add(createItem(e.getId(), transition.getEvent() == e, new SelectEventCommand(transition, e)));
+            if (transition.getEvent() != e)
+                eventMenu .add(createItem(e.getId(), transition.getEvent() == e, new SelectEventCommand(transition, e)));
         }
         menu.add(eventMenu);
 

@@ -7,6 +7,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.ui.IWorkbenchPart;
 
 import com.xrosstools.xstate.editor.actions.CommandAction;
 import com.xrosstools.xstate.editor.actions.StateMachineMessages;
@@ -38,36 +39,69 @@ public class StateMachineOutlineContextMenuProvider extends ContextMenuProvider 
             return;
         
         EditPart part = (EditPart)selected.get(0);
+        
         if(part instanceof EventTreePart) {
-            Event event = (Event)part.getModel();
-            StateMachine machine = (StateMachine)part.getParent().getModel();
-            menu.add(new CommandAction(editor, String.format(REMOVE_ACTION_MSG, event.getId()), false, new DeleteEventCommand(machine, event)));
+            buildEventContextMenu(part, menu);
         }
 
         if(part instanceof StateNodeTreePart) {
-            StateNode node = (StateNode)part.getModel();
-            StateMachine machine = (StateMachine)part.getParent().getModel();
-            menu.add(new CommandAction(editor, String.format(REMOVE_ACTION_MSG, node.getId()), false, new DeleteNodeCommand(machine, node)));
+            buildStateNodeContextMenu(editor, part, menu);
         }
 
         if(part instanceof StateTransitionTreePart) {
-            StateTransition transition = (StateTransition)part.getModel();
-            menu.add(new CommandAction(editor, String.format(REMOVE_ACTION_MSG, "transition"), false, new DeleteTransitionCommand(transition)));
+            buildStateTransitionContextMenu(editor, part, menu);
         }
 
         if(part instanceof StateMachineTreePart) {
-            StateMachine stateMachine = (StateMachine)part.getModel();
-            StateMachineDiagram diagram = (StateMachineDiagram)part.getParent().getModel();
-            menu.add(new CommandAction(editor, String.format(REMOVE_ACTION_MSG, stateMachine.getName()), false, new DeleteStateMachineCommand(diagram, stateMachine)));
-
-            menu.add(new Separator());
-
-            int index = diagram.indexOf(stateMachine);
-            int length = diagram.getMachines().size();
-            if(index > 0)
-                menu.add(new CommandAction(editor, String.format(MOVE_UP_MSG, stateMachine.getName()), false, new AddStateMachineCommand(diagram, stateMachine, index-1)));
-            if(index < length - 1)
-                menu.add(new CommandAction(editor, String.format(MOVE_DOWN_MSG, stateMachine.getName()), false, new AddStateMachineCommand(diagram, stateMachine, index+2)));
+            buildStateMachineContextMenu(editor, part, menu);
         }
+    }
+
+    private void buildEventContextMenu(EditPart part, IMenuManager menu) {
+        Event e = (Event)part.getModel();
+        StateMachine machine = (StateMachine)part.getParent().getModel();
+        menu.add(new CommandAction(editor, String.format(REMOVE_ACTION_MSG, e.getId()), false, new DeleteEventCommand(machine, e)));
+    }
+
+    private void buildStateNodeContextMenu(IWorkbenchPart editor, EditPart part, IMenuManager menu) {
+        StateNode node = (StateNode)part.getModel();
+        StateMachine machine = (StateMachine)part.getParent().getModel();
+        StateMachineDiagram diagram = (StateMachineDiagram)part.getParent().getParent().getModel();
+        
+        menu.add(new CommandAction(editor, String.format(REMOVE_ACTION_MSG, node.getId()), false, new DeleteNodeCommand(machine, node)));
+
+        menu.add(new Separator());
+
+        StateMachineContextMenuProvider.buildStateNodeContextMenu(editor, menu, node, diagram);
+    }
+
+    private void buildStateTransitionContextMenu(IWorkbenchPart editor, EditPart part, IMenuManager menu) {
+        StateTransition transition = (StateTransition)part.getModel();
+        StateMachine machine = (StateMachine)part.getParent().getParent().getModel();
+
+        menu.add(new CommandAction(editor, String.format(REMOVE_ACTION_MSG, "transition"), false, new DeleteTransitionCommand(transition)));
+
+        menu.add(new Separator());
+
+        StateMachineContextMenuProvider.buildStateTransitionContextMenu(editor, menu, transition, machine);
+    }
+
+    private void buildStateMachineContextMenu(IWorkbenchPart editor, EditPart part, IMenuManager menu) {
+        StateMachine stateMachine = (StateMachine)part.getModel();
+        StateMachineDiagram diagram = (StateMachineDiagram)part.getParent().getModel();
+        menu.add(new CommandAction(editor, String.format(REMOVE_ACTION_MSG, stateMachine.getName()), false, new DeleteStateMachineCommand(diagram, stateMachine)));
+
+        menu.add(new Separator());
+
+        StateMachineContextMenuProvider.buildStateMachineContextMenu(editor, menu, stateMachine);
+
+        menu.add(new Separator());
+
+        int index = diagram.indexOf(stateMachine);
+        int length = diagram.getMachines().size();
+        if(index > 0)
+            menu.add(new CommandAction(editor, String.format(MOVE_UP_MSG, stateMachine.getName()), false, new AddStateMachineCommand(diagram, stateMachine, index-1)));
+        if(index < length - 1)
+            menu.add(new CommandAction(editor, String.format(MOVE_DOWN_MSG, stateMachine.getName()), false, new AddStateMachineCommand(diagram, stateMachine, index+2)));
     }
 }

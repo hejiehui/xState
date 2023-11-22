@@ -17,7 +17,10 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      <em>1.1.0</em> Fix create model bug. New features: 1) child state machine reference 2) transition guard 3) delete state machine, event, node and transition from outline window.<br>
+      <em>1.1.0</em> Fix create model bug. New features: <br>
+      1) child state machine reference<br>
+      2) transition guard<br>
+      3) delete state machine, event, node and transition from outline window.<br>
       <em>1.0.5</em> Follow IDEA macket place release standard.<br>
       <em>1.0.4</em> Optimze node link to itself for multiple links case.<br>
       <em>1.0.3</em> Allow node link to itself.<br>

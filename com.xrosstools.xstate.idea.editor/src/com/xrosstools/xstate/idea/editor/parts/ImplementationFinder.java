@@ -22,11 +22,13 @@ public class ImplementationFinder {
 	}
 
 	public String assignImpl(Project project, String currentImpl) {
-		TreeClassChooser chooser = TreeClassChooserFactory.getInstance(project).createAllProjectScopeChooser("");
-		chooser.showDialog();
-		PsiClass selected = chooser.getSelected();
+		TreeClassChooser chooser = TreeClassChooserFactory.getInstance(project).createAllProjectScopeChooser(currentImpl);
+        PsiClass selected = null;
+        chooser.showDialog();
+        selected = chooser.getSelected();
+
 		if(selected == null)
-			return null;
+			return currentImpl;
 
 		return selected.getQualifiedName();
 	}

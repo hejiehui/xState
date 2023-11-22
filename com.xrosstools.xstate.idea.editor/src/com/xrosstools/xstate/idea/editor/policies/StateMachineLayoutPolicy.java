@@ -18,12 +18,18 @@ public class StateMachineLayoutPolicy extends EditPolicy {
 
     @Override
     public Command getAddCommand(AbstractGraphicalEditPart child, Rectangle constraint) {
+        if(!(getHost().getModel() instanceof StateMachine))
+            return null;
+
+        if(!(child.getModel() instanceof StateNode))
+            return null;
+
         AbstractGraphicalEditPart target = getHost();
         StateNode node = (StateNode)child.getModel();
         if(node.getInputs().isEmpty() && node.getOutputs().isEmpty() && target instanceof StateMachinePart)
             return new AddStateNodeCommand((StateMachine)target.getModel(), (StateNode)child.getModel(), (StateMachine)child.getParent().getModel(), constraint.getLocation());
-        else
-            return null;
+
+        return null;
     }
 
     @Override
