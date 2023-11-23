@@ -27,7 +27,7 @@ public class StateMachineTreePart extends AbstractTreeEditPart implements Proper
     
     protected String getText() {
     	StateMachine stateMachine = (StateMachine)getModel();
-    	return stateMachine.getName();
+    	return stateMachine.getName() == null ? "" : stateMachine.getName();
     }
     
     protected Image getImage() {

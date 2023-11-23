@@ -24,7 +24,7 @@ public class StateMachineDiagramTreePart extends AbstractTreeEditPart implements
     
     protected String getText() {
     	StateMachineDiagram diagram = (StateMachineDiagram)getModel();
-    	return diagram.getName();
+    	return diagram.getName() == null ? "" : diagram.getName();
     }
     
     protected Image getImage() {
