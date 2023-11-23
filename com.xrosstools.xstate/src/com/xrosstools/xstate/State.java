@@ -98,8 +98,7 @@ public class State {
 		if(getReference() == null)
 		    return;
 
-		if(reference.isEnded())
-            reference.restart();
+        reference.reset();
 	}
 	
 	public void restore(String childStateId) throws InstantiationException, IllegalAccessException, ClassNotFoundException {

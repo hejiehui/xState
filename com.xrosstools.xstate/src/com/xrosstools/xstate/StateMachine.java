@@ -151,19 +151,14 @@ public class StateMachine {
 		return currentState.getType() == StateType.end;
 	}
 	
-	/*
-	 * Reset the state machine when it is not ended
+	/**
+	 * Reset current state to start state.
+	 * 
+	 * Note from 1.1.0, reset will no longer check if current instance is ended。
 	 */
 	public void reset(){
-		if(isEnded())
-			throw new IllegalStateException(String.format("State machine: %s is already ended. Can not be reset.", name));
-		
 		currentState = startState;
 	}
-	
-    public void restart(){
-        currentState = startState;
-    }
     
 	/**
 	 * Restore to given state
