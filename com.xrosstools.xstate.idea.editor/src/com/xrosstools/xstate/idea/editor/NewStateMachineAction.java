@@ -7,9 +7,7 @@ public class NewStateMachineAction extends DefaultNewModelFileAction {
     private static final String templatePath = "/template/emptyTemplate.xstate";
     private static final String newFileName = "new_xstate_file";
 
-    private static final String template = getTemplate(NewStateMachineAction.class, templatePath);
-
     public NewStateMachineAction() {
-        super(modelTypeName, StateMachineFileType.EXTENSION, StateMachineIcons.STATE_MACHINE_DIAGRAM, newFileName, template);
+        super(modelTypeName, StateMachineFileType.EXTENSION, StateMachineIcons.STATE_MACHINE_DIAGRAM, newFileName, templatePath);
     }
 }
