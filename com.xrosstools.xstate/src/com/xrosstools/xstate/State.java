@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.xrosstools.xstate.def.StateMachineDef;
-
 public class State {
 	private String id;
 
@@ -21,7 +19,7 @@ public class State {
 	private Map<String, Transition> outputs = new LinkedHashMap<String, Transition>();
 	private Set<String> sourceEvents = new HashSet<String>();
 	private EntryAction entryAction;
-	private ExitAction existAction;
+	private ExitAction exitAction;
 	
 	public State(
 			String id, 
@@ -30,7 +28,7 @@ public class State {
 			StateType type, 
 			String description, 
 			EntryAction entryAction, 
-			ExitAction existAction, 
+			ExitAction exitAction, 
 			List<Transition> transitions) {
 		this.id = id;
         this.referenceId = referenceId;
@@ -38,7 +36,7 @@ public class State {
 		this.type = type;
 		this.description = description;
 		this.entryAction = entryAction;
-		this.existAction = existAction;
+		this.exitAction = exitAction;
 		
 		if(transitions == null)
 			return;
@@ -108,7 +106,7 @@ public class State {
 	    reference.restore(childStateId);
 	}
 
-	public void exist(Event event) {
-		existAction.exit(id, event);
+	public void exit(Event event) {
+		exitAction.exit(id, event);
 	}
 }

@@ -136,7 +136,7 @@ public class StateMachine {
 	    if(!trans.isTransitAllowed(source.getId(), target.getId(), event))
 	        return false;
         
-	    currentState.exist(event);
+	    currentState.exit(event);
 	    trans.transit(event);
 	    target.enter(event);
 	    currentState = target;
