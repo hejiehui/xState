@@ -23,7 +23,7 @@ public class StateNodeTreePart extends AbstractTreeEditPart implements PropertyC
 
     @Override
     public String getText() {
-        return node.getId() == null ? "" : node.getId();
+        return node.getDisplayText();
     }
 
     @Override

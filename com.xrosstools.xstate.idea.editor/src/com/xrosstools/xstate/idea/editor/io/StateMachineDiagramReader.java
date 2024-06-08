@@ -72,6 +72,7 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 	private StateNode readState(Node stateNode) {
 		StateNode node = createStateNode(stateNode);
 		node.setId(getAttribute(stateNode, ID));
+		node.setLabel(getAttribute(stateNode, LABEL));
 		node.setDescription(getChildNodeText(stateNode, DESCRIPTION));
 		
 		node.setReference(getChildNodeText(stateNode, REFERENCE));
@@ -97,8 +98,8 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 	}
 	private void linkState(StateMachine machine, Node transitionsNode) {
 		List<Node> transitions = getValidChildNodes(transitionsNode);
-		Map<String, StateNode> states = new HashMap<String, StateNode>();
-		Map<String, Event> events = new HashMap<String, Event>();
+		Map<String, StateNode> states = new HashMap<>();
+		Map<String, Event> events = new HashMap<>();
 		
 		for(StateNode node: machine.getNodes()) {
 			states.put(node.getId(), node);
@@ -132,6 +133,7 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 			Node eventNode = events.get(i);
 			Event event = new Event();
 			event.setId(getAttribute(eventNode, ID));
+			event.setLabel(getAttribute(eventNode, LABEL));
 			event.setDescription(eventNode.getTextContent());
 			eventList.add(event);
 		}

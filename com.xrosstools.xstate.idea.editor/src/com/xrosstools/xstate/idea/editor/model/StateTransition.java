@@ -1,5 +1,7 @@
 package com.xrosstools.xstate.idea.editor.model;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import com.xrosstools.idea.gef.util.ComboBoxPropertyDescriptor;
@@ -7,7 +9,7 @@ import com.xrosstools.idea.gef.util.IPropertyDescriptor;
 import com.xrosstools.idea.gef.util.IPropertySource;
 import com.xrosstools.idea.gef.util.TextPropertyDescriptor;
 
-public class StateTransition implements StateMachineConstants, IPropertySource {
+public class StateTransition implements StateMachineConstants, IPropertySource, PropertyChangeListener {
 	private Event event;
     private String transitGuard;
 	private String transitAction;
@@ -94,6 +96,8 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	}
 	public void setEvent(Event event) {
 		this.event = event;
+		if(event != null)
+			event.getListeners().addPropertyChangeListener(this);
 		firePropertyChange(PROP_EVENT);
 	}
 	public String getTransitAction() {
@@ -127,7 +131,7 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
 	public String getDisplayLabel(){
 		if(event == null || event.getId() == null)
 		    return NOT_SPECIFIED;
-		return event.getId();
+		return event.getDisplayText();
 	}
     public RouteStyle getStyle() {
         return style;
@@ -136,4 +140,9 @@ public class StateTransition implements StateMachineConstants, IPropertySource {
         this.style = style;
         firePropertyChange(PROP_STYLE);
     }
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		listeners.firePropertyChange(PROP_EVENT, null, event);
+	}
 }

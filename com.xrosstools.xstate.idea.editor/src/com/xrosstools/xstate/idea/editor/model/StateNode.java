@@ -11,6 +11,7 @@ import com.xrosstools.idea.gef.util.TextPropertyDescriptor;
 
 public class StateNode implements StateMachineConstants, IPropertySource {
 	private String id;
+	private String label;
 	private String reference;
 	private String description;
 	private String entryAction;
@@ -42,6 +43,7 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		return new IPropertyDescriptor[] {
 				new TextPropertyDescriptor(PROP_ID, PROP_ID),
+				new TextPropertyDescriptor(PROP_LABEL, PROP_LABEL),
 				new TextPropertyDescriptor(PROP_ENTRY_ACTION, PROP_ENTRY_ACTION),
 				new TextPropertyDescriptor(PROP_EXIT_ACTION, PROP_EXIT_ACTION),
 				new TextPropertyDescriptor(PROP_REFERENCE, PROP_REFERENCE),
@@ -51,6 +53,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public Object getPropertyValue(Object propName) {
 		if (PROP_ID.equals(propName))
 			return getValue(id);
+		if (PROP_LABEL.equals(propName))
+			return getValue(label);
 		if (PROP_ENTRY_ACTION.equals(propName))
 			return getValue(entryAction);
 		if (PROP_EXIT_ACTION.equals(propName))
@@ -64,6 +68,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public void setPropertyValue(Object propName, Object value){
 		if (PROP_ID.equals(propName))
 			setId((String)value);
+		if (PROP_LABEL.equals(propName))
+			setLabel((String)value);
 		if (PROP_ENTRY_ACTION.equals(propName))
 			setEntryAction((String)value);
 		if (PROP_EXIT_ACTION.equals(propName))
@@ -100,12 +106,22 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 		this.id = id;
 		firePropertyChange(PROP_ID);
 	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label == null ? null : label.trim();
+		firePropertyChange(PROP_LABEL);
+	}
+	public String getDisplayText(){
+		return label == null || label.length() == 0 ? (id == null ? "" : id) : label;
+	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
-		firePropertyChange(PROP_DESRIPTION);
+		firePropertyChange(PROP_DESCRIPTION);
 	}
 	public String getEntryAction() {
 		return entryAction;

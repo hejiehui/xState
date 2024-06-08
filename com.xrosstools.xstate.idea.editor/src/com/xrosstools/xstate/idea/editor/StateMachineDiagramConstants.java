@@ -5,6 +5,7 @@ public interface StateMachineDiagramConstants {
 	String STATE_MACHINES = "state_machines";
 	String STATE_MACHINE = "state_machine";
 	String ID = "id";
+	String LABEL = "label";
 	String NAME = "name";
 	String DESCRIPTION = "description";
 	String HEIGHT = "height";

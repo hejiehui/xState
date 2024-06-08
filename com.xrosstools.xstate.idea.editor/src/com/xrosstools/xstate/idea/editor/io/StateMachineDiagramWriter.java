@@ -62,8 +62,9 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 
 	private void writeEvents(Document doc, Element eventsNode, List<Event> events) {
 		for(Event event: events) {
-			createTextNode(doc, eventsNode, EVENT, event.getDescription()).
-				setAttribute(ID,  event.getId());
+			Element eventNode = createTextNode(doc, eventsNode, EVENT, event.getDescription());
+			eventNode.setAttribute(ID,  event.getId());
+			eventNode.setAttribute(LABEL,  event.getLabel());
 		}
 	}
 	
@@ -78,7 +79,7 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 	}
 	
 	private void writeState(Document doc, Element stateNode, StateNode node) {
-		createIdDesc(doc, stateNode, node.getId(), node.getDescription());
+		createIdLabelDesc(doc, stateNode, node.getId(), node.getLabel(), node.getDescription());
 		
 		createTextNode(doc, stateNode, REFERENCE, node.getReference());
 		createTextNode(doc, stateNode, ENTRY_ACTION, node.getEntryAction());
@@ -106,8 +107,9 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 		createTextNode(doc, node, DESCRIPTION, desc);
 	}
 	
-	private void createIdDesc(Document doc, Element node, String id, String desc) {
+	private void createIdLabelDesc(Document doc, Element node, String id, String label, String desc) {
 		node.setAttribute(ID, id);
+		node.setAttribute(LABEL, label);
 		createTextNode(doc, node, DESCRIPTION, desc);
 	}
 	

@@ -16,7 +16,7 @@ public class EventTreePart extends AbstractTreeEditPart implements PropertyChang
 	
     @Override
     public String getText() {
-        return event.getId();
+        return event.getDisplayText();
     }
 
     @Override

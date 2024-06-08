@@ -18,21 +18,15 @@ public class StateMachineHelper implements StateMachineConstants {
 		List<String> ids = new ArrayList<String>();
 		ids.add(EMPTY_VALUE);
 		for(Event e: machine.getEvents())
-			ids.add(e.getId());
+			ids.add(e.getDisplayText());
 		return ids.toArray(new String[ids.size()]);
 	}
 	
 	public int getEventIdIndex(Event event) {
 		if(event == null)
 			return 0;
-		
-		String value = getValue(event.getId());
 
-		String[] ids = getEventIds();
-		for(int i = 0; i< ids.length; i++)
-			if(value.equals(ids[i]))
-				return i;
-		return 0;
+		return machine.getEvents().indexOf(event) + 1;
 	}
 	
 	public Event getEvent(int index) {

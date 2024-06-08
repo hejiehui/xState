@@ -31,7 +31,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
 				new TextPropertyDescriptor(PROP_ID, PROP_ID),
-				new TextPropertyDescriptor(PROP_DESRIPTION, PROP_DESRIPTION),
+				new TextPropertyDescriptor(PROP_DESCRIPTION, PROP_DESCRIPTION),
 			};
 		return descriptors;
 	}
@@ -39,7 +39,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 	public Object getPropertyValue(Object propName) {
 		if (PROP_ID.equals(propName))
 			return getValue(name);
-		if (PROP_DESRIPTION.equals(propName))
+		if (PROP_DESCRIPTION.equals(propName))
 			return getValue(description);
 		return null;
 	}
@@ -47,7 +47,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 	public void setPropertyValue(Object propName, Object value){
 		if (PROP_ID.equals(propName))
 			setName((String)value);
-		if (PROP_DESRIPTION.equals(propName))
+		if (PROP_DESCRIPTION.equals(propName))
 			setDescription((String)value);
 	}
 	
@@ -111,7 +111,7 @@ public class StateMachine implements StateMachineConstants, IPropertySource {
 
 	public void setDescription(String description) {
 		this.description = description;
-		firePropertyChange(PROP_DESRIPTION);
+		firePropertyChange(PROP_DESCRIPTION);
 	}
 
 	public List<StateNode> getNodes() {

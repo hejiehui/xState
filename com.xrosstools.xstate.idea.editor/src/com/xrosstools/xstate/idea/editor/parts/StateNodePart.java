@@ -18,7 +18,7 @@ public class StateNodePart extends AbstractNodePart {
 
     protected void updateFigure(StateNode node) {
         StateNodeFigure figure = (StateNodeFigure)getFigure();
-        figure.setName(node.getId());
+        figure.setName(node.getDisplayText());
 
         figure.setExistAction(node.getExitAction());
         figure.setEntryAction(node.getEntryAction());

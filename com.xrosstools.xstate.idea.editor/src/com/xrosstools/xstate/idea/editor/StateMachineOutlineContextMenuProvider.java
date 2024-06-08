@@ -49,7 +49,7 @@ public class StateMachineOutlineContextMenuProvider extends ContextMenuProvider 
     private void buildEventContextMenu(AbstractTreeEditPart part, JPopupMenu menu) {
         Event e = (Event)part.getModel();
         StateMachine machine = (StateMachine)part.getParent().getModel();
-        menu.add(createItem(new CommandAction(String.format(REMOVE_ACTION_MSG, e.getId()), false, new DeleteEventCommand(machine, e))));
+        menu.add(createItem(new CommandAction(String.format(REMOVE_ACTION_MSG, e.getDisplayText()), false, new DeleteEventCommand(machine, e))));
     }
 
     private void buildStateNodeContextMenu(AbstractTreeEditPart part, JPopupMenu menu) {
@@ -57,7 +57,7 @@ public class StateMachineOutlineContextMenuProvider extends ContextMenuProvider 
         StateMachine machine = (StateMachine)part.getParent().getModel();
         StateMachineDiagram diagram = (StateMachineDiagram)part.getParent().getParent().getModel();
 
-        menu.add(createItem(new CommandAction(String.format(REMOVE_ACTION_MSG, node.getId()), false, new DeleteNodeCommand(machine, node))));
+        menu.add(createItem(new CommandAction(String.format(REMOVE_ACTION_MSG, node.getDisplayText()), false, new DeleteNodeCommand(machine, node))));
 
         addSeparator(menu);
 

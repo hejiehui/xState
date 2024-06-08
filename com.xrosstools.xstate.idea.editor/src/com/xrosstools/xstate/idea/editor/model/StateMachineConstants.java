@@ -10,10 +10,11 @@ public interface StateMachineConstants {
 	String NOT_SPECIFIED = "Not specified";
 	
 	String PROP_ID = "Id";
+	String PROP_LABEL = "Label";
 	String PROP_ENTRY_ACTION = "Entry action";
 	String PROP_EXIT_ACTION = "Exit action";
 	String PROP_REFERENCE = "Reference state machine";
-	String PROP_DESRIPTION = "Description";
+	String PROP_DESCRIPTION = "Description";
 	String PROP_EVENT = "Event";
 	String PROP_TRANSITION_ACTION = "Transition action";
 	String PROP_TRANSITION_GUARD = "Transition guard";

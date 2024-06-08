@@ -80,11 +80,11 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         menu.add(createItem(new StateMachineCreateEventAction(project, machine, transition)));
         addSeparator(menu);
 
-        String evtId = transition.getEvent() == null ? "" : transition.getEvent().getId();
+        String evtId = transition.getEvent() == null ? "" : transition.getEvent().getDisplayText();
         JMenu eventMenu = new JMenu(ON_EVENT_MSG + evtId);
         for(Event e: transition.getHelper().getEvents()) {
             if (transition.getEvent() != e)
-                eventMenu .add(createItem(e.getId(), transition.getEvent() == e, new SelectEventCommand(transition, e)));
+                eventMenu .add(createItem(e.getDisplayText(), transition.getEvent() == e, new SelectEventCommand(transition, e)));
         }
         menu.add(eventMenu);
 
