@@ -11,6 +11,7 @@ import com.xrosstools.idea.gef.util.TextPropertyDescriptor;
 public class StateMachineDiagram implements StateMachineConstants, IPropertySource {
 	private String name;
 	private String description;
+	private String helperPackage;
 
 	private List<StateMachine> machines = new ArrayList<StateMachine>();
 	
@@ -32,6 +33,7 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 		descriptors = new IPropertyDescriptor[] {
 				new TextPropertyDescriptor(PROP_ID, PROP_ID),
 				new TextPropertyDescriptor(PROP_DESCRIPTION, PROP_DESCRIPTION),
+				new TextPropertyDescriptor(PROP_HELPER_PACKAGE, PROP_HELPER_PACKAGE),
 			};
 		return descriptors;
 	}
@@ -41,7 +43,9 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 			return getValue(name);
 		if (PROP_DESCRIPTION.equals(propName))
 			return getValue(description);
-		
+		if (PROP_HELPER_PACKAGE.equals(propName))
+			return getValue(helperPackage);
+
 		return null;
 	}
 
@@ -50,6 +54,8 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 			setName((String)value);
 		if (PROP_DESCRIPTION.equals(propName))
 			setDescription((String)value);
+		if (PROP_HELPER_PACKAGE.equals(propName))
+			setHelperPackage((String)value);
 	}
 	
 	public Object getEditableValue(){
@@ -125,6 +131,15 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 		firePropertyChange(PROP_DESCRIPTION);
 	}
 
+	public String getHelperPackage() {
+		return helperPackage;
+	}
+
+	public void setHelperPackage(String helperPackage) {
+		this.helperPackage = helperPackage;
+		firePropertyChange(PROP_HELPER_PACKAGE);
+	}
+
 	public boolean isHorizantal() {
 		return isHorizantal;
 	}
@@ -172,5 +187,4 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 	public void setNodeHeight(int nodeHeight) {
 		this.nodeHeight = nodeHeight;
 	}
-	
 }

@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.xrosstools.xstate.editor</id>
   <name>Xross State Machine Editor</name>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
   <vendor email="he_jiehui@163.com" url="https://www.xrosstools.com">Xross Tools</vendor>
 
   <description><![CDATA[
@@ -17,6 +17,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <em>1.3.0</em> Support helper class and test case generation.<br>
       <em>1.2.0</em> Add label  property for state node and event.<br>
       <em>1.1.1</em> Fix typo and update to new GEF dependency.<br>
       <em>1.1.0</em> Fix create model bug. New features: <br>

@@ -18,7 +18,8 @@ public class StateMachineDiagramWriter implements StateMachineDiagramConstants {
 			Element root = (Element)doc.createElement(STATE_MACHINE_DIAGRAM);
 			doc.appendChild(root);
 
-			createNameDesc(doc, root, model.getName(), model.getDescription());			
+			createNameDesc(doc, root, model.getName(), model.getDescription());
+			createTextNode(doc, root, HELPER_PACKAGE, model.getHelperPackage());
 			
 			Element machinesNode = createNode(doc, root, STATE_MACHINES);
 			writeMachines(doc, machinesNode, model);

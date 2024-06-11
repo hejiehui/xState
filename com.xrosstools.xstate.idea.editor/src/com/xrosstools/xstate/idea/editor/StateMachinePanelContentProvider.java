@@ -1,11 +1,13 @@
 package com.xrosstools.xstate.idea.editor;
 
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.IconLoader;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.xrosstools.idea.gef.AbstractPanelContentProvider;
 import com.xrosstools.idea.gef.ContextMenuProvider;
 import com.xrosstools.idea.gef.parts.EditPartFactory;
+import com.xrosstools.xstate.idea.editor.actions.GenerateHelpertsAction;
+import com.xrosstools.xstate.idea.editor.actions.GenerateTestAction;
+import com.xrosstools.xstate.idea.editor.actions.StateMachineMessages;
 import com.xrosstools.xstate.idea.editor.io.StateMachineDiagramFactory;
 import com.xrosstools.xstate.idea.editor.io.XmlHelper;
 import com.xrosstools.xstate.idea.editor.model.*;
@@ -14,9 +16,8 @@ import com.xrosstools.xstate.idea.editor.treeparts.StateMachineTreePartFactory;
 
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.awt.*;
 
-public class StateMachinePanelContentProvider extends AbstractPanelContentProvider<StateMachineDiagram> implements StateMachineDiagramConstants {
+public class StateMachinePanelContentProvider extends AbstractPanelContentProvider<StateMachineDiagram> implements StateMachineMessages {
     private Project project;
     private VirtualFile virtualFile;
     private StateMachineDiagram diagram;
@@ -74,6 +75,10 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
         for(Object[] entry: CONN_ENTRIES) {
             palette.add(createConnectionButton(entry));
         }
+
+        palette.add(createPaletteButton(new GenerateHelpertsAction(virtualFile, diagram), StateMachineIcons.GENERATE_HLPER, GENERATE_HELPER));
+        palette.add(createPaletteButton(new GenerateTestAction(diagram), StateMachineIcons.GENERATE_TEST, GENERATE_TEST));
+
     }
 
     private JButton createConnectionButton(Object[] entry) {

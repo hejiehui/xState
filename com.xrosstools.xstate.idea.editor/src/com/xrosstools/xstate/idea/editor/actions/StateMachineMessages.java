@@ -18,4 +18,7 @@ public interface StateMachineMessages {
 
     String MOVE_UP_MSG = "Move up %s";
     String MOVE_DOWN_MSG = "Move down %s";
+
+    String GENERATE_HELPER = "Generate helper";
+    String GENERATE_TEST = "Generate test";
 }

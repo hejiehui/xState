@@ -17,4 +17,6 @@ public interface StateMachineIcons {
     Icon ROUTE_WIDTH_FIRST = IconLoader.getIcon("/icons/arrows_width.png", StateMachineIcons.class);
     Icon ENTRY_ACTION = IconLoader.getIcon("/icons/end_point.png", StateMachineIcons.class);
     Icon EXIT_ACTION = IconLoader.getIcon("/icons/start_point.png", StateMachineIcons.class);
+    Icon GENERATE_HLPER = IconLoader.getIcon("/icons/generate_helper.png", StateMachineIcons.class);
+    Icon GENERATE_TEST = IconLoader.getIcon("/icons/generate_test.png", StateMachineIcons.class);
 }

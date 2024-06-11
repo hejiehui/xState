@@ -30,6 +30,7 @@ public class StateMachineDiagramReader implements StateMachineDiagramConstants {
 
 		model.setName(getChildNodeText(root, NAME));
 		model.setDescription(getChildNodeText(root, DESCRIPTION));
+		model.setHelperPackage(getChildNodeText(root, HELPER_PACKAGE));
 		model.setMachines(readMachines(getChildNode(root, STATE_MACHINES)));
 		
 		return model;

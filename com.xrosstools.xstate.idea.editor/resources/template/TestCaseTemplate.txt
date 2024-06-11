@@ -1,0 +1,13 @@
+package !PACKAGE!.test;
+
+import com.xrosstools.xstate.Event;
+import com.xrosstools.xstate.StateMachine;
+
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+import static !PACKAGE!.!TEST_CLASS!.*;
+
+public class !TEST_CLASS!Test {
+    !TEST_BODY!
+}

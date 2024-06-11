@@ -11,6 +11,7 @@ public interface StateMachineConstants {
 	
 	String PROP_ID = "Id";
 	String PROP_LABEL = "Label";
+	String PROP_HELPER_PACKAGE = "Helper package";
 	String PROP_ENTRY_ACTION = "Entry action";
 	String PROP_EXIT_ACTION = "Exit action";
 	String PROP_REFERENCE = "Reference state machine";

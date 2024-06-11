@@ -8,6 +8,7 @@ public interface StateMachineDiagramConstants {
 	String LABEL = "label";
 	String NAME = "name";
 	String DESCRIPTION = "description";
+	String HELPER_PACKAGE = "helperPackage";
 	String HEIGHT = "height";
 	String WIDTH = "width";
 

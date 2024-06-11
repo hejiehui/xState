@@ -1,0 +1,32 @@
+package !PACKAGE!;
+
+import com.xrosstools.xstate.StateMachine;
+import com.xrosstools.xstate.StateMachineFactory;
+
+/**
+    IMPORTANT NOTE!
+    This is generated code based on Xross State Machine model file !MODEL_FILE!.
+    In case the model file changes, regenerate this file.
+    Do Not Modify It.
+
+    !DESCRIPTION!
+
+    Last generated time:
+    !LAST_GENERATE_TIME!
+*/
+public class !TEST_CLASS! {
+    !STATE_MACHINE_DEFINITIONS!
+    private static StateMachineFactory stateMachineFactory;
+    private static StateMachineFactory load() throws Exception {
+        if(stateMachineFactory != null)
+            return stateMachineFactory;
+
+        synchronized(StateMachineFactory.class) {
+            if(stateMachineFactory != null)
+                return stateMachineFactory;
+
+            stateMachineFactory = StateMachineFactory.load("!MODEL_PATH!");
+        }
+        return stateMachineFactory;
+    }
+}
