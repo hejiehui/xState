@@ -9,5 +9,5 @@ import static org.junit.Assert.assertEquals;
 import static !PACKAGE!.!TEST_CLASS!.*;
 
 public class !TEST_CLASS!Test {
-    !TEST_BODY!
+!TEST_BODY!
 }

@@ -16,17 +16,14 @@ import com.xrosstools.xstate.StateMachineFactory;
 */
 public class !TEST_CLASS! {
     !STATE_MACHINE_DEFINITIONS!
-    private static StateMachineFactory stateMachineFactory;
+    private static volatile StateMachineFactory factory;
     private static StateMachineFactory load() throws Exception {
-        if(stateMachineFactory != null)
-            return stateMachineFactory;
-
-        synchronized(StateMachineFactory.class) {
-            if(stateMachineFactory != null)
-                return stateMachineFactory;
-
-            stateMachineFactory = StateMachineFactory.load("!MODEL_PATH!");
+        if(factory == null) {
+            synchronized(!TEST_CLASS!.class) {
+                if(factory == null)
+                    factory = StateMachineFactory.load("!MODEL_PATH!");
+            }
         }
-        return stateMachineFactory;
+        return factory;
     }
 }
