@@ -96,7 +96,7 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         buildModifyImplementationMenu(project, menu, new TransitionGuardAccessor(transition));
     }
     
-    private static class EntryActionAccessor implements Accessor<String> {
+    private static class EntryActionAccessor implements Accessor {
         StateNode node;
         EntryActionAccessor(StateNode node) {this.node = node;}
         public String get() {return node.getEntryAction();}
@@ -104,7 +104,7 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         public String name() {return ENTRY_MSG;}
     }
 
-    private static class ExitActionAccessor implements Accessor<String> {
+    private static class ExitActionAccessor implements Accessor {
         StateNode node;
         ExitActionAccessor(StateNode node) {this.node = node;}
         public String get() {return node.getExitAction();}
@@ -112,7 +112,7 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         public String name() {return EXIT_MSG;}
     }
 
-    private static class TransitionActionAccessor implements Accessor<String> {
+    private static class TransitionActionAccessor implements Accessor {
         StateTransition transition;
         TransitionActionAccessor(StateTransition transition) {this.transition = transition;}
         public String get() {return transition.getTransitAction();}
@@ -120,7 +120,7 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         public String name() {return TRANSITION_MSG;}
     }
 
-    private static class TransitionGuardAccessor implements Accessor<String> {
+    private static class TransitionGuardAccessor implements Accessor {
         StateTransition transition;
         TransitionGuardAccessor(StateTransition transition) {this.transition = transition;}
         public String get() {return transition.getTransitGuard();}
@@ -128,13 +128,20 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         public String name() {return TRANSITION_GUARD_MSG;}
     }
 
-    private static void buildModifyImplementationMenu(Project project, JPopupMenu menu, Accessor<String> accessor) {
+    private static void buildModifyImplementationMenu(Project project, JPopupMenu menu, Accessor accessor) {
         if(isEmpty(accessor.get()))
             menu.add(createItem(new AssignImplementationAction(project, finder, accessor)));
         else{
             menu.add(createItem(new ChangeImplementationAction(project, finder, accessor)));
             menu.add(createItem(new RemoveImplementationAction(accessor)));
             menu.add(createItem(new OpenImplementationAction(project, finder, accessor)));
+
+            JMenu methodMenu = new JMenu(REFERENCE_METHOD_MSG + accessor.getMethodName());
+            methodMenu.add(createItem(new ChangeMethodAction(accessor, Accessor.DEFAULT_METHOD)));
+            for(String m: finder.getMethods(project, accessor.getClassName())) {
+                methodMenu .add(createItem(new ChangeMethodAction(accessor, m)));
+            }
+            menu.add(methodMenu);
         }
     }
 }

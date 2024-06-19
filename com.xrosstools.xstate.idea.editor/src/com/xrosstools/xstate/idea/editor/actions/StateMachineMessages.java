@@ -10,6 +10,7 @@ public interface StateMachineMessages {
 
     String ON_EVENT_MSG = "On event ";
 	String REFERENCE_MSG = "Refer to ";
+    String REFERENCE_METHOD_MSG = "Refer to ";
 
     String ASSIGN_ACTION_MSG = "Assign %s";
     String CHANGE_ACTION_MSG = "Change %s";

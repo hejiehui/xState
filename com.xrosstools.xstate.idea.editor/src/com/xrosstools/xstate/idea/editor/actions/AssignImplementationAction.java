@@ -4,15 +4,15 @@ import com.intellij.openapi.project.Project;
 import com.xrosstools.idea.gef.actions.Action;
 import com.xrosstools.idea.gef.commands.Command;
 import com.xrosstools.xstate.idea.editor.commands.Accessor;
-import com.xrosstools.xstate.idea.editor.commands.ChangeValueCommand;
+import com.xrosstools.xstate.idea.editor.commands.ChangeClassCommand;
 import com.xrosstools.xstate.idea.editor.parts.ImplementationFinder;
 
 public class AssignImplementationAction extends Action implements StateMachineMessages {
     private Project project;
-    private Accessor<String> accessor;
+    private Accessor accessor;
     private ImplementationFinder finder;
 
-    public AssignImplementationAction(Project project, ImplementationFinder finder, Accessor<String> accessor){
+    public AssignImplementationAction(Project project, ImplementationFinder finder, Accessor accessor){
         setText(String.format(ASSIGN_ACTION_MSG, accessor.name()));
         this.project = project;
         this.finder = finder;
@@ -25,6 +25,6 @@ public class AssignImplementationAction extends Action implements StateMachineMe
         if(impl == null)
             return null;
         
-        return new ChangeValueCommand(accessor, impl);
+        return new ChangeClassCommand(accessor, impl);
     }
 }

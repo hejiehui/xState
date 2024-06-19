@@ -2,12 +2,12 @@ package com.xrosstools.xstate.idea.editor.commands;
 
 import com.xrosstools.idea.gef.commands.Command;
 
-public class ChangeValueCommand<T> extends Command {
-    private Accessor<T> accessor;
-    private T oldValue;
-    private T newValue;
+public class ChangeClassCommand extends Command {
+    private Accessor accessor;
+    private String oldValue;
+    private String newValue;
     
-    public ChangeValueCommand(Accessor<T> accessor, T newValue) {
+    public ChangeClassCommand(Accessor accessor, String newValue) {
         this.accessor= accessor;
         this.oldValue = accessor.get();
         this.newValue = newValue;

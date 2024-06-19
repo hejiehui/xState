@@ -10,12 +10,10 @@ import com.intellij.openapi.vfs.VfsUtilCore;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.xrosstools.idea.gef.actions.Action;
 import com.xrosstools.idea.gef.commands.Command;
-import com.xrosstools.xstate.idea.editor.commands.Accessor;
 import com.xrosstools.xstate.idea.editor.model.Event;
 import com.xrosstools.xstate.idea.editor.model.StateMachine;
 import com.xrosstools.xstate.idea.editor.model.StateMachineDiagram;
 import com.xrosstools.xstate.idea.editor.model.StateNode;
-import com.xrosstools.xstate.idea.editor.parts.ImplementationFinder;
 
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -48,8 +46,6 @@ public class GenerateHelperAction extends Action implements StateMachineMessages
     private Project project;
     private VirtualFile file;
     private StateMachineDiagram diagram;
-    private Accessor<String> accessor;
-    private ImplementationFinder finder;
 
     public GenerateHelperAction(Project project, VirtualFile file, StateMachineDiagram diagram){
         this.project = project;

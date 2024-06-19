@@ -11,9 +11,9 @@ import java.awt.event.ActionEvent;
 
 public class OpenImplementationAction extends Action implements ImplementationSource, StateMachineMessages {
     private Project project;
-    private Accessor<String> accessor;
+    private Accessor accessor;
     private ImplementationFinder finder;
-    public OpenImplementationAction(Project project, ImplementationFinder finder, Accessor<String> accessor){
+    public OpenImplementationAction(Project project, ImplementationFinder finder, Accessor accessor){
         setText(String.format(OPEN_ACTION_MSG, accessor.name()));
         this.project = project;
         this.accessor = accessor;
@@ -28,7 +28,7 @@ public class OpenImplementationAction extends Action implements ImplementationSo
 
     @Override
     public String getImplementation() {
-        return accessor.get();
+        return accessor.getClassName();
     }
 
     @Override
