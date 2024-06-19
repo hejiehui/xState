@@ -35,4 +35,5 @@ public interface StateMachineDiagramConstants {
 	String TARGET_ID = "target_id";
 	String STYLE = "style";
 	
+	String SEPARATOR = "::";
 }

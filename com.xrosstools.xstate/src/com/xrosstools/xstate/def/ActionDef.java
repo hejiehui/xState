@@ -1,8 +1,12 @@
 package com.xrosstools.xstate.def;
 
-import com.xrosstools.xstate.NullAction;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
-public class ActionDef {
+import com.xrosstools.xstate.NullAction;
+import com.xrosstools.xstate.StateMachineDiagramConstants;
+
+public class ActionDef implements StateMachineDiagramConstants {
 	private String implName;
 
 	public ActionDef(String implName) {
@@ -17,9 +21,37 @@ public class ActionDef {
 		this.implName = implName;
 	}
 	
-	public Object create() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public Object create(Class<? extends TriggerMethodWrapper> wrapperClass) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		if(implName == null || implName.length() == 0)
 			return NullAction.instance;
-		return Class.forName(implName).newInstance();
+		
+		String className = implName;
+		String methodName = null;
+		if(implName.contains(SEPARATOR)) {
+			String[] parts = implName.split(SEPARATOR);
+			className = parts[0];
+			methodName = parts[1];
+		}
+		
+		Class<?> clazz = Class.forName(className);
+
+		try {
+			Object instance = clazz.getDeclaredConstructor().newInstance();
+			if(methodName == null)
+				return instance;
+
+			TriggerMethodWrapper wrapper = wrapperClass.getDeclaredConstructor().newInstance();
+			wrapper.instance = instance;
+			wrapper.method = clazz.getDeclaredMethod(methodName, wrapper.parameterClasses);
+			return wrapper;
+		} catch(NoSuchMethodException e) {
+			throw new RuntimeException(e);
+		} catch(SecurityException e) {
+			throw new RuntimeException(e);
+		} catch(IllegalArgumentException e) {
+			throw new RuntimeException(e);
+		} catch(InvocationTargetException e) {
+			throw new RuntimeException(e);
+		}			
 	}
 }

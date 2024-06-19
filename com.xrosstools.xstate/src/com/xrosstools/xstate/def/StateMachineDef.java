@@ -72,8 +72,8 @@ public class StateMachineDef {
 			
 			Transition transition = new Transition(
 					tansitionDef.getEventDef().getId(), 
-					(TransitionGuard)tansitionDef.getTransitGuardDef().create(),
-					(TransitAction)tansitionDef.getTransitActionDef().create(), 
+					(TransitionGuard)tansitionDef.getTransitGuardDef().create(TriggerMethodWrapper.TransitionGuardMethodWrapper.class),
+					(TransitAction)tansitionDef.getTransitActionDef().create(TriggerMethodWrapper.TransitActionMethodWrapper.class), 
 					tansitionDef.getSourceId(), 
 					tansitionDef.getTargetId());
 			
@@ -88,8 +88,8 @@ public class StateMachineDef {
 					factory,
 					stateDef.getType(), 
 					stateDef.getDescription(),
-					(EntryAction)stateDef.getEntryActionDef().create(),
-					(ExitAction)stateDef.getExitActionDef().create(),
+					(EntryAction)stateDef.getEntryActionDef().create(TriggerMethodWrapper.EntryActionMethodWrapper.class),
+					(ExitAction)stateDef.getExitActionDef().create(TriggerMethodWrapper.ExitActionMethodWrapper.class),
 					transitions.get(stateDef.getId())));
 		}
 	

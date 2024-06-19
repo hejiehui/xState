@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.xrosstools</groupId>
 	<artifactId>xstate</artifactId>
-	<version>1.1.1</version>
+	<version>1.2.0</version>
     <name>xross state</name>
     <description>The runtime for xross state</description>
     <url>https://github.com/hejiehui/xState/tree/master/com.xrosstools.xstate</url>
