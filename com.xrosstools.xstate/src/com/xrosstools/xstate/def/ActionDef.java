@@ -5,8 +5,20 @@ import java.lang.reflect.Method;
 
 import com.xrosstools.xstate.NullAction;
 import com.xrosstools.xstate.StateMachineDiagramConstants;
+import com.xrosstools.xstate.XstateSpring;
 
 public class ActionDef implements StateMachineDiagramConstants {
+	private static boolean enableSpring;
+	
+	static {
+		try {
+			Class.forName("org.springframework.context.ApplicationContext");
+			enableSpring = true;
+		} catch (ClassNotFoundException e) {
+			enableSpring = false;
+		}
+	}
+
 	private String implName;
 
 	public ActionDef(String implName) {
@@ -36,7 +48,13 @@ public class ActionDef implements StateMachineDiagramConstants {
 		Class<?> clazz = Class.forName(className);
 
 		try {
-			Object instance = clazz.getDeclaredConstructor().newInstance();
+			Object instance = null;
+			if(enableSpring)
+				instance = XstateSpring.getBean(className);
+			
+			if(instance == null)
+				instance = clazz.getDeclaredConstructor().newInstance();
+			
 			if(methodName == null)
 				return instance;
 

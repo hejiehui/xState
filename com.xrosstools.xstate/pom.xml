@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.xrosstools</groupId>
 	<artifactId>xstate</artifactId>
-	<version>1.2.0</version>
+	<version>1.3.0</version>
     <name>xross state</name>
     <description>The runtime for xross state</description>
     <url>https://github.com/hejiehui/xState/tree/master/com.xrosstools.xstate</url>
@@ -30,6 +30,14 @@
 		<github.global.server>github</github.global.server>
 		<file_encoding>UTF-8</file_encoding>
 	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+    		<artifactId>spring-context</artifactId>
+    		<version>5.3.10</version>
+    		<scope>provided</scope>
+		</dependency>
+	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
