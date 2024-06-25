@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<state_machine_diagram>
+ <name>StateMachineDiagram</name>
+ <description/>
+ <state_machines>
+  <state_machine>
+   <name>method usage</name>
+   <description/>
+   <states>
+    <start id="start" x_loc="96" y_loc="98">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </start>
+    <end id="end" x_loc="696" y_loc="149">
+     <description/>
+     <reference/>
+     <entry_action/>
+     <exit_action/>
+    </end>
+    <state id="s1" x_loc="396" y_loc="150">
+     <description/>
+     <reference/>
+     <entry_action>com.xrosstools.xstate.sample.spring.MethodSupportSpring::enterMethod</entry_action>
+     <exit_action>com.xrosstools.xstate.sample.spring.MethodSupportSpring::exitMethod</exit_action>
+    </state>
+   </states>
+   <events>
+    <event id="event"/>
+    <event id="event"/>
+   </events>
+   <transitions>
+    <transition event_id="event" source_id="start" style="direct" target_id="s1" transit_action="com.xrosstools.xstate.sample.spring.MethodSupportSpring::transitMethod" transit_guard=""/>
+    <transition event_id="event" source_id="s1" style="direct" target_id="end" transit_action="" transit_guard="com.xrosstools.xstate.sample.spring.MethodSupportSpring::isTransitAllowedMethod"/>
+   </transitions>
+  </state_machine>
+ </state_machines>
+</state_machine_diagram>

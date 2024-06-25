@@ -1,0 +1,27 @@
+package com.xrosstools.xstate.sample.spring;
+
+import org.springframework.stereotype.Component;
+
+import com.xrosstools.xstate.Event;
+
+@Component
+//Because there is no state machine level member attribute, we can use one instance for all cases.
+//@Scope("prototype")
+public class MethodSupportSpring {
+    public void transitMethod(String sourceStateId,String targetStateId, Event event) {
+        System.out.println(String.format("transitMethod from %s to %s on %s", sourceStateId, targetStateId, event.getId()));
+    }
+
+    public void exitMethod(String sourceStateId, Event event) {
+        System.out.println(String.format("exitMethod: %s -[%s]->", sourceStateId, event.getId()));
+    }
+
+    public void enterMethod(String targetStateId, Event event) {
+        System.out.println(String.format("enterMethod: -[%s]->%s", event.getId(), targetStateId));
+    }
+
+    public boolean isTransitAllowedMethod(String sourceStateId, String targetStateId, Event event) {
+        System.out.println(String.format("isTransitAllowedMethod: from %s to %s on %s", sourceStateId, targetStateId, event.getId()));
+        return ((TestEventSpring)event).isPass();
+    }
+}
