@@ -61,6 +61,9 @@ public class ActionDef implements StateMachineDiagramConstants {
 			TriggerMethodWrapper wrapper = wrapperClass.getDeclaredConstructor().newInstance();
 			wrapper.instance = instance;
 			wrapper.method = clazz.getDeclaredMethod(methodName, wrapper.parameterClasses);
+			
+			//Allow for invoke private method
+			wrapper.method.setAccessible(true);  
 			return wrapper;
 		} catch(NoSuchMethodException e) {
 			throw new RuntimeException(e);

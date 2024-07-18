@@ -11,11 +11,11 @@ public class MethodSupport {
         System.out.println(String.format("exitMethod: %s -[%s]->", sourceStateId, event.getId()));
     }
 
-    public void enterMethod(String targetStateId, Event event) {
+    private void enterMethod(String targetStateId, Event event) {
         System.out.println(String.format("enterMethod: -[%s]->%s", event.getId(), targetStateId));
     }
 
-    public boolean isTransitAllowedMethod(String sourceStateId, String targetStateId, Event event) {
+    private boolean isTransitAllowedMethod(String sourceStateId, String targetStateId, Event event) {
         System.out.println(String.format("isTransitAllowedMethod: from %s to %s on %s", sourceStateId, targetStateId, event.getId()));
         return ((TestEvent)event).isPass();
     }

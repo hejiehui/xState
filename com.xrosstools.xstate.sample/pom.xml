@@ -11,7 +11,7 @@
 		<dependency>
 			<groupId>com.xrosstools</groupId>
 			<artifactId>xstate</artifactId>
-			<version>1.3.0</version>
+			<version>1.3.1</version>
 		</dependency>
         <dependency>
             <groupId>junit</groupId>
