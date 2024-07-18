@@ -28,7 +28,7 @@ public class OpenImplementationAction extends Action implements ImplementationSo
 
     @Override
     public String getImplementation() {
-        return accessor.getClassName();
+        return accessor.get();
     }
 
     @Override

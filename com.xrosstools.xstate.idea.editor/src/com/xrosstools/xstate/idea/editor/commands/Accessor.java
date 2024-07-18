@@ -1,17 +1,19 @@
 package com.xrosstools.xstate.idea.editor.commands;
 
+import com.xrosstools.xstate.idea.editor.platform.ReferenceUtil;
+
+import static com.xrosstools.xstate.idea.editor.platform.ReferenceUtil.*;
+
 public interface Accessor {
     String name();
     String get();
     void set(String value);
 
     default String getClassName() {
-        String name = get();
-        return name.contains(SEPARATOR) ? name.split(SEPARATOR)[0] : name;
+        return ReferenceUtil.getClassName(get());
     }
     default String getMethodName() {
-        String name = get();
-        return name.contains(SEPARATOR) ? name.split(SEPARATOR)[1] : DEFAULT_METHOD;
+        return ReferenceUtil.getMethodName(get());
     }
     default void setClassName(String className) {
         set(className);
@@ -22,7 +24,4 @@ public interface Accessor {
         else
             set(get().split(SEPARATOR)[0] + SEPARATOR + methodName);
     }
-
-    String SEPARATOR = "::";
-    String DEFAULT_METHOD = "#default";
 }

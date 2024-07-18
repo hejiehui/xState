@@ -8,8 +8,8 @@ import com.xrosstools.xstate.idea.editor.commands.ChangeMethodCommand;
 public class ChangeMethodAction extends Action implements StateMachineMessages {
     private Accessor accessor;
     private String methodName;
-    public ChangeMethodAction(Accessor accessor, String methodName){
-        setText(methodName);
+    public ChangeMethodAction(Accessor accessor, String methodName, boolean isPrivate){
+        setText(isPrivate ? '-' + methodName : methodName);
         this.accessor = accessor;
         this.methodName = methodName;
         setChecked(methodName.equals(accessor.getMethodName()));

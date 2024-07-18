@@ -20,7 +20,7 @@ public class StateNodePart extends AbstractNodePart {
         StateNodeFigure figure = (StateNodeFigure)getFigure();
         figure.setName(node.getDisplayText());
 
-        figure.setExistAction(node.getExitAction());
+        figure.setExitAction(node.getExitAction());
         figure.setEntryAction(node.getEntryAction());
     }
 }

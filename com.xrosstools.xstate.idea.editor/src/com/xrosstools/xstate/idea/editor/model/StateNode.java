@@ -133,8 +133,8 @@ public class StateNode implements StateMachineConstants, IPropertySource {
 	public String getExitAction() {
 		return exitAction;
 	}
-	public void setExitAction(String existAction) {
-		this.exitAction = existAction;
+	public void setExitAction(String exitAction) {
+		this.exitAction = exitAction;
 		firePropertyChange(PROP_EXIT_ACTION);
 	}
 	public List<StateTransition> getInputs() {

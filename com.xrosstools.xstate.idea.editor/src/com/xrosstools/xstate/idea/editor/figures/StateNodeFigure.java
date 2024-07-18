@@ -74,8 +74,8 @@ public class StateNodeFigure extends RoundedRectangle {
         repaint();
     }
     
-    public void setExistAction(String existAction) {
-		exit.setToolTipText(existAction);
+    public void setExitAction(String exitAction) {
+		exit.setToolTipText(exitAction);
         repaint();
     }
 }

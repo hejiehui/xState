@@ -1,6 +1,8 @@
 package com.xrosstools.xstate.idea.editor;
 
 import com.intellij.openapi.project.Project;
+import com.intellij.psi.PsiMethod;
+import com.intellij.psi.PsiModifier;
 import com.xrosstools.idea.gef.ContextMenuProvider;
 import com.xrosstools.idea.gef.parts.EditPart;
 import com.xrosstools.xstate.idea.editor.actions.*;
@@ -9,6 +11,7 @@ import com.xrosstools.xstate.idea.editor.commands.SelectEventCommand;
 import com.xrosstools.xstate.idea.editor.commands.SelectReferenceCommand;
 import com.xrosstools.xstate.idea.editor.model.*;
 import com.xrosstools.xstate.idea.editor.parts.*;
+import com.xrosstools.xstate.idea.editor.platform.ReferenceUtil;
 
 import javax.swing.*;
 import java.beans.PropertyChangeListener;
@@ -137,9 +140,9 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
             menu.add(createItem(new OpenImplementationAction(project, finder, accessor)));
 
             JMenu methodMenu = new JMenu(REFERENCE_METHOD_MSG + accessor.getMethodName());
-            methodMenu.add(createItem(new ChangeMethodAction(accessor, Accessor.DEFAULT_METHOD)));
-            for(String m: finder.getMethods(project, accessor.getClassName())) {
-                methodMenu .add(createItem(new ChangeMethodAction(accessor, m)));
+            methodMenu.add(createItem(new ChangeMethodAction(accessor, ReferenceUtil.DEFAULT_METHOD, false)));
+            for(PsiMethod m: finder.getMethods(project, accessor.getClassName())) {
+                methodMenu .add(createItem(new ChangeMethodAction(accessor, m.getName(), m.hasModifierProperty(PsiModifier.PRIVATE))));
             }
             menu.add(methodMenu);
         }

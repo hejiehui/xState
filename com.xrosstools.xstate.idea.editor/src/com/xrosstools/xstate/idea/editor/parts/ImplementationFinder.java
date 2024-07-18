@@ -9,7 +9,7 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiMethod;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.util.OpenSourceUtil;
-import com.xrosstools.xstate.idea.editor.commands.Accessor;
+import com.xrosstools.xstate.idea.editor.platform.ReferenceUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,14 +17,22 @@ import java.util.List;
 
 public class ImplementationFinder {
     public void openImpl(Project project, ImplementationSource source) {
-        String className = source.getImplementation();
+        String name = source.getImplementation();
+        String className = ReferenceUtil.getClassName(name);
+        String methodName = ReferenceUtil.getMethodName(name);
+
         GlobalSearchScope scope = GlobalSearchScope.allScope (project);
 
         PsiClass psiClass = JavaPsiFacade.getInstance(project).findClass(className, scope);
         if (null == psiClass) {
             Messages.showErrorDialog("Can not open " + className, "Error");
-        }else
-            OpenSourceUtil.navigate(psiClass);
+        }else {
+            if(ReferenceUtil.DEFAULT_METHOD.equals(methodName))
+                OpenSourceUtil.navigate(psiClass);
+            else {
+                OpenSourceUtil.navigate(psiClass.findMethodsByName(methodName, false)[0]);
+            }
+        }
     }
 
     public String assignImpl(Project project, String currentImpl) {
@@ -39,18 +47,18 @@ public class ImplementationFinder {
         return selected.getQualifiedName();
     }
 
-    public List<String> getMethods(Project project, String currentImpl) {
+    public List<PsiMethod> getMethods(Project project, String currentImpl) {
         GlobalSearchScope scope = GlobalSearchScope.allScope(project);
         PsiClass psiClass = JavaPsiFacade.getInstance(project).findClass(currentImpl, scope);
 
         if (psiClass == null)
             return Collections.emptyList();
 
-        List<String> methods = new ArrayList<>();
+        List<PsiMethod> methods = new ArrayList<>();
         for (PsiMethod m : psiClass.getMethods()) {
             if (m.isConstructor()) continue;
 
-            methods.add(m.getName());
+            methods.add(m);
         }
 
         return methods;
