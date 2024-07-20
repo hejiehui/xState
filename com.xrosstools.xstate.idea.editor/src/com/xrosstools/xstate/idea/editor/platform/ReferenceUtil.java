@@ -31,6 +31,8 @@ public class ReferenceUtil {
         if(psiClass == null)
             return null;
 
-        return psiClass.findMethodsByName(methodName, false)[0];
+        PsiMethod[] methods = psiClass.findMethodsByName(methodName, false);
+
+        return methods.length == 0 ? null : psiClass.findMethodsByName(methodName, false)[0];
     }
 }

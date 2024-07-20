@@ -30,7 +30,11 @@ public class ImplementationFinder {
             if(ReferenceUtil.DEFAULT_METHOD.equals(methodName))
                 OpenSourceUtil.navigate(psiClass);
             else {
-                OpenSourceUtil.navigate(psiClass.findMethodsByName(methodName, false)[0]);
+                PsiMethod[] methods = psiClass.findMethodsByName(methodName, false);
+                if(methods.length != 0)
+                    OpenSourceUtil.navigate(methods[0]);
+                else
+                    Messages.showErrorDialog(String.format("Can't find \"%s\" for class %s", methodName, className), "Method not found");
             }
         }
     }
