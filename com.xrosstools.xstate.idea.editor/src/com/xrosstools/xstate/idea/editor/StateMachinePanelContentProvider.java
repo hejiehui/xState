@@ -5,7 +5,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.xrosstools.idea.gef.AbstractPanelContentProvider;
 import com.xrosstools.idea.gef.ContextMenuProvider;
 import com.xrosstools.idea.gef.parts.EditPartFactory;
-import com.xrosstools.xstate.idea.editor.actions.GenerateHelperAction;
+import com.xrosstools.xstate.idea.editor.actions.GenerateFactoryAction;
 import com.xrosstools.xstate.idea.editor.actions.GenerateTestAction;
 import com.xrosstools.xstate.idea.editor.actions.StateMachineMessages;
 import com.xrosstools.xstate.idea.editor.io.StateMachineDiagramFactory;
@@ -76,7 +76,7 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
             palette.add(createConnectionButton(entry));
         }
 
-        palette.add(createPaletteButton(new GenerateHelperAction(project, virtualFile, diagram), StateMachineIcons.GENERATE_HLPER, GENERATE_HELPER));
+        palette.add(createPaletteButton(new GenerateFactoryAction(project, virtualFile, diagram), StateMachineIcons.GENERATE_FACTORY, GENERATE_FACTORY));
         palette.add(createPaletteButton(new GenerateTestAction(diagram), StateMachineIcons.GENERATE_TEST, GENERATE_TEST));
 
     }

@@ -1,6 +1,7 @@
 package com.xrosstools.xstate.idea.editor.actions;
 
 import com.xrosstools.idea.gef.actions.Action;
+import com.xrosstools.idea.gef.actions.CodeDisplayer;
 import com.xrosstools.idea.gef.commands.Command;
 import com.xrosstools.xstate.idea.editor.model.StateMachine;
 import com.xrosstools.xstate.idea.editor.model.StateMachineDiagram;
@@ -8,7 +9,8 @@ import com.xrosstools.xstate.idea.editor.model.StateNode;
 import com.xrosstools.xstate.idea.editor.model.StateTransition;
 
 import java.awt.event.ActionEvent;
-import static com.xrosstools.xstate.idea.editor.actions.GenerateHelperAction.*;
+import static com.xrosstools.idea.gef.actions.CodeGenHelper.*;
+
 
 public class GenerateTestAction extends Action {
     private static final String MACHINE_HEADER =
@@ -47,7 +49,7 @@ public class GenerateTestAction extends Action {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        StringBuffer classBuf = GenerateHelperAction.getTemplate("/template/TestCaseTemplate.txt");
+        StringBuffer classBuf = getTemplate("/template/TestCaseTemplate.txt", this.getClass());
         replace(classBuf, "!PACKAGE!", getValue(diagram.getHelperPackage()));
         replace(classBuf, "!TEST_CLASS!", toClassName(diagram.getName()));
 

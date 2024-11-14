@@ -17,6 +17,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <em>1.6.2</em> Optimize code generation.<br>
       <em>1.6.1</em> Fix bug when there is no method found for a given name.<br>
       <em>1.6.0</em> Support find usage and rename from source code to model file.<br>
       <em>1.5.0</em> Support jump from diagram to source code method.<br>

@@ -1,21 +1,21 @@
 package com.xrosstools.xstate.idea.editor;
 
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.PsiMethod;
-import com.intellij.psi.PsiModifier;
 import com.xrosstools.idea.gef.ContextMenuProvider;
+import com.xrosstools.idea.gef.actions.ImplementationUtil;
 import com.xrosstools.idea.gef.parts.EditPart;
+import com.xrosstools.idea.gef.util.IPropertySource;
 import com.xrosstools.xstate.idea.editor.actions.*;
-import com.xrosstools.xstate.idea.editor.commands.Accessor;
 import com.xrosstools.xstate.idea.editor.commands.SelectEventCommand;
 import com.xrosstools.xstate.idea.editor.commands.SelectReferenceCommand;
 import com.xrosstools.xstate.idea.editor.model.*;
 import com.xrosstools.xstate.idea.editor.parts.*;
-import com.xrosstools.xstate.idea.editor.platform.ReferenceUtil;
 
 import javax.swing.*;
 import java.beans.PropertyChangeListener;
 import java.util.Objects;
+
+import static com.xrosstools.xstate.idea.editor.model.StateMachineConstants.*;
 
 public class StateMachineContextMenuProvider extends ContextMenuProvider implements StateMachineMessages {
 	private Project project;
@@ -51,11 +51,11 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
         if(node instanceof StartNode || node instanceof EndNode)
             return;
 
-        buildModifyImplementationMenu(project, menu, new EntryActionAccessor(node));
+        buildModifyImplementationMenu(project, menu, node, PROP_ENTRY_ACTION);
 
         addSeparator(menu);
 
-        buildModifyImplementationMenu(project, menu, new ExitActionAccessor(node));
+        buildModifyImplementationMenu(project, menu, node, PROP_EXIT_ACTION);
 
         addSeparator(menu);
 
@@ -93,58 +93,13 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
 
         addSeparator(menu);
 
-        buildModifyImplementationMenu(project, menu, new TransitionActionAccessor(transition));
+        buildModifyImplementationMenu(project, menu, transition, PROP_TRANSITION_ACTION);
         addSeparator(menu);
 
-        buildModifyImplementationMenu(project, menu, new TransitionGuardAccessor(transition));
-    }
-    
-    private static class EntryActionAccessor implements Accessor {
-        StateNode node;
-        EntryActionAccessor(StateNode node) {this.node = node;}
-        public String get() {return node.getEntryAction();}
-        public void set(String value) {node.setEntryAction(value);}
-        public String name() {return ENTRY_MSG;}
+        buildModifyImplementationMenu(project, menu, transition, PROP_TRANSITION_GUARD);
     }
 
-    private static class ExitActionAccessor implements Accessor {
-        StateNode node;
-        ExitActionAccessor(StateNode node) {this.node = node;}
-        public String get() {return node.getExitAction();}
-        public void set(String value) {node.setExitAction(value);}
-        public String name() {return EXIT_MSG;}
-    }
-
-    private static class TransitionActionAccessor implements Accessor {
-        StateTransition transition;
-        TransitionActionAccessor(StateTransition transition) {this.transition = transition;}
-        public String get() {return transition.getTransitAction();}
-        public void set(String value) {transition.setTransitAction(value);}
-        public String name() {return TRANSITION_MSG;}
-    }
-
-    private static class TransitionGuardAccessor implements Accessor {
-        StateTransition transition;
-        TransitionGuardAccessor(StateTransition transition) {this.transition = transition;}
-        public String get() {return transition.getTransitGuard();}
-        public void set(String value) {transition.setTransitGuard(value);}
-        public String name() {return TRANSITION_GUARD_MSG;}
-    }
-
-    private static void buildModifyImplementationMenu(Project project, JPopupMenu menu, Accessor accessor) {
-        if(isEmpty(accessor.get()))
-            menu.add(createItem(new AssignImplementationAction(project, finder, accessor)));
-        else{
-            menu.add(createItem(new ChangeImplementationAction(project, finder, accessor)));
-            menu.add(createItem(new RemoveImplementationAction(accessor)));
-            menu.add(createItem(new OpenImplementationAction(project, finder, accessor)));
-
-            JMenu methodMenu = new JMenu(REFERENCE_METHOD_MSG + accessor.getMethodName());
-            methodMenu.add(createItem(new ChangeMethodAction(accessor, ReferenceUtil.DEFAULT_METHOD, false)));
-            for(PsiMethod m: finder.getMethods(project, accessor.getClassName())) {
-                methodMenu .add(createItem(new ChangeMethodAction(accessor, m.getName(), m.hasModifierProperty(PsiModifier.PRIVATE))));
-            }
-            menu.add(methodMenu);
-        }
-    }
+    private static void buildModifyImplementationMenu(Project project, JPopupMenu menu, IPropertySource source, String propertyName) {
+	    ImplementationUtil.buildImplementationMenu(project, menu, source, propertyName, true);
+	}
 }
