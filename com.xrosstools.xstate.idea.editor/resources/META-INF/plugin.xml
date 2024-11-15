@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.xrosstools.xstate.editor</id>
   <name>Xross State Machine Editor</name>
-  <version>1.6.1</version>
+  <version>1.6.2</version>
   <vendor email="he_jiehui@163.com" url="https://www.xrosstools.com">Xross Tools</vendor>
 
   <description><![CDATA[
@@ -17,7 +17,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      <em>1.6.2</em> Optimize code generation.<br>
+      <em>1.6.2</em> Auto fill diagram name and Optimize code generation.<br>
       <em>1.6.1</em> Fix bug when there is no method found for a given name.<br>
       <em>1.6.0</em> Support find usage and rename from source code to model file.<br>
       <em>1.5.0</em> Support jump from diagram to source code method.<br>
