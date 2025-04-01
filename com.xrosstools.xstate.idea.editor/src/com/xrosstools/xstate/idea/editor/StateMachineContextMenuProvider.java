@@ -5,24 +5,24 @@ import com.xrosstools.idea.gef.ContextMenuProvider;
 import com.xrosstools.idea.gef.actions.ImplementationUtil;
 import com.xrosstools.idea.gef.parts.EditPart;
 import com.xrosstools.idea.gef.util.IPropertySource;
-import com.xrosstools.xstate.idea.editor.actions.*;
+import com.xrosstools.xstate.idea.editor.actions.StateMachineCreateEventAction;
+import com.xrosstools.xstate.idea.editor.actions.StateMachineMessages;
 import com.xrosstools.xstate.idea.editor.commands.SelectEventCommand;
 import com.xrosstools.xstate.idea.editor.commands.SelectReferenceCommand;
 import com.xrosstools.xstate.idea.editor.model.*;
-import com.xrosstools.xstate.idea.editor.parts.*;
+import com.xrosstools.xstate.idea.editor.parts.StateMachinePart;
+import com.xrosstools.xstate.idea.editor.parts.StateNodePart;
+import com.xrosstools.xstate.idea.editor.parts.StateTransitionPart;
 
 import javax.swing.*;
-import java.beans.PropertyChangeListener;
 import java.util.Objects;
 
 import static com.xrosstools.xstate.idea.editor.model.StateMachineConstants.*;
 
 public class StateMachineContextMenuProvider extends ContextMenuProvider implements StateMachineMessages {
 	private Project project;
-	private static ImplementationFinder finder = new ImplementationFinder();
 
-	public StateMachineContextMenuProvider(Project project, PropertyChangeListener listener) {
-	    super(listener);
+	public StateMachineContextMenuProvider(Project project) {
         this.project = project;
     }
 
@@ -68,10 +68,6 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
                 referenceMenu.add(createItem(name, (refName != null && refName.equals(name)), new SelectReferenceCommand(node, name)));
         }
         menu.add(referenceMenu);
-    }
-
-    private static boolean isEmpty(String value) {
-        return value == null || value.trim().length() == 0;
     }
 
     public static void buildStateMachineContextMenu(Project project, JPopupMenu menu, StateMachine machine) {

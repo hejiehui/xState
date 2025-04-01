@@ -30,6 +30,9 @@ public class StateNodeComponentEditPolicy extends EditPolicy {
 	}
 
 	public Command getReconnectSourceCommand(AbstractConnectionEditPart connectionPart) {
+		StateNode node = (StateNode)getHost().getModel();
+		if(node instanceof EndNode)
+			return null;
 		return new ReconnectSourceCommand(
 				(StateTransition)connectionPart.getModel(),
 				(StateNode)getHost().getModel());

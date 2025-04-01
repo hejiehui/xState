@@ -6,7 +6,7 @@ import com.xrosstools.idea.gef.parts.EditPart;
 import com.xrosstools.idea.gef.parts.EditPartFactory;
 import com.xrosstools.xstate.idea.editor.model.*;
 
-public class StateMachineTreePartFactory  implements EditPartFactory {
+public class StateMachineTreePartFactory implements EditPartFactory {
     @Override
     public EditPart createEditPart(EditPart parent, Object model) {
         AbstractTreeEditPart part = null;

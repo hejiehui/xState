@@ -4,22 +4,20 @@ import com.intellij.openapi.project.Project;
 import com.xrosstools.idea.gef.ContextMenuProvider;
 import com.xrosstools.idea.gef.actions.CommandAction;
 import com.xrosstools.idea.gef.parts.AbstractTreeEditPart;
-import com.xrosstools.xstate.idea.editor.actions.StateMachineCreateEventAction;
 import com.xrosstools.xstate.idea.editor.actions.StateMachineMessages;
 import com.xrosstools.xstate.idea.editor.commands.*;
 import com.xrosstools.xstate.idea.editor.model.*;
-import com.xrosstools.xstate.idea.editor.parts.ImplementationFinder;
-import com.xrosstools.xstate.idea.editor.treeparts.*;
+import com.xrosstools.xstate.idea.editor.treeparts.EventTreePart;
+import com.xrosstools.xstate.idea.editor.treeparts.StateMachineTreePart;
+import com.xrosstools.xstate.idea.editor.treeparts.StateNodeTreePart;
+import com.xrosstools.xstate.idea.editor.treeparts.StateTransitionTreePart;
 
 import javax.swing.*;
-import java.beans.PropertyChangeListener;
 
 public class StateMachineOutlineContextMenuProvider extends ContextMenuProvider implements StateMachineMessages {
     private Project project;
-    private ImplementationFinder finder = new ImplementationFinder();
 
-    public StateMachineOutlineContextMenuProvider(Project project, PropertyChangeListener listener) {
-        super(listener);
+    public StateMachineOutlineContextMenuProvider(Project project) {
         this.project = project;
     }
 

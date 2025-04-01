@@ -44,12 +44,12 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
 
     @Override
     public ContextMenuProvider getContextMenuProvider() {
-        return new StateMachineContextMenuProvider(project, this);
+        return new StateMachineContextMenuProvider(project);
     }
 
     @Override
     public ContextMenuProvider getOutlineContextMenuProvider() {
-        return new StateMachineOutlineContextMenuProvider(project, this);
+        return new StateMachineOutlineContextMenuProvider(project);
     }
 
     private static Object[][] ENTRIES = new Object[][]{
@@ -93,10 +93,6 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
                 e1.printStackTrace();
             }
         }, (Icon)entry[2], (String)entry[0]);
-    }
-
-    @Override
-    public void buildToolbar(JToolBar toolbar) {
     }
 
     @Override

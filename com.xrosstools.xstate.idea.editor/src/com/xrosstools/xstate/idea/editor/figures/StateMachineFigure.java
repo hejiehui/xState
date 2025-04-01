@@ -20,6 +20,7 @@ public class StateMachineFigure extends Figure implements StateMachineConstants 
         label = new Label();
 
         ToolbarLayout layout= new ToolbarLayout();
+        layout.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
         layout.setSpacing(TITLE_SPACE);
         setLayoutManager(layout);
         
@@ -45,7 +46,6 @@ public class StateMachineFigure extends Figure implements StateMachineConstants 
     public void setName(String name, String toolTip) {
     	label.setText(name);
     	label.setToolTipText(toolTip);
-        repaint();
     }
     
     public Figure getFigure(){

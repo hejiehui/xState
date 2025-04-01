@@ -66,9 +66,8 @@ public class CommonStyleRouter implements ConnectionRouter {
     private void routeForSameNode(Connection conn) {
         Figure figure = conn.hasFeedback() ? (Figure) conn.getFeedback() : conn.getConnectionPart().getSourceFigure();
         PointList pl = conn.getPoints();
-        Point start = pl.getFirst();
-        Point end = pl.getLast();
-        //For Idea Gef, you need to remove all points after get start and end
+        Point start;
+        Point end;
         pl.removeAllPoints();
 
         int gap = indexOf(conn) * 50;
@@ -81,10 +80,7 @@ public class CommonStyleRouter implements ConnectionRouter {
             pl.addPoint(new Point(start.x - gap, start.y + gap));
             pl.addPoint(new Point(end.x, start.y + gap));
             pl.addPoint(end);
-            return;
-        }
-
-        if (style == RouteStyle.heightFirst) {
+        } else if (style == RouteStyle.heightFirst) {
             start = figure.getTop();
             end = figure.getRight();
             pl.addPoint(start);
@@ -101,6 +97,8 @@ public class CommonStyleRouter implements ConnectionRouter {
             pl.addPoint(new Point(end.x, start.y + gap));
             pl.addPoint(end);
         }
+
+        Figure.translateToAbsolute(figure, pl);
     }
 
     private int indexOf(Connection conn) {

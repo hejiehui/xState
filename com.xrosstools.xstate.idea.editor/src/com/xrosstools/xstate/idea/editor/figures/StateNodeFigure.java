@@ -8,6 +8,7 @@ import com.xrosstools.xstate.idea.editor.StateMachineIcons;
 import java.awt.*;
 
 public class StateNodeFigure extends RoundedRectangle {
+	private static final Color TITLE_COLOR = new Color(0, 190, 0);//ColorConstants.darkGreen
     private Label nameLabel;
     private IconFigure entry;
     private IconFigure exit;
@@ -23,8 +24,9 @@ public class StateNodeFigure extends RoundedRectangle {
     	
     	nameLabel = new Label();
         nameLabel.setLabelAlignment(PositionConstants.CENTER);
-        nameLabel.setForegroundColor(ColorConstants.green);
+        nameLabel.setForegroundColor(TITLE_COLOR);
         add(nameLabel);
+		nameLabel.getInsets().set(0,0,5,0);
     	
         Figure line = new RectangleFigure();
         line.setBackgroundColor(ColorConstants.lightGray);
@@ -66,16 +68,13 @@ public class StateNodeFigure extends RoundedRectangle {
     public void setName(String name) {
     	nameLabel.setText(name);
     	nameLabel.setToolTipText(name);
-    	repaint();
     }
     
     public void setEntryAction(String entryAction) {
 		entry.setToolTipText(entryAction);
-        repaint();
     }
     
     public void setExitAction(String exitAction) {
 		exit.setToolTipText(exitAction);
-        repaint();
     }
 }

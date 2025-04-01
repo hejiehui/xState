@@ -13,8 +13,4 @@ public class StateDiagramFigure extends Figure {
         layout.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
         setLayoutManager(layout);
     }
-    
-    public Figure getContentPane(){
-        return this;
-    }
 }
