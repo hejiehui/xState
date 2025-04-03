@@ -1,4 +1,4 @@
-package !PACKAGE!.test;
+package !PACKAGE!;
 
 import com.xrosstools.xstate.Event;
 import com.xrosstools.xstate.StateMachine;
@@ -6,8 +6,8 @@ import com.xrosstools.xstate.StateMachine;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import static !PACKAGE!.!TEST_CLASS!.*;
+import static !FACTORY_CLASS!.*;
 
-public class !TEST_CLASS!Test {
+public class !TEST_CLASS! {
 !TEST_BODY!
 }

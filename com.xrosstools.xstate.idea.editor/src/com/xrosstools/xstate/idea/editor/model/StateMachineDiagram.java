@@ -11,17 +11,9 @@ import com.xrosstools.idea.gef.util.TextPropertyDescriptor;
 public class StateMachineDiagram implements StateMachineConstants, IPropertySource {
 	private String name;
 	private String description;
-	private String helperPackage;
 
 	private List<StateMachine> machines = new ArrayList<StateMachine>();
-	
-	private boolean isHorizantal;
-	private int verticalSpace = 50;
-	private int horizantalSpace = 50;
-	private float alignment = 0;
-	private int nodeWidth = 100;
-	private int nodeHeight = 50;	
-	
+
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 	
 	protected void firePropertyChange(String propertyName){
@@ -31,9 +23,8 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] descriptors;
 		descriptors = new IPropertyDescriptor[] {
-				new TextPropertyDescriptor(PROP_ID, PROP_ID),
-				new TextPropertyDescriptor(PROP_DESCRIPTION, PROP_DESCRIPTION),
-				new TextPropertyDescriptor(PROP_HELPER_PACKAGE, PROP_HELPER_PACKAGE),
+				new TextPropertyDescriptor(PROP_ID),
+				new TextPropertyDescriptor(PROP_DESCRIPTION),
 			};
 		return descriptors;
 	}
@@ -43,8 +34,6 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 			return getValue(name);
 		if (PROP_DESCRIPTION.equals(propName))
 			return getValue(description);
-		if (PROP_HELPER_PACKAGE.equals(propName))
-			return getValue(helperPackage);
 
 		return null;
 	}
@@ -54,8 +43,6 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 			setName((String)value);
 		if (PROP_DESCRIPTION.equals(propName))
 			setDescription((String)value);
-		if (PROP_HELPER_PACKAGE.equals(propName))
-			setHelperPackage((String)value);
 	}
 	
 	public Object getEditableValue(){
@@ -129,62 +116,5 @@ public class StateMachineDiagram implements StateMachineConstants, IPropertySour
 	public void setDescription(String description) {
 		this.description = description;
 		firePropertyChange(PROP_DESCRIPTION);
-	}
-
-	public String getHelperPackage() {
-		return helperPackage;
-	}
-
-	public void setHelperPackage(String helperPackage) {
-		this.helperPackage = helperPackage;
-		firePropertyChange(PROP_HELPER_PACKAGE);
-	}
-
-	public boolean isHorizantal() {
-		return isHorizantal;
-	}
-
-	public void setHorizantal(boolean isHorizantal) {
-		this.isHorizantal = isHorizantal;
-	}
-
-	public int getVerticalSpace() {
-		return verticalSpace;
-	}
-
-	public void setVerticalSpace(int verticalSpace) {
-		this.verticalSpace = verticalSpace;
-	}
-
-	public int getHorizantalSpace() {
-		return horizantalSpace;
-	}
-
-	public void setHorizantalSpace(int horizantalSpace) {
-		this.horizantalSpace = horizantalSpace;
-	}
-
-	public float getAlignment() {
-		return alignment;
-	}
-
-	public void setAlignment(float alignment) {
-		this.alignment = alignment;
-	}
-
-	public int getNodeWidth() {
-		return nodeWidth;
-	}
-
-	public void setNodeWidth(int nodeWidth) {
-		this.nodeWidth = nodeWidth;
-	}
-
-	public int getNodeHeight() {
-		return nodeHeight;
-	}
-
-	public void setNodeHeight(int nodeHeight) {
-		this.nodeHeight = nodeHeight;
 	}
 }

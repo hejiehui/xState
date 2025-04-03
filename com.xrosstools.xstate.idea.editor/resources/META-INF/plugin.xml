@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.xrosstools.xstate.editor</id>
   <name>Xross State Machine Editor</name>
-  <version>1.6.5</version>
+  <version>1.6.6</version>
   <vendor email="he_jiehui@163.com" url="https://www.xrosstools.com">Xross Tools</vendor>
 
   <description><![CDATA[
@@ -17,6 +17,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <em>1.6.6</em> Optimize code generation.<br>
       <em>1.6.5</em> Minor improvement about node title color and node layout.<br>
       <em>1.6.4</em> Fix CommonStyleRouter bug when node tries to connect itself.<br>
       <em>1.6.3</em> Clean up used icons.<br>

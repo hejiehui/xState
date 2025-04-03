@@ -22,17 +22,27 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
     private VirtualFile virtualFile;
     private StateMachineDiagram diagram;
 
+    private GenerateFactoryAction generateFactoryAction;
+    private GenerateTestAction generateTestAction;
+
     private StateMachineDiagramFactory factory = new StateMachineDiagramFactory();
 
     public StateMachinePanelContentProvider(Project project, VirtualFile virtualFile) {
         super(virtualFile);
         this.project = project;
         this.virtualFile = virtualFile;
+        generateFactoryAction = new GenerateFactoryAction(project, virtualFile);
+        generateTestAction = new GenerateTestAction(project, virtualFile.getNameWithoutExtension());
     }
 
     @Override
     public StateMachineDiagram getContent() throws Exception {
         diagram = factory.getFromDocument(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(virtualFile.getInputStream()));
+
+        //Make sure we always get the latest file
+        generateFactoryAction.setDiagram(diagram);
+        generateTestAction.setDiagram(diagram);
+
         return diagram;
     }
 
@@ -76,8 +86,8 @@ public class StateMachinePanelContentProvider extends AbstractPanelContentProvid
             palette.add(createConnectionButton(entry));
         }
 
-        palette.add(createPaletteButton(new GenerateFactoryAction(project, virtualFile, diagram), StateMachineIcons.GENERATE_FACTORY, GENERATE_FACTORY));
-        palette.add(createPaletteButton(new GenerateTestAction(diagram), StateMachineIcons.GENERATE_TEST, GENERATE_TEST));
+        palette.add(createPaletteButton(generateFactoryAction, StateMachineIcons.GENERATE_FACTORY, GENERATE_FACTORY));
+        palette.add(createPaletteButton(generateTestAction, StateMachineIcons.GENERATE_TEST, GENERATE_TEST));
 
     }
 
