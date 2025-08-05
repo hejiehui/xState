@@ -43,7 +43,7 @@ public class GenerateFactoryAction extends AbstractCodeGenerator implements Stat
             "        /*  State Constants */\n";
 
     private static final String INVALID_STATE_ID =
-            "        /*  Error!!! No. %d event's Id is empty. */\n";
+            "        /*  Error!!! No. %d state's Id is empty. */\n";
 
     private Project project;
     private VirtualFile file;
@@ -135,10 +135,6 @@ public class GenerateFactoryAction extends AbstractCodeGenerator implements Stat
         label = label.contains(" ") ? label.replace(' ', '_') : label;
 
         buf.append(String.format(CONSTANT_DEF, label.toUpperCase(), id));
-    }
-
-    private boolean isEmpty(String value) {
-        return value == null || value.trim().length() == 0;
     }
 
     public Command createCommand() {
