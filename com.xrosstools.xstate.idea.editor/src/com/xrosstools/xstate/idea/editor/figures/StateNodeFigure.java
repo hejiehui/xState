@@ -24,7 +24,7 @@ public class StateNodeFigure extends RoundedRectangle {
     	
     	nameLabel = new Label();
         nameLabel.setLabelAlignment(PositionConstants.CENTER);
-        nameLabel.setForegroundColor(TITLE_COLOR);
+//        nameLabel.setForegroundColor(TITLE_COLOR);
         add(nameLabel);
 		nameLabel.getInsets().set(0,0,5,0);
     	

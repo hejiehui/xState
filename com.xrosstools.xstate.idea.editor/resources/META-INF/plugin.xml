@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.xrosstools.xstate.editor</id>
   <name>Xross State Machine Editor</name>
-  <version>1.6.7</version>
+  <version>1.7.0</version>
   <vendor email="he_jiehui@163.com" url="https://www.xrosstools.com">Xross Tools</vendor>
 
   <description><![CDATA[
@@ -17,6 +17,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <em>1.7.0</em> Support generate state entry/exit action and transition action/guard. Optimize icons.<br>
       <em>1.6.7</em> Fix code generation bug, simplify reference function.<br>
       <em>1.6.6</em> Optimize code generation.<br>
       <em>1.6.5</em> Minor improvement about node title color and node layout.<br>

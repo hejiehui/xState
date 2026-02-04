@@ -5,6 +5,7 @@ import com.xrosstools.idea.gef.ContextMenuProvider;
 import com.xrosstools.idea.gef.actions.ImplementationUtil;
 import com.xrosstools.idea.gef.parts.EditPart;
 import com.xrosstools.idea.gef.util.IPropertySource;
+import com.xrosstools.xstate.idea.editor.actions.StateCodeGenAction;
 import com.xrosstools.xstate.idea.editor.actions.StateMachineCreateEventAction;
 import com.xrosstools.xstate.idea.editor.actions.StateMachineMessages;
 import com.xrosstools.xstate.idea.editor.commands.SelectEventCommand;
@@ -96,6 +97,7 @@ public class StateMachineContextMenuProvider extends ContextMenuProvider impleme
     }
 
     private static void buildModifyImplementationMenu(Project project, JPopupMenu menu, IPropertySource source, String propertyName) {
+        menu.add(createItem(new StateCodeGenAction(project, source, propertyName)));
 	    ImplementationUtil.buildImplementationMenu(project, menu, source, propertyName, true);
 	}
 }
