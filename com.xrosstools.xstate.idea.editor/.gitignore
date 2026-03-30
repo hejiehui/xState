@@ -1,16 +1,46 @@
-/out
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+.kotlin
 
-/.idea
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+.intellijPlatform
+.run
 
-/.idea/workspace.xml
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
-/.idea/sonarlint
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 
-/.idea/inspectionProfiles
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 
-/.idea/smartfox_info.xml
+### VS Code ###
+.vscode/
 
-/.idea/uiDesigner.xml
-
-!/libs/dom4j-1.6.1.jar
-!/libs/com.xrosstools.idea.gef.jar
+### Mac OS ###
+.DS_Store

@@ -1,0 +1,1 @@
+rootProject.name = "com.xrosstools.xstate.idea.editor"

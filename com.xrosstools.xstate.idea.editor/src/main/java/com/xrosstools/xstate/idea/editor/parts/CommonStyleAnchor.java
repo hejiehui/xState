@@ -3,7 +3,6 @@ package com.xrosstools.xstate.idea.editor.parts;
 import com.xrosstools.idea.gef.figures.ChopboxAnchor;
 import com.xrosstools.idea.gef.figures.Figure;
 import com.xrosstools.xstate.idea.editor.model.RouteStyle;
-import gherkin.lexer.Fi;
 
 import java.awt.*;
 

@@ -1,0 +1,34 @@
+<!-- Plugin Configuration File: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>om.xrosstools.xstate.editor</id>
+    <vendor email="he_jiehui@163.com" url="https://www.xrosstools.com">Xross Tools</vendor>
+
+    <description><![CDATA[
+      Xross State Machine Editor is a no-code tool for building state machine.<br>
+      To create a state machine, follow these steps:<br>
+      1. create state machine model file from file -> new -> Xross State Machine<br>
+      2. Create a state machine and give it a name in properties.<br>
+      3. Create start node, state node and end node in the state machine you created.<br>
+      4. Link nodes with transition<br>
+      5. Create event and bundle to the transition.<br>
+      6. Use runtime to load the model and handle event in your application.
+      You can download and play with the <a href="https://github.com/hejiehui/xState/tree/master/com.xrosstools.xstate.sample">example</a> to quick start with it. It demonstrates how to use runtime and how to work with event.
+    ]]></description>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.xrosstools.idea.gef</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileEditorProvider implementation="com.xrosstools.xstate.idea.editor.StateMachineEditorProvider"/>
+        <fileTypeFactory implementation="com.xrosstools.xstate.idea.editor.StateMachineFileTypeFactory"/>
+        <psi.referenceContributor implementation="com.xrosstools.xstate.idea.editor.platform.XstateReferenceContributor" language="XML"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="XrossTools.NewStateMachineAction" class="com.xrosstools.xstate.idea.editor.NewStateMachineAction" text="Xross State Machine" description="Create new Xross State Machine Model file" icon="/icons/state_machine_diagram.png">
+            <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
+        </action>
+    </actions>
+</idea-plugin>

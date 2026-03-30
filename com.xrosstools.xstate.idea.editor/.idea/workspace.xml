@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="714e09c6-fed6-4492-bffa-853ed5b14d33" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/NewStateMachineAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/StateMachineContextMenuProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/StateMachineDiagramConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/StateMachineEditorProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/StateMachineFileType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/StateMachineFileTypeFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/StateMachineIcons.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/StateMachineOutlineContextMenuProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/StateMachinePanelContentProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/actions/GenerateFactoryAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/actions/GenerateTestAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/actions/StateCodeGenAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/actions/StateCodeGenFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/actions/StateMachineActionConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/actions/StateMachineCreateEventAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/actions/StateMachineMessages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/AddEventCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/AddStateMachineCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/AddStateNodeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/CreateNodeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/CreateStateMachineCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/CreateTransitionCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/DeleteEventCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/DeleteNodeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/DeleteStateMachineCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/DeleteTransitionCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/MoveNodeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/ReconnectSourceCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/ReconnectTargetCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/SelectEventCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/commands/SelectReferenceCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/figures/StateDiagramFigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/figures/StateMachineFigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/figures/StateNodeFigure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/io/StateMachineDiagramFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/io/StateMachineDiagramReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/io/StateMachineDiagramWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/io/XmlHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/EndNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/RouteStyle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/StartNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/StateMachine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/StateMachineConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/StateMachineDiagram.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/StateMachineHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/StateNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/model/StateTransition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/AbstractNodePart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/CommonStyleAnchor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/CommonStyleRouter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/ImageNodePart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/ImplementationFinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/ImplementationSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/StateMachineDiagramPart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/StateMachinePart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/StateMachinePartFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/StateNodePart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/parts/StateTransitionPart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/platform/ReferenceUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/platform/XstateReferenceContributor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/policies/StateMachineDiagramLayoutPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/policies/StateMachineLayoutPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/policies/StateNodeComponentEditPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/policies/StateTransitionComponentEditPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/treeparts/EventTreePart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/treeparts/StateMachineDiagramTreePart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/treeparts/StateMachineTreePart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/treeparts/StateMachineTreePartFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/treeparts/StateNodeTreePart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xrosstools/xstate/idea/editor/treeparts/StateTransitionTreePart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/pluginIcon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/arrows_direct.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/arrows_height.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/arrows_width.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/end_node.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/end_point.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/event.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/generate_factory.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/generate_test.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/start_node.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/start_point.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/state_machine.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/state_machine_diagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/state_node.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/transition.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/template/FactoryTemplate.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/template/TestCaseTemplate.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/template/emptyTemplate.xstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.xrosstools.xstate.idea.editor.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.xrosstools.xstate.idea.editor.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/arrows_direct.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/arrows_height.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/arrows_width.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/end_node.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/end_point.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/event.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/generate_factory.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/generate_test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/start_node.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/start_point.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/state_machine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/state_machine_diagram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/state_node.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/transition.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/template/FactoryTemplate.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/template/TestCaseTemplate.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/template/emptyTemplate.xstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/NewStateMachineAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/StateMachineContextMenuProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/StateMachineDiagramConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/StateMachineEditorProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/StateMachineFileType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/StateMachineFileTypeFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/StateMachineIcons.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/StateMachineOutlineContextMenuProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/StateMachinePanelContentProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/actions/GenerateFactoryAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/actions/GenerateTestAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/actions/StateCodeGenAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/actions/StateCodeGenFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/actions/StateMachineActionConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/actions/StateMachineCreateEventAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/actions/StateMachineMessages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/AddEventCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/AddStateMachineCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/AddStateNodeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/CreateNodeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/CreateStateMachineCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/CreateTransitionCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/DeleteEventCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/DeleteNodeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/DeleteStateMachineCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/DeleteTransitionCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/MoveNodeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/ReconnectSourceCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/ReconnectTargetCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/SelectEventCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/commands/SelectReferenceCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/figures/StateDiagramFigure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/figures/StateMachineFigure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/figures/StateNodeFigure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/io/StateMachineDiagramFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/io/StateMachineDiagramReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/io/StateMachineDiagramWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/io/XmlHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/EndNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/Event.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/RouteStyle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/StartNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/StateMachine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/StateMachineConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/StateMachineDiagram.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/StateMachineHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/StateNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/model/StateTransition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/AbstractNodePart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/CommonStyleAnchor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/CommonStyleRouter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/ImageNodePart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/ImplementationFinder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/ImplementationSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/StateMachineDiagramPart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/StateMachinePart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/StateMachinePartFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/StateNodePart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/parts/StateTransitionPart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/platform/ReferenceUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/platform/XstateReferenceContributor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/policies/StateMachineDiagramLayoutPolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/policies/StateMachineLayoutPolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/policies/StateNodeComponentEditPolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/policies/StateTransitionComponentEditPolicy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/treeparts/EventTreePart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/treeparts/StateMachineDiagramTreePart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/treeparts/StateMachineTreePart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/treeparts/StateMachineTreePartFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/treeparts/StateNodeTreePart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/xrosstools/xstate/idea/editor/treeparts/StateTransitionTreePart.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="com.xrosstools.xstate.idea.editor" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="com.xrosstools.xstate.idea.editor" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="com.xrosstools.xstate.idea.editor" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="intellij platform" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="com.xrosstools.xstate.idea.editor" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\赫杰辉\.gradle\wrapper\dists\gradle-9.0.0-bin\d6wjpkvcgsg3oed0qlfss3wgl\gradle-9.0.0" javaHome="C:\Users\赫杰辉\.jdks\openjdk-21.0.2" gradleVersion="9.0.0" />
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="3AwLb0nJ2OXJaVgazXgBHanx0Dg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Run IDE with Plugin.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.com.xrosstools.xstate.idea.editor [buildPlugin].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.com.xrosstools.xstate.idea.editor [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.com.xrosstools.xstate.idea.editor [runWithLocalPlugins].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;gradle&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/赫杰辉/Documents/GitHub/xState/com.xrosstools.xstate.idea.editor&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.32873562&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\赫杰辉\Documents\GitHub\xState\com.xrosstools.xstate.idea.editor" />
+      <recent name="C:\Users\赫杰辉\Documents\GitHub\xState\com.xrosstools.xstate.idea.editor\src\main\resources" />
+      <recent name="C:\Users\赫杰辉\Documents\GitHub\xState\com.xrosstools.xstate.idea.editor\src\main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.com.xrosstools.xstate.idea.editor [runWithLocalPlugins]">
+    <configuration name="com.xrosstools.xstate.idea.editor [buildPlugin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildPlugin" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="com.xrosstools.xstate.idea.editor [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="com.xrosstools.xstate.idea.editor [runWithLocalPlugins]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runWithLocalPlugins" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.com.xrosstools.xstate.idea.editor [runWithLocalPlugins]" />
+        <item itemvalue="Gradle.com.xrosstools.xstate.idea.editor [buildPlugin]" />
+        <item itemvalue="Gradle.com.xrosstools.xstate.idea.editor [clean]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="714e09c6-fed6-4492-bffa-853ed5b14d33" name="Changes" comment="" />
+      <created>1773498756246</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1773498756246</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
