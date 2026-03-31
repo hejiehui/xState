@@ -33,6 +33,7 @@ dependencies {
 
 intellijPlatform {
     instrumentCode = true
+    buildSearchableOptions = false
 
     pluginConfiguration {
         name = "Xross State Machine Editor"
