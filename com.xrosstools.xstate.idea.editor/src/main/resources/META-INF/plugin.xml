@@ -1,6 +1,6 @@
 <!-- Plugin Configuration File: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>om.xrosstools.xstate.editor</id>
+    <id>com.xrosstools.xstate.editor</id>
     <vendor email="he_jiehui@163.com" url="https://www.xrosstools.com">Xross Tools</vendor>
 
     <description><![CDATA[
