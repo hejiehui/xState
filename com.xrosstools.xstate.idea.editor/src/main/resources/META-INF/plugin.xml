@@ -21,7 +21,12 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileEditorProvider implementation="com.xrosstools.xstate.idea.editor.StateMachineEditorProvider"/>
-        <fileTypeFactory implementation="com.xrosstools.xstate.idea.editor.StateMachineFileTypeFactory"/>
+        <fileType name="Xross State Machine File"
+                  implementationClass="com.xrosstools.xstate.idea.editor.StateMachineFileType"
+                  fieldName="INSTANCE"
+                  extensions="xstate"
+                  language="XML"
+                  description="Xross State Machine Model File"/>
         <psi.referenceContributor implementation="com.xrosstools.xstate.idea.editor.platform.XstateReferenceContributor" language="XML"/>
     </extensions>
 

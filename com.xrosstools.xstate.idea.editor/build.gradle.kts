@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.xrosstools"
-version = "1.7.0"
+version = "1.7.1"
 
 val sandbox  : String by project
 
@@ -38,12 +38,12 @@ intellijPlatform {
     pluginConfiguration {
         name = "Xross State Machine Editor"
 
-        //<idea-version since-build="193.6911.18"/>
         ideaVersion {
-            sinceBuild = "183.6156.11"
+            sinceBuild = "193.6911.18"
         }
 
         changeNotes = """
+            <em>1.7.1</em> Fix bug when generating factory class.<br>
             <em>1.7.0</em> Support generate state entry/exit action and transition action/guard. Optimize icons.<br>
             <em>1.6.7</em> Fix code generation bug, simplify reference function.<br>
             <em>1.6.6</em> Optimize code generation.<br>

@@ -67,7 +67,7 @@ public class GenerateFactoryAction extends AbstractCodeGenerator implements Stat
 
     @Override
     public String getContent(String packageName, String fileName) {
-        StringBuffer codeBuf = getTemplate("/template/HelperTemplate.txt", this.getClass());
+        StringBuffer codeBuf = getTemplate("/template/FactoryTemplate.txt", this.getClass());
         replace(codeBuf, "!PACKAGE!", packageName);
         replace(codeBuf, "!DESCRIPTION!", getValue(diagram.getDescription()));
         replace(codeBuf, "!LAST_GENERATE_TIME!", ZonedDateTime.now().toString());
