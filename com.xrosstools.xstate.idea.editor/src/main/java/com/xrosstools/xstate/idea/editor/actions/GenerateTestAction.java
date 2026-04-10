@@ -6,6 +6,7 @@ import com.xrosstools.idea.gef.actions.AbstractCodeGenerator;
 import com.xrosstools.idea.gef.actions.Action;
 import com.xrosstools.idea.gef.actions.CodeDisplayer;
 import com.xrosstools.idea.gef.actions.CodeGenHelper;
+import com.xrosstools.idea.gef.actions.codegen.CodeGenOptionsDialog;
 import com.xrosstools.idea.gef.commands.Command;
 import com.xrosstools.xstate.idea.editor.model.StateMachine;
 import com.xrosstools.xstate.idea.editor.model.StateMachineDiagram;
@@ -43,10 +44,10 @@ public class GenerateTestAction extends AbstractCodeGenerator {
             "    /*  Warning!!! Target node of No. %d transition is empty. */\n";
 
     private static final String GUARD_PASS_COMMENT =
-            "        //Transition guard %s will pass.\n "; //transition guard
+            "        //Transition guard %s will pass.\n"; //transition guard
 
     private static final String GUARD_FAIL_COMMENT =
-            "        //Transition guard %s will fail.\n "; //transition guard
+            "        //Transition guard %s will fail.\n"; //transition guard
 
     private static final String TRANSITION_CASE_BODY =
             "        StateMachine sm = %1$s.create();\n" +                //machine
@@ -58,6 +59,7 @@ public class GenerateTestAction extends AbstractCodeGenerator {
 
     private StateMachineDiagram diagram;
     private String modelFileName;
+    private PsiClass factoryClass;
 
     public GenerateTestAction(Project project, String modelFileName) {
         super(project, "Generate test cases");
@@ -79,8 +81,13 @@ public class GenerateTestAction extends AbstractCodeGenerator {
     }
 
     @Override
+    public boolean additionalOptions() {
+        factoryClass = chooseClass("Select model factory", getFactoryName());
+        return factoryClass != null;
+    }
+
+    @Override
     public String getContent(String packageName, String fileName) {
-        PsiClass factoryClass = chooseClass("Select model factory", getFactoryName());
         if(factoryClass == null) return  null;
 
         StringBuffer classBuf = getTemplate("/template/TestCaseTemplate.txt", this.getClass());

@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.xrosstools"
-version = "1.7.1"
+version = "1.7.2"
 
 val sandbox  : String by project
 
@@ -43,6 +43,7 @@ intellijPlatform {
         }
 
         changeNotes = """
+            <em>1.7.2</em> Minor format fix for generating test case code.<br>
             <em>1.7.1</em> Fix bug when generating factory class.<br>
             <em>1.7.0</em> Support generate state entry/exit action and transition action/guard. Optimize icons.<br>
             <em>1.6.7</em> Fix code generation bug, simplify reference function.<br>
